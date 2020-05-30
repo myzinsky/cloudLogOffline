@@ -13,6 +13,9 @@ SwipeDelegate {
     leftPadding: 0
     topPadding: 0
 
+    opacity: 1.0
+    scale: 1.0
+
     checkable: true
     checked: swipe.complete
     onCheckedChanged: if (!checked) swipe.close()

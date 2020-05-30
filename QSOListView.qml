@@ -13,7 +13,7 @@ Page {
         id: listView
         anchors.fill: parent
         model: qsoModel
-        anchors.margins: 5
+        //anchors.margins: 5
         spacing: 5
 
         ButtonGroup {
@@ -23,28 +23,8 @@ Page {
         delegate: QSOItem {}
 
         remove: Transition {
-            SequentialAnimation {
-                PauseAnimation {
-                    duration: 125
-                }
-                NumberAnimation {
-                    property: "height"
-                    to: 0
-                    easing.type: Easing.InOutQuad
-                }
-            }
-        }
-
-        displaced: Transition {
-            SequentialAnimation {
-                PauseAnimation {
-                    duration: 125
-                }
-                NumberAnimation {
-                    property: "y";
-                    easing.type: Easing.InOutQuad
-                }
-            }
+               NumberAnimation { property: "opacity"; from: 1.0; to: 0; duration: 400 }
+               NumberAnimation { property: "scale"; from: 1.0; to: 0.0; duration: 400 }
         }
 
         ScrollBar.vertical: ScrollBar {}
