@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>QSOView.qml</file>
+        <file>qtquickcontrols2.conf</file>
+        <file>QSOListView.qml</file>
+        <file>fonts/fa-solid-900.ttf</file>
+        <file>DrawerItem.qml</file>
+        <file>PageDrawer.qml</file>
+        <file>Settings.qml</file>
+        <file>images/logo_circle.svg</file>
+        <file>QSOItem.qml</file>
+    </qresource>
+</RCC>
