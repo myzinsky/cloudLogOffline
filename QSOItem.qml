@@ -156,16 +156,26 @@ SwipeDelegate {
         anchors.rightMargin: 0
         clip: true
         color: Material.color(Material.BlueGrey)
-        Label {
+        MouseArea {
             id: edit
+            anchors.fill: parent
+            property int itemId: model.id
 
-            font.family: fontAwesome.name
-            text: qsTr("\uf044")
-            font.pixelSize: Qt.application.font.pixelSize * 1.6
-
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.horizontalCenter: parent.horizontalCenter
+            Text {
+                font.family: fontAwesome.name
+                text: qsTr("\uf044")
+                font.pixelSize: Qt.application.font.pixelSize * 1.6
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.horizontalCenter: parent.horizontalCenter
+                color: "#ffffff"
+                opacity: 0.87
+            }
+            onClicked: {
+                swipe.close()
+                stackView.push("QSOView.qml") // TODO: Figure out how to transmit ID!
+            }
         }
+
     }
 
     swipe.left: Rectangle {
@@ -175,15 +185,22 @@ SwipeDelegate {
         anchors.leftMargin: 0
         clip: true
         color: Material.color(Material.Red)
-        Label {
+        MouseArea {
             id: del
+            anchors.fill: parent
 
-            font.family: fontAwesome.name
-            text: qsTr("\uf2ed")
-            font.pixelSize: Qt.application.font.pixelSize * 1.6
-
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.horizontalCenter: parent.horizontalCenter
+            Text {
+                font.family: fontAwesome.name
+                text: qsTr("\uf2ed")
+                font.pixelSize: Qt.application.font.pixelSize * 1.6
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.horizontalCenter: parent.horizontalCenter
+                color: "#ffffff"
+                opacity: 0.87
+            }
+            onClicked: {
+                qsoModel.deleteQSO(index)
+            }
         }
     }
 }

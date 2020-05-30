@@ -2,6 +2,7 @@
 #define QSOMODEL_H
 #include <QString>
 #include <QAbstractListModel>
+#include <QDebug>
 
 class qso {
     QString call;
@@ -79,6 +80,9 @@ public:
     int rowCount(const QModelIndex & parent = QModelIndex()) const;
 
     QVariant data(const QModelIndex & index, int role = Qt::DisplayRole) const;
+
+public slots:
+    void deleteQSO(int id);
 
 protected:
     QHash<int, QByteArray> roleNames() const;

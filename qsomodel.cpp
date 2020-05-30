@@ -106,6 +106,13 @@ int qsoModel::rowCount(const QModelIndex & parent) const {
     return qsos.count();
 }
 
+void qsoModel::deleteQSO(int id) {
+    beginRemoveRows(QModelIndex(), id, id);
+    qDebug() << "DELETE " << id;
+    qsos.removeAt(id);
+    endRemoveRows();
+}
+
 QVariant qsoModel::data(const QModelIndex & index, int role) const {
     if (index.row() < 0 || index.row() >= qsos.count())
         return QVariant();

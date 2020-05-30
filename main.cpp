@@ -16,6 +16,7 @@ int main(int argc, char *argv[])
 
     model.addQSO(qso("DL9MJ", "Matthias", "Germany", "17.06.2020", "18:00", "14.200 MHz", "SSB", "59", "59+20"));
     model.addQSO(qso("DL0XK", "TU Kaiserslautern", "Germany", "17.06.2020", "18:00", "14.200 MHz", "SSB", "59", "59+20"));
+    model.addQSO(qso("DL5WP", "Daniel", "Germany", "17.06.2020", "18:00", "14.200 MHz", "SSB", "59", "59+20"));
 
     QQmlApplicationEngine engine;
 
