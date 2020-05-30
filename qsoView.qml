@@ -51,7 +51,7 @@ Page {
             }
 
             TextField {
-                id: callsSignTextField
+                id: callTextField
                 text: ""
                 Layout.fillWidth: true
             }
@@ -62,39 +62,40 @@ Page {
             }
 
             ComboBox {
-                id: dateComboBox
+                id: modeComboBox
                 Layout.fillWidth: true
             }
 
             Label {
-                id: bandLable
-                text: qsTr("Band:")
+                id: freqLable
+                text: qsTr("Frequency:")
             }
 
-            ComboBox {
-                id: bandComboBox
+            TextField {
+                id: freqTextField
+                text: ""
                 Layout.fillWidth: true
             }
 
             Label {
-                id: rstsLable
+                id: sentLable
                 text: qsTr("RST (S):")
             }
 
             TextField {
-                id: rstsComboBox
+                id: sentTextField
                 text: ""
                 placeholderText: qsTr("59")
                 Layout.fillWidth: true
             }
 
             Label {
-                id: rstrLable
+                id: recvLable
                 text: qsTr("RST (R):")
             }
 
             TextField {
-                id: rstrComboBox
+                id: recvTextField
                 text: ""
                 placeholderText: qsTr("59")
                 Layout.fillWidth: true
@@ -112,12 +113,12 @@ Page {
             }
 
             Label {
-                id: commentLable
-                text: qsTr("Comment:")
+                id: ctryLable
+                text: qsTr("Country:")
             }
 
             TextField {
-                id: commentTextField
+                id: ctryTextField
                 text: ""
                 Layout.fillWidth: true
             }
@@ -136,7 +137,15 @@ Page {
                 Material.accent: Material.Green
 
                 onClicked: {
-                    qso.someSlot()
+                    qsoModel.addQSO(callTextField.text,
+                                    nameTextField.text,
+                                    ctryTextField.text,
+                                    dateTextField.text,
+                                    timeTextField.text,
+                                    freqTextField.text,
+                                    modeComboBox.text,
+                                    sentTextField.text,
+                                    recvTextField.text);
                 }
             }
         }
