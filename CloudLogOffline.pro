@@ -1,4 +1,5 @@
 QT += quick
+QT += sql
 
 CONFIG += c++11
 
@@ -13,8 +14,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-SOURCES += main.cpp \
-    qsomodel.cpp
+SOURCES += main.cpp
+SOURCES += qsomodel.cpp
 SOURCES += qso.cpp
 
 RESOURCES += qml.qrc
@@ -25,13 +26,17 @@ QML_IMPORT_PATH =
 # Additional import path used to resolve QML modules just for Qt Quick Designer
 QML_DESIGNER_IMPORT_PATH =
 
-# ios:
 ios {
     QMAKE_INFO_PLIST = ios/Info.plist
     ios_icon.files = $$files($$PWD/images/ios/*.png)
     ios_logo.files = $$files($$PWD/images/*.svg)
     QMAKE_BUNDLE_DATA += ios_icon
     QMAKE_BUNDLE_DATA += ios_logo
+}
+
+mac {
+    ICON = images/macos/logo_circle.icns
+    QMAKE_INFO_PLIST = macos/Info.plist
 }
 
 # Default rules for deployment.
