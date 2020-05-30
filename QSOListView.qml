@@ -13,9 +13,14 @@ Page {
         id: listView
         anchors.fill: parent
         model: qsoModel
-        delegate: QSOItem {}
         anchors.margins: 5
         spacing: 5
+
+        ButtonGroup {
+            buttons: listView.contentItem.children
+        }
+
+        delegate: QSOItem {}
 
         remove: Transition {
             SequentialAnimation {

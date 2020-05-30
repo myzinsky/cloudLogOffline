@@ -13,6 +13,10 @@ SwipeDelegate {
     leftPadding: 0
     topPadding: 0
 
+    checkable: true
+    checked: swipe.complete
+    onCheckedChanged: if (!checked) swipe.close()
+
     contentItem: Item {
         id: element
         width: parent.width
