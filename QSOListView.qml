@@ -14,6 +14,7 @@ Page {
         model: qsoModel
         delegate: QSOItem {}
         anchors.margins: 5
+        spacing: 5
         ScrollBar.vertical: ScrollBar {}
     }
 }

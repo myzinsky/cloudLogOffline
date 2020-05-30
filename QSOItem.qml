@@ -3,12 +3,22 @@ import QtQuick.Layouts 1.0
 import QtQuick.Controls 2.12
 import QtQuick.Controls.Material 2.12
 
-Component {
-    Item {
+SwipeDelegate {
+    width: parent.width
+    height: 70
+
+    padding: 0
+    rightPadding: 0
+    bottomPadding: 0
+    leftPadding: 0
+    topPadding: 0
+
+    contentItem: Item {
         id: element
         width: parent.width
-        height: rec.height + 5;
-
+        //anchors.fill: parent
+        height: 70
+        //z: 0
         Rectangle {
             width: parent.width
             height: 70
@@ -121,21 +131,6 @@ Component {
                 opacity: 0.87
             }
 
-            Text {
-                id: edit
-                color: "#ffffff"
-                font.family: fontAwesome.name
-                text: qsTr("\uf044")
-                anchors.right: parent.right
-                anchors.rightMargin: 5
-                font.italic: false
-                font.bold: false
-                anchors.bottom: parent.bottom
-                anchors.bottomMargin: 5
-                font.wordSpacing: 0
-                font.pixelSize: 20
-                opacity: 0.87
-            }
 
             Text {
                 id: name
@@ -151,6 +146,44 @@ Component {
                 opacity: 0.87
                 font.pixelSize: 20
             }
+        }
+    }
+
+    swipe.right: Rectangle {
+        width: 70
+        height: 70
+        anchors.right: parent.right
+        anchors.rightMargin: 0
+        clip: true
+        color: Material.color(Material.BlueGrey)
+        Label {
+            id: edit
+
+            font.family: fontAwesome.name
+            text: qsTr("\uf044")
+            font.pixelSize: Qt.application.font.pixelSize * 1.6
+
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.horizontalCenter: parent.horizontalCenter
+        }
+    }
+
+    swipe.left: Rectangle {
+        width: 70
+        height: 70
+        anchors.left: parent.left
+        anchors.leftMargin: 0
+        clip: true
+        color: Material.color(Material.Red)
+        Label {
+            id: del
+
+            font.family: fontAwesome.name
+            text: qsTr("\uf2ed")
+            font.pixelSize: Qt.application.font.pixelSize * 1.6
+
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.horizontalCenter: parent.horizontalCenter
         }
     }
 }
