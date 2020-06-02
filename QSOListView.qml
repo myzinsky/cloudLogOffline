@@ -23,8 +23,20 @@ Page {
         delegate: QSOItem {}
 
         remove: Transition {
-               NumberAnimation { property: "opacity"; from: 1.0; to: 0; duration: 400 }
-               NumberAnimation { property: "scale"; from: 1.0; to: 0.0; duration: 400 }
+            NumberAnimation {
+                property: "opacity"
+                from: 1.0
+                to: 0
+                duration: 300
+            }
+        }
+
+        removeDisplaced:Transition{
+            NumberAnimation{
+                property:"y"
+                duration:400
+                easing.type: Easing.InOutQuad
+            }
         }
 
         ScrollBar.vertical: ScrollBar {}

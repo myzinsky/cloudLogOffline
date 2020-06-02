@@ -3,7 +3,7 @@
 qsoModel::qsoModel(QObject *parent) : QSqlTableModel(parent)
 {
     setTable("qsos");
-    setEditStrategy(QSqlTableModel::OnManualSubmit);
+    setEditStrategy(QSqlTableModel::OnFieldChange);
     select();
 }
 
@@ -24,8 +24,10 @@ QVariant qsoModel::data(const QModelIndex &index, int role) const
 }
 
 void qsoModel::deleteQSO(int id) {
+    beginRemoveRows(QModelIndex(), id, id);
     removeRow(id);
-    submitAll();
+    endRemoveRows();
+    submit();
 }
 
 void qsoModel::addQSO(QString call,
@@ -51,7 +53,8 @@ void qsoModel::addQSO(QString call,
     newRecord.setValue("recv", recv);
 
     insertRecord(rowCount(), newRecord);
-    submitAll();
+    submit();
+    select();
 }
 
 QHash<int, QByteArray> qsoModel::roleNames() const
