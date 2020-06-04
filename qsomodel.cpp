@@ -7,6 +7,11 @@ qsoModel::qsoModel(QObject *parent) : QSqlTableModel(parent)
     select();
 }
 
+qsoModel::~qsoModel()
+{
+    submitAll();
+}
+
 QVariant qsoModel::data(const QModelIndex &index, int role) const
 {
     QVariant value;

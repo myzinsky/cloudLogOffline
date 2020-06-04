@@ -14,6 +14,7 @@ class qsoModel : public QSqlTableModel
 
 public:
     qsoModel(QObject *parent = nullptr);
+    ~qsoModel();
     QVariant data(const QModelIndex &item, int role) const override;
     QHash<int, QByteArray> roleNames() const override;
 
