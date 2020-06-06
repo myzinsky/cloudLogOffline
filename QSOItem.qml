@@ -205,6 +205,7 @@ SwipeDelegate {
                 color: "#ffffff"
                 opacity: 0.87
             }
+
             onClicked: {
                 qsoModel.deleteQSO(index)
             }

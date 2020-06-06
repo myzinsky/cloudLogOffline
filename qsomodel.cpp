@@ -3,6 +3,8 @@
 qsoModel::qsoModel(QObject *parent) : QSqlTableModel(parent)
 {
     setTable("qsos");
+    setPrimaryKey(QSqlIndex("id"));
+
     setEditStrategy(QSqlTableModel::OnFieldChange);
     select();
 }
@@ -30,9 +32,10 @@ QVariant qsoModel::data(const QModelIndex &index, int role) const
 
 void qsoModel::deleteQSO(int id) {
     beginRemoveRows(QModelIndex(), id, id);
-    removeRow(id);
+    removeRows(id, 1 ,QModelIndex());
     endRemoveRows();
     submit();
+    //select();
 }
 
 void qsoModel::addQSO(QString call,
