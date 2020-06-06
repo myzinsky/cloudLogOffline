@@ -13,7 +13,6 @@ Page {
         id: listView
         anchors.fill: parent
         model: qsoModel
-        //anchors.margins: 5
         spacing: 5
 
         ButtonGroup {
@@ -23,11 +22,19 @@ Page {
         delegate: QSOItem {}
 
         remove: Transition {
-            NumberAnimation {
-                property: "opacity"
-                from: 1.0
-                to: 0
-                duration: 300
+            SequentialAnimation {
+                NumberAnimation {
+                    property: "opacity"
+                    from: 1.0
+                    to: 0
+                    duration: 400
+                }
+                // Commit database after the actual animation
+                ScriptAction {
+                    script: {
+                        qsoModel.select()
+                    }
+                }
             }
         }
 
@@ -39,8 +46,10 @@ Page {
             }
         }
 
+
         ScrollBar.vertical: ScrollBar {}
 
+        // Show a placeholder when no QSO is in the list so far
         Label {
             id: placeholder
             text: qsTr("Add QSOs in Menu")
