@@ -3,8 +3,6 @@
 qsoModel::qsoModel(QObject *parent) : QSqlTableModel(parent)
 {
     setTable("qsos");
-    setPrimaryKey(QSqlIndex("id"));
-
     setEditStrategy(QSqlTableModel::OnFieldChange);
     select();
 }
