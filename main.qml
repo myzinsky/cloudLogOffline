@@ -82,7 +82,7 @@ ApplicationWindow {
             },
             6: function() {
                 stackView.push("Settings.qml")
-            }
+            },
             7: function() {
                 stackView.push("AboutView.qml")
             }
