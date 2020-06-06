@@ -12,6 +12,6 @@
         <file>QSOItem.qml</file>
         <file>QSOTextField.qml</file>
         <file>images/logo_square.svg</file>
-        <file>aboutView.qml</file>
+        <file>AboutView.qml</file>
     </qresource>
 </RCC>

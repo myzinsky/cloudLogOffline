@@ -20,7 +20,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += main.cpp
 SOURCES += dbmanager.cpp
 SOURCES += qsomodel.cpp
-SOURCES +=
 
 RESOURCES += qml.qrc
 

@@ -33,6 +33,7 @@ ApplicationWindow {
             onClicked: {
                 if (stackView.depth > 1) {
                     stackView.pop()
+                    drawer.index = -1
                 } else {
                     drawer.open()
                 }

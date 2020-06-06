@@ -70,7 +70,6 @@ SwipeDelegate {
                 anchors.topMargin: 30
                 anchors.left: date.right
                 anchors.leftMargin: 10
-                font.pixelSize: 12
                 color: "white"
                 opacity: 0.87
             }
