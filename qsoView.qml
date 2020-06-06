@@ -108,6 +108,40 @@ Page {
                 id: modeComboBox
                 Layout.fillWidth: true
                 KeyNavigation.tab: freqTextField
+                model: [
+                    "SSB",
+                    "FM",
+                    "AM",
+                    "CW",
+                    "DSTAR",
+                    "C4FM",
+                    "DMR",
+                    "DIGITALVOICE",
+                    "PSK31",
+                    "PSK63",
+                    "RTTY",
+                    "JT65",
+                    "JT65B",
+                    "JT6C",
+                    "JT9-1",
+                    "JT9",
+                    "FT4",
+                    "FT8",
+                    "JS8",
+                    "FSK441",
+                    "JTMS",
+                    "ISCAT",
+                    "MSK144",
+                    "JTMSK",
+                    "QRA64",
+                    "PKT",
+                    "SSTV",
+                    "HELL",
+                    "HELL80",
+                    "MFSK16",
+                    "JT6M",
+                    "ROS"
+                ]
             }
 
             Label {
@@ -179,7 +213,7 @@ Page {
                     dateTextField.text = ""
                     timeTextField.text = ""
                     freqTextField.text = ""
-                    modeComboBox.text  = "" // TODO
+                    //modeComboBox.text  = "" // TODO
                     sentTextField.text = ""
                     recvTextField.text = ""
                 }
@@ -207,7 +241,7 @@ Page {
                                 dateTextField.text,
                                 timeTextField.text,
                                 freqTextField.text,
-                                modeComboBox.text,
+                                modeComboBox.currentText,
                                 sentTextField.text,
                                 recvTextField.text);
                     } else if(updateQSO == true) {
@@ -218,7 +252,7 @@ Page {
                                    dateTextField.text,
                                    timeTextField.text,
                                    freqTextField.text,
-                                   modeComboBox.text,
+                                   modeComboBox.currentText,
                                    sentTextField.text,
                                    recvTextField.text);
                     }
