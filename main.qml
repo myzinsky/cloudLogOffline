@@ -81,9 +81,12 @@ ApplicationWindow {
                                });
             },
             6: function() {
-                stackView.push("Settings.qml")
+                // EXPORT
             },
             7: function() {
+                stackView.push("Settings.qml")
+            },
+            8: function() {
                 stackView.push("AboutView.qml")
             }
         }
@@ -123,11 +126,16 @@ ApplicationWindow {
             }
 
             ListElement { // 6
+                pageTitle: qsTr ("Export")
+                pageIcon: "\uf56e"
+            }
+
+            ListElement { // 7
                 pageTitle: qsTr ("Settings")
                 pageIcon: "\uf013"
             }
 
-            ListElement { // 7
+            ListElement { // 8
                 pageTitle: qsTr ("About")
                 pageIcon: "\uf05a"
             }

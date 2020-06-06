@@ -25,12 +25,26 @@ Page {
     property alias name: nameTextField.text;
     property alias ctry: ctryTextField.text;
 
+    function reset() {
+        callTextField.text = ""
+        nameTextField.text = ""
+        ctryTextField.text = ""
+        dateTextField.text = ""
+        timeTextField.text = ""
+        freqTextField.text = ""
+        // TODO: modeComboBox.
+        sentTextField.text = ""
+        recvTextField.text = ""
+    }
+
     ScrollView {
         anchors.fill: parent
 
         ButtonGroup {
             buttons: grid.children
         }
+
+
 
         GridLayout {
             id: grid
@@ -207,15 +221,7 @@ Page {
                 visible: (addQSO || liveQSO)
 
                 onClicked: {
-                    callTextField.text = ""
-                    nameTextField.text = ""
-                    ctryTextField.text = ""
-                    dateTextField.text = ""
-                    timeTextField.text = ""
-                    freqTextField.text = ""
-                    //modeComboBox.text  = "" // TODO
-                    sentTextField.text = ""
-                    recvTextField.text = ""
+                    page.reset();
                 }
             }
 
@@ -244,6 +250,13 @@ Page {
                                 modeComboBox.currentText,
                                 sentTextField.text,
                                 recvTextField.text);
+
+                        if(addQSO) {
+                            stackView.pop()
+                        } else if(liveQSO) {
+                            page.reset();
+                        }
+
                     } else if(updateQSO == true) {
                         qsoModel.updateQSO(rid,
                                    callTextField.text,
@@ -255,6 +268,7 @@ Page {
                                    modeComboBox.currentText,
                                    sentTextField.text,
                                    recvTextField.text);
+                        stackView.pop()
                     }
                 }
             }
