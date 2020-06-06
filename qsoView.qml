@@ -42,11 +42,11 @@ Page {
                 text: qsTr("Date:")
             }
 
-            TextField {
+            QSOTextField {
                 id: dateTextField
                 text: ""
                 placeholderText: qsTr("DD.MM.YYYY")
-                Layout.fillWidth: true
+                KeyNavigation.tab: timeTextField
 
                 Timer {
                     id: dateTextTimer
@@ -68,11 +68,11 @@ Page {
 
             }
 
-            TextField {
+            QSOTextField {
                 id: timeTextField
                 text: ""
                 placeholderText: qsTr("00:00")
-                Layout.fillWidth: true
+                KeyNavigation.tab: callTextField
 
                 Timer {
                     id: timeTextTimer
@@ -93,10 +93,10 @@ Page {
                 text: qsTr("Callsign:")
             }
 
-            TextField {
+            QSOTextField {
                 id: callTextField
                 text: ""
-                Layout.fillWidth: true
+                KeyNavigation.tab: modeComboBox
             }
 
             Label {
@@ -107,6 +107,7 @@ Page {
             ComboBox {
                 id: modeComboBox
                 Layout.fillWidth: true
+                KeyNavigation.tab: freqTextField
             }
 
             Label {
@@ -114,10 +115,10 @@ Page {
                 text: qsTr("Frequency:")
             }
 
-            TextField {
+            QSOTextField {
                 id: freqTextField
                 text: ""
-                Layout.fillWidth: true
+                KeyNavigation.tab: sentTextField
             }
 
             Label {
@@ -125,11 +126,11 @@ Page {
                 text: qsTr("RST (S):")
             }
 
-            TextField {
+            QSOTextField {
                 id: sentTextField
                 text: ""
                 placeholderText: qsTr("59")
-                Layout.fillWidth: true
+                KeyNavigation.tab: recvTextField
             }
 
             Label {
@@ -137,11 +138,11 @@ Page {
                 text: qsTr("RST (R):")
             }
 
-            TextField {
+            QSOTextField {
                 id: recvTextField
                 text: ""
                 placeholderText: qsTr("59")
-                Layout.fillWidth: true
+                KeyNavigation.tab: nameTextField
             }
 
             Label {
@@ -149,10 +150,10 @@ Page {
                 text: qsTr("Name:")
             }
 
-            TextField {
+            QSOTextField {
                 id: nameTextField
                 text: ""
-                Layout.fillWidth: true
+                KeyNavigation.tab: ctryTextField
             }
 
             Label {
@@ -160,16 +161,28 @@ Page {
                 text: qsTr("Country:")
             }
 
-            TextField {
+            QSOTextField {
                 id: ctryTextField
                 text: ""
-                Layout.fillWidth: true
+                KeyNavigation.tab: saveButton
             }
 
             Button {
                 id: resetButton
                 text: qsTr("Reset")
                 visible: (addQSO || liveQSO)
+
+                onClicked: {
+                    callTextField.text = ""
+                    nameTextField.text = ""
+                    ctryTextField.text = ""
+                    dateTextField.text = ""
+                    timeTextField.text = ""
+                    freqTextField.text = ""
+                    modeComboBox.text  = "" // TODO
+                    sentTextField.text = ""
+                    recvTextField.text = ""
+                }
             }
 
             Label {
@@ -199,15 +212,15 @@ Page {
                                 recvTextField.text);
                     } else if(updateQSO == true) {
                         qsoModel.updateQSO(rid,
-                                callTextField.text,
-                                nameTextField.text,
-                                ctryTextField.text,
-                                dateTextField.text,
-                                timeTextField.text,
-                                freqTextField.text,
-                                modeComboBox.text,
-                                sentTextField.text,
-                                recvTextField.text);
+                                   callTextField.text,
+                                   nameTextField.text,
+                                   ctryTextField.text,
+                                   dateTextField.text,
+                                   timeTextField.text,
+                                   freqTextField.text,
+                                   modeComboBox.text,
+                                   sentTextField.text,
+                                   recvTextField.text);
                     }
                 }
             }

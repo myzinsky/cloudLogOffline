@@ -35,7 +35,7 @@ ios {
     QMAKE_BUNDLE_DATA += ios_logo
 }
 
-mac {
+macx {
     ICON = images/macos/logo_circle.icns
     QMAKE_INFO_PLIST = macos/Info.plist
 }

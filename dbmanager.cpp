@@ -41,8 +41,12 @@ bool dbManager::createTables()
 
 void dbManager::openDatabase()
 {
+    QString dbName = "logbook.sqlite";
+    QString dbLocation = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
     db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("logbook.sqlite");
+    db.setDatabaseName(dbLocation + "/" +dbName);
+    db.database(dbLocation + "/" +dbName);
+    db.databaseName();
 
     if (!db.open()) {
         qDebug() << "Error: connection with database fail";

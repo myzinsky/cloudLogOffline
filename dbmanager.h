@@ -3,6 +3,7 @@
 #include <QSqlDatabase>
 #include <QDebug>
 #include <QSqlQuery>
+#include <QStandardPaths>
 
 class dbManager
 {

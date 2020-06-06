@@ -10,5 +10,6 @@
         <file>Settings.qml</file>
         <file>images/logo_circle.svg</file>
         <file>QSOItem.qml</file>
+        <file>QSOTextField.qml</file>
     </qresource>
 </RCC>
