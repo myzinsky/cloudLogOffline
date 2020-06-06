@@ -11,5 +11,7 @@
         <file>images/logo_circle.svg</file>
         <file>QSOItem.qml</file>
         <file>QSOTextField.qml</file>
+        <file>images/logo_square.svg</file>
+        <file>images/logo_circle.png</file>
     </qresource>
 </RCC>

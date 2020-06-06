@@ -49,8 +49,8 @@ ApplicationWindow {
         id: drawer
 
         iconTitle: "CloudLog Offline"
-        iconSource: "qrc:/images/logo_circle.svg"
-        iconSubtitle: qsTr ("Version 1.0 Beta")
+        iconSource: "qrc:///images/logo_circle.svg"
+        iconSubtitle: qsTr ("Version 0.1 Alpha")
 
         iconBgColorLeft: "#B0BEC5"
         iconBgColorRight: "#607D8B"
@@ -83,6 +83,9 @@ ApplicationWindow {
             6: function() {
                 stackView.push("Settings.qml")
             }
+            7: function() {
+                stackView.push("AboutView.qml")
+            }
         }
 
         //
@@ -106,10 +109,10 @@ ApplicationWindow {
                 pageIcon: "\uf055"
             }
 
-            //ListElement { // 3
-            //    pageTitle: qsTr ("Add Contest QSO")
-            //    pageIcon: "\uf055"
-            //}
+            ListElement { // 3
+                pageTitle: qsTr ("Start Contest")
+                pageIcon: "\uf091"
+            }
 
             ListElement { // 4
                 spacer: true
@@ -122,6 +125,11 @@ ApplicationWindow {
             ListElement { // 6
                 pageTitle: qsTr ("Settings")
                 pageIcon: "\uf013"
+            }
+
+            ListElement { // 7
+                pageTitle: qsTr ("About")
+                pageIcon: "\uf05a"
             }
         }
     }
