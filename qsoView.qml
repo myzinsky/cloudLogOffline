@@ -9,6 +9,19 @@ Page {
     title: qsTr("Add QSO")
     anchors.margins: 10
 
+    property bool addQSO: true;
+    property bool liveQSO: false;
+
+    property alias date: dateTextField.text;
+    property alias time: timeTextField.text;
+    property alias call: callTextField.text;
+    property alias mode: modeComboBox.currentText;
+    property alias freq: freqTextField.text
+    property alias sent: sentTextField.text;
+    property alias recv: recvTextField.text;
+    property alias name: nameTextField.text;
+    property alias ctry: ctryTextField.text;
+
     ScrollView {
         anchors.fill: parent
 
@@ -31,11 +44,25 @@ Page {
                 text: ""
                 placeholderText: qsTr("DD.MM.YYYY")
                 Layout.fillWidth: true
+
+                Timer {
+                    id: dateTextTimer
+                    interval: 1000
+                    repeat: liveQSO
+                    running: liveQSO
+                    triggeredOnStart: liveQSO
+                    onTriggered: {
+                        var now = new Date();
+                        var utc = new Date(now.getTime() + now.getTimezoneOffset() * 60000);
+                        dateTextField.text = Qt.formatDateTime(utc, "dd.MM.yyyy");
+                    }
+                }
             }
 
             Label {
                 id: timeLable
                 text: qsTr("Time:")
+
             }
 
             TextField {
@@ -43,6 +70,19 @@ Page {
                 text: ""
                 placeholderText: qsTr("00:00")
                 Layout.fillWidth: true
+
+                Timer {
+                    id: timeTextTimer
+                    interval: 1000
+                    repeat: liveQSO
+                    running: liveQSO
+                    triggeredOnStart: liveQSO
+                    onTriggered: {
+                        var now = new Date();
+                        var utc = new Date(now.getTime() + now.getTimezoneOffset() * 60000);
+                        timeTextField.text = Qt.formatDateTime(utc, "HH:mm");
+                    }
+                }
             }
 
             Label {
@@ -137,15 +177,17 @@ Page {
                 Material.accent: Material.Green
 
                 onClicked: {
-                    qsoModel.addQSO(callTextField.text,
-                                    nameTextField.text,
-                                    ctryTextField.text,
-                                    dateTextField.text,
-                                    timeTextField.text,
-                                    freqTextField.text,
-                                    modeComboBox.text,
-                                    sentTextField.text,
-                                    recvTextField.text);
+                    if(addQSO == true) {
+                        qsoModel.addQSO(callTextField.text,
+                                nameTextField.text,
+                                ctryTextField.text,
+                                dateTextField.text,
+                                timeTextField.text,
+                                freqTextField.text,
+                                modeComboBox.text,
+                                sentTextField.text,
+                                recvTextField.text);
+                    }
                 }
             }
         }
