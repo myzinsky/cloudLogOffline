@@ -63,6 +63,35 @@ void qsoModel::addQSO(QString call,
     select();
 }
 
+void qsoModel::updateQSO(int id,
+                         QString call,
+                         QString name,
+                         QString ctry,
+                         QString date,
+                         QString time,
+                         QString freq,
+                         QString mode,
+                         QString sent,
+                         QString recv)
+{
+    qDebug() << "UPDATE QSO" << id;
+    QSqlRecord r = record(id);
+
+    r.setValue("call", call);
+    r.setValue("name", name);
+    r.setValue("ctry", ctry);
+    r.setValue("date", date);
+    r.setValue("time", time);
+    r.setValue("freq", freq);
+    r.setValue("mode", mode);
+    r.setValue("sent", sent);
+    r.setValue("recv", recv);
+
+    setRecord(id, r);
+    submit();
+    select();
+}
+
 QHash<int, QByteArray> qsoModel::roleNames() const
 {
    QHash<int, QByteArray> roles;

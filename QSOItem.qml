@@ -153,6 +153,18 @@ SwipeDelegate {
                 opacity: 0.87
                 font.pixelSize: 20
             }
+
+            Text {
+                id: rowNumber
+                color: "#ffffff"
+                text: index
+                anchors.top: parent.top
+                anchors.right: parent.right
+                anchors.topMargin: 50
+                anchors.rightMargin: 5
+                font.pixelSize: 12
+                opacity: 0.87
+            }
         }
     }
 
@@ -166,7 +178,6 @@ SwipeDelegate {
         MouseArea {
             id: edit
             anchors.fill: parent
-            property int itemId: model.id
 
             Text {
                 font.family: fontAwesome.name
@@ -177,12 +188,28 @@ SwipeDelegate {
                 color: "#ffffff"
                 opacity: 0.87
             }
+
             onClicked: {
                 swipe.close()
-                stackView.push("QSOView.qml") // TODO: Figure out how to transmit ID!
+                stackView.push("QSOView.qml",
+                               {
+                                   "addQSO"     : false,
+                                   "liveQSO"    : false,
+                                   "updateQSO"  : true,
+
+                                   "rid"        : index,
+                                   "date"       : model.date,
+                                   "time"       : model.time,
+                                   "call"       : model.call,
+                                   "mode"       : model.mode,
+                                   "freq"       : model.freq,
+                                   "sent"       : model.sent,
+                                   "recv"       : model.recv,
+                                   "name"       : model.name,
+                                   "ctry"       : model.ctry,
+                               });
             }
         }
-
     }
 
     swipe.left: Rectangle {

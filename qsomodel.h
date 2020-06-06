@@ -30,6 +30,17 @@ public slots:
                 QString mode,
                 QString sent,
                 QString recv);
+
+    void updateQSO(int id,
+                QString call,
+                QString name,
+                QString ctry,
+                QString date,
+                QString time,
+                QString freq,
+                QString mode,
+                QString sent,
+                QString recv);
 };
 
 #endif // QSOMODEL_H

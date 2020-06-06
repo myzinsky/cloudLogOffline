@@ -6,11 +6,14 @@ import QtQuick.Controls.Material 2.4
 Page {
     id: page
     anchors.fill: parent
-    title: qsTr("Add QSO")
+    title: (addQSO || liveQSO) ? qsTr("Add QSO") : qsTr("Edit QSO")
     anchors.margins: 10
 
     property bool addQSO: true;
     property bool liveQSO: false;
+    property bool updateQSO: false;
+
+    property int rid;
 
     property alias date: dateTextField.text;
     property alias time: timeTextField.text;
@@ -166,6 +169,13 @@ Page {
             Button {
                 id: resetButton
                 text: qsTr("Reset")
+                visible: (addQSO || liveQSO)
+            }
+
+            Label {
+                id: resetButtonPlaceHolder
+                text: ""
+                visible: updateQSO
             }
 
             Button {
@@ -177,8 +187,19 @@ Page {
                 Material.accent: Material.Green
 
                 onClicked: {
-                    if(addQSO == true) {
+                    if(addQSO == true || liveQSO == true) {
                         qsoModel.addQSO(callTextField.text,
+                                nameTextField.text,
+                                ctryTextField.text,
+                                dateTextField.text,
+                                timeTextField.text,
+                                freqTextField.text,
+                                modeComboBox.text,
+                                sentTextField.text,
+                                recvTextField.text);
+                    } else if(updateQSO == true) {
+                        qsoModel.updateQSO(rid,
+                                callTextField.text,
                                 nameTextField.text,
                                 ctryTextField.text,
                                 dateTextField.text,

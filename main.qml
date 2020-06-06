@@ -65,7 +65,20 @@ ApplicationWindow {
                 stackView.push("QSOListView.qml")
             },
             1: function() {
-                stackView.push("QSOView.qml")
+                stackView.push("QSOView.qml",
+                               {
+                                   "addQSO"    : true,
+                                   "liveQSO"   : false,
+                                   "updateQSO" : false,
+                               });
+            },
+            2: function() {
+                stackView.push("QSOView.qml",
+                               {
+                                   "addQSO"    : false,
+                                   "liveQSO"   : true,
+                                   "updateQSO" : false,
+                               });
             },
             6: function() {
                 stackView.push("Settings.qml")
@@ -93,10 +106,10 @@ ApplicationWindow {
                 pageIcon: "\uf055"
             }
 
-            ListElement { // 3
-                pageTitle: qsTr ("Add Contest QSO")
-                pageIcon: "\uf055"
-            }
+            //ListElement { // 3
+            //    pageTitle: qsTr ("Add Contest QSO")
+            //    pageIcon: "\uf055"
+            //}
 
             ListElement { // 4
                 spacer: true
