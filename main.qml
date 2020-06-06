@@ -67,7 +67,7 @@ ApplicationWindow {
             1: function() {
                 stackView.push("QSOView.qml")
             },
-            4: function() {
+            6: function() {
                 stackView.push("Settings.qml")
             }
         }
@@ -78,25 +78,35 @@ ApplicationWindow {
         items: ListModel {
             id: pagesModel
 
-            ListElement {
+            ListElement { // 0
                 pageTitle: qsTr ("Show Logbook")
                 pageIcon: "\uf02d"
             }
 
-            ListElement {
-                pageTitle: qsTr ("Add QSOs")
+            ListElement { // 1
+                pageTitle: qsTr ("Add QSO")
                 pageIcon: "\uf055"
             }
 
-            ListElement {
+            ListElement { // 2
+                pageTitle: qsTr ("Add Live QSO")
+                pageIcon: "\uf055"
+            }
+
+            ListElement { // 3
+                pageTitle: qsTr ("Add Contest QSO")
+                pageIcon: "\uf055"
+            }
+
+            ListElement { // 4
                 spacer: true
             }
 
-            ListElement {
+            ListElement { // 5
                 separator: true
             }
 
-            ListElement {
+            ListElement { // 6
                 pageTitle: qsTr ("Settings")
                 pageIcon: "\uf013"
             }
