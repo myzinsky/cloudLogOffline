@@ -30,12 +30,27 @@ bool dbManager::createTables()
                   "recv TEXT"
                   ");");
 
-    if (!query.exec())
-    {
-        qDebug() << "Couldn't create the tables because they might already exist.";
-        success = false;
-    }
+    success = query.exec();
 
+    query.prepare("CREATE TABLE settings("
+          "qrzUser        TEXT,"
+          "qrzPass        TEXT,"
+          "qrzActive      INTEGER,"
+          "cqFreq         TEXT,"
+          "cqActive       INTEGER,"
+          "rigHost        TEXT,"
+          "rigPort        INTEGER,"
+          "rigActive      INTEGER,"
+          "cloudLogURL    TEXT,"
+          "cloudLogKey    TEXT"
+          "cloudLogActive INTEGER"
+          ");");
+
+    success = success & query.exec();
+
+    if(success == false) {
+        qDebug() << "Couldn't create the tables because they might already exist.";
+    }
     return success;
 }
 
