@@ -15,6 +15,9 @@ ApplicationWindow {
     // Stores the settings even after restart:
     Settings {
         id: settings
+
+        property string call
+
         property string cqFreq
         property bool cqActive
 

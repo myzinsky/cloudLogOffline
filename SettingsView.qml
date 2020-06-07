@@ -12,6 +12,8 @@ Page {
 
     function saveSettings()
     {
+        settings.call = call.text;
+
         settings.cqFreq   = cqFreq.text;
         settings.cqActive = cqSwitch.checked;
 
@@ -35,6 +37,47 @@ Page {
             id: grid
             width: settingsView.width // Important
             columns: 2
+
+            Rectangle {
+                height: 48
+                color: "#555555"
+                Layout.fillWidth: true
+                Layout.columnSpan: 2
+
+                Label {
+                    id: settingsIcon
+                    text: "\uf013"
+                    font.family: fontAwesome.name
+                    anchors.left: parent.left
+                    anchors.leftMargin: 5
+                    font.pixelSize: Qt.application.font.pixelSize * 1.6
+                    opacity: 0.87
+                    anchors.verticalCenter: parent.verticalCenter
+                }
+
+                Label {
+                    id: settingsText
+                    text: "General Settings"
+                    anchors.left: settingsIcon.right
+                    anchors.leftMargin: 5
+                    font.pixelSize: 14
+                    opacity: 0.87
+                    anchors.verticalCenter: parent.verticalCenter
+                }
+            }
+
+            Label {
+                id: callLabel
+                text: "Your Call:"
+            }
+
+            TextField {
+                id: call
+                Layout.fillWidth: true
+                text: settings.call
+                onTextEdited: saveSettings()
+                font.capitalization: Font.AllUppercase
+            }
 
             SettingsSwitch {
                 id: cqSwitch

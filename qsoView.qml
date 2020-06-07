@@ -112,6 +112,7 @@ Page {
                 id: callTextField
                 text: ""
                 KeyNavigation.tab: modeComboBox
+                font.capitalization: Font.AllUppercase
             }
 
             Label {
