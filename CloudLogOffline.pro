@@ -52,4 +52,5 @@ HEADERS += \
     qsomodel.h
 
 DISTFILES += \
+    SettingsSwitch.qml \
     aboutView.qml
