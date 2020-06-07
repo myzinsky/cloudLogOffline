@@ -7,7 +7,7 @@
         <file>fonts/fa-solid-900.ttf</file>
         <file>DrawerItem.qml</file>
         <file>PageDrawer.qml</file>
-        <file>Settings.qml</file>
+        <file>SettingsView.qml</file>
         <file>images/logo_circle.svg</file>
         <file>QSOItem.qml</file>
         <file>QSOTextField.qml</file>

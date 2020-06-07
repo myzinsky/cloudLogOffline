@@ -2,6 +2,7 @@ import QtQuick 2.12
 import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.1
 import QtQuick.Controls.Material 2.4
+import Qt.labs.settings 1.0
 
 Page {
     id: page
@@ -165,7 +166,7 @@ Page {
 
             QSOTextField {
                 id: freqTextField
-                text: ""
+                text: (liveQSO && settings.cqActive) ? settings.cqFreq : ""
                 KeyNavigation.tab: sentTextField
             }
 

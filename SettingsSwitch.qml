@@ -34,6 +34,6 @@ Rectangle {
         id: settingsSwitch
         anchors.right: parent.right
         anchors.rightMargin: 0
-        checked: false;
+        onToggled: saveSettings()
     }
 }

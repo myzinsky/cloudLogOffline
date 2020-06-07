@@ -2,6 +2,7 @@ import QtQuick 2.12
 import QtQuick.Layouts 1.1
 import QtQuick.Controls 2.5
 import QtQuick.Controls.Material 2.4
+import Qt.labs.settings 1.0
 
 
 ApplicationWindow {
@@ -10,6 +11,25 @@ ApplicationWindow {
     width: 640
     height: 480
     title: qsTr("CloudLog Offline Logbook")
+
+    // Stores the settings even after restart:
+    Settings {
+        id: settings
+        property string cqFreq
+        property bool cqActive
+
+        property string cloudLogURL
+        property string cloudLogKey
+        property bool cloudLogActive
+
+        property string qrzUser
+        property string qrzPass
+        property bool qrzActive
+
+        property string rigHost
+        property string rigPort
+        property bool rigActive
+    }
 
     Material.theme: Material.Dark
     Material.accent: Material.BlueGrey
@@ -66,25 +86,25 @@ ApplicationWindow {
             },
             1: function() {
                 stackView.push("QSOView.qml",
-                               {
-                                   "addQSO"    : true,
-                                   "liveQSO"   : false,
-                                   "updateQSO" : false,
-                               });
+                       {
+                           "addQSO"    : true,
+                           "liveQSO"   : false,
+                           "updateQSO" : false,
+                       });
             },
             2: function() {
                 stackView.push("QSOView.qml",
-                               {
-                                   "addQSO"    : false,
-                                   "liveQSO"   : true,
-                                   "updateQSO" : false,
-                               });
+                       {
+                           "addQSO"    : false,
+                           "liveQSO"   : true,
+                           "updateQSO" : false,
+                       });
             },
             6: function() {
                 // EXPORT
             },
             7: function() {
-                stackView.push("Settings.qml")
+                stackView.push("SettingsView.qml")
             },
             8: function() {
                 stackView.push("AboutView.qml")
@@ -180,5 +200,3 @@ ApplicationWindow {
         }
     }
 }
-
-

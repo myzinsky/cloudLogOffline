@@ -46,7 +46,6 @@ Page {
             }
         }
 
-
         ScrollBar.vertical: ScrollBar {}
 
         // Show a placeholder when no QSO is in the list so far
