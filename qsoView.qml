@@ -7,7 +7,7 @@ Page {
     id: page
     anchors.fill: parent
     title: (addQSO || liveQSO) ? qsTr("Add QSO") : qsTr("Edit QSO")
-    anchors.margins: 10
+    anchors.margins: 5
 
     property bool addQSO: true;
     property bool liveQSO: false;

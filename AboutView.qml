@@ -6,7 +6,7 @@ Page {
     id: qsoListView
     title: qsTr("About")
     anchors.fill: parent
-    anchors.margins: 10
+    anchors.margins: 5
 
     Label {
         text: qsTr("About")

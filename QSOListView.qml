@@ -7,7 +7,7 @@ Page {
     id: qsoListView
     title: qsTr("Logbook")
     anchors.fill: parent
-    anchors.margins: 1
+    anchors.margins: 5
 
     ListView {
         id: listView
