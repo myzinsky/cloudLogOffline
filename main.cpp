@@ -4,6 +4,7 @@
 
 #include "qsomodel.h"
 #include "dbmanager.h"
+#include "qrzmanager.h"
 
 int main(int argc, char *argv[])
 {
@@ -13,6 +14,7 @@ int main(int argc, char *argv[])
 
     dbManager db;
     db.createTables();
+    qrzManager qrz;
 
     qsoModel qModel;
     QQmlApplicationEngine engine;
@@ -20,6 +22,7 @@ int main(int argc, char *argv[])
     // Load the QML and set the Context:
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
     engine.rootContext()->setContextProperty("qsoModel", QVariant::fromValue(&qModel));
+    engine.rootContext()->setContextProperty("qrz", QVariant::fromValue(&qrz));
 
     return app.exec();
 }

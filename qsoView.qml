@@ -38,14 +38,20 @@ Page {
         recvTextField.text = ""
     }
 
+    Connections{
+        target: qrz
+        onQrzDone: {
+            nameTextField.text = name
+            ctryTextField.text = ctry
+        }
+    }
+
     ScrollView {
         anchors.fill: parent
 
         ButtonGroup {
             buttons: grid.children
         }
-
-
 
         GridLayout {
             id: grid
@@ -113,6 +119,12 @@ Page {
                 text: ""
                 KeyNavigation.tab: modeComboBox
                 font.capitalization: Font.AllUppercase
+
+                onTextEdited: {
+                    if(settings.qrzActive) {
+                        qrz.lookupCall(callTextField.text)
+                    }
+                }
             }
 
             Label {
