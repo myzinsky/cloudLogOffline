@@ -12,6 +12,8 @@ Page {
 
     function saveSettings()
     {
+        console.log("Settings Saved");
+
         settings.call = call.text;
 
         settings.cqFreq   = cqFreq.text;
@@ -121,6 +123,7 @@ Page {
                 id: cloudLogURL
                 Layout.fillWidth: true
                 visible: cloudLogSwitch.checked
+                text: settings.cloudLogURL
                 onTextEdited: saveSettings()
             }
 
@@ -134,6 +137,7 @@ Page {
                 id: cloudLogKey
                 Layout.fillWidth: true
                 visible: cloudLogSwitch.checked
+                text: settings.cloudLogKey
                 onTextEdited: saveSettings()
             }
 
@@ -157,6 +161,7 @@ Page {
                 id: qrzUser
                 Layout.fillWidth: true
                 visible: qrzSwitch.checked
+                text: settings.qrzUser
                 onTextEdited: saveSettings();
             }
 
@@ -171,6 +176,7 @@ Page {
                 Layout.fillWidth: true
                 visible: qrzSwitch.checked
                 echoMode: TextInput.Password
+                text: settings.qrzPass
                 onTextEdited: saveSettings();
             }
 
@@ -194,6 +200,7 @@ Page {
                 id: rigHost
                 Layout.fillWidth: true
                 visible: rigSwitch.checked
+                text: settings.rigHost
                 onTextEdited: saveSettings();
             }
 
@@ -207,6 +214,7 @@ Page {
                 id: rigPort
                 Layout.fillWidth: true
                 visible: rigSwitch.checked
+                text: settings.rigPort
                 onTextEdited: saveSettings();
             }
         }
