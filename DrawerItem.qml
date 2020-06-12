@@ -106,9 +106,9 @@ ItemDelegate {
     //
     ColumnLayout {
         spacing: 8
-        anchors.fill: parent
         visible: isSeparator (index)
-        anchors.verticalCenter: parent.verticalCenter
+        Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+        width: parent.width
 
         Item {
             Layout.fillHeight: true
@@ -118,11 +118,7 @@ ItemDelegate {
             height: 0.5
             opacity: 0.20
             color: "#000000"
-
-            anchors {
-                left: parent.left
-                right: parent.right
-            }
+            width: parent.width
         }
 
         Label {
@@ -131,12 +127,7 @@ ItemDelegate {
             font.pixelSize: 14
             font.weight: Font.Medium
             text: hasSeparatorText (index) ? separatorText : ""
-
-            anchors {
-                margins: 16
-                left: parent.left
-                right: parent.right
-            }
+            width: parent.width
         }
 
         Item {
@@ -159,7 +150,7 @@ ItemDelegate {
             opacity: 0.87
             text: iconSource (index)
             font.weight: Font.Medium
-            anchors.verticalCenter: parent.verticalCenter
+            Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
         }
 
         Item {
@@ -172,7 +163,7 @@ ItemDelegate {
             text: itemText (index)
             Layout.fillWidth: true
             font.weight: Font.Medium
-            anchors.verticalCenter: parent.verticalCenter
+            Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
         }
     }
 }

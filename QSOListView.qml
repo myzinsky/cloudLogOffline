@@ -1,6 +1,5 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.5
-import QtQuick.Layouts 1.1
 import Qt.labs.qmlmodels 1.0
 
 Page {
