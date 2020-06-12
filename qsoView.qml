@@ -32,7 +32,7 @@ Page {
         ctryTextField.text = ""
         dateTextField.text = ""
         timeTextField.text = ""
-        freqTextField.text = ""
+        freqTextField.text = (liveQSO && settings.cqActive) ? settings.cqFreq : ""
         // TODO: modeComboBox.
         sentTextField.text = ""
         recvTextField.text = ""
@@ -120,7 +120,7 @@ Page {
                 KeyNavigation.tab: modeComboBox
                 font.capitalization: Font.AllUppercase
 
-                onTextEdited: {
+                onEditingFinished: {
                     if(settings.qrzActive) {
                         qrz.lookupCall(callTextField.text)
                     }
