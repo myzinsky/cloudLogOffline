@@ -41,6 +41,7 @@ ios {
 macx {
     ICON = images/macos/logo_circle.icns
     QMAKE_INFO_PLIST = macos/Info.plist
+    QT += widgets
 }
 
 # Default rules for deployment.
@@ -53,6 +54,4 @@ HEADERS += \
     qrzmanager.h \
     qsomodel.h
 
-DISTFILES += \
-    SettingsSwitch.qml \
-    aboutView.qml
+DISTFILES += ""

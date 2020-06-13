@@ -5,11 +5,9 @@ import QtQuick.Layouts 1.1
 Page {
     id: qsoListView
     title: qsTr("About")
-    anchors.fill: parent
     anchors.margins: 5
 
     Label {
         text: qsTr("About")
-        Layout.fillWidth: true
     }
 }

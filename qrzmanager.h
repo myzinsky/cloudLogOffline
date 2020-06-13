@@ -12,16 +12,30 @@ class qrzManager : public QObject
 
 public:
     qrzManager(QObject *parent = 0);
-    void receiveKey();
 
 public slots:
     void lookupCall(QString call);
     void keyManagerFinished(QNetworkReply *reply);
     void queryManagerFinished(QNetworkReply *reply);
+    void receiveKey();
 
 signals:
-    void qrzDone(const QString &name,
-                 const QString &ctry);
+    void qrzDone(const QString &fname,
+                 const QString &name,
+                 const QString &addr1,
+                 const QString &addr2,
+                 const QString &zip,
+                 const QString &country,
+                 const QString &qslmgr,
+                 const QString &locator,
+                 const QString &lat,
+                 const QString &lon,
+                 const QString &license,
+                 const QString &cqzone,
+                 const QString &ituzone,
+                 const QString &born,
+                 const QString &image);
+    void qrzFail(const QString &error);
 
 private:
     QSettings settings;

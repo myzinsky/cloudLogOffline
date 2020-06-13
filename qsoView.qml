@@ -26,6 +26,8 @@ Page {
     property alias name: nameTextField.text;
     property alias ctry: ctryTextField.text;
 
+    property bool qrzFound: false;
+
     function reset() {
         callTextField.text = ""
         nameTextField.text = ""
@@ -41,8 +43,17 @@ Page {
     Connections{
         target: qrz
         onQrzDone: {
-            nameTextField.text = name
-            ctryTextField.text = ctry
+            if (nameTextField.text.length == 0) {
+                nameTextField.text = name
+            }
+            if (ctryTextField.text.length == 0) {
+                ctryTextField.text = country
+            }
+            page.qrzFound = true
+        }
+
+        onQrzFail: {
+            page.qrzFound = false
         }
     }
 
@@ -55,7 +66,7 @@ Page {
 
         GridLayout {
             id: grid
-            columns: 2
+            columns: 3
             width: page.width // Important
 
             Label {
@@ -65,6 +76,7 @@ Page {
 
             QSOTextField {
                 id: dateTextField
+                Layout.columnSpan: 2
                 text: ""
                 placeholderText: qsTr("DD.MM.YYYY")
                 KeyNavigation.tab: timeTextField
@@ -86,11 +98,11 @@ Page {
             Label {
                 id: timeLable
                 text: qsTr("Time:")
-
             }
 
             QSOTextField {
                 id: timeTextField
+                Layout.columnSpan: 2
                 text: ""
                 placeholderText: qsTr("00:00")
                 KeyNavigation.tab: callTextField
@@ -127,6 +139,25 @@ Page {
                 }
             }
 
+            Button {
+                id: qrzButton
+                font.family: fontAwesome.name
+                text: qsTr("\uf7a2")
+                highlighted: qrzFound
+                width: 20
+                Material.theme:  Material.Light
+                Material.accent: Material.Green
+                enabled: settings.qrzActive
+                padding: 0
+
+                onClicked: {
+                    stackView.push("QRZView.qml",
+                                   {
+                                       "call" : callTextField.text
+                                   });
+                }
+            }
+
             Label {
                 id: modeLable
                 text: qsTr("Mode:")
@@ -134,6 +165,7 @@ Page {
 
             ComboBox {
                 id: modeComboBox
+                Layout.columnSpan: 2
                 Layout.fillWidth: true
                 KeyNavigation.tab: freqTextField
                 model: [
@@ -179,6 +211,7 @@ Page {
 
             QSOTextField {
                 id: freqTextField
+                Layout.columnSpan: 2
                 text: (liveQSO && settings.cqActive) ? settings.cqFreq : ""
                 KeyNavigation.tab: sentTextField
             }
@@ -190,6 +223,7 @@ Page {
 
             QSOTextField {
                 id: sentTextField
+                Layout.columnSpan: 2
                 text: ""
                 placeholderText: qsTr("59")
                 KeyNavigation.tab: recvTextField
@@ -202,6 +236,7 @@ Page {
 
             QSOTextField {
                 id: recvTextField
+                Layout.columnSpan: 2
                 text: ""
                 placeholderText: qsTr("59")
                 KeyNavigation.tab: nameTextField
@@ -214,6 +249,7 @@ Page {
 
             QSOTextField {
                 id: nameTextField
+                Layout.columnSpan: 2
                 text: ""
                 KeyNavigation.tab: ctryTextField
             }
@@ -225,6 +261,7 @@ Page {
 
             QSOTextField {
                 id: ctryTextField
+                Layout.columnSpan: 2
                 text: ""
                 KeyNavigation.tab: saveButton
             }
@@ -247,6 +284,7 @@ Page {
 
             Button {
                 id: saveButton
+                Layout.columnSpan: 2
                 text: qsTr("Save QSO")
                 Layout.fillWidth: true
                 highlighted: true

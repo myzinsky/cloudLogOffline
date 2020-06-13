@@ -1,6 +1,6 @@
 <RCC>
     <qresource prefix="/">
-        <file>main.qml</file>
+        <file>Main.qml</file>
         <file>QSOView.qml</file>
         <file>qtquickcontrols2.conf</file>
         <file>QSOListView.qml</file>
@@ -15,5 +15,6 @@
         <file>AboutView.qml</file>
         <file>aboutView.qml</file>
         <file>SettingsSwitch.qml</file>
+        <file>QRZView.qml</file>
     </qresource>
 </RCC>

@@ -30,6 +30,14 @@ Page {
         settings.rigHost   = rigHost.text;
         settings.rigPort   = rigPort.text;
         settings.rigActive = rigSwitch.checked;
+
+        // Retrieve new key when settings changed:
+        if(settings.qrzUser.length !== 0 &&
+           settings.qrzPass.length !== 0 &&
+           settings.qrzActive) {
+            console.log("Receive Key")
+            qrz.receiveKey()
+        }
     }
 
     ScrollView {

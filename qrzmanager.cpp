@@ -26,11 +26,11 @@ void qrzManager::receiveKey()
     QString qrzPass = settings.value("qrzPass").toString();
 
     QString qrzUrl = QString("https://xmldata.qrz.com/xml/current/?")
-                     +"username="
-                     + qrzUser
-                     + ";password="
-                     + qrzPass
-                     +";agent=q5.0";
+            +"username="
+            + qrzUser
+            + ";password="
+            + qrzPass
+            +";agent=q5.0";
 
     qDebug() << qrzUrl;
 
@@ -41,9 +41,9 @@ void qrzManager::receiveKey()
 void qrzManager::lookupCall(QString call)
 {
     QString qrzUrl = QString("https://xmldata.qrz.com/xml/current/?s=")
-                     + Key
-                     + ";callsign="
-                     + call;
+            + Key
+            + ";callsign="
+            + call;
 
     qDebug() << qrzUrl;
 
@@ -63,15 +63,38 @@ void qrzManager::keyManagerFinished(QNetworkReply *reply)
 
 void qrzManager::queryManagerFinished(QNetworkReply *reply)
 {
+    qDebug() << "QRZ Query Finished";
     if (reply->error()) {
-        qDebug() << reply->errorString();
+        QString error = reply->errorString();
+        emit qrzFail(error);
+        qDebug() << error;
         return;
     }
     QString xml = reply->readAll();
+    QString error = parseXML(xml, "Error");
 
-    QString name = parseXML(xml, "fname");
-    QString ctry = parseXML(xml, "country");
-    emit qrzDone(name, ctry);
+    if (error.isEmpty()) {
+        emit qrzDone(
+                    parseXML(xml, "fname"),
+                    parseXML(xml, "name"),
+                    parseXML(xml, "addr1"),
+                    parseXML(xml, "addr2"),
+                    parseXML(xml, "zip"),
+                    parseXML(xml, "country"),
+                    parseXML(xml, "qslmgr"),
+                    parseXML(xml, "grid"),
+                    parseXML(xml, "lat"),
+                    parseXML(xml, "lon"),
+                    parseXML(xml, "class"),
+                    parseXML(xml, "cqzone"),
+                    parseXML(xml, "ituzone"),
+                    parseXML(xml, "born"),
+                    parseXML(xml, "image")
+                    );
+    } else {
+        qrzFail(error);
+        qDebug() << error;
+    }
 }
 
 QString qrzManager::parseXML(QString xml, QString key)
