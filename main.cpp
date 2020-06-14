@@ -6,6 +6,7 @@
 #include "qsomodel.h"
 #include "dbmanager.h"
 #include "qrzmanager.h"
+#include "rigmanager.h"
 
 int main(int argc, char *argv[])
 {
@@ -17,6 +18,7 @@ int main(int argc, char *argv[])
     dbManager db;
     db.createTables();
     qrzManager qrz;
+    rigManager rig;
 
     qsoModel qModel;
     QQmlApplicationEngine engine;
@@ -25,6 +27,7 @@ int main(int argc, char *argv[])
     engine.load(QUrl(QStringLiteral("qrc:/Main.qml")));
     engine.rootContext()->setContextProperty("qsoModel", QVariant::fromValue(&qModel));
     engine.rootContext()->setContextProperty("qrz", QVariant::fromValue(&qrz));
+    engine.rootContext()->setContextProperty("rig", QVariant::fromValue(&rig));
 
     return app.exec();
 }

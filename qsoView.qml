@@ -40,11 +40,42 @@ Page {
         recvTextField.text = ""
     }
 
+    Timer {
+        id: rigTimer
+        interval: 1000
+        repeat: liveQSO && settings.rigActive
+        running: liveQSO && settings.rigActive
+        triggeredOnStart: liveQSO && settings.rigActive
+        onTriggered: {
+            rig.getFrequency(settings.rigHost, settings.rigPort)
+            rig.getMode(settings.rigHost, settings.rigPort)
+        }
+    }
+
+    Connections{
+        target: rig
+
+        onFreqDone: {
+            freqTextField.text = freq
+        }
+
+        onModeDone: {
+            var m
+            if(mode == "USB" || mode == "LSB") {
+                m = "SSB"
+            } else {
+                m = mode
+            }
+            var i = modeComboBox.find(m);
+            modeComboBox.currentIndex = i;
+        }
+    }
+
     Connections{
         target: qrz
         onQrzDone: {
             if (nameTextField.text.length == 0) {
-                nameTextField.text = name
+                nameTextField.text = fname
             }
             if (ctryTextField.text.length == 0) {
                 ctryTextField.text = country
