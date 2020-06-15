@@ -38,7 +38,7 @@ void rigManager::callbackFrequency(QNetworkReply *rep)
 {
     QString f = parseXML(QString(rep->readAll()));
     if(f != frequency) { // Update UI and Cloudlog
-        frequency = f;
+        frequency = QString::number(f.toDouble()/1000.0/1000.0, 'f', 6);
         emit freqDone(frequency);
     }
 }
