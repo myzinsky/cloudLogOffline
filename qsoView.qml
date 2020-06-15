@@ -84,7 +84,12 @@ Page {
         }
 
         onQrzFail: {
-            page.qrzFound = false
+            if(error == "Session Timeout") {
+                qrz.receiveKey();
+                qrz.lookupCall(callTextField.text);
+            } else {
+                page.qrzFound = false
+            }
         }
     }
 

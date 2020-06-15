@@ -40,8 +40,14 @@ Page {
         }
 
         onQrzFail: {
-            qrzMessage.text = error;
-            qrzMessage.open();
+            // Try it again in case the key is old ...
+            if(error == "Session Timeout") {
+                qrz.receiveKey();
+                qrz.lookupCall(call);
+            } else {
+                qrzMessage.text = error;
+                qrzMessage.open();
+            }
         }
     }
 
