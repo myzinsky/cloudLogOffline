@@ -33,7 +33,6 @@ void qsoModel::deleteQSO(int id) {
     removeRows(id, 1 ,QModelIndex());
     endRemoveRows();
     submit();
-    //select();
 }
 
 void qsoModel::addQSO(QString call,
@@ -94,6 +93,7 @@ void qsoModel::updateQSO(int id,
 
 QString qsoModel::selectStatement() const
 {
+    // https://stackoverflow.com/questions/45600944/display-first-few-rows-using-qtsql-qsqltablemodel-with-qtableview
     QString query = QSqlTableModel::selectStatement();
     query += QString(" ORDER BY strftime('%Y-%m-%d %H:%M', substr(date,7,4)||\"-\"||substr(date,4,2)||\"-\"||substr(date,1,2)||\" \"||time) DESC");
     return query;
