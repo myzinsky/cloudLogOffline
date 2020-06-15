@@ -41,6 +41,9 @@ public slots:
                 QString mode,
                 QString sent,
                 QString recv);
+
+protected:
+    QString selectStatement() const;
 };
 
 #endif // QSOMODEL_H

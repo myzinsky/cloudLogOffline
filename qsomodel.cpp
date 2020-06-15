@@ -92,6 +92,13 @@ void qsoModel::updateQSO(int id,
     select();
 }
 
+QString qsoModel::selectStatement() const
+{
+    QString query = QSqlTableModel::selectStatement();
+    query += QString(" ORDER BY strftime('%Y-%m-%d %H:%M', substr(date,7,4)||\"-\"||substr(date,4,2)||\"-\"||substr(date,1,2)||\" \"||time) DESC");
+    return query;
+}
+
 QHash<int, QByteArray> qsoModel::roleNames() const
 {
    QHash<int, QByteArray> roles;
