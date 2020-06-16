@@ -25,6 +25,8 @@ Page {
     property alias recv: recvTextField.text;
     property alias name: nameTextField.text;
     property alias ctry: ctryTextField.text;
+    property alias grid: gridTextField.text;
+    property int   sync
 
     property bool qrzFound: false;
 
@@ -80,6 +82,10 @@ Page {
             if (ctryTextField.text.length == 0) {
                 ctryTextField.text = country
             }
+            if (gridTextField.text.length == 0) {
+                gridTextField.text = locator
+            }
+
             page.qrzFound = true
         }
 
@@ -299,6 +305,18 @@ Page {
                 id: ctryTextField
                 Layout.columnSpan: 2
                 text: ""
+                KeyNavigation.tab: gridTextField
+            }
+
+            Label {
+                id: gridLable
+                text: qsTr("Locator:")
+            }
+
+            QSOTextField {
+                id: gridTextField
+                Layout.columnSpan: 2
+                text: ""
                 KeyNavigation.tab: saveButton
             }
 
@@ -337,7 +355,8 @@ Page {
                                 freqTextField.text,
                                 modeComboBox.currentText,
                                 sentTextField.text,
-                                recvTextField.text);
+                                recvTextField.text,
+                                gridTextField.text);
 
                         if(addQSO) {
                             stackView.pop()
@@ -355,7 +374,8 @@ Page {
                                    freqTextField.text,
                                    modeComboBox.currentText,
                                    sentTextField.text,
-                                   recvTextField.text);
+                                   recvTextField.text,
+                                   gridTextField.text);
                         stackView.pop()
                     }
                 }

@@ -13,7 +13,6 @@
         <file>QSOTextField.qml</file>
         <file>images/logo_square.svg</file>
         <file>AboutView.qml</file>
-        <file>aboutView.qml</file>
         <file>SettingsSwitch.qml</file>
         <file>QRZView.qml</file>
         <file>ExportView.qml</file>

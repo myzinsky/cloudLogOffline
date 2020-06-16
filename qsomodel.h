@@ -29,7 +29,8 @@ public slots:
                 QString freq,
                 QString mode,
                 QString sent,
-                QString recv);
+                QString recv,
+                QString grid);
 
     void updateQSO(int id,
                 QString call,
@@ -40,10 +41,11 @@ public slots:
                 QString freq,
                 QString mode,
                 QString sent,
-                QString recv);
+                QString recv,
+                QString grid);
 
 protected:
-    QString selectStatement() const;
+    QString selectStatement() const override;
 };
 
 #endif // QSOMODEL_H

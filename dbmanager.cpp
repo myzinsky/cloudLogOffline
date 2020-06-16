@@ -27,7 +27,9 @@ bool dbManager::createTables()
                   "freq TEXT,"
                   "mode TEXT,"
                   "sent TEXT,"
-                  "recv TEXT"
+                  "recv TEXT,"
+                  "grid TEXT,"
+                  "sync INTEGER DEFAULT 0"
                   ");");
 
     success = query.exec();

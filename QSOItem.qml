@@ -156,7 +156,8 @@ SwipeDelegate {
             Text {
                 id: rowNumber
                 color: "#ffffff"
-                text: index
+                font.family: fontAwesome.name
+                text: model.sync === 0 ? "\uf0c2" : "\uf382"
                 anchors.top: parent.top
                 anchors.right: parent.right
                 anchors.topMargin: 50
@@ -206,6 +207,8 @@ SwipeDelegate {
                                    "recv"       : model.recv,
                                    "name"       : model.name,
                                    "ctry"       : model.ctry,
+                                   "grid"       : model.grid,
+                                   "sync"       : model.sync,
                                });
             }
         }

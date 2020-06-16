@@ -43,7 +43,8 @@ void qsoModel::addQSO(QString call,
                       QString freq,
                       QString mode,
                       QString sent,
-                      QString recv)
+                      QString recv,
+                      QString grid)
 {
     QSqlRecord newRecord = record();
 
@@ -56,6 +57,9 @@ void qsoModel::addQSO(QString call,
     newRecord.setValue("mode", mode);
     newRecord.setValue("sent", sent);
     newRecord.setValue("recv", recv);
+    newRecord.setValue("grid", grid);
+
+    newRecord.setValue("sync", 0);
 
     insertRecord(rowCount(), newRecord);
     submit();
@@ -71,7 +75,8 @@ void qsoModel::updateQSO(int id,
                          QString freq,
                          QString mode,
                          QString sent,
-                         QString recv)
+                         QString recv,
+                         QString grid)
 {
     qDebug() << "UPDATE QSO" << id;
     QSqlRecord r = record(id);
@@ -85,6 +90,7 @@ void qsoModel::updateQSO(int id,
     r.setValue("mode", mode);
     r.setValue("sent", sent);
     r.setValue("recv", recv);
+    r.setValue("grid", grid);
 
     setRecord(id, r);
     submit();
