@@ -16,5 +16,7 @@
         <file>aboutView.qml</file>
         <file>SettingsSwitch.qml</file>
         <file>QRZView.qml</file>
+        <file>ExportView.qml</file>
+        <file>IconButton.qml</file>
     </qresource>
 </RCC>

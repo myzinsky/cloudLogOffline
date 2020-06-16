@@ -7,6 +7,7 @@
 #include "dbmanager.h"
 #include "qrzmanager.h"
 #include "rigmanager.h"
+#include "cloudlogmanager.h"
 
 int main(int argc, char *argv[])
 {
@@ -19,6 +20,7 @@ int main(int argc, char *argv[])
     db.createTables();
     qrzManager qrz;
     rigManager rig;
+    cloudlogManager cl;
 
     qsoModel qModel;
     QQmlApplicationEngine engine;
@@ -28,6 +30,7 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("qsoModel", QVariant::fromValue(&qModel));
     engine.rootContext()->setContextProperty("qrz", QVariant::fromValue(&qrz));
     engine.rootContext()->setContextProperty("rig", QVariant::fromValue(&rig));
+    engine.rootContext()->setContextProperty("cl", QVariant::fromValue(&cl));
 
     return app.exec();
 }

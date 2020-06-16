@@ -40,6 +40,7 @@ ApplicationWindow {
     FontLoader {
         id: fontAwesome
         source: "qrc:///fonts/fa-solid-900.ttf"
+        Component.onCompleted: console.log(name)
     }
 
     header: ToolBar {
@@ -104,7 +105,7 @@ ApplicationWindow {
                        });
             },
             6: function() {
-                // EXPORT
+                stackView.push("ExportView.qml");
             },
             7: function() {
                 stackView.push("SettingsView.qml")
