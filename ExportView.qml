@@ -10,6 +10,14 @@ Page {
     title: "Export"
     anchors.margins: 5
 
+    Connections{
+        target: cl
+
+        onUploadSucessfull: {
+            progressBar.value = progress
+        }
+    }
+
     ScrollView {
         anchors.fill: parent
 
@@ -21,6 +29,12 @@ Page {
             Label {
                 id: dateLable
                 text: qsTr("Cloud Log:")
+            }
+
+            ProgressBar {
+                id: progressBar
+                value: 0
+                Layout.fillWidth: true
             }
 
             IconButton {
@@ -49,7 +63,9 @@ Page {
                 Material.accent: Material.Red
 
                 onClicked: {
-                    // TODO
+                    cl.deleteUploadedQsos()
+                    qsoModel.submit();
+                    qsoModel.select()
                 }
             }
         }

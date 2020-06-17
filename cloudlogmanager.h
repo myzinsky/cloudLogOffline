@@ -8,24 +8,37 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QRegularExpression>
+#include <QSqlError>
+
+#include "qsomodel.h"
 
 class cloudlogManager : public QObject
 {
     Q_OBJECT
 
 public:
-    cloudlogManager();
+    cloudlogManager(qsoModel *model);
 
 private slots:
     void callbackCloudLog(QNetworkReply *rep);
 
 public slots:
     void uploadToCloudLog(QString url, QString key);
+    void deleteUploadedQsos();
+
+signals:
+    void uploadSucessfull(double progress);
 
 private:
     QNetworkAccessManager *manager;
+    QSqlQuery selectQuery;
+    QString url;
+    QString key;
+    qsoModel *model;
+    int number;
+    int done;
 
-void uploadQSO(QString url,
+    void uploadQSO(QString url,
                QString key,
                QString call,
                QString name,
@@ -37,14 +50,15 @@ void uploadQSO(QString url,
                QString sent,
                QString ctry,
                QString grid);
-};
 
-QString convertDate(QString date);
-QString convertTime(QString time);
+    void uploadNext();
 
-QString adifBand(QString freq);
+    QString convertDate(QString date);
+    QString convertTime(QString time);
 
-void parseAdif(QString adif,
+    QString adifBand(QString freq);
+
+    void parseAdif(QString adif,
                QString &call,
                QString &name,
                QString &mode,
@@ -55,5 +69,5 @@ void parseAdif(QString adif,
                QString &sent,
                QString &ctry,
                QString &grid);
-
+};
 #endif // CLOUDLOGMANAGER_H

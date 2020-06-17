@@ -157,7 +157,7 @@ SwipeDelegate {
                 id: rowNumber
                 color: "#ffffff"
                 font.family: fontAwesome.name
-                text: model.sync === 0 ? "\uf0c2" : "\uf382"
+                text: model.sync === 0 ? "" : "\uf382"
                 anchors.top: parent.top
                 anchors.right: parent.right
                 anchors.topMargin: 50

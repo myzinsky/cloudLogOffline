@@ -1,6 +1,6 @@
 #include "cloudlogmanager.h"
 
-cloudlogManager::cloudlogManager()
+cloudlogManager::cloudlogManager(qsoModel *model) : model(model)
 {
     manager = new QNetworkAccessManager(this);
     connect(manager,
@@ -8,6 +8,19 @@ cloudlogManager::cloudlogManager()
             this,
             SLOT(callbackCloudLog(QNetworkReply*))
     );
+
+    selectQuery.prepare("SELECT call, "
+                        "name, "
+                        "ctry, "
+                        "date, "
+                        "time, "
+                        "freq, "
+                        "mode, "
+                        "sent, "
+                        "recv, "
+                        "grid, "
+                        "sync "
+                        "FROM qsos WHERE sync = 0");
 }
 
 void cloudlogManager::uploadQSO(QString url,
@@ -100,62 +113,117 @@ void cloudlogManager::callbackCloudLog(QNetworkReply *rep)
                   ctry,
                   grid);
 
-        // TODO: change sync status... start here
+        QSqlQuery query;
+        QString qS =  "UPDATE qsos SET sync = 1 WHERE "
+                      "call = \""+call+"\" AND "
+                      "name = \""+name+"\" AND "
+                      "mode = \""+mode+"\" AND "
+                      "freq = \""+freq+"\" AND "
+                      "date = \""+date+"\" AND "
+                      "time = \""+time+"\" AND "
+                      "recv = \""+recv+"\" AND "
+                      "sent = \""+sent+"\" AND "
+                      "ctry = \""+ctry+"\" AND "
+                      "grid = \""+grid+"\";";
+
+        query.prepare(qS);
+
+        std::cout << "DB: " << qS.toStdString() << std::endl;
+
+        if(!query.exec()) {
+            qDebug() << "SQL Error";
+        } else {
+            qDebug() << "DB: Successfull";
+        }
+
+        done++;
+
+        if(done < number) {
+            uploadNext();
+        } else {
+            model->select(); // Done! Redraw the model!
+        }
+
+        emit uploadSucessfull(((double)done)/((double)number));
+
+    } else {
+        // TODO: show message box
     }
 
-    qDebug () << QString(jsonObject["status"].toString());
+    // TODO: what if callback is not happening or request fails?
 }
 
 void cloudlogManager::uploadToCloudLog(QString url, QString key)
 {
-    QSqlQuery query; //   0     1     2     3     4     5     6     7     8     9     10
-    query.prepare("SELECT call, "
-                  "name, "
-                  "ctry, "
-                  "date, "
-                  "time, "
-                  "freq, "
-                  "mode, "
-                  "sent, "
-                  "recv, "
-                  "grid, "
-                  "sync "
-                  "FROM qsos WHERE sync = 0");
+    this->url = url;
+    this->key = key;
+
+    // Estimate how many uploads:
+    QSqlQuery query;
+    query.prepare("SELECT COUNT(*) FROM qsos WHERE sync = 0");
 
     if(!query.exec()) {
-        qDebug() << "SQL Error";
-    } else {
-        while(query.next())
-        {
-            QString call = query.value( 0).toString();
-            QString name = query.value( 1).toString();
-            QString ctry = query.value( 2).toString();
-            QString date = query.value( 3).toString();
-            QString time = query.value( 4).toString();
-            QString freq = query.value( 5).toString();
-            QString mode = query.value( 6).toString();
-            QString sent = query.value( 7).toString();
-            QString recv = query.value( 8).toString();
-            QString grid = query.value( 9).toString();
-            QString sync = query.value(10).toString();
+        qDebug() << "SQL Error:" << query.lastError().text();
+    }
 
-            uploadQSO(url,
-                      key,
-                      call,
-                      name,
-                      mode,
-                      freq,
-                      date,
-                      time,
-                      recv,
-                      sent,
-                      ctry,
-                      grid);
-        }
+    query.next();
+    number = query.value(0).toInt();
+    done = 0;
+
+    // Perform select query:
+    if(!selectQuery.exec()) {
+        qDebug() << "selectQuery: SQL Error" << selectQuery.lastError();
+    } else {
+        qDebug() << "selectQuery: exec ok";
+    }
+
+    if(number > 0) {
+        uploadNext(); // Start downloading
     }
 }
 
-QString convertDate(QString date)
+void cloudlogManager::uploadNext()
+{
+    qDebug() << "Upload" << (done+1) << "/" << number;
+    selectQuery.next();
+
+    QString call = selectQuery.value( 0).toString();
+    QString name = selectQuery.value( 1).toString();
+    QString ctry = selectQuery.value( 2).toString();
+    QString date = selectQuery.value( 3).toString();
+    QString time = selectQuery.value( 4).toString();
+    QString freq = selectQuery.value( 5).toString();
+    QString mode = selectQuery.value( 6).toString();
+    QString sent = selectQuery.value( 7).toString();
+    QString recv = selectQuery.value( 8).toString();
+    QString grid = selectQuery.value( 9).toString();
+    QString sync = selectQuery.value(10).toString();
+
+    uploadQSO(url,
+              key,
+              call,
+              name,
+              mode,
+              freq,
+              date,
+              time,
+              recv,
+              sent,
+              ctry,
+              grid);
+}
+
+void cloudlogManager::deleteUploadedQsos()
+{
+    QSqlQuery query;
+    query.prepare("DELETE FROM qsos WHERE sync = 1");
+
+    if(!query.exec()) {
+        qDebug() << "SQL Error:" << query.lastError().text();
+    }
+}
+
+QString cloudlogManager::convertDate(QString date)
 {
     QRegularExpression re("^(\\d\\d)\\.(\\d\\d)\\.(\\d\\d\\d\\d)$");
     QRegularExpressionMatch match = re.match(date);
@@ -172,7 +240,7 @@ QString convertDate(QString date)
     return year+month+day;
 }
 
-QString convertTime(QString time)
+QString cloudlogManager::convertTime(QString time)
 {
     QRegularExpression re("^(\\d\\d):(\\d\\d)$");
     QRegularExpressionMatch match = re.match(time);
@@ -188,7 +256,7 @@ QString convertTime(QString time)
     return hours+minutes+"00";
 }
 
-QString adifBand(QString freq)
+QString cloudlogManager::adifBand(QString freq)
 {
     double f = freq.toDouble();
 
@@ -225,17 +293,17 @@ QString adifBand(QString freq)
     return "";
 }
 
-void parseAdif(QString adif,
-               QString &call,
-               QString &name,
-               QString &mode,
-               QString &freq,
-               QString &date,
-               QString &time,
-               QString &recv,
-               QString &sent,
-               QString &ctry,
-               QString &grid)
+void cloudlogManager::parseAdif(QString adif,
+                                QString &call,
+                                QString &name,
+                                QString &mode,
+                                QString &freq,
+                                QString &date,
+                                QString &time,
+                                QString &recv,
+                                QString &sent,
+                                QString &ctry,
+                                QString &grid)
 {
     QRegularExpression re("^"
                           "<call:\\d+>(.+)"       // 1
@@ -258,8 +326,24 @@ void parseAdif(QString adif,
        name = match.captured(12);
        mode = match.captured( 3);
        freq = match.captured( 4);
-       date = match.captured( 5);
-       time = match.captured( 6);
+
+       QString d = match.captured( 5);
+
+       QRegularExpression re2("(\\d\\d\\d\\d)(\\d\\d)(\\d\\d)");
+       QRegularExpressionMatch match2 = re2.match(d);
+
+       date = match2.captured(3) + "." +
+              match2.captured(2) + "." +
+              match2.captured(1);
+
+       QString t = match.captured( 6);
+
+       QRegularExpression re3("(\\d\\d)(\\d\\d)(\\d\\d)");
+       QRegularExpressionMatch match3 = re3.match(t);
+
+       time = match3.captured(1) + ":" +
+              match3.captured(2);
+
        recv = match.captured( 8);
        sent = match.captured( 9);
        ctry = match.captured(10);

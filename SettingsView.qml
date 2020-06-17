@@ -146,6 +146,7 @@ Page {
                 Layout.fillWidth: true
                 visible: cloudLogSwitch.checked
                 text: settings.cloudLogKey
+                echoMode: TextInput.Password
                 onTextEdited: saveSettings()
             }
 

@@ -16,8 +16,8 @@ Button {
         GridLayout {
             id: label1
             columns: 2
-            x: ( parent.width / 2 ) - ( label2.width + label3.width ) /2
-            y: ( parent.height / 2 ) - ( Math.max(label2.height, label3.height) ) /2
+            x: ( label0.width / 2 ) - ( label2.width + label3.width ) /2
+            y: ( label0.height / 2 ) - ( Math.max(label2.height, label3.height) ) /2
             width: label2.width + label3.width
 
             Label {

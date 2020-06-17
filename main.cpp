@@ -20,9 +20,9 @@ int main(int argc, char *argv[])
     db.createTables();
     qrzManager qrz;
     rigManager rig;
-    cloudlogManager cl;
-
     qsoModel qModel;
+    cloudlogManager cl(&qModel);
+
     QQmlApplicationEngine engine;
 
     // Load the QML and set the Context:
