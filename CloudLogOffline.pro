@@ -38,6 +38,7 @@ ios {
     ios_logo.files = $$files($$PWD/images/*.svg)
     QMAKE_BUNDLE_DATA += ios_icon
     QMAKE_BUNDLE_DATA += ios_logo
+    OBJECTIVE_SOURCES +=
 }
 
 macx {
@@ -45,6 +46,12 @@ macx {
     QMAKE_INFO_PLIST = macos/Info.plist
     QT += widgets
 }
+
+android {
+    ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
+    include(/Users/myzinsky/Library/Android/sdk/android_openssl/openssl.pri) # TODO make generic path
+}
+
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -60,4 +67,5 @@ HEADERS += \
 
 DISTFILES += "" \
     ExportView.qml \
-    IconButton.qml
+    IconButton.qml \
+    android/AndroidManifest.xml

@@ -44,7 +44,14 @@ bool dbManager::createTables()
 void dbManager::openDatabase()
 {
     QString dbName = "logbook.sqlite";
-    QString dbLocation = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
+    QString dbLocation;
+
+    if (QSysInfo::productType() == "android") {
+        dbLocation = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
+    } else { // ios, macos, ... windows and debian not yet tested
+        dbLocation = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
+    }
+
     db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName(dbLocation + "/" +dbName);
     db.database(dbLocation + "/" +dbName);
