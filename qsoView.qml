@@ -269,6 +269,7 @@ Page {
                 text: ""
                 placeholderText: qsTr("59")
                 KeyNavigation.tab: recvTextField
+                inputMethodHints: Qt.ImhDigitsOnly
             }
 
             Label {
@@ -282,6 +283,7 @@ Page {
                 text: ""
                 placeholderText: qsTr("59")
                 KeyNavigation.tab: nameTextField
+                inputMethodHints: Qt.ImhDigitsOnly
             }
 
             Label {
