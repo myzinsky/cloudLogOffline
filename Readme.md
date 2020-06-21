@@ -10,6 +10,6 @@ Currently CloudLogOffline supports following features:
 
 - Upload to Cloudlog via API 
 - Query QRZ.com (if 3G/LTE is available)
-- Connect to [Flrig](http://www.w1hkj.com) by W1HKJ which e.g. runs on a Raspberry Pi which is connected to the radio opens a Wifi
+- Connect to [Flrig](http://www.w1hkj.com) by W1HKJ which e.g. runs on a Raspberry Pi which is connected to the radio and opens a Wifi to interact with CloudLogOffline
 - Set a CQ QRG if Flrig is not available
 - Live and post QSOs
