@@ -17,10 +17,10 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-SOURCES += main.cpp \
-    cloudlogmanager.cpp \
-    qrzmanager.cpp \
-    rigmanager.cpp
+SOURCES += main.cpp
+SOURCES += cloudlogmanager.cpp
+SOURCES += qrzmanager.cpp
+SOURCES += rigmanager.cpp
 SOURCES += dbmanager.cpp
 SOURCES += qsomodel.cpp
 
@@ -39,6 +39,8 @@ ios {
     QMAKE_BUNDLE_DATA += ios_icon
     QMAKE_BUNDLE_DATA += ios_logo
     OBJECTIVE_SOURCES +=
+    app_launch_images.files = $$PWD/ios/MyLaunch.xib $$files($$PWD/images/logo_circle.png)
+    QMAKE_BUNDLE_DATA += app_launch_images
 }
 
 macx {
@@ -52,20 +54,18 @@ android {
     include(/Users/myzinsky/Library/Android/sdk/android_openssl/openssl.pri) # TODO make generic path
 }
 
-
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-HEADERS += \
-    cloudlogmanager.h \
-    dbmanager.h \
-    qrzmanager.h \
-    qsomodel.h \
-    rigmanager.h
+HEADERS += cloudlogmanager.h
+HEADERS += dbmanager.h
+HEADERS += qrzmanager.h
+HEADERS += qsomodel.h
+HEADERS += rigmanager.h
 
-DISTFILES += "" \
-    ExportView.qml \
-    IconButton.qml \
-    android/AndroidManifest.xml
+DISTFILES += ExportView.qml
+DISTFILES += IconButton.qml
+DISTFILES += android/AndroidManifest.xml
+DISTFILES += ios/MyLaunch.xib

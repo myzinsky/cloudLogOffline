@@ -17,5 +17,6 @@
         <file>QRZView.qml</file>
         <file>ExportView.qml</file>
         <file>IconButton.qml</file>
+        <file>images/logo_circle.png</file>
     </qresource>
 </RCC>
