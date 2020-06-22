@@ -150,7 +150,7 @@ ItemDelegate {
             opacity: 0.87
             text: iconSource (index)
             font.weight: Font.Medium
-            Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+            //anchors.verticalCenter: parent.verticalCenter
         }
 
         Item {
@@ -163,7 +163,7 @@ ItemDelegate {
             text: itemText (index)
             Layout.fillWidth: true
             font.weight: Font.Medium
-            Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+            //anchors.verticalCenter: parent.verticalCenter
         }
     }
 }

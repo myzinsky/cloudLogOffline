@@ -181,7 +181,7 @@ SwipeDelegate {
 
             Text {
                 font.family: fontAwesome.name
-                text: qsTr("\uf044")
+                text: "\uf044"
                 font.pixelSize: Qt.application.font.pixelSize * 1.6
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.horizontalCenter: parent.horizontalCenter
@@ -227,7 +227,7 @@ SwipeDelegate {
 
             Text {
                 font.family: fontAwesome.name
-                text: qsTr("\uf2ed")
+                text: "\uf2ed"
                 font.pixelSize: Qt.application.font.pixelSize * 1.6
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.horizontalCenter: parent.horizontalCenter

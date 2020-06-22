@@ -10,13 +10,15 @@ ApplicationWindow {
     visible: true
     width: 640
     height: 480
-    title: qsTr("CloudLog Offline Logbook")
+    title: qsTr("CloudLogOffline Logbook")
 
     // Stores the settings even after restart:
     Settings {
         id: settings
 
         property string call
+        property string language
+        property int languageIndex
 
         property string cqFreq
         property bool cqActive
@@ -202,5 +204,10 @@ ApplicationWindow {
                 duration: 200
             }
         }
+    }
+
+    Component.onCompleted:  {
+        tm.switchToLanguage(settings.language)
+        console.log("load settings.language:" + settings.language)
     }
 }

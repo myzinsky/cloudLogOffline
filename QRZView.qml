@@ -123,7 +123,7 @@ Page {
 
 
             Label {
-                text: "Born:"
+                text: qsTr("Born") + ":"
             }
 
             Label {
@@ -132,7 +132,7 @@ Page {
             }
 
             Label {
-                text: "Grid:"
+                text: qsTr("Grid") + ":"
             }
 
             Label {
@@ -142,7 +142,7 @@ Page {
 
 
             Label {
-                text: "Latitude:"
+                text: qsTr("Latitude") + ":"
             }
 
             Label {
@@ -151,7 +151,7 @@ Page {
             }
 
             Label {
-                text: "Longitude:"
+                text: qsTr("Longitude") + ":"
             }
 
             Label {
@@ -160,7 +160,7 @@ Page {
             }
 
             Label {
-                text: "Class:"
+                text: qsTr("Class") + ":"
             }
 
             Label {
@@ -169,7 +169,7 @@ Page {
             }
 
             Label {
-                text: "CQ Zone:"
+                text: qsTr("CQ Zone") + ":"
             }
 
             Label {
@@ -178,7 +178,7 @@ Page {
             }
 
             Label {
-                text: "ITU Zone:"
+                text: qsTr("ITU Zone") + ":"
             }
 
             Label {

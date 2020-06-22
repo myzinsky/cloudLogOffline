@@ -15,6 +15,8 @@ Page {
         console.log("Settings Saved");
 
         settings.call = call.text;
+        settings.language = language.currentText;
+        settings.languageIndex = language.currentIndex;
 
         settings.cqFreq   = cqFreq.text;
         settings.cqActive = cqSwitch.checked;
@@ -33,8 +35,8 @@ Page {
 
         // Retrieve new key when settings changed:
         if(settings.qrzUser.length !== 0 &&
-           settings.qrzPass.length !== 0 &&
-           settings.qrzActive) {
+                settings.qrzPass.length !== 0 &&
+                settings.qrzActive) {
             console.log("Receive Key")
             qrz.receiveKey()
         }
@@ -78,7 +80,7 @@ Page {
 
             Label {
                 id: callLabel
-                text: "Your Call:"
+                text: qsTr("Your Call") + ":"
             }
 
             TextField {
@@ -89,17 +91,40 @@ Page {
                 font.capitalization: Font.AllUppercase
             }
 
+            Label {
+                id: languageLabel
+                text: qsTr("Language")
+            }
+
+            ComboBox {
+                id: language
+                Layout.fillWidth: true
+                model: [
+                    "English",
+                    "German"
+                ]
+
+                Component.onCompleted: {
+                    currentIndex = settings.languageIndex
+                }
+
+                onActivated: {
+                    tm.switchToLanguage(language.currentText);
+                    saveSettings();
+                }
+            }
+
             SettingsSwitch {
                 id: cqSwitch
                 icon: "\uf519"
-                text: "CQ Frequency"
+                text: qsTr("CQ Frequency")
                 Layout.columnSpan: 2
                 checked: settings.cqActive
             }
 
             Label {
                 id: cqFreqLabel
-                text: "Frequency:"
+                text: qsTr("Frequency") + ":"
                 visible: cqSwitch.checked
             }
 
@@ -116,14 +141,14 @@ Page {
             SettingsSwitch {
                 id: cloudLogSwitch
                 icon: "\uf0c2"
-                text: "Cloud Log API"
+                text: qsTr("Cloud Log API")
                 Layout.columnSpan: 2
                 checked: settings.cloudLogActive
             }
 
             Label {
                 id: cloudLogURLLabel
-                text: "URL:"
+                text: qsTr("URL") + ":"
                 visible: cloudLogSwitch.checked
             }
 
@@ -137,7 +162,7 @@ Page {
 
             Label {
                 id: cloudLogKeyLabel
-                text: "Key:"
+                text: qsTr("Key") + ":"
                 visible: cloudLogSwitch.checked
             }
 
@@ -155,14 +180,14 @@ Page {
             SettingsSwitch {
                 id: qrzSwitch
                 icon: "\uf7a2"
-                text: "QRZ.com API Synchronization"
+                text: qsTr("QRZ.com API Synchronization")
                 Layout.columnSpan: 2
                 checked: settings.qrzActive
             }
 
             Label {
                 id: qrzUserLabel
-                text: "Username:"
+                text: qsTr("Username") + ":"
                 visible: qrzSwitch.checked
             }
 
@@ -176,7 +201,7 @@ Page {
 
             Label {
                 id: qrzPassLabel
-                text: "Password:"
+                text: qsTr("Password") + ":"
                 visible: qrzSwitch.checked
             }
 
@@ -194,14 +219,14 @@ Page {
             SettingsSwitch {
                 id: rigSwitch
                 icon: "\uf6ff"
-                text: "FlRig Connection"
+                text: qsTr("FlRig Connection")
                 Layout.columnSpan: 2
                 checked: settings.rigActive
             }
 
             Label {
                 id: rigHostLabel
-                text: "Hostname:"
+                text: qsTr("Hostname") + ":"
                 visible: rigSwitch.checked
             }
 
@@ -215,7 +240,7 @@ Page {
 
             Label {
                 id: rigPortLabel
-                text: "Port:"
+                text: qsTr("Port") + ":"
                 visible: rigSwitch.checked
             }
 

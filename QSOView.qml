@@ -113,14 +113,14 @@ Page {
 
             Label {
                 id: dateLable
-                text: qsTr("Date:")
+                text: qsTr("Date") + ":"
             }
 
             QSOTextField {
                 id: dateTextField
                 Layout.columnSpan: 2
                 text: ""
-                placeholderText: qsTr("DD.MM.YYYY")
+                placeholderText: "DD.MM.YYYY"
                 KeyNavigation.tab: timeTextField
 
                 Timer {
@@ -139,14 +139,14 @@ Page {
 
             Label {
                 id: timeLable
-                text: qsTr("Time:")
+                text: qsTr("Time") + ":"
             }
 
             QSOTextField {
                 id: timeTextField
                 Layout.columnSpan: 2
                 text: ""
-                placeholderText: qsTr("00:00")
+                placeholderText: "00:00"
                 KeyNavigation.tab: callTextField
 
                 Timer {
@@ -165,7 +165,7 @@ Page {
 
             Label {
                 id: callSignLable
-                text: qsTr("Callsign:")
+                text: qsTr("Callsign") + ":"
             }
 
             QSOTextField {
@@ -184,7 +184,7 @@ Page {
             Button {
                 id: qrzButton
                 font.family: fontAwesome.name
-                text: qsTr("\uf7a2")
+                text: "\uf7a2"
                 highlighted: qrzFound
                 width: 20
                 Material.theme:  Material.Light
@@ -202,7 +202,7 @@ Page {
 
             Label {
                 id: modeLable
-                text: qsTr("Mode:")
+                text: qsTr("Mode") + ":"
             }
 
             ComboBox {
@@ -248,7 +248,7 @@ Page {
 
             Label {
                 id: freqLable
-                text: qsTr("Frequency:")
+                text: qsTr("Frequency") + ":"
             }
 
             QSOTextField {
@@ -260,35 +260,35 @@ Page {
 
             Label {
                 id: sentLable
-                text: qsTr("RST (S):")
+                text: "RST (S):"
             }
 
             QSOTextField {
                 id: sentTextField
                 Layout.columnSpan: 2
                 text: ""
-                placeholderText: qsTr("59")
+                placeholderText: "59"
                 KeyNavigation.tab: recvTextField
                 inputMethodHints: Qt.ImhDigitsOnly
             }
 
             Label {
                 id: recvLable
-                text: qsTr("RST (R):")
+                text: "RST (R):"
             }
 
             QSOTextField {
                 id: recvTextField
                 Layout.columnSpan: 2
                 text: ""
-                placeholderText: qsTr("59")
+                placeholderText: "59"
                 KeyNavigation.tab: nameTextField
                 inputMethodHints: Qt.ImhDigitsOnly
             }
 
             Label {
                 id: nameLable
-                text: qsTr("Name:")
+                text: qsTr("Name") + ":"
             }
 
             QSOTextField {
@@ -300,7 +300,7 @@ Page {
 
             Label {
                 id: ctryLable
-                text: qsTr("Country:")
+                text: qsTr("Country") + ":"
             }
 
             QSOTextField {
@@ -312,7 +312,7 @@ Page {
 
             Label {
                 id: gridLable
-                text: qsTr("Locator:")
+                text: qsTr("Locator") + ":"
             }
 
             QSOTextField {
