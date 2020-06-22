@@ -24,6 +24,8 @@ ApplicationWindow {
         property bool cqActive
 
         property string cloudLogURL
+        property string cloudLogSSL
+        property int cloudLogSSLIndex
         property string cloudLogKey
         property bool cloudLogActive
 

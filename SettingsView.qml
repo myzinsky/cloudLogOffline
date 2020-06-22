@@ -21,9 +21,11 @@ Page {
         settings.cqFreq   = cqFreq.text;
         settings.cqActive = cqSwitch.checked;
 
-        settings.cloudLogURL    = cloudLogURL.text;
-        settings.cloudLogKey    = cloudLogKey.text;
-        settings.cloudLogActive = cloudLogSwitch.checked;
+        settings.cloudLogURL      = cloudLogURL.text;
+        settings.cloudLogSSL      = cloudLogSSL.currentText;
+        settings.cloudLogSSLIndex = cloudLogSSL.currentIndex
+        settings.cloudLogKey      = cloudLogKey.text;
+        settings.cloudLogActive   = cloudLogSwitch.checked;
 
         settings.qrzUser   = qrzUser.text;
         settings.qrzPass   = qrzPass.text;
@@ -69,7 +71,7 @@ Page {
 
                 Label {
                     id: settingsText
-                    text: "General Settings"
+                    text: qsTr("General Settings")
                     anchors.left: settingsIcon.right
                     anchors.leftMargin: 5
                     font.pixelSize: 14
@@ -93,7 +95,7 @@ Page {
 
             Label {
                 id: languageLabel
-                text: qsTr("Language")
+                text: qsTr("Language") + ":"
             }
 
             ComboBox {
@@ -118,6 +120,7 @@ Page {
                 id: cqSwitch
                 icon: "\uf519"
                 text: qsTr("CQ Frequency")
+                helpText: qsTr("With 'CQ Frequency' you can define a QRG which will be prefilled in the 'Live QSO' view. This mode is beneficial if you cannot connect to FlRig.")
                 Layout.columnSpan: 2
                 checked: settings.cqActive
             }
@@ -142,6 +145,7 @@ Page {
                 id: cloudLogSwitch
                 icon: "\uf0c2"
                 text: qsTr("Cloud Log API")
+                helpText: qsTr("Please specify the URL to Clouglog without https:// or http:// (e.g. log.cloud.com) and the specific key.")
                 Layout.columnSpan: 2
                 checked: settings.cloudLogActive
             }
@@ -158,6 +162,30 @@ Page {
                 visible: cloudLogSwitch.checked
                 text: settings.cloudLogURL
                 onTextEdited: saveSettings()
+            }
+
+            Label {
+                id: sslLabel
+                text: qsTr("Encryption") + ":"
+                visible: cloudLogSwitch.checked
+            }
+
+            ComboBox {
+                id: cloudLogSSL
+                Layout.fillWidth: true
+                model: [
+                    "http",
+                    "https"
+                ]
+
+                Component.onCompleted: {
+                    currentIndex = settings.cloudLogSSLIndex
+                }
+
+                onActivated: {
+                    saveSettings();
+                }
+                visible: cloudLogSwitch.checked
             }
 
             Label {
@@ -181,6 +209,7 @@ Page {
                 id: qrzSwitch
                 icon: "\uf7a2"
                 text: qsTr("QRZ.com API Synchronization")
+                helpText: qsTr("For QRZ.com XML Subscriber. CloudLogOffline will query QRZ.com if an internet connection is available.")
                 Layout.columnSpan: 2
                 checked: settings.qrzActive
             }
@@ -220,6 +249,7 @@ Page {
                 id: rigSwitch
                 icon: "\uf6ff"
                 text: qsTr("FlRig Connection")
+                helpText: qsTr("Connect to Flrig by W1HKJ which e.g. runs on a Raspberry Pi which is connected to the radio and opens a Wifi to interact with CloudLogOffline")
                 Layout.columnSpan: 2
                 checked: settings.rigActive
             }

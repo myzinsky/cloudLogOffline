@@ -15,7 +15,6 @@ void translationManager::switchToLanguage(const QString &language)
         QCoreApplication::removeTranslator(translator);
     }
     bool r = translator->load(language);
-    qDebug() << "Load Translator: " << r << " " << language;
     app->installTranslator(translator);
     engine->retranslate();
 }

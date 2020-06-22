@@ -48,7 +48,9 @@ Page {
                 Material.accent: Material.Green
 
                 onClicked: {
-                    cl.uploadToCloudLog(settings.cloudLogURL, settings.cloudLogKey)
+                    cl.uploadToCloudLog(settings.cloudLogSSL,
+                                        settings.cloudLogURL,
+                                        settings.cloudLogKey)
                 }
             }
 

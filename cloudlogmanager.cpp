@@ -24,6 +24,7 @@ cloudlogManager::cloudlogManager(qsoModel *model) : model(model)
 }
 
 void cloudlogManager::uploadQSO(QString url,
+                                QString ssl,
                                 QString key,
                                 QString call,
                                 QString name,
@@ -70,7 +71,7 @@ void cloudlogManager::uploadQSO(QString url,
 
     data = str.toUtf8();
 
-    QUrl u = QUrl("https://"+url+"/index.php/api/qso");
+    QUrl u = QUrl(ssl+"://"+url+"/index.php/api/qso");
 
     QNetworkRequest request(u);
     request.setHeader(QNetworkRequest::ContentTypeHeader, QVariant("application/json"));
@@ -153,10 +154,11 @@ void cloudlogManager::callbackCloudLog(QNetworkReply *rep)
     // TODO: what if callback is not happening or request fails?
 }
 
-void cloudlogManager::uploadToCloudLog(QString url, QString key)
+void cloudlogManager::uploadToCloudLog(QString ssl, QString url, QString key)
 {
     this->url = url;
     this->key = key;
+    this->ssl = ssl;
 
     // Estimate how many uploads:
     QSqlQuery query;
@@ -200,6 +202,7 @@ void cloudlogManager::uploadNext()
     QString sync = selectQuery.value(10).toString();
 
     uploadQSO(url,
+              ssl,
               key,
               call,
               name,

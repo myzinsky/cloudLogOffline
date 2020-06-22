@@ -7,6 +7,7 @@ import Qt.labs.settings 1.0
 Button {
     id: button
     property string buttonIcon: ""
+    width: 48
 
     contentItem: Label {
         id: label0
