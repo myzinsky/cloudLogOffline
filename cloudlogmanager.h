@@ -57,6 +57,7 @@ private:
 
     QString convertDate(QString date);
     QString convertTime(QString time);
+    QString convertFreq(QString freq);
 
     QString adifBand(QString freq);
 

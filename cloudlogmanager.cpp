@@ -43,6 +43,9 @@ void cloudlogManager::uploadQSO(QString url,
     QString band  = adifBand(freq);
     QString dateN = convertDate(date);
     QString timeN = convertTime(time);
+    QString freqN = convertFreq(freq);
+
+    qDebug() << "XX:" << freqN;
 
     QString str = QString("") +
     "{" +
@@ -52,7 +55,7 @@ void cloudlogManager::uploadQSO(QString url,
             "<call:" + QString::number(call.size()) + ">"+ call +
             "<band:" + QString::number(band.size()) + ">" + band +
             "<mode:" + QString::number(mode.size()) + ">" + mode +
-            "<freq:" + QString::number(freq.size()) + ">" + freq +
+            "<freq:" + QString::number(freqN.size()) + ">" + freqN +
             "<qso_date:" + QString::number(dateN.size()) + ">" + dateN +
             "<time_on:"  + QString::number(timeN.size()) + ">" + timeN +
             "<time_off:" + QString::number(timeN.size()) + ">" + timeN +
@@ -257,6 +260,11 @@ QString cloudlogManager::convertTime(QString time)
     }
 
     return hours+minutes+"00";
+}
+
+QString cloudlogManager::convertFreq(QString freq)
+{
+     return QString::number(freq.toDouble(), 'f', 6);
 }
 
 QString cloudlogManager::adifBand(QString freq)
