@@ -39,9 +39,10 @@ ios {
     ios_logo.files = $$files($$PWD/images/*.svg)
     QMAKE_BUNDLE_DATA += ios_icon
     QMAKE_BUNDLE_DATA += ios_logo
-    OBJECTIVE_SOURCES +=
     app_launch_images.files = $$PWD/ios/MyLaunch.xib $$files($$PWD/images/logo_circle.png)
     QMAKE_BUNDLE_DATA += app_launch_images
+    ios_translation.files = $$files($$PWD/translations/*.qm)
+    QMAKE_BUNDLE_DATA += ios_translation
 }
 
 macx {
