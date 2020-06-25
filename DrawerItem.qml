@@ -145,12 +145,15 @@ ItemDelegate {
         visible: !isSpacer (index)
 
         Label {
+            id: labelIcon
             font.family: fontAwesome.name
             font.pixelSize: Qt.application.font.pixelSize * 1.6
             opacity: 0.87
             text: iconSource (index)
             font.weight: Font.Medium
-            //anchors.verticalCenter: parent.verticalCenter
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.left: parent.left
+            anchors.leftMargin: Math.max(window.notchLeft, window.notchRight)
         }
 
         Item {
@@ -163,7 +166,9 @@ ItemDelegate {
             text: itemText (index)
             Layout.fillWidth: true
             font.weight: Font.Medium
-            //anchors.verticalCenter: parent.verticalCenter
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.left: parent.left
+            anchors.leftMargin: Math.max(window.notchLeft, window.notchRight) + 50
         }
     }
 }

@@ -3,7 +3,7 @@ import QtQuick.Layouts 1.1
 import QtQuick.Controls 2.5
 import QtQuick.Controls.Material 2.4
 import Qt.labs.settings 1.0
-
+import QtQuick.Window 2.12
 
 ApplicationWindow {
     id: window
@@ -11,6 +11,40 @@ ApplicationWindow {
     width: 640
     height: 480
     title: qsTr("CloudLogOffline Logbook")
+
+    // Full screen iPhone X workaround:
+    property int safeWidth
+    property int notchTop
+    property int notchLeft
+    property int notchRight
+    flags: Qt.platform.os === "ios"? Qt.Window | Qt.MaximizeUsingFullscreenGeometryHint : Qt.Window
+    // https://github.com/ekke/c2gQtWS_x/blob/master/qml/main.qml
+
+    Timer {
+        id: oriTimer
+        interval: 100; running: true; repeat: false
+        onTriggered: {
+            console.log("Orientatino Changed")
+            console.log("safe margins =", JSON.stringify(tools.getSafeAreaMargins(window)))
+            notchTop   = tools.getSafeAreaMargins(window)["top"]
+            notchLeft  = tools.getSafeAreaMargins(window)["left"]
+            notchRight = tools.getSafeAreaMargins(window)["right"]
+            safeWidth  = window.width - tools.getSafeAreaMargins(window)["left"] - tools.getSafeAreaMargins(window)["right"]
+        }
+    }
+
+    Screen.orientationUpdateMask: Qt.LandscapeOrientation | Qt.PortraitOrientation
+    Screen.onPrimaryOrientationChanged: {
+        oriTimer.start()
+    }
+
+    Component.onCompleted:  {
+        tm.switchToLanguage(settings.language)
+        notchTop = tools.getSafeAreaMargins(window)["top"] // iPhoneX workaround
+
+        console.log("load settings.language:" + settings.language)
+        console.log("safe margins =", JSON.stringify(tools.getSafeAreaMargins(window)))
+    }
 
     // Stores the settings even after restart:
     Settings {
@@ -48,7 +82,7 @@ ApplicationWindow {
     }
 
     header: ToolBar {
-        contentHeight: toolButton.implicitHeight
+        contentHeight: toolButton.implicitHeight + notchTop // iPhone X Workaround
 
         Material.primary: Material.BlueGrey
 
@@ -65,11 +99,16 @@ ApplicationWindow {
                     drawer.open()
                 }
             }
+            anchors.left: parent.left // iPhoneX workaround
+            anchors.leftMargin: Math.max(notchLeft, notchRight) // iPhoneX workaround
+            anchors.bottom: parent.bottom // iPhoneX workaround
         }
 
         Label {
             text: stackView.currentItem.title
-            anchors.centerIn: parent
+            //anchors.centerIn: parent
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.verticalCenter: toolButton.verticalCenter
         }
     }
 
@@ -173,6 +212,8 @@ ApplicationWindow {
     StackView {
         id: stackView
         anchors.fill: parent
+        anchors.leftMargin: notchLeft
+        anchors.rightMargin: notchRight
 
         pushEnter: Transition {
             PropertyAnimation {
@@ -206,10 +247,5 @@ ApplicationWindow {
                 duration: 200
             }
         }
-    }
-
-    Component.onCompleted:  {
-        tm.switchToLanguage(settings.language)
-        console.log("load settings.language:" + settings.language)
     }
 }

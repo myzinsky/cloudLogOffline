@@ -2,6 +2,7 @@ QT += quick
 QT += sql
 QT += svg
 QT += xml
+QT += gui-private
 QTPLUGIN += qsvg
 
 CONFIG += c++11
@@ -18,6 +19,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += main.cpp \
+    tools.cpp \
     translationmanager.cpp
 SOURCES += cloudlogmanager.cpp
 SOURCES += qrzmanager.cpp
@@ -34,15 +36,12 @@ QML_IMPORT_PATH =
 QML_DESIGNER_IMPORT_PATH =
 
 ios {
-    QMAKE_INFO_PLIST = ios/Info.plist
-    ios_icon.files = $$files($$PWD/images/ios/*.png)
-    ios_logo.files = $$files($$PWD/images/*.svg)
-    QMAKE_BUNDLE_DATA += ios_icon
-    QMAKE_BUNDLE_DATA += ios_logo
-    app_launch_images.files = $$PWD/ios/MyLaunch.xib $$files($$PWD/images/logo_circle.png)
+    #QMAKE_INFO_PLIST = ios/Info.plist
+    app_launch_images.files = $$PWD/ios/LaunchScreen.xib
     QMAKE_BUNDLE_DATA += app_launch_images
     ios_translation.files = $$files($$PWD/translations/*.qm)
     QMAKE_BUNDLE_DATA += ios_translation
+    QMAKE_ASSET_CATALOGS += ios/Media.xcassets
 }
 
 macx {
@@ -65,6 +64,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += cloudlogmanager.h \
+    tools.h \
     translationmanager.h
 HEADERS += dbmanager.h
 HEADERS += qrzmanager.h

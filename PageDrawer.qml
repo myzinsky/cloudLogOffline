@@ -24,6 +24,7 @@ import QtQuick 2.0
 import QtQuick.Layouts 1.0
 import QtQuick.Controls 2.0
 import QtGraphicalEffects 1.0
+import QtQuick.Controls.Material 2.4
 
 Drawer {
     id: drawer
@@ -32,7 +33,8 @@ Drawer {
     // Default size options
     //
     implicitHeight: parent.height
-    implicitWidth: Math.min (parent.width > parent.height ? 320 : 280, Math.min (parent.width, parent.height) * 0.90)
+    //implicitWidth: Math.min (parent.width > parent.height ? 320 : 280, Math.min (parent.width, parent.height) * 0.90)
+    implicitWidth: Math.min (parent.width, parent.height) * 0.80 + Math.max(window.notchLeft, window.notchRight)
 
     //
     // Icon properties
@@ -102,10 +104,29 @@ Drawer {
     //
     // Main layout of the drawer
     //
-    ColumnLayout {
-        spacing: 0
+    GridLayout {
+        rowSpacing: 0
         anchors.margins: 0
         anchors.fill: parent
+        columns: 1
+
+        Rectangle { // iPhone X Workaround
+            height: window.notchTop
+            Layout.fillWidth: true
+            visible: window.notchTop == 0 ? false : true
+
+            LinearGradient {
+
+                anchors.fill: parent
+                start: Qt.point (0, 0)
+                end: Qt.point (parent.width, 0)
+
+                gradient: Gradient {
+                    GradientStop { position: 0; color: iconBgColorLeft }
+                    GradientStop { position: 1; color: iconBgColorRight }
+                }
+            }
+        }
 
         //
         // Icon controls
@@ -113,6 +134,8 @@ Drawer {
         Rectangle {
             z: 1
             height: 120
+            Component.onCompleted: console.log("FOO: "+window.notchTop+" "+iconRect.height)
+
             id: iconRect
             Layout.fillWidth: true
 
@@ -137,7 +160,12 @@ Drawer {
                 anchors {
                     fill: parent
                     centerIn: parent
-                    margins: 16
+                    //horizontalCenter: parent.horizontalCenter
+                    //bottom: parent.bottom
+                    leftMargin: 16 + Math.max(window.notchLeft, window.notchRight)
+                    rightMargin: 16
+                    topMargin: 16
+                    bottomMargin: 16
                 }
 
                 Image {
@@ -205,6 +233,13 @@ Drawer {
             }
 
             ScrollIndicator.vertical: ScrollIndicator { }
+        }
+
+        Rectangle { // iPhone X Workaround
+            height: window.notchTop
+            Layout.fillWidth: true
+            visible: window.notchTop == 0 ? false : true
+            color: "#424242"
         }
     }
 }

@@ -9,6 +9,7 @@
 #include "rigmanager.h"
 #include "cloudlogmanager.h"
 #include "translationmanager.h"
+#include "tools.h"
 
 int main(int argc, char *argv[])
 {
@@ -24,6 +25,7 @@ int main(int argc, char *argv[])
     qsoModel qModel;
     cloudlogManager cl(&qModel);
     translationManager tm(&app, &engine);
+    tools t;
 
     // Load the QML and set the Context:
     engine.rootContext()->setContextProperty("qsoModel", QVariant::fromValue(&qModel));
@@ -31,6 +33,7 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("rig", QVariant::fromValue(&rig));
     engine.rootContext()->setContextProperty("cl", QVariant::fromValue(&cl));
     engine.rootContext()->setContextProperty("tm", QVariant::fromValue(&tm));
+    engine.rootContext()->setContextProperty("tools", QVariant::fromValue(&t));
     engine.load(QUrl(QStringLiteral("qrc:/Main.qml")));
 
     return app.exec();
