@@ -18,7 +18,6 @@ ApplicationWindow {
     property int notchLeft
     property int notchRight
     flags: Qt.platform.os === "ios"? Qt.Window | Qt.MaximizeUsingFullscreenGeometryHint : Qt.Window
-    // https://github.com/ekke/c2gQtWS_x/blob/master/qml/main.qml
 
     Timer {
         id: oriTimer

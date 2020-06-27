@@ -33,8 +33,7 @@ Drawer {
     // Default size options
     //
     implicitHeight: parent.height
-    //implicitWidth: Math.min (parent.width > parent.height ? 320 : 280, Math.min (parent.width, parent.height) * 0.90)
-    implicitWidth: Math.min (parent.width, parent.height) * 0.80 + Math.max(window.notchLeft, window.notchRight)
+    implicitWidth: Math.min (parent.width > parent.height ? 320 : 280, Math.min (parent.width, parent.height) * 0.90) + Math.max(window.notchLeft, window.notchRight)
 
     //
     // Icon properties
