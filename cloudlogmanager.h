@@ -28,6 +28,7 @@ public slots:
 
 signals:
     void uploadSucessfull(double progress);
+    void uploadFailed(const QString &error);
 
 private:
     QNetworkAccessManager *manager;
@@ -38,6 +39,7 @@ private:
     qsoModel *model;
     int number;
     int done;
+    QString currentIdInUpload;
 
     void uploadQSO(QString url,
                QString ssl,
@@ -51,7 +53,10 @@ private:
                QString recv,
                QString sent,
                QString ctry,
-               QString grid);
+               QString grid,
+               QString qqth,
+               QString comm
+               );
 
     void uploadNext();
 
@@ -61,7 +66,7 @@ private:
 
     QString adifBand(QString freq);
 
-    void parseAdif(QString adif,
+    void parseAdif(QString adif, // For future use...
                QString &call,
                QString &name,
                QString &mode,

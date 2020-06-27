@@ -208,6 +208,8 @@ SwipeDelegate {
                                    "name"       : model.name,
                                    "ctry"       : model.ctry,
                                    "grid"       : model.grid,
+                                   "qqth"       : model.qqth,
+                                   "comm"       : model.comm,
                                    "sync"       : model.sync,
                                });
             }

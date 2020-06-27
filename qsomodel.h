@@ -30,7 +30,10 @@ public slots:
                 QString mode,
                 QString sent,
                 QString recv,
-                QString grid);
+                QString grid,
+                QString qqth,
+                QString comm
+                );
 
     void updateQSO(int id,
                 QString call,
@@ -42,7 +45,10 @@ public slots:
                 QString mode,
                 QString sent,
                 QString recv,
-                QString grid);
+                QString grid,
+                QString qqth,
+                QString comm
+                );
 
 protected:
     QString selectStatement() const override;

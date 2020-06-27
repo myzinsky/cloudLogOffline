@@ -26,6 +26,8 @@ Page {
     property alias name: nameTextField.text;
     property alias ctry: ctryTextField.text;
     property alias grid: gridTextField.text;
+    property alias qqth: qqthTextField.text;
+    property alias comm: commTextField.text;
     property int   sync
 
     property bool qrzFound: false;
@@ -40,6 +42,9 @@ Page {
         // TODO: modeComboBox.
         sentTextField.text = ""
         recvTextField.text = ""
+        gridTextField.text = ""
+        qqthTextField.text = ""
+        commTextField.text = ""
     }
 
     Timer {
@@ -84,6 +89,9 @@ Page {
             }
             if (gridTextField.text.length == 0) {
                 gridTextField.text = locator
+            }
+            if (qqthTextField.text.length == 0) {
+                qqthTextField.text = addr2
             }
 
             page.qrzFound = true
@@ -295,7 +303,19 @@ Page {
                 id: nameTextField
                 Layout.columnSpan: 2
                 text: ""
-                KeyNavigation.tab: ctryTextField
+                KeyNavigation.tab: qqthTextField
+            }
+
+            Label {
+                id: qqthLable
+                text: qsTr("QTH") + ":"
+            }
+
+            QSOTextField {
+                id: qqthTextField
+                Layout.columnSpan: 2
+                text: ""
+                KeyNavigation.tab: gridTextField
             }
 
             Label {
@@ -317,6 +337,18 @@ Page {
 
             QSOTextField {
                 id: gridTextField
+                Layout.columnSpan: 2
+                text: ""
+                KeyNavigation.tab: commTextField
+            }
+
+            Label {
+                id: commLable
+                text: qsTr("Comment") + ":"
+            }
+
+            QSOTextField {
+                id: commTextField
                 Layout.columnSpan: 2
                 text: ""
                 KeyNavigation.tab: saveButton
@@ -358,7 +390,10 @@ Page {
                                 modeComboBox.currentText,
                                 sentTextField.text,
                                 recvTextField.text,
-                                gridTextField.text);
+                                gridTextField.text,
+                                qqthTextField.text,
+                                commTextField.text
+                                );
 
                         if(addQSO) {
                             stackView.pop()
@@ -377,7 +412,10 @@ Page {
                                    modeComboBox.currentText,
                                    sentTextField.text,
                                    recvTextField.text,
-                                   gridTextField.text);
+                                   gridTextField.text,
+                                   qqthTextField.text,
+                                   commTextField.text
+                                   );
                         stackView.pop()
                     }
                 }

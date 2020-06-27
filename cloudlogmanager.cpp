@@ -9,7 +9,8 @@ cloudlogManager::cloudlogManager(qsoModel *model) : model(model)
             SLOT(callbackCloudLog(QNetworkReply*))
     );
 
-    selectQuery.prepare("SELECT call, "
+    selectQuery.prepare("SELECT id,"
+                        "call, "
                         "name, "
                         "ctry, "
                         "date, "
@@ -19,6 +20,8 @@ cloudlogManager::cloudlogManager(qsoModel *model) : model(model)
                         "sent, "
                         "recv, "
                         "grid, "
+                        "qqth, "
+                        "comm, "
                         "sync "
                         "FROM qsos WHERE sync = 0");
 }
@@ -35,7 +38,10 @@ void cloudlogManager::uploadQSO(QString url,
                                 QString recv,
                                 QString sent,
                                 QString ctry,
-                                QString grid)
+                                QString grid,
+                                QString qqth,
+                                QString comm
+                                )
 {
     QDateTime currentTime = QDateTime::currentDateTime();
     QByteArray data;
@@ -63,12 +69,14 @@ void cloudlogManager::uploadQSO(QString url,
             "<rst_sent:" + QString::number(sent.size()) + ">" + sent +
             //"<qsl_rcvd:1>N" +
             //"<qsl_sent:1>N" +
-            "<country:" + QString::number(ctry.size()) + ">" + ctry +
+            "<country:"    + QString::number(ctry.size()) + ">" + ctry +
+            "<qth:"        + QString::number(qqth.size()) + ">" + qqth +
             "<gridsquare:" + QString::number(grid.size()) + ">"+ grid +
             //"<sat_mode:3>U/V" +
             //"<sat_name:4>AO-7" +
             //"<prop_mode:3>SAT" +
             "<name:" + QString::number(name.size()) + ">" + name +
+            "<comment:" + QString::number(comm.size()) + ">" + comm +
             "<eor>\"" +
     "}";
 
@@ -94,41 +102,13 @@ void cloudlogManager::callbackCloudLog(QNetworkReply *rep)
 
     if(jsonObject["status"] == "created") {
         QString adif = jsonObject["string"].toString();
-        QString call;
-        QString name;
-        QString ctry;
-        QString date;
-        QString time;
-        QString freq;
-        QString mode;
-        QString sent;
-        QString recv;
-        QString grid;
 
-        parseAdif(adif,
-                  call,
-                  name,
-                  mode,
-                  freq,
-                  date,
-                  time,
-                  recv,
-                  sent,
-                  ctry,
-                  grid);
+        qDebug() << "Callback: " << adif << endl;
 
         QSqlQuery query;
-        QString qS =  "UPDATE qsos SET sync = 1 WHERE "
-                      "call = \""+call+"\" AND "
-                      "name = \""+name+"\" AND "
-                      "mode = \""+mode+"\" AND "
-                      "freq = \""+freq+"\" AND "
-                      "date = \""+date+"\" AND "
-                      "time = \""+time+"\" AND "
-                      "recv = \""+recv+"\" AND "
-                      "sent = \""+sent+"\" AND "
-                      "ctry = \""+ctry+"\" AND "
-                      "grid = \""+grid+"\";";
+
+        QString qS = "UPDATE qsos SET sync = 1 WHERE id = "
+                   + currentIdInUpload + ";";
 
         query.prepare(qS);
 
@@ -149,11 +129,9 @@ void cloudlogManager::callbackCloudLog(QNetworkReply *rep)
         }
 
         emit uploadSucessfull(((double)done)/((double)number));
-
     } else {
-        // TODO: show message box
+        emit uploadFailed("Upload Error: " + jsonObject["reason"].toString());
     }
-
     // TODO: what if callback is not happening or request fails?
 }
 
@@ -192,17 +170,22 @@ void cloudlogManager::uploadNext()
     qDebug() << "Upload" << (done+1) << "/" << number;
     selectQuery.next();
 
-    QString call = selectQuery.value( 0).toString();
-    QString name = selectQuery.value( 1).toString();
-    QString ctry = selectQuery.value( 2).toString();
-    QString date = selectQuery.value( 3).toString();
-    QString time = selectQuery.value( 4).toString();
-    QString freq = selectQuery.value( 5).toString();
-    QString mode = selectQuery.value( 6).toString();
-    QString sent = selectQuery.value( 7).toString();
-    QString recv = selectQuery.value( 8).toString();
-    QString grid = selectQuery.value( 9).toString();
-    QString sync = selectQuery.value(10).toString();
+    QString id   = selectQuery.value( 0).toString();
+    QString call = selectQuery.value( 1).toString();
+    QString name = selectQuery.value( 2).toString();
+    QString ctry = selectQuery.value( 3).toString();
+    QString date = selectQuery.value( 4).toString();
+    QString time = selectQuery.value( 5).toString();
+    QString freq = selectQuery.value( 6).toString();
+    QString mode = selectQuery.value( 7).toString();
+    QString sent = selectQuery.value( 8).toString();
+    QString recv = selectQuery.value( 9).toString();
+    QString grid = selectQuery.value(10).toString();
+    QString qtth = selectQuery.value(11).toString();
+    QString comm = selectQuery.value(12).toString();
+    QString sync = selectQuery.value(13).toString();
+
+    currentIdInUpload = id;
 
     uploadQSO(url,
               ssl,
@@ -216,7 +199,10 @@ void cloudlogManager::uploadNext()
               recv,
               sent,
               ctry,
-              grid);
+              grid,
+              qtth,
+              comm
+              );
 }
 
 void cloudlogManager::deleteUploadedQsos()

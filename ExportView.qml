@@ -3,6 +3,7 @@ import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.1
 import QtQuick.Controls.Material 2.4
 import Qt.labs.settings 1.0
+import Qt.labs.platform 1.1
 
 Page {
     id: page
@@ -10,11 +11,21 @@ Page {
     title: "Export"
     anchors.margins: 5
 
+    MessageDialog {
+        id: cloudLogMessage
+        buttons: MessageDialog.Ok
+    }
+
     Connections{
         target: cl
 
         onUploadSucessfull: {
             progressBar.value = progress
+        }
+
+        onUploadFailed: {
+            cloudLogMessage.text = error
+            cloudLogMessage.open
         }
     }
 

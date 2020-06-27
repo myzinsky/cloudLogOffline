@@ -29,6 +29,8 @@ bool dbManager::createTables()
                   "sent TEXT,"
                   "recv TEXT,"
                   "grid TEXT,"
+                  "qqth TEXT,"
+                  "comm TEXT,"
                   "sync INTEGER DEFAULT 0"
                   ");");
 
