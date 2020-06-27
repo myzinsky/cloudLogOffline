@@ -181,6 +181,7 @@ Page {
                 text: ""
                 KeyNavigation.tab: modeComboBox
                 font.capitalization: Font.AllUppercase
+                inputMethodHints: Qt.ImhUppercaseOnly
 
                 onEditingFinished: {
                     if(settings.qrzActive) {
@@ -264,6 +265,11 @@ Page {
                 Layout.columnSpan: 2
                 text: (liveQSO && settings.cqActive) ? settings.cqFreq : ""
                 KeyNavigation.tab: sentTextField
+                inputMethodHints: Qt.ImhFormattedNumbersOnly
+
+                onEditingFinished: {
+                    freqTextField.text = freqTextField.text.replace(",", ".");
+                }
             }
 
             Label {
