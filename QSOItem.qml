@@ -101,7 +101,7 @@ SwipeDelegate {
             Text {
                 id: sent
                 color: "#ffffff"
-                text: model.sent
+                text: "S:" + model.sent
                 anchors.left: mode.right
                 anchors.leftMargin: 10
                 anchors.top: parent.top
@@ -113,7 +113,7 @@ SwipeDelegate {
             Text {
                 id: recv
                 color: "#ffffff"
-                text: model.recv
+                text: "R:" + model.recv
                 anchors.left: sent.right
                 anchors.leftMargin: 10
                 anchors.top: parent.top
