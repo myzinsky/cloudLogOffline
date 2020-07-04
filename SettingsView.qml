@@ -148,7 +148,7 @@ Page {
                 id: contestSwitch
                 icon: "\uf091"
                 text: qsTr("Contest Mode")
-                helpText: qsTr("TODO");
+                helpText: qsTr("In contest mode, a receive and a sent field will show up. A counting up number can be configured in the settings. A status indicator will show if a callsing is already existing in the log.");
                 Layout.columnSpan: 2
                 checked: settings.contestActive
             }
