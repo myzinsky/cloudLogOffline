@@ -3,6 +3,7 @@ import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.1
 import QtQuick.Controls.Material 2.4
 import Qt.labs.settings 1.0
+import QtQuick.Extras 1.4
 
 Page {
     id: page
@@ -28,7 +29,10 @@ Page {
     property alias grid: gridTextField.text;
     property alias qqth: qqthTextField.text;
     property alias comm: commTextField.text;
-    property int   sync
+    property alias ctss: ctssTextField.text;
+    property alias ctsr: ctsrTextField.text;
+
+    property int sync
 
     property bool qrzFound: false;
 
@@ -45,6 +49,9 @@ Page {
         gridTextField.text = ""
         qqthTextField.text = ""
         commTextField.text = ""
+        ctssTextField.text = ""
+        ctsrTextField.text = ""
+        indicator.color = "green";
     }
 
     Timer {
@@ -116,7 +123,7 @@ Page {
 
         GridLayout {
             id: grid
-            columns: 3
+            columns: 4
             width: page.width // Important
 
             Label {
@@ -126,7 +133,6 @@ Page {
 
             QSOTextField {
                 id: dateTextField
-                Layout.columnSpan: 2
                 text: ""
                 placeholderText: "DD.MM.YYYY"
                 KeyNavigation.tab: timeTextField
@@ -152,7 +158,6 @@ Page {
 
             QSOTextField {
                 id: timeTextField
-                Layout.columnSpan: 2
                 text: ""
                 placeholderText: "00:00"
                 KeyNavigation.tab: callTextField
@@ -176,37 +181,65 @@ Page {
                 text: qsTr("Callsign") + ":"
             }
 
-            QSOTextField {
-                id: callTextField
-                text: ""
-                KeyNavigation.tab: modeComboBox
-                font.capitalization: Font.AllUppercase
-                inputMethodHints: Qt.ImhUppercaseOnly
+            RowLayout {
+                Layout.columnSpan: 3
 
-                onEditingFinished: {
-                    if(settings.qrzActive) {
-                        qrz.lookupCall(callTextField.text)
+                QSOTextField {
+                    id: callTextField
+                    text: ""
+                    KeyNavigation.tab: modeComboBox
+                    font.capitalization: Font.AllUppercase
+                    inputMethodHints: Qt.ImhUppercaseOnly
+
+                    onEditingFinished: {
+                        if(settings.qrzActive) {
+                            qrz.lookupCall(callTextField.text)
+                        }
+
+                        if(settings.contestActive) {
+                            if(qsoModel.checkCall(callTextField.text)) {
+                                indicator.color = "red";
+                            } else {
+                                indicator.color = "green";
+                            }
+
+                        }
                     }
                 }
-            }
 
-            Button {
-                id: qrzButton
-                font.family: fontAwesome.name
-                text: "\uf7a2"
-                highlighted: qrzFound
-                width: 20
-                Material.theme:  Material.Light
-                Material.accent: Material.Green
-                enabled: settings.qrzActive
-                padding: 0
 
-                onClicked: {
-                    stackView.push("QRZView.qml",
+                Rectangle {
+                    visible: settings.contestActive
+                    id: status
+                    width: 30
+                    StatusIndicator {
+                        id: indicator
+                        anchors.centerIn: parent
+                        color: "green"
+                        active: true
+                    }
+                }
+
+                IconButton {
+                    id: qrzButton
+                    width: 30
+                    font.family: fontAwesome.name
+                    buttonIcon: "\uf7a2"
+                    text: ""
+                    highlighted: qrzFound
+                    Material.theme:  Material.Light
+                    Material.accent: Material.Green
+                    enabled: settings.qrzActive
+                    padding: 0
+
+                    onClicked: {
+                        stackView.push("QRZView.qml",
                                    {
                                        "call" : callTextField.text
                                    });
+                    }
                 }
+
             }
 
             Label {
@@ -216,7 +249,7 @@ Page {
 
             ComboBox {
                 id: modeComboBox
-                Layout.columnSpan: 2
+                Layout.columnSpan: 3
                 Layout.fillWidth: true
                 KeyNavigation.tab: freqTextField
                 model: [
@@ -262,7 +295,7 @@ Page {
 
             QSOTextField {
                 id: freqTextField
-                Layout.columnSpan: 2
+                Layout.columnSpan: 3
                 text: (liveQSO && settings.cqActive) ? settings.cqFreq : ""
                 KeyNavigation.tab: sentTextField
                 inputMethodHints: Qt.ImhFormattedNumbersOnly
@@ -279,7 +312,6 @@ Page {
 
             QSOTextField {
                 id: sentTextField
-                Layout.columnSpan: 2
                 text: ""
                 placeholderText: "59"
                 KeyNavigation.tab: recvTextField
@@ -293,11 +325,36 @@ Page {
 
             QSOTextField {
                 id: recvTextField
-                Layout.columnSpan: 2
                 text: ""
                 placeholderText: "59"
-                KeyNavigation.tab: nameTextField
+                KeyNavigation.tab: settings.contestActive ? ctssTextField : nameTextField
                 inputMethodHints: Qt.ImhDigitsOnly
+            }
+
+            Label {
+                id: ctssLable
+                text: "Contest (S):"
+                visible: settings.contestActive || ctssTextField.text || ctsrTextField.text
+            }
+
+            QSOTextField {
+                id: ctssTextField
+                text: ""
+                KeyNavigation.tab: ctsrTextField
+                visible: settings.contestActive || ctssTextField.text || ctsrTextField.text
+            }
+
+            Label {
+                id: ctsrLable
+                text: "Contest (R):"
+                visible: settings.contestActive || ctsrTextField.text || ctsrTextField.text
+            }
+
+            QSOTextField {
+                id: ctsrTextField
+                text: ""
+                KeyNavigation.tab: nameTextField
+                visible: settings.contestActive || ctsrTextField.text || ctsrTextField.text
             }
 
             Label {
@@ -307,7 +364,7 @@ Page {
 
             QSOTextField {
                 id: nameTextField
-                Layout.columnSpan: 2
+                Layout.columnSpan: 3
                 text: ""
                 KeyNavigation.tab: qqthTextField
             }
@@ -319,7 +376,7 @@ Page {
 
             QSOTextField {
                 id: qqthTextField
-                Layout.columnSpan: 2
+                Layout.columnSpan: 3
                 text: ""
                 KeyNavigation.tab: gridTextField
             }
@@ -331,7 +388,7 @@ Page {
 
             QSOTextField {
                 id: ctryTextField
-                Layout.columnSpan: 2
+                Layout.columnSpan: 3
                 text: ""
                 KeyNavigation.tab: gridTextField
             }
@@ -343,7 +400,7 @@ Page {
 
             QSOTextField {
                 id: gridTextField
-                Layout.columnSpan: 2
+                Layout.columnSpan: 3
                 text: ""
                 KeyNavigation.tab: commTextField
             }
@@ -355,7 +412,7 @@ Page {
 
             QSOTextField {
                 id: commTextField
-                Layout.columnSpan: 2
+                Layout.columnSpan: 3
                 text: ""
                 KeyNavigation.tab: saveButton
             }
@@ -366,7 +423,11 @@ Page {
                 visible: (addQSO || liveQSO)
 
                 onClicked: {
+                    var tmp = ctssTextField.text;
                     page.reset();
+                    if(settings.contestActive) {
+                        ctssTextField.text = tmp;
+                    }
                 }
             }
 
@@ -378,7 +439,7 @@ Page {
 
             Button {
                 id: saveButton
-                Layout.columnSpan: 2
+                Layout.columnSpan: 3
                 text: qsTr("Save QSO")
                 Layout.fillWidth: true
                 highlighted: true
@@ -398,13 +459,26 @@ Page {
                                 recvTextField.text,
                                 gridTextField.text,
                                 qqthTextField.text,
-                                commTextField.text
+                                commTextField.text,
+                                ctssTextField.text,
+                                ctsrTextField.text
                                 );
 
                         if(addQSO) {
                             stackView.pop()
                         } else if(liveQSO) {
+                            var tmp = ctssTextField.text;
                             page.reset();
+                            if(settings.contestActive) {
+                                if(isNaN(tmp)) { // If it is e.g. a province
+                                    ctssTextField.text = tmp;
+                                } else { // if its a running number
+                                    var contestNumber = parseInt(tmp);
+                                    contestNumber += 1;
+                                    ctssTextField.text = contestNumber;
+                                    settings.contestNumber = contestNumber;
+                                }
+                            }
                         }
 
                     } else if(updateQSO == true) {
@@ -420,7 +494,9 @@ Page {
                                    recvTextField.text,
                                    gridTextField.text,
                                    qqthTextField.text,
-                                   commTextField.text
+                                   commTextField.text,
+                                   ctssTextField.text,
+                                   ctsrTextField.text
                                    );
                         stackView.pop()
                     }

@@ -46,7 +46,9 @@ void qsoModel::addQSO(QString call,
                       QString recv,
                       QString grid,
                       QString qqth,
-                      QString comm
+                      QString comm,
+                      QString ctss,
+                      QString ctsr
                       )
 {
     QSqlRecord newRecord = record();
@@ -63,6 +65,8 @@ void qsoModel::addQSO(QString call,
     newRecord.setValue("grid", grid);
     newRecord.setValue("qqth", qqth);
     newRecord.setValue("comm", comm);
+    newRecord.setValue("ctss", ctss);
+    newRecord.setValue("ctsr", ctsr);
 
     newRecord.setValue("sync", 0);
 
@@ -83,7 +87,9 @@ void qsoModel::updateQSO(int id,
                          QString recv,
                          QString grid,
                          QString qqth,
-                         QString comm
+                         QString comm,
+                         QString ctss,
+                         QString ctsr
                          )
 {
     qDebug() << "UPDATE QSO" << id;
@@ -101,10 +107,26 @@ void qsoModel::updateQSO(int id,
     r.setValue("grid", grid);
     r.setValue("qqth", qqth);
     r.setValue("comm", comm);
+    r.setValue("ctss", ctss);
+    r.setValue("ctsr", ctsr);
 
     setRecord(id, r);
     submit();
     select();
+}
+
+bool qsoModel::checkCall(QString call)
+{
+    QSqlQuery query;
+    query.prepare("SELECT COUNT(*) FROM qsos WHERE call = '"+call+"';");
+
+    if(!query.exec()) {
+        qDebug() << "SQL Error:" << query.lastError().text();
+    }
+
+    query.next();
+    int number = query.value(0).toInt();
+    return number >= 1;
 }
 
 QString qsoModel::selectStatement() const

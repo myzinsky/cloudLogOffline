@@ -31,6 +31,8 @@ bool dbManager::createTables()
                   "grid TEXT,"
                   "qqth TEXT,"
                   "comm TEXT,"
+                  "ctss TEXT,"
+                  "ctsr TEXT,"
                   "sync INTEGER DEFAULT 0"
                   ");");
 

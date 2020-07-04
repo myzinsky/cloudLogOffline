@@ -5,6 +5,7 @@
 #include <QDebug>
 #include <QSqlTableModel>
 #include <QSqlRecord>
+#include <QSqlError>
 
 #include "dbmanager.h"
 
@@ -32,7 +33,9 @@ public slots:
                 QString recv,
                 QString grid,
                 QString qqth,
-                QString comm
+                QString comm,
+                QString ctss,
+                QString ctsr
                 );
 
     void updateQSO(int id,
@@ -47,8 +50,12 @@ public slots:
                 QString recv,
                 QString grid,
                 QString qqth,
-                QString comm
+                QString comm,
+                QString ctss,
+                QString ctsr
                 );
+
+    bool checkCall(QString call);
 
 protected:
     QString selectStatement() const override;

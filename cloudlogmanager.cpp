@@ -22,6 +22,8 @@ cloudlogManager::cloudlogManager(qsoModel *model) : model(model)
                         "grid, "
                         "qqth, "
                         "comm, "
+                        "ctss, "
+                        "ctsr, "
                         "sync "
                         "FROM qsos WHERE sync = 0");
 }
@@ -40,7 +42,9 @@ void cloudlogManager::uploadQSO(QString url,
                                 QString ctry,
                                 QString grid,
                                 QString qqth,
-                                QString comm
+                                QString comm,
+                                QString ctss,
+                                QString ctsr
                                 )
 {
     QDateTime currentTime = QDateTime::currentDateTime();
@@ -51,7 +55,7 @@ void cloudlogManager::uploadQSO(QString url,
     QString timeN = convertTime(time);
     QString freqN = convertFreq(freq);
 
-    qDebug() << "XX:" << freqN;
+    qDebug() << "XX:" << ctss << "," << ctsr;
 
     QString str = QString("") +
     "{" +
@@ -66,15 +70,37 @@ void cloudlogManager::uploadQSO(QString url,
             "<time_on:"  + QString::number(timeN.size()) + ">" + timeN +
             "<time_off:" + QString::number(timeN.size()) + ">" + timeN +
             "<rst_rcvd:" + QString::number(recv.size()) + ">" + recv +
-            "<rst_sent:" + QString::number(sent.size()) + ">" + sent +
-            //"<qsl_rcvd:1>N" +
-            //"<qsl_sent:1>N" +
+            "<rst_sent:" + QString::number(sent.size()) + ">" + sent;
+
+            // Contest mode:
+            if(!ctss.isEmpty()) {
+                bool ok;
+                ctss.toInt(&ok, 10);
+                if(ok == false) { // If not a number:
+                    str += QString("") +
+                    "<stx_string:" + QString::number(ctss.size()) + ">" + ctss;
+                } else { // its a number
+                    str += QString("") +
+                    "<stx:" + QString::number(ctss.size()) + ">" + ctss;
+                }
+            }
+
+            if(!ctsr.isEmpty()) {
+                bool ok;
+                ctsr.toInt(&ok, 10);
+                if(ok == false) { // If not a number:
+                    str += QString("") +
+                    "<srx_string:" + QString::number(ctsr.size()) + ">" + ctsr;
+                } else { // its a number
+                    str += QString("") +
+                    "<srx:" + QString::number(ctsr.size()) + ">" + ctsr;
+                }
+            }
+
+            str += QString("") +
             "<country:"    + QString::number(ctry.size()) + ">" + ctry +
             "<qth:"        + QString::number(qqth.size()) + ">" + qqth +
             "<gridsquare:" + QString::number(grid.size()) + ">"+ grid +
-            //"<sat_mode:3>U/V" +
-            //"<sat_name:4>AO-7" +
-            //"<prop_mode:3>SAT" +
             "<name:" + QString::number(name.size()) + ">" + name +
             "<comment:" + QString::number(comm.size()) + ">" + comm +
             "<eor>\"" +
@@ -183,7 +209,9 @@ void cloudlogManager::uploadNext()
     QString grid = selectQuery.value(10).toString();
     QString qtth = selectQuery.value(11).toString();
     QString comm = selectQuery.value(12).toString();
-    QString sync = selectQuery.value(13).toString();
+    QString ctss = selectQuery.value(13).toString();
+    QString ctsr = selectQuery.value(14).toString();
+    QString sync = selectQuery.value(15).toString();
 
     currentIdInUpload = id;
 
@@ -201,7 +229,9 @@ void cloudlogManager::uploadNext()
               ctry,
               grid,
               qtth,
-              comm
+              comm,
+              ctss,
+              ctsr
               );
 }
 

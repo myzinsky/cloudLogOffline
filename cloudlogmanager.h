@@ -55,7 +55,9 @@ private:
                QString ctry,
                QString grid,
                QString qqth,
-               QString comm
+               QString comm,
+               QString ctss,
+               QString ctsr
                );
 
     void uploadNext();

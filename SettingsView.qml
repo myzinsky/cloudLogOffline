@@ -21,6 +21,9 @@ Page {
         settings.cqFreq   = cqFreq.text;
         settings.cqActive = cqSwitch.checked;
 
+        settings.contestActive = contestSwitch.checked;
+        settings.contestNumber = contestNumber.text
+
         settings.cloudLogURL      = cloudLogURL.text;
         settings.cloudLogSSL      = cloudLogSSL.currentText;
         settings.cloudLogSSLIndex = cloudLogSSL.currentIndex
@@ -136,6 +139,31 @@ Page {
                 Layout.fillWidth: true
                 visible: cqSwitch.checked
                 text: settings.cqFreq
+                onTextEdited: saveSettings()
+            }
+
+            // ----------------
+
+            SettingsSwitch {
+                id: contestSwitch
+                icon: "\uf091"
+                text: qsTr("Contest Mode")
+                helpText: qsTr("TODO");
+                Layout.columnSpan: 2
+                checked: settings.contestActive
+            }
+
+            Label {
+                id: contestNumberLabel
+                text: qsTr("Number / Province") + ":"
+                visible: contestSwitch.checked
+            }
+
+            TextField {
+                id: contestNumber
+                Layout.fillWidth: true
+                visible: contestSwitch.checked
+                text: settings.contestNumber
                 onTextEdited: saveSettings()
             }
 

@@ -23,9 +23,8 @@ SwipeDelegate {
     contentItem: Item {
         id: element
         width: parent.width
-        //anchors.fill: parent
         height: 70
-        //z: 0
+
         Rectangle {
             width: parent.width
             height: 70
@@ -101,7 +100,7 @@ SwipeDelegate {
             Text {
                 id: sent
                 color: "#ffffff"
-                text: "S:" + model.sent
+                text: "S:" + model.sent + (model.ctss ? (" [" + model.ctss + "]") : "")
                 anchors.left: mode.right
                 anchors.leftMargin: 10
                 anchors.top: parent.top
@@ -113,7 +112,7 @@ SwipeDelegate {
             Text {
                 id: recv
                 color: "#ffffff"
-                text: "R:" + model.recv
+                text: "R:" + model.recv + (model.ctsr ? (" [" + model.ctsr + "]") : "")
                 anchors.left: sent.right
                 anchors.leftMargin: 10
                 anchors.top: parent.top
@@ -210,6 +209,8 @@ SwipeDelegate {
                                    "grid"       : model.grid,
                                    "qqth"       : model.qqth,
                                    "comm"       : model.comm,
+                                   "ctss"       : model.ctss,
+                                   "ctsr"       : model.ctsr,
                                    "sync"       : model.sync,
                                });
             }
