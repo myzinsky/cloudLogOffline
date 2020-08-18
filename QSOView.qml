@@ -1,9 +1,8 @@
-import QtQuick 2.12
+import QtQuick 2.2
 import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.1
 import QtQuick.Controls.Material 2.4
 import Qt.labs.settings 1.0
-import QtQuick.Extras 1.4
 
 Page {
     id: page
@@ -51,7 +50,7 @@ Page {
         commTextField.text = ""
         ctssTextField.text = ""
         ctsrTextField.text = ""
-        indicator.color = "green";
+        statusIndicator.Material.accent = Material.Green
     }
 
     Timer {
@@ -89,7 +88,7 @@ Page {
         target: qrz
         onQrzDone: {
             if (nameTextField.text.length == 0) {
-                nameTextField.text = fname
+                nameTextField.text = fname + " " + name
             }
             if (ctryTextField.text.length == 0) {
                 ctryTextField.text = country
@@ -198,31 +197,38 @@ Page {
 
                         if(settings.contestActive) {
                             if(qsoModel.checkCall(callTextField.text)) {
-                                indicator.color = "red";
+                                statusIndicator.Material.accent = Material.Red
                             } else {
-                                indicator.color = "green";
+                                statusIndicator.Material.accent = Material.Green
                             }
 
                         }
                     }
                 }
 
-
-                Rectangle {
+                IconButton {
+                    id: statusIndicator
                     visible: settings.contestActive
-                    id: status
-                    width: 30
-                    StatusIndicator {
-                        id: indicator
-                        anchors.centerIn: parent
-                        color: "green"
-                        active: true
+                    enabled: settings.contestActive
+                    width: height
+                    Layout.preferredWidth: height
+                    font.family: fontAwesome.name
+                    buttonIcon: "\uf01e"
+                    text: ""
+                    highlighted: true
+                    Material.theme:  Material.Light
+                    Material.accent: Material.Green
+                    padding: 0
+
+                    onClicked: {
+                        // TODO
                     }
                 }
 
                 IconButton {
                     id: qrzButton
-                    width: 30
+                    width: height
+                    Layout.preferredWidth: height
                     font.family: fontAwesome.name
                     buttonIcon: "\uf7a2"
                     text: ""
@@ -312,7 +318,7 @@ Page {
 
             QSOTextField {
                 id: sentTextField
-                text: ""
+                text: settings.contestActive ? "59" : ""
                 placeholderText: "59"
                 KeyNavigation.tab: recvTextField
                 inputMethodHints: Qt.ImhDigitsOnly
@@ -325,7 +331,7 @@ Page {
 
             QSOTextField {
                 id: recvTextField
-                text: ""
+                text: settings.contestActive ? "59" : ""
                 placeholderText: "59"
                 KeyNavigation.tab: settings.contestActive ? ctssTextField : nameTextField
                 inputMethodHints: Qt.ImhDigitsOnly
@@ -469,7 +475,7 @@ Page {
                         } else if(liveQSO) {
                             var tmp = ctssTextField.text;
                             page.reset();
-                            if(settings.contestActive) {
+                            if(settings.contestActive && liveQSO) {
                                 if(isNaN(tmp)) { // If it is e.g. a province
                                     ctssTextField.text = tmp;
                                 } else { // if its a running number

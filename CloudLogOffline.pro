@@ -37,7 +37,7 @@ QML_DESIGNER_IMPORT_PATH =
 
 ios {
     #QMAKE_INFO_PLIST = ios/Info.plist
-    app_launch_images.files = $$PWD/ios/LaunchScreen.xib
+    app_launch_images.files = $$PWD/ios/myLaunchScreen.xib
     QMAKE_BUNDLE_DATA += app_launch_images
     ios_translation.files = $$files($$PWD/translations/*.qm)
     QMAKE_BUNDLE_DATA += ios_translation
@@ -72,7 +72,7 @@ HEADERS += qsomodel.h
 HEADERS += rigmanager.h
 
 DISTFILES += android/AndroidManifest.xml
-DISTFILES += ios/MyLaunch.xib
+DISTFILES += ios/MyLaunchScreen.xib
 
 # Translations:
 TRANSLATIONS += translations/English.ts
