@@ -42,6 +42,9 @@ ios {
     ios_translation.files = $$files($$PWD/translations/*.qm)
     QMAKE_BUNDLE_DATA += ios_translation
     QMAKE_ASSET_CATALOGS += ios/Media.xcassets
+    QMAKE_TARGET_BUNDLE_PREFIX = de.webappjung
+    #QMAKE_DEVELOPMENT_TEAM = XXXX
+    #QMAKE_PROVISIONING_PROFILE = XXXXX
 }
 
 macx {
@@ -51,6 +54,7 @@ macx {
     macos_translation.files = $$files($$PWD/translations/*.qm)
     macos_translation.path = "Contents/MacOS"
     QMAKE_BUNDLE_DATA += macos_translation
+    QMAKE_TARGET_BUNDLE_PREFIX = de.webappjung
 }
 
 android {
@@ -73,6 +77,7 @@ HEADERS += rigmanager.h
 
 DISTFILES += android/AndroidManifest.xml
 DISTFILES += ios/MyLaunchScreen.xib
+DISTFILES += ios/info.plist
 
 # Translations:
 TRANSLATIONS += translations/English.ts
