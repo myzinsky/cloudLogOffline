@@ -31,6 +31,31 @@ CloudLogApp is developed by Web &amp; App Dr.-Ing. Matthias Jung (DL9MJ),
 http://www.webappjung.de/<br>"
                 color: "white"
             }
+
+            Label {
+                id: privacyDrawer
+                padding: 5
+                wrapMode: Text.WordWrap
+                //wrapMode: Text.Wrap
+                width: scrollView.width
+                Layout.maximumWidth: scrollView.width
+                // https://gist.github.com/alex-spataru/ee5e74f82a72a0a2e446766a77c43665<br>
+
+                text: "<h1>Privacy</h1>
+Using the CloudLogOffline App: Description and scope of data processing
+<h2>Data</h2>
+In our app, all data is stored exclusively locally on your device. We have, just like everyone else, no access to your data.
+<h2>Cloud Storage</h2>
+In the app, you can set up a connection to cloud storage to store data in the cloud. By default, no cloud connection is preset. If a cloud connection is set up in the app, the data vault is only uploaded to the cloud storage by your explicit action (click Export). An automatic upload never takes place. If a cloud storage is used, the operator of the cloud providers is their sole contractual partner in this respect. Accordingly, the data protection guidelines of the cloud operator apply exclusively.
+<h2>QRZ.com</h2>
+The connection to the XML service of QRZ.com is always handled directly and without detours between your device and the respective QRZ.com. There are never any intermediary servers involved by us. The transmission is always encrypted using the encryption and security procedures used by QRZ.com. The privacy policy of QRZ.com can be found here
+<h2>Transmission of statistical usage data</h2>
+Our apps do not transmit statistical usage data to a server system of the Web & App Dr.-Ing. Matthias Jung.
+<h2>Purchase of the App</h2>
+If you purchase the app, the operator of the app shop is your contractual partner. The handling of the sale is therefore solely subject to the privacy policy of the app shop operator. All personal data provided to us by the app shop operator for the purpose of processing the purchase are used by us exclusively for the purpose of fulfilling the task and are not passed on to third parties.
+               "
+                color: "white"
+            }
             Label {
                 id: aboutDrawer
                 padding: 5
