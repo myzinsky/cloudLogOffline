@@ -75,10 +75,17 @@ HEADERS += qrzmanager.h
 HEADERS += qsomodel.h
 HEADERS += rigmanager.h
 
-DISTFILES += android/AndroidManifest.xml
+DISTFILES += android/AndroidManifest.xml \
+    android/build.gradle \
+    android/gradle/wrapper/gradle-wrapper.jar \
+    android/gradle/wrapper/gradle-wrapper.properties \
+    android/gradlew \
+    android/gradlew.bat \
+    android/res/values/libs.xml
 DISTFILES += ios/MyLaunchScreen.xib
 DISTFILES += ios/info.plist
 
 # Translations:
 TRANSLATIONS += translations/English.ts
 TRANSLATIONS += translations/German.ts
+android: include(/Users/myzinsky/Library/Android/sdk/android_openssl/openssl.pri)
