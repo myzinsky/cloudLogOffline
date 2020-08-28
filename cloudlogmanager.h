@@ -11,6 +11,7 @@
 #include <QSqlError>
 
 #include "qsomodel.h"
+#include "adiftools.h"
 
 class cloudlogManager : public QObject
 {
@@ -31,6 +32,7 @@ signals:
     void uploadFailed(const QString &error);
 
 private:
+    adifTools adif;
     QNetworkAccessManager *manager;
     QSqlQuery selectQuery;
     QString url;
@@ -61,23 +63,5 @@ private:
                );
 
     void uploadNext();
-
-    QString convertDate(QString date);
-    QString convertTime(QString time);
-    QString convertFreq(QString freq);
-
-    QString adifBand(QString freq);
-
-    void parseAdif(QString adif, // For future use...
-               QString &call,
-               QString &name,
-               QString &mode,
-               QString &freq,
-               QString &date,
-               QString &time,
-               QString &recv,
-               QString &sent,
-               QString &ctry,
-               QString &grid);
 };
 #endif // CLOUDLOGMANAGER_H

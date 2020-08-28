@@ -95,11 +95,11 @@ Page {
             IconButton {
                 id: adifExport
                 buttonIcon: "\uf15c"
-                text: "Export ADIF Text"
+                text: "Export ADIF"
                 Layout.fillWidth: true
 
                 onClicked: {
-                    shareUtils.share("TEST TEST TEST")
+                    shareUtils.shareADIF()
                 }
             }
         }
