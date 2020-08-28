@@ -26,6 +26,7 @@ SOURCES += qrzmanager.cpp
 SOURCES += rigmanager.cpp
 SOURCES += dbmanager.cpp
 SOURCES += qsomodel.cpp
+SOURCES += shareutils.cpp
 
 RESOURCES += qml.qrc
 
@@ -36,6 +37,9 @@ QML_IMPORT_PATH =
 QML_DESIGNER_IMPORT_PATH =
 
 ios {
+    OBJECTIVE_SOURCES += ios/iosshareutils.mm
+    HEADERS += ios/iosshareutils.h
+
     #QMAKE_INFO_PLIST = ios/Info.plist
     app_launch_images.files = $$PWD/ios/myLaunchScreen.xib
     QMAKE_BUNDLE_DATA += app_launch_images
@@ -43,8 +47,10 @@ ios {
     QMAKE_BUNDLE_DATA += ios_translation
     QMAKE_ASSET_CATALOGS += ios/Media.xcassets
     QMAKE_TARGET_BUNDLE_PREFIX = de.webappjung
-    #QMAKE_DEVELOPMENT_TEAM = XXXX
-    #QMAKE_PROVISIONING_PROFILE = XXXXX
+
+    Q_ENABLE_BITCODE.name = ENABLE_BITCODE
+    Q_ENABLE_BITCODE.value = NO
+    QMAKE_MAC_XCODE_SETTINGS += Q_ENABLE_BITCODE
 }
 
 macx {
@@ -60,6 +66,10 @@ macx {
 android {
     ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
     include(/Users/myzinsky/Library/Android/sdk/android_openssl/openssl.pri) # TODO make generic path
+    QT += androidextras
+    OTHER_FILES += android/src/com/lasconic/QShareUtils.java
+    HEADERS += android/androidshareutils.h
+    SOURCES += android/androidshareutils.cpp
 }
 
 # Default rules for deployment.
@@ -74,6 +84,7 @@ HEADERS += dbmanager.h
 HEADERS += qrzmanager.h
 HEADERS += qsomodel.h
 HEADERS += rigmanager.h
+HEADERS += shareutils.h
 
 DISTFILES += android/AndroidManifest.xml \
     android/build.gradle \
@@ -82,6 +93,7 @@ DISTFILES += android/AndroidManifest.xml \
     android/gradlew \
     android/gradlew.bat \
     android/res/values/libs.xml
+
 DISTFILES += ios/MyLaunchScreen.xib
 DISTFILES += ios/info.plist
 
@@ -89,3 +101,5 @@ DISTFILES += ios/info.plist
 TRANSLATIONS += translations/English.ts
 TRANSLATIONS += translations/German.ts
 android: include(/Users/myzinsky/Library/Android/sdk/android_openssl/openssl.pri)
+
+ANDROID_ABIS = armeabi-v7a arm64-v8a

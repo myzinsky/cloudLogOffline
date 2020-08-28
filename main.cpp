@@ -10,6 +10,15 @@
 #include "cloudlogmanager.h"
 #include "translationmanager.h"
 #include "tools.h"
+#include "shareutils.h"
+
+#ifdef Q_OS_IOS
+#include "ios/iosshareutils.h"
+#endif
+
+#ifdef Q_OS_ANDROID
+#include "android/androidshareutils.h"
+#endif
 
 int main(int argc, char *argv[])
 {
@@ -27,6 +36,8 @@ int main(int argc, char *argv[])
     translationManager tm(&app, &engine);
     tools t;
 
+    qmlRegisterType<shareUtils> ("com.lasconic", 1, 0, "ShareUtils");
+
     // Load the QML and set the Context:
     engine.rootContext()->setContextProperty("qsoModel", QVariant::fromValue(&qModel));
     engine.rootContext()->setContextProperty("qrz", QVariant::fromValue(&qrz));
@@ -34,6 +45,7 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("cl", QVariant::fromValue(&cl));
     engine.rootContext()->setContextProperty("tm", QVariant::fromValue(&tm));
     engine.rootContext()->setContextProperty("tools", QVariant::fromValue(&t));
+
     engine.load(QUrl(QStringLiteral("qrc:/Main.qml")));
 
     return app.exec();

@@ -4,6 +4,7 @@ import QtQuick.Layouts 1.1
 import QtQuick.Controls.Material 2.4
 import Qt.labs.settings 1.0
 import Qt.labs.platform 1.1
+import com.lasconic 1.0
 
 Page {
     id: page
@@ -79,6 +80,26 @@ Page {
                     cl.deleteUploadedQsos()
                     qsoModel.submit();
                     qsoModel.select()
+                }
+            }
+
+            Label {
+                id: textExportLable
+                text: qsTr("Text Export:")
+            }
+
+            ShareUtils {
+                id: shareUtils
+            }
+
+            IconButton {
+                id: adifExport
+                buttonIcon: "\uf15c"
+                text: "Export ADIF Text"
+                Layout.fillWidth: true
+
+                onClicked: {
+                    shareUtils.share("TEST TEST TEST")
                 }
             }
         }
