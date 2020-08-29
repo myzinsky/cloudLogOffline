@@ -12,9 +12,14 @@
 <context>
     <name>ExportView</name>
     <message>
-        <location filename="../ExportView.qml" line="42"/>
+        <location filename="../ExportView.qml" line="43"/>
         <source>Cloud Log:</source>
         <translation>Cloud Log:</translation>
+    </message>
+    <message>
+        <location filename="../ExportView.qml" line="88"/>
+        <source>Text Export:</source>
+        <translation>Text Export:</translation>
     </message>
 </context>
 <context>
@@ -29,9 +34,13 @@
         <translation>CloudLogOffline Logbuch</translation>
     </message>
     <message>
-        <location filename="../Main.qml" line="122"/>
         <source>Version 0.1 Alpha</source>
-        <translation>Version 0.1 Alpha</translation>
+        <translation type="vanished">Version 0.1 Alpha</translation>
+    </message>
+    <message>
+        <location filename="../Main.qml" line="122"/>
+        <source>Version 1.0.2</source>
+        <translation>Version 1.0.2</translation>
     </message>
     <message>
         <location filename="../Main.qml" line="171"/>
@@ -122,72 +131,72 @@
 <context>
     <name>QSOView</name>
     <message>
-        <location filename="../QSOView.qml" line="11"/>
+        <location filename="../QSOView.qml" line="10"/>
         <source>Add QSO</source>
         <translation>QSO Hinzufügen</translation>
     </message>
     <message>
-        <location filename="../QSOView.qml" line="11"/>
+        <location filename="../QSOView.qml" line="10"/>
         <source>Edit QSO</source>
         <translation>QSO Bearbeiten</translation>
     </message>
     <message>
-        <location filename="../QSOView.qml" line="131"/>
+        <location filename="../QSOView.qml" line="130"/>
         <source>Date</source>
         <translation>Datum</translation>
     </message>
     <message>
-        <location filename="../QSOView.qml" line="156"/>
+        <location filename="../QSOView.qml" line="155"/>
         <source>Time</source>
         <translation>Zeit</translation>
     </message>
     <message>
-        <location filename="../QSOView.qml" line="181"/>
+        <location filename="../QSOView.qml" line="180"/>
         <source>Callsign</source>
         <translation>Rufzeichen</translation>
     </message>
     <message>
-        <location filename="../QSOView.qml" line="247"/>
+        <location filename="../QSOView.qml" line="253"/>
         <source>Mode</source>
         <translation>Betriebsart</translation>
     </message>
     <message>
-        <location filename="../QSOView.qml" line="293"/>
+        <location filename="../QSOView.qml" line="299"/>
         <source>Frequency</source>
         <translation>Frequenz</translation>
     </message>
     <message>
-        <location filename="../QSOView.qml" line="362"/>
+        <location filename="../QSOView.qml" line="368"/>
         <source>Name</source>
         <translation>Name</translation>
     </message>
     <message>
-        <location filename="../QSOView.qml" line="374"/>
+        <location filename="../QSOView.qml" line="380"/>
         <source>QTH</source>
         <translation>QTH</translation>
     </message>
     <message>
-        <location filename="../QSOView.qml" line="386"/>
+        <location filename="../QSOView.qml" line="392"/>
         <source>Country</source>
         <translation>Land</translation>
     </message>
     <message>
-        <location filename="../QSOView.qml" line="398"/>
+        <location filename="../QSOView.qml" line="404"/>
         <source>Locator</source>
         <translation>QTH-Kenner</translation>
     </message>
     <message>
-        <location filename="../QSOView.qml" line="410"/>
+        <location filename="../QSOView.qml" line="416"/>
         <source>Comment</source>
         <translation>Kommentar</translation>
     </message>
     <message>
-        <location filename="../QSOView.qml" line="422"/>
+        <location filename="../QSOView.qml" line="428"/>
         <source>Reset</source>
         <translation>Zurücksetzen</translation>
     </message>
     <message>
-        <location filename="../QSOView.qml" line="443"/>
+        <location filename="../QSOView.qml" line="449"/>
         <source>Save QSO</source>
         <translation>QSO Speichern</translation>
     </message>
@@ -215,97 +224,97 @@
         <translation>Sprache</translation>
     </message>
     <message>
-        <location filename="../SettingsView.qml" line="125"/>
+        <location filename="../SettingsView.qml" line="126"/>
         <source>CQ Frequency</source>
         <translation>CQ Frequenz</translation>
     </message>
     <message>
-        <location filename="../SettingsView.qml" line="126"/>
+        <location filename="../SettingsView.qml" line="127"/>
         <source>With &apos;CQ Frequency&apos; you can define a QRG which will be prefilled in the &apos;Live QSO&apos; view. This mode is beneficial if you cannot connect to FlRig.</source>
         <translation>Mit &apos;CQ-Frequenz&apos; kannst Du eine QRG definieren, die in der &apos;Live QSO&apos;-Ansicht als Standardwert eingetragen wird. Dieser Modus ist vorteilhaft, wenn Du dich nicht mit FlRig verbinden kannst.</translation>
     </message>
     <message>
-        <location filename="../SettingsView.qml" line="133"/>
+        <location filename="../SettingsView.qml" line="134"/>
         <source>Frequency</source>
         <translation>Frequenz</translation>
     </message>
     <message>
-        <location filename="../SettingsView.qml" line="150"/>
+        <location filename="../SettingsView.qml" line="151"/>
         <source>Contest Mode</source>
         <translation>Contest Modus</translation>
     </message>
     <message>
-        <location filename="../SettingsView.qml" line="151"/>
+        <location filename="../SettingsView.qml" line="152"/>
         <source>In contest mode, a receive and a sent field will show up. A counting up number can be configured in the settings. A status indicator will show if a callsing is already existing in the log.</source>
         <translation>Im Contest Modus werden zusätzliche Sent- und Receive-Felder angezeigt. Eine laufende Nummer kann in den Einstellungen vorkonfiguriert werden. Eine Status-LED zeigt an, ob ein bestimmtes Rufzeichen schon geloggt wurde.</translation>
     </message>
     <message>
-        <location filename="../SettingsView.qml" line="158"/>
+        <location filename="../SettingsView.qml" line="159"/>
         <source>Number / Province</source>
         <translation>Nummer / Provinz</translation>
     </message>
     <message>
-        <location filename="../SettingsView.qml" line="175"/>
+        <location filename="../SettingsView.qml" line="176"/>
         <source>Cloud Log API</source>
         <translation>Cloug Log API</translation>
     </message>
     <message>
-        <location filename="../SettingsView.qml" line="176"/>
+        <location filename="../SettingsView.qml" line="177"/>
         <source>Please specify the URL to Clouglog without https:// or http:// (e.g. log.cloud.com) and the specific key.</source>
         <translation>Bitte gib die URL zu Clouglog ohne https:// oder http:// (z.B. log.cloud.com) und den spezifischen Key an.</translation>
     </message>
     <message>
-        <location filename="../SettingsView.qml" line="183"/>
+        <location filename="../SettingsView.qml" line="184"/>
         <source>URL</source>
         <translation>URL</translation>
     </message>
     <message>
-        <location filename="../SettingsView.qml" line="197"/>
+        <location filename="../SettingsView.qml" line="198"/>
         <source>Encryption</source>
         <translation>Verschlüsselung</translation>
     </message>
     <message>
-        <location filename="../SettingsView.qml" line="221"/>
+        <location filename="../SettingsView.qml" line="222"/>
         <source>Key</source>
         <translation>Key</translation>
     </message>
     <message>
-        <location filename="../SettingsView.qml" line="239"/>
+        <location filename="../SettingsView.qml" line="240"/>
         <source>QRZ.com API Synchronization</source>
         <translation>QRZ.com API Synchronisation</translation>
     </message>
     <message>
-        <location filename="../SettingsView.qml" line="240"/>
+        <location filename="../SettingsView.qml" line="241"/>
         <source>For QRZ.com XML Subscriber. CloudLogOffline will query QRZ.com if an internet connection is available.</source>
         <translation>Für XML-Abonnenten von QRZ.com. CloudLogOffline fragt QRZ.com ab, wenn eine Internetverbindung verfügbar ist.</translation>
     </message>
     <message>
-        <location filename="../SettingsView.qml" line="247"/>
+        <location filename="../SettingsView.qml" line="248"/>
         <source>Username</source>
         <translation>Benutzername</translation>
     </message>
     <message>
-        <location filename="../SettingsView.qml" line="261"/>
+        <location filename="../SettingsView.qml" line="262"/>
         <source>Password</source>
         <translation>Passwort</translation>
     </message>
     <message>
-        <location filename="../SettingsView.qml" line="279"/>
+        <location filename="../SettingsView.qml" line="280"/>
         <source>FlRig Connection</source>
         <translation>FlRig Verbindung</translation>
     </message>
     <message>
-        <location filename="../SettingsView.qml" line="280"/>
+        <location filename="../SettingsView.qml" line="281"/>
         <source>Connect to Flrig by W1HKJ which e.g. runs on a Raspberry Pi which is connected to the radio and opens a Wifi to interact with CloudLogOffline</source>
-        <translation>Verbinde dich mit Flrig von W1HKJ, welches z.B. auf einem Raspberry Pi läuft, welches widerum mit dem Funkgerät verbunden ist und ein Wifi öffnet, um mit CloudLogOffline zu interagieren.</translation>
+        <translation>Verbinde dich mit Flrig von W1HKJ, welches z.B. auf einem Raspberry Pi läuft, welches widerum mit dem Funkgerät verbunden ist und ein Wifi öffnet, um mit CloudLogOffline zu interagieren</translation>
     </message>
     <message>
-        <location filename="../SettingsView.qml" line="287"/>
+        <location filename="../SettingsView.qml" line="288"/>
         <source>Hostname</source>
         <translation>Hostname</translation>
     </message>
     <message>
-        <location filename="../SettingsView.qml" line="301"/>
+        <location filename="../SettingsView.qml" line="302"/>
         <source>Port</source>
         <translation>Port</translation>
     </message>

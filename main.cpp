@@ -2,6 +2,7 @@
 #include <QApplication>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
+#include <QFontDatabase>
 
 #include "qsomodel.h"
 #include "dbmanager.h"
@@ -35,6 +36,17 @@ int main(int argc, char *argv[])
     cloudlogManager cl(&qModel);
     translationManager tm(&app, &engine);
     tools t;
+
+    // Work around for Oneplus Android devices = load an embedded font file and use it..
+    // https://bugreports.qt.io/browse/QTBUG-69494
+#ifdef Q_OS_ANDROID
+    QFont font = QGuiApplication::font();
+    QFontDatabase fdb;
+    int id = QFontDatabase::addApplicationFont(":/fonts/Roboto-Regular.ttf");
+    QString family = QFontDatabase::applicationFontFamilies(id).at(0);
+    font.setFamily(family);
+    QGuiApplication::setFont(font);
+#endif
 
     qmlRegisterType<shareUtils> ("com.lasconic", 1, 0, "ShareUtils");
 
