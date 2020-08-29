@@ -353,14 +353,14 @@ Page {
             Label {
                 id: ctsrLable
                 text: "Contest (R):"
-                visible: settings.contestActive || ctsrTextField.text || ctsrTextField.text
+                visible: settings.contestActive || ctsrTextField.text || ctssTextField.text
             }
 
             QSOTextField {
                 id: ctsrTextField
                 text: ""
                 KeyNavigation.tab: nameTextField
-                visible: settings.contestActive || ctsrTextField.text || ctsrTextField.text
+                visible: settings.contestActive || ctsrTextField.text || ctssTextField.text
             }
 
             Label {
