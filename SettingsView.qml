@@ -115,6 +115,7 @@ Page {
 
                 onActivated: {
                     tm.switchToLanguage(language.currentText);
+                    console.log("Language Changed:" + language.currentText)
                     saveSettings();
                 }
             }

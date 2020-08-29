@@ -18,8 +18,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-SOURCES += main.cpp \
-    adiftools.cpp
+SOURCES += main.cpp
 SOURCES += tools.cpp
 SOURCES += translationmanager.cpp
 SOURCES += cloudlogmanager.cpp
@@ -28,6 +27,7 @@ SOURCES += rigmanager.cpp
 SOURCES += dbmanager.cpp
 SOURCES += qsomodel.cpp
 SOURCES += shareutils.cpp
+SOURCES += adiftools.cpp
 
 RESOURCES += qml.qrc
 
@@ -68,6 +68,9 @@ android {
     ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
     include(/Users/myzinsky/Library/Android/sdk/android_openssl/openssl.pri) # TODO make generic path
     QT += androidextras
+    android_translation.files = $$files($$PWD/translations/*.qm)
+    android_translation.path = /assets
+    INSTALLS += android_translation
     OTHER_FILES += android/src/com/lasconic/QShareUtils.java
     HEADERS += android/androidshareutils.h
     SOURCES += android/androidshareutils.cpp
@@ -78,8 +81,7 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-HEADERS += cloudlogmanager.h \
-    adiftools.h
+HEADERS += cloudlogmanager.h
 HEADERS += tools.h
 HEADERS += translationmanager.h
 HEADERS += dbmanager.h
@@ -87,6 +89,7 @@ HEADERS += qrzmanager.h
 HEADERS += qsomodel.h
 HEADERS += rigmanager.h
 HEADERS += shareutils.h
+HEADERS += adiftools.h
 
 DISTFILES += android/AndroidManifest.xml \
     android/build.gradle \
@@ -102,6 +105,7 @@ DISTFILES += ios/info.plist
 # Translations:
 TRANSLATIONS += translations/English.ts
 TRANSLATIONS += translations/German.ts
+
 android: include(/Users/myzinsky/Library/Android/sdk/android_openssl/openssl.pri)
 
 ANDROID_ABIS = armeabi-v7a arm64-v8a
