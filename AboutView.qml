@@ -489,6 +489,55 @@ THE SOFTWARE.
                "
                 color: "white"
             }
+
+            Label {
+                id: aboutFontAwesome
+                padding: 5
+                wrapMode: Text.WordWrap
+                width: scrollView.width
+                Layout.maximumWidth: scrollView.width
+
+                text: "<h2>FontAwesome</h2><br>
+<i>
+Font Awesome Free License<br><br>
+
+Font Awesome Free is free, open source, and GPL friendly. You can use it for
+commercial projects, open source projects, or really almost whatever you want.
+Full Font Awesome Free license: https://fontawesome.com/license/free.<br><br>
+
+# Icons: CC BY 4.0 License (https://creativecommons.org/licenses/by/4.0/)<br>
+In the Font Awesome Free download, the CC BY 4.0 license applies to all icons
+packaged as SVG and JS file types.<br><br>
+
+# Fonts: SIL OFL 1.1 License (https://scripts.sil.org/OFL)<br>
+In the Font Awesome Free download, the SIL OFL license applies to all icons
+packaged as web and desktop font files.<br><br>
+
+# Code: MIT License (https://opensource.org/licenses/MIT)<br>
+In the Font Awesome Free download, the MIT license applies to all non-font and
+non-icon files.<br><br>
+
+# Attribution<br>
+Attribution is required by MIT, SIL OFL, and CC BY licenses. Downloaded Font
+Awesome Free files already contain embedded comments with sufficient
+attribution, so you shouldn't need to do anything additional when using these
+files normally.<br><br>
+
+We've kept attribution comments terse, so we ask that you do not actively work
+to remove them from files, especially code. They're a great way for folks to
+learn about Font Awesome.<br><br>
+
+# Brand Icons<br>
+All brand icons are trademarks of their respective owners. The use of these
+trademarks does not indicate endorsement of the trademark holder by Font
+Awesome, nor vice versa. **Please do not use brand logos for any purpose except
+to represent the company, product, or service to which they refer.**<br><br>
+
+<br><br>
+</i>
+               "
+                color: "white"
+            }
         }
     }
 }
