@@ -14,15 +14,15 @@
         <source>Cloud Log:</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Text Export:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Main</name>
     <message>
         <source>CloudLogOffline Logbook</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Version 0.1 Alpha</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -47,6 +47,10 @@
     </message>
     <message>
         <source>About</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Version 1.0.2</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

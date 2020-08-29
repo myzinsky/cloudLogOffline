@@ -112,6 +112,28 @@ ApplicationWindow {
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.verticalCenter: toolButton.verticalCenter
         }
+
+        ToolButton {
+            id: plusButton
+            text:"\uf055"
+            visible: (stackView.depth == 1)
+            font.family: fontAwesome.name
+            font.pixelSize: Qt.application.font.pixelSize * 1.6
+
+            onClicked: {
+                stackView.push("QSOView.qml",
+                {
+                    "addQSO"    : false,
+                    "liveQSO"   : true,
+                    "updateQSO" : false,
+                    "ctss"      : settings.contestActive ? settings.contestNumber : "",
+                });
+            }
+
+            anchors.right: parent.right // iPhoneX workaround
+            anchors.rightMargin: Math.max(notchLeft, notchRight) // iPhoneX workaround
+            anchors.bottom: parent.bottom // iPhoneX workaround
+        }
     }
 
     PageDrawer {
