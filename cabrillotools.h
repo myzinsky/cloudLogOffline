@@ -1,28 +1,17 @@
-#ifndef ADIFTOOLS_H
-#define ADIFTOOLS_H
+#ifndef CABRILLOTOOLS_H
+#define CABRILLOTOOLS_H
 
 #include <QString>
 #include <QDebug>
 #include <QRegularExpression>
+#include <QSettings>
 #include <QSqlError>
 #include <QSqlQuery>
 
-class adifTools
+class cabrilloTools
 {
 public:
-    adifTools();
-
-    void parse(QString adif, // For future use...
-               QString &call,
-               QString &name,
-               QString &mode,
-               QString &freq,
-               QString &date,
-               QString &time,
-               QString &recv,
-               QString &sent,
-               QString &ctry,
-               QString &grid);
+    cabrilloTools();
 
     QString assemble(QString call,
                      QString name,
@@ -43,11 +32,11 @@ public:
     QString generate();
 
 private:
-    QString band(QString freq);
     QString convertDate(QString date);
     QString convertTime(QString time);
     QString convertFreq(QString freq);
+    QSettings settings;
     QSqlQuery selectQuery;
 };
 
-#endif // ADIFTOOLS_H
+#endif // CABRILLOTOOLS_H

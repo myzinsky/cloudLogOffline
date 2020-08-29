@@ -22,5 +22,6 @@
         <file>translations/German.ts</file>
         <file>fonts/Roboto-Regular.ttf</file>
         <file>fonts/LinLibertine_DR_G.ttf</file>
+        <file>ExportHeader.qml</file>
     </qresource>
 </RCC>

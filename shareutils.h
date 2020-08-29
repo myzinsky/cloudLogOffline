@@ -26,10 +26,9 @@
 #include <QQuickItem>
 #include <QApplication>
 #include <QClipboard>
-#include <QSqlQuery>
-#include <QSqlError>
 
 #include "adiftools.h"
+#include "cabrillotools.h"
 
 class platformShareUtils : public QQuickItem
 {
@@ -48,11 +47,12 @@ class shareUtils : public QQuickItem
     platformShareUtils* _pShareUtils;
 public:
     explicit shareUtils(QQuickItem *parent = 0);
-    Q_INVOKABLE void share(const QString &text);
     Q_INVOKABLE void shareADIF();
+    Q_INVOKABLE void shareCabrillo();
 private:
-    QSqlQuery selectQuery;
+    void share(const QString &text);
     adifTools adif;
+    cabrilloTools cabrillo;
 
 };
 

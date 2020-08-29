@@ -35,18 +35,22 @@ Page {
 
         GridLayout {
             id: grid
-            columns: 1
+            columns: 2
             width: page.width // Important
 
-            Label {
-                id: dateLable
-                text: qsTr("Cloud Log:")
+            ExportHeader {
+                icon: "\uf0c2"
+                text: "CloudLog"
+                helpText: ""
+                Layout.columnSpan: 2
             }
 
             ProgressBar {
                 id: progressBar
+                height: 10
                 value: 0
                 Layout.fillWidth: true
+                Layout.columnSpan: 2
             }
 
             IconButton {
@@ -58,6 +62,7 @@ Page {
                 enabled: settings.cloudLogActive
                 Material.theme: Material.Light
                 Material.accent: Material.Green
+                Layout.columnSpan: 2
 
                 onClicked: {
                     cl.uploadToCloudLog(settings.cloudLogSSL,
@@ -75,6 +80,7 @@ Page {
                 enabled: settings.cloudLogActive
                 Material.theme: Material.Light
                 Material.accent: Material.Red
+                Layout.columnSpan: 2
 
                 onClicked: {
                     cl.deleteUploadedQsos()
@@ -83,9 +89,11 @@ Page {
                 }
             }
 
-            Label {
-                id: textExportLable
-                text: qsTr("Text Export:")
+            ExportHeader {
+                icon: "\uf15c"
+                text: "ADIF"
+                helpText: ""
+                Layout.columnSpan: 2
             }
 
             ShareUtils {
@@ -97,9 +105,29 @@ Page {
                 buttonIcon: "\uf15c"
                 text: "Export ADIF"
                 Layout.fillWidth: true
+                Layout.columnSpan: 2
 
                 onClicked: {
                     shareUtils.shareADIF()
+                }
+            }
+
+            ExportHeader {
+                icon: "\uf15c"
+                text: "Cabrillo"
+                helpText: ""
+                Layout.columnSpan: 2
+            }
+
+            IconButton {
+                id: cabrilloExport
+                buttonIcon: "\uf15c"
+                text: "Export Cabrillo"
+                Layout.fillWidth: true
+                Layout.columnSpan: 2
+
+                onClicked: {
+                    shareUtils.shareCabrillo()
                 }
             }
         }
