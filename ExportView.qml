@@ -41,7 +41,7 @@ Page {
             ExportHeader {
                 icon: "\uf0c2"
                 text: "CloudLog"
-                helpText: ""
+                helpText: qsTr("Upload QSOs to Cloudlog. The credentials must be configured in the Settings.")
                 Layout.columnSpan: 2
             }
 
@@ -92,7 +92,7 @@ Page {
             ExportHeader {
                 icon: "\uf15c"
                 text: "ADIF"
-                helpText: ""
+                helpText: qsTr("Export ADIF logfile in clipboard or context menu.")
                 Layout.columnSpan: 2
             }
 
@@ -118,7 +118,7 @@ Page {
             ExportHeader {
                 icon: "\uf15c"
                 text: "Cabrillo"
-                helpText: ""
+                helpText: qsTr("Export Cabrillo logfile in clipboard or context menu. The provided fields can be filled according to the requirements of the specific contest.")
                 Layout.columnSpan: 2
             }
 
@@ -665,7 +665,7 @@ Page {
             ExportHeader {
                 icon: "\uf6dd"
                 text: "CSV"
-                helpText: ""
+                helpText: qsTr("Export CSV logfile in clipboard or context menu")
                 Layout.columnSpan: 2
             }
 

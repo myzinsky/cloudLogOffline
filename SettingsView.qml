@@ -93,6 +93,7 @@ Page {
                 Layout.fillWidth: true
                 text: settings.call
                 onTextEdited: saveSettings()
+                onEditingFinished: saveSettings();
                 font.capitalization: Font.AllUppercase
             }
 
@@ -141,6 +142,7 @@ Page {
                 visible: cqSwitch.checked
                 text: settings.cqFreq
                 onTextEdited: saveSettings()
+                onEditingFinished: saveSettings();
             }
 
             // ----------------
@@ -166,6 +168,7 @@ Page {
                 visible: contestSwitch.checked
                 text: settings.contestNumber
                 onTextEdited: saveSettings()
+                onEditingFinished: saveSettings();
             }
 
             // ----------------
@@ -230,6 +233,7 @@ Page {
                 text: settings.cloudLogKey
                 echoMode: TextInput.Password
                 onTextEdited: saveSettings()
+                onEditingFinished: saveSettings();
             }
 
             // ----------------
@@ -255,6 +259,7 @@ Page {
                 visible: qrzSwitch.checked
                 text: settings.qrzUser
                 onTextEdited: saveSettings();
+                onEditingFinished: saveSettings();
             }
 
             Label {
@@ -270,6 +275,7 @@ Page {
                 echoMode: TextInput.Password
                 text: settings.qrzPass
                 onTextEdited: saveSettings();
+                onEditingFinished: saveSettings();
             }
 
             // ----------------
@@ -295,6 +301,7 @@ Page {
                 visible: rigSwitch.checked
                 text: settings.rigHost
                 onTextEdited: saveSettings();
+                onEditingFinished: saveSettings();
             }
 
             Label {
@@ -309,6 +316,7 @@ Page {
                 visible: rigSwitch.checked
                 text: settings.rigPort
                 onTextEdited: saveSettings();
+                onEditingFinished: saveSettings();
             }
         }
     }

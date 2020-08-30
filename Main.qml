@@ -141,7 +141,7 @@ ApplicationWindow {
 
         iconTitle: "CloudLog Offline"
         iconSource: "qrc:///images/logo_circle.svg"
-        iconSubtitle: qsTr ("Version 1.0.2")
+        iconSubtitle: qsTr ("Version 1.0.3")
 
         iconBgColorLeft: "#B0BEC5"
         iconBgColorRight: "#607D8B"

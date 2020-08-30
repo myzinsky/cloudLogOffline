@@ -11,11 +11,99 @@
 <context>
     <name>ExportView</name>
     <message>
-        <source>Cloud Log:</source>
+        <source>Upload QSOs to Cloudlog. The credentials must be configured in the Settings.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Text Export:</source>
+        <source>Export ADIF logfile in clipboard or context menu.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Export Cabrillo logfile in clipboard or context menu. The provided fields can be filled according to the requirements of the specific contest.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Contest</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Assisted</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Band</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Operator</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Power</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Station</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Transmitter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Overlay</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Certificate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Claimed Score</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Club</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Email</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Grid Locator</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Location</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Operators</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Soapbox</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Export CSV logfile in clipboard or context menu</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -23,6 +111,10 @@
     <name>Main</name>
     <message>
         <source>CloudLogOffline Logbook</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Version 1.0.3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -47,10 +139,6 @@
     </message>
     <message>
         <source>About</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Version 1.0.2</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -190,6 +278,10 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>In contest mode, a receive and a sent field will show up. A counting up number can be configured in the settings. A status indicator will show if a callsing is already existing in the log.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Number / Province</source>
         <translation type="unfinished"></translation>
     </message>
@@ -243,10 +335,6 @@
     </message>
     <message>
         <source>Port</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>In contest mode, a receive and a sent field will show up. A counting up number can be configured in the settings. A status indicator will show if a callsing is already existing in the log.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
