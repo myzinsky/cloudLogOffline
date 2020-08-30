@@ -48,28 +48,57 @@ QString cabrilloTools::assemble(QString call,
     return str;
 }
 
-QString cabrilloTools::generate()
+QString cabrilloTools::generate(
+                           QString cabrilloContest,
+                           QString cabrilloAssisted,
+                           QString cabrilloBand,
+                           QString cabrilloMode,
+                           QString cabrilloOperator,
+                           QString cabrilloPower,
+                           QString cabrilloStation,
+                           QString cabrilloTime,
+                           QString cabrilloTransmitter,
+                           QString cabrilloOverlay,
+                           QString cabrilloCertificate,
+                           QString cabrilloScore,
+                           QString cabrilloClub,
+                           QString cabrilloEmail,
+                           QString cabrilloGridLocator,
+                           QString cabrilloLocation,
+                           QString cabrilloName,
+                           QString cabrilloAddress,
+                           QString cabrilloOperators,
+                           QString cabrilloSoapbox
+                       )
 {
     performQuery();
     QString output;
     output = QString("") +
             "START-OF-LOG: 3.0\n" +
             "CREATED-BY: ClougLogOffline Version 1.0.2 (c) 2020 by DL9MJ\n"
-            // CONTEST: WAG
+            "CONTEST: " + " " + "\n" +
             "CALLSIGN: " + settings.value("call").toString().toUpper() + "\n"
             "SPECIFIC: " + settings.value("contestNumber").toString().toUpper() + "\n"
-            // CATEGORY-OPERATOR: SINGLE-OP
-            // CATEGORY-TRANSMITTER: ONE
-            // CATEGORY-ASSISTED: NON-ASSISTED
-            // CATEGORY-POWER: HIGH
-            // CATEGORY-STATION: FIXED
-            // CATEGORY-BAND: ALL
-            // CATEGORY-MODE: MIXED
-            // CLAIMED-SCORE: 110250
-            // NAME:Hajo Weigand
-            // EMAIL:
-            // ADDRESS:
-            // SOAPBOX: Portabel-Contest-QTH
+            "CONTEST: " + cabrilloContest + "\n" +
+            "CATEGORY-ASSISTED: " + cabrilloAssisted + "\n" +
+            "CATEGORY-BAND: " + cabrilloBand + "\n" +
+            "CATEGORY-MODE: " + cabrilloMode + "\n" +
+            "CATEGORY-OPERATOR: " + cabrilloOperator + "\n" +
+            "CATEGORY-POWER: " + cabrilloPower + "\n" +
+            "CATEGORY-STATION: " + cabrilloStation + "\n" +
+            "CATEGORY-TIME: " + cabrilloTime + "\n" +
+            "CATEGORY-TRANSMITTER: " + cabrilloTransmitter + "\n" +
+            "CATEGORY-OVERLAY: " + cabrilloOverlay + "\n" +
+            "CERTIFICATE: " + cabrilloCertificate + "\n" +
+            "CLAIMED-SCORE: " + cabrilloScore + "\n" +
+            "CLUB: " + cabrilloClub + "\n" +
+            "EMAIL: " + cabrilloEmail + "\n" +
+            "GRID-LOCATOR: " + cabrilloGridLocator + "\n" +
+            "LOCATIONS: " + cabrilloLocation + "\n" +
+            "NAME: " + cabrilloName + "\n" +
+            "ADDRESS: " + cabrilloAddress + "\n" +
+            "OPERATORS: " + cabrilloOperators + "\n" +
+            "SOAPBOX: " + cabrilloSoapbox + "\n" +
             "\n\n";
 
     while(selectQuery.next()) {
@@ -101,6 +130,9 @@ QString cabrilloTools::generate()
                            ctsr
                           );
     }
+
+    output += "END-OF-LOG:\n";
+
     return output;
 }
 
