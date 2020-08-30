@@ -130,6 +130,25 @@ Page {
                     shareUtils.shareCabrillo()
                 }
             }
+
+            ExportHeader {
+                icon: "\uf6dd"
+                text: "CSV"
+                helpText: ""
+                Layout.columnSpan: 2
+            }
+
+            IconButton {
+                id: csvExport
+                buttonIcon: "\uf6dd"
+                text: "Export CSV"
+                Layout.fillWidth: true
+                Layout.columnSpan: 2
+
+                onClicked: {
+                    shareUtils.shareCSV()
+                }
+            }
         }
     }
 }

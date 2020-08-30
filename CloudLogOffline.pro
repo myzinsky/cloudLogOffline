@@ -19,7 +19,9 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += main.cpp \
-    cabrillotools.cpp
+    cabrillotools.cpp \
+    csvtools.cpp \
+    logtools.cpp
 SOURCES += tools.cpp
 SOURCES += translationmanager.cpp
 SOURCES += cloudlogmanager.cpp
@@ -83,7 +85,9 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += cloudlogmanager.h \
-    cabrillotools.h
+    cabrillotools.h \
+    csvtools.h \
+    logtools.h
 HEADERS += tools.h
 HEADERS += translationmanager.h
 HEADERS += dbmanager.h

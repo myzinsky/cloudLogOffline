@@ -50,8 +50,6 @@ void cloudlogManager::uploadQSO(QString url,
     QDateTime currentTime = QDateTime::currentDateTime();
     QByteArray data;
 
-    qDebug() << "XX:" << ctss << "," << ctsr;
-
     QString str = QString("") +
     "{" +
         "\"key\":\"" + key +"\"," +

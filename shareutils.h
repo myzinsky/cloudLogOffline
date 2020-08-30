@@ -29,6 +29,7 @@
 
 #include "adiftools.h"
 #include "cabrillotools.h"
+#include "csvtools.h"
 
 class platformShareUtils : public QQuickItem
 {
@@ -49,11 +50,12 @@ public:
     explicit shareUtils(QQuickItem *parent = 0);
     Q_INVOKABLE void shareADIF();
     Q_INVOKABLE void shareCabrillo();
+    Q_INVOKABLE void shareCSV();
 private:
     void share(const QString &text);
     adifTools adif;
     cabrilloTools cabrillo;
-
+    csvTools csv;
 };
 
 #endif //SHAREUTILS_H

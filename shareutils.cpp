@@ -55,3 +55,8 @@ void shareUtils::shareCabrillo()
 {
     share(cabrillo.generate());
 }
+
+void shareUtils::shareCSV()
+{
+    share(csv.generate());
+}

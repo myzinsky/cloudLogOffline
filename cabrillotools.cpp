@@ -1,38 +1,16 @@
 #include "cabrillotools.h"
 
-cabrilloTools::cabrilloTools()
+cabrilloTools::cabrilloTools() : logTools()
 {
-    selectQuery.prepare("SELECT id,"
-                        "call, "
-                        "name, "
-                        "ctry, "
-                        "date, "
-                        "time, "
-                        "freq, "
-                        "mode, "
-                        "sent, "
-                        "recv, "
-                        "grid, "
-                        "qqth, "
-                        "comm, "
-                        "ctss, "
-                        "ctsr, "
-                        "sync "
-                        "FROM qsos");
 }
 
 QString cabrilloTools::assemble(QString call,
-                                QString name,
                                 QString mode,
                                 QString freq,
                                 QString date,
                                 QString time,
                                 QString recv,
                                 QString sent,
-                                QString ctry,
-                                QString grid,
-                                QString qqth,
-                                QString comm,
                                 QString ctss,
                                 QString ctsr)
 {
@@ -72,15 +50,8 @@ QString cabrilloTools::assemble(QString call,
 
 QString cabrilloTools::generate()
 {
-    // Perform select query:
-    if(!selectQuery.exec()) {
-        qDebug() << "selectQuery: SQL Error" << selectQuery.lastError();
-    } else {
-        qDebug() << "selectQuery: exec ok";
-    }
-
+    performQuery();
     QString output;
-
     output = QString("") +
             "START-OF-LOG: 3.0\n" +
             "CREATED-BY: ClougLogOffline Version 1.0.2 (c) 2020 by DL9MJ\n"
@@ -120,17 +91,12 @@ QString cabrilloTools::generate()
         QString sync = selectQuery.value(15).toString();
 
         output += assemble(call,
-                           name,
                            mode,
                            freq,
                            date,
                            time,
                            recv,
                            sent,
-                           ctry,
-                           grid,
-                           qtth,
-                           comm,
                            ctss,
                            ctsr
                           );

@@ -150,12 +150,7 @@ QString adifTools::assemble(QString call,
 
 QString adifTools::generate()
 {
-    // Perform select query:
-    if(!selectQuery.exec()) {
-        qDebug() << "selectQuery: SQL Error" << selectQuery.lastError();
-    } else {
-        qDebug() << "selectQuery: exec ok";
-    }
+    performQuery();
 
     QString output;
 
