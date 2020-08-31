@@ -2,7 +2,6 @@
 
 tools::tools()
 {
-
 }
 
 
@@ -17,3 +16,4 @@ QVariantMap tools::getSafeAreaMargins(QQuickWindow *window)
     map["left"] = margins.left();
     return map;
 }
+

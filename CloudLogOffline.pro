@@ -7,6 +7,10 @@ QTPLUGIN += qsvg
 
 CONFIG += c++11
 
+# Get Verison number from Tag:
+GIT_VERSION = $$system(git --git-dir $$PWD/.git --work-tree $$PWD describe --always --tags)
+DEFINES += GIT_VERSION=\\\"$$GIT_VERSION\\\"
+
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings
 # depend on your compiler). Refer to the documentation for the
@@ -18,10 +22,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-SOURCES += main.cpp \
-    cabrillotools.cpp \
-    csvtools.cpp \
-    logtools.cpp
+SOURCES += main.cpp
 SOURCES += tools.cpp
 SOURCES += translationmanager.cpp
 SOURCES += cloudlogmanager.cpp
@@ -30,7 +31,10 @@ SOURCES += rigmanager.cpp
 SOURCES += dbmanager.cpp
 SOURCES += qsomodel.cpp
 SOURCES += shareutils.cpp
+SOURCES += logtools.cpp
 SOURCES += adiftools.cpp
+SOURCES += cabrillotools.cpp
+SOURCES += csvtools.cpp
 
 RESOURCES += qml.qrc
 
@@ -84,10 +88,7 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-HEADERS += cloudlogmanager.h \
-    cabrillotools.h \
-    csvtools.h \
-    logtools.h
+HEADERS += cloudlogmanager.h
 HEADERS += tools.h
 HEADERS += translationmanager.h
 HEADERS += dbmanager.h
@@ -96,14 +97,17 @@ HEADERS += qsomodel.h
 HEADERS += rigmanager.h
 HEADERS += shareutils.h
 HEADERS += adiftools.h
+HEADERS += cabrillotools.h
+HEADERS += csvtools.h
+HEADERS += logtools.h
 
-DISTFILES += android/AndroidManifest.xml \
-    android/build.gradle \
-    android/gradle/wrapper/gradle-wrapper.jar \
-    android/gradle/wrapper/gradle-wrapper.properties \
-    android/gradlew \
-    android/gradlew.bat \
-    android/res/values/libs.xml
+DISTFILES += android/AndroidManifest.xml
+DISTFILES += android/build.gradle
+DISTFILES += android/gradle/wrapper/gradle-wrapper.jar
+DISTFILES += android/gradle/wrapper/gradle-wrapper.properties
+DISTFILES += android/gradlew
+DISTFILES += android/gradlew.bat
+DISTFILES += android/res/values/libs.xml
 
 DISTFILES += ios/MyLaunchScreen.xib
 DISTFILES += ios/info.plist

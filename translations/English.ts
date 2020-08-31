@@ -114,10 +114,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Version 1.0.3</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Show Logbook</source>
         <translation type="unfinished"></translation>
     </message>

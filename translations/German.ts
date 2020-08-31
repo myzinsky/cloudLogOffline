@@ -126,14 +126,6 @@
         <translation>CloudLogOffline Logbuch</translation>
     </message>
     <message>
-        <source>Version 0.1 Alpha</source>
-        <translation type="vanished">Version 0.1 Alpha</translation>
-    </message>
-    <message>
-        <source>Version 1.0.3</source>
-        <translation>Version 1.0.3</translation>
-    </message>
-    <message>
         <source>Show Logbook</source>
         <translation>Logbuch Anzeigen</translation>
     </message>

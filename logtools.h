@@ -16,6 +16,7 @@ public:
     virtual QString convertFreq(QString freq) = 0;
 
 protected:
+    QString version;
     QSettings settings;
     QSqlQuery selectQuery;
     void performQuery();

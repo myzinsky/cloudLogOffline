@@ -21,6 +21,15 @@
 #include "android/androidshareutils.h"
 #endif
 
+// Create Singelton for Version Number:
+static QJSValue appVersionSingletonProvider(QQmlEngine *engine, QJSEngine *scriptEngine)
+{
+    Q_UNUSED(engine)
+    QJSValue appInfo = scriptEngine->newObject();
+    appInfo.setProperty("version", GIT_VERSION);
+    return appInfo;
+}
+
 int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
@@ -48,6 +57,7 @@ int main(int argc, char *argv[])
     QGuiApplication::setFont(font);
 #endif
 
+    qmlRegisterSingletonType("de.webappjung", 1, 0, "AppInfo", appVersionSingletonProvider);
     qmlRegisterType<shareUtils> ("com.lasconic", 1, 0, "ShareUtils");
 
     // Load the QML and set the Context:

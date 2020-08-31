@@ -14,7 +14,6 @@ public:
 
 public slots:
     QVariantMap getSafeAreaMargins(QQuickWindow *window);
-
 };
 
 #endif // SYSTEM_H
