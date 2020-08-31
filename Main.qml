@@ -46,6 +46,16 @@ ApplicationWindow {
         console.log("safe margins =", JSON.stringify(tools.getSafeAreaMargins(window)))
     }
 
+    // Android Back Button Fix:
+    onClosing: {
+        if (Qt.platform.os == "android" && stackView.depth > 1){
+            close.accepted = false
+            stackView.pop();
+        } else {
+            return;
+        }
+    }
+
     // Stores the settings even after restart:
     Settings {
         id: settings
