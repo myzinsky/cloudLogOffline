@@ -9,6 +9,10 @@ CONFIG += c++11
 
 # Get Verison number from Tag:
 GIT_VERSION = $$system(git --git-dir $$PWD/.git --work-tree $$PWD describe --always --tags)
+GIT_VERSION ~= s/-/"."
+GIT_VERSION ~= s/g/""
+GIT_VERSION ~= s/\.\d+\.[a-f0-9]{6,}//
+message($$GIT_VERSION)
 DEFINES += GIT_VERSION=\\\"$$GIT_VERSION\\\"
 
 # The following define makes your compiler emit warnings if you use
@@ -35,6 +39,7 @@ SOURCES += logtools.cpp
 SOURCES += adiftools.cpp
 SOURCES += cabrillotools.cpp
 SOURCES += csvtools.cpp
+SOURCES += migrationmanager.cpp
 
 RESOURCES += qml.qrc
 
@@ -100,6 +105,7 @@ HEADERS += adiftools.h
 HEADERS += cabrillotools.h
 HEADERS += csvtools.h
 HEADERS += logtools.h
+HEADERS += migrationmanager.h
 
 DISTFILES += android/AndroidManifest.xml
 DISTFILES += android/build.gradle

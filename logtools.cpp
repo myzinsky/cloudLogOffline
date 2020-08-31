@@ -29,5 +29,4 @@ void logTools::performQuery()
     } else {
         qDebug() << "selectQuery: exec ok";
     }
-
 }

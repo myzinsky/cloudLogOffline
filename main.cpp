@@ -6,6 +6,7 @@
 
 #include "qsomodel.h"
 #include "dbmanager.h"
+#include "migrationmanager.h"
 #include "qrzmanager.h"
 #include "rigmanager.h"
 #include "cloudlogmanager.h"
@@ -39,6 +40,7 @@ int main(int argc, char *argv[])
 
     dbManager db;
     db.createTables();
+    migrationManager mm;
     qrzManager qrz;
     rigManager rig;
     qsoModel qModel;

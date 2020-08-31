@@ -15,6 +15,7 @@ dbManager::~dbManager()
 bool dbManager::createTables()
 {
     bool success = false;
+    bool success2 = false;
 
     QSqlQuery query;
     query.prepare("CREATE TABLE qsos("
@@ -38,11 +39,17 @@ bool dbManager::createTables()
 
     success = query.exec();
 
-    if (success == false) {
+    query.prepare("CREATE TABLE appData("
+                  "version TEXT"
+                  ");");
+
+    success2 = query.exec();
+
+    if (success == false || success2 == false) {
         qDebug() << "Couldn't create the tables because they might already exist.";
     }
 
-    return success;
+    return success && success2;
 }
 
 void dbManager::openDatabase()
