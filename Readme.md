@@ -15,6 +15,8 @@ Currently CloudLogOffline supports following features:
 - Connect to [Flrig](http://www.w1hkj.com) by W1HKJ which e.g. runs on a Raspberry Pi which is connected to the radio and opens a Wifi to interact with CloudLogOffline
 - Set a CQ QRG if Flrig is not available
 - Live and post QSOs
+- SOTA Fields
+- SAT Fields
 
 ## Community:
 - German Telegram Group: https://t.me/CloudLogOffline

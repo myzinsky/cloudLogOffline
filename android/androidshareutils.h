@@ -23,7 +23,7 @@
 #ifndef ANDROIDSHAREUTILS_H
 #define ANDROIDSHAREUTILS_H
 
-#include "shareutils.h"
+#include "src/shareutils.h"
 
 class AndroidShareUtils : public platformShareUtils
 {
