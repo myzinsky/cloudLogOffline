@@ -19,7 +19,9 @@ adifTools::adifTools()
                         "ctsr, "
                         "sync, "
                         "sota, "
-                        "sots "
+                        "sots, "
+                        "satn, "
+                        "satm "
                         "FROM qsos");
 }
 
@@ -98,7 +100,9 @@ QString adifTools::assemble(QString call,
                             QString ctss,
                             QString ctsr,
                             QString sota,
-                            QString sots)
+                            QString sots,
+                            QString satn,
+                            QString satm)
 {
     QString band  = this->band(freq);
     QString dateN = convertDate(date);
@@ -152,6 +156,17 @@ QString adifTools::assemble(QString call,
                 "<my_sota_ref:" + QString::number(sots.size()) + ">" + sots;
     }
 
+    // SAT:
+    if(!satn.isEmpty()) {
+        str += QString("") +
+                "<sat_name:" + QString::number(satn.size()) + ">" + satn;
+    }
+
+    if(!satm.isEmpty()) {
+        str += QString("") +
+                "<sat_mode:" + QString::number(satm.size()) + ">" + satm;
+    }
+
     str += QString("") +
            "<country:"    + QString::number(ctry.size()) + ">" + ctry +
            "<qth:"        + QString::number(qqth.size()) + ">" + qqth +
@@ -194,6 +209,8 @@ QString adifTools::generate()
         QString sync = selectQuery.value(15).toString();
         QString sota = selectQuery.value(16).toString();
         QString sots = selectQuery.value(17).toString();
+        QString satn = selectQuery.value(18).toString();
+        QString satm = selectQuery.value(19).toString();
 
         output += assemble(call,
                            name,
@@ -210,7 +227,9 @@ QString adifTools::generate()
                            ctss,
                            ctsr,
                            sota,
-                           sots
+                           sots,
+                           satn,
+                           satm
                           ) + "\n\n";
     }
     return output;

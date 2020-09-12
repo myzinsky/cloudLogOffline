@@ -214,6 +214,8 @@ SwipeDelegate {
                                    "sync"       : model.sync,
                                    "sota"       : model.sota,
                                    "sots"       : model.sots,
+                                   "satn"       : model.satn,
+                                   "satm"       : model.satm,
                                });
             }
         }

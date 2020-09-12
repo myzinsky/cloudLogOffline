@@ -19,7 +19,6 @@ Page {
     property alias date: dateTextField.text;
     property alias time: timeTextField.text;
     property alias call: callTextField.text;
-    property alias mode: modeComboBox.currentText;
     property alias freq: freqTextField.text
     property alias sent: sentTextField.text;
     property alias recv: recvTextField.text;
@@ -32,13 +31,22 @@ Page {
     property alias ctsr: ctsrTextField.text;
     property alias sota: sotaTextField.text;
     property alias sots: sotsTextField.text;
-    property alias satn: satnComboBox.currentText;
     property alias satm: satmTextField.text;
 
+    property string mode
+    property string satn
 
     property int sync
 
     property bool qrzFound: false;
+
+    Component.onCompleted: {
+        var i = modeComboBox.find(mode);
+        modeComboBox.currentIndex = i;
+
+        var j = satnComboBox.find(satn);
+        satnComboBox.currentIndex = j;
+    }
 
     function reset() {
         callTextField.text = ""
@@ -47,8 +55,6 @@ Page {
         dateTextField.text = ""
         timeTextField.text = ""
         freqTextField.text = (liveQSO && settings.cqActive) ? settings.cqFreq : ""
-        // TODO: modeComboBox.
-        // TODO: satnComboBox.
         sentTextField.text = ""
         recvTextField.text = ""
         gridTextField.text = ""
@@ -60,6 +66,9 @@ Page {
         sotsTextField.text = settings.sotaActive ? settings.mySotaReference : ""
         satmTextField.text = ""
         statusIndicator.Material.accent = Material.Green
+
+        modeComboBox.currentIndex = 0;
+        satnComboBox.currentIndex = 0;
     }
 
     Timer {
@@ -467,7 +476,7 @@ Page {
                 id: qqthTextField
                 Layout.columnSpan: 3
                 text: ""
-                KeyNavigation.tab: gridTextField
+                KeyNavigation.tab: ctryTextField
             }
 
             Label {
@@ -491,7 +500,7 @@ Page {
                 id: gridTextField
                 Layout.columnSpan: 3
                 text: ""
-                KeyNavigation.tab: settings.sotaActive ? sotaTextField : commTextField
+                KeyNavigation.tab: settings.sotaActive ? sotsTextField : ( settings.satActive ? satnComboBox : commTextField)
             }
 
             //--- SOTA:
@@ -506,7 +515,7 @@ Page {
                 id: sotsTextField
                 Layout.columnSpan: 1
                 text: (addQSO == true || liveQSO == true) ? (settings.sotaActive ? settings.mySotaReference : "") : sotsTextField.text
-                KeyNavigation.tab: commTextField
+                KeyNavigation.tab: sotaTextField
                 visible: settings.sotaActive || sotaTextField.text || sotsTextField.text
             }
 
@@ -520,7 +529,7 @@ Page {
                 id: sotaTextField
                 Layout.columnSpan: 1
                 text: ""
-                KeyNavigation.tab: settings.satActive ? satnComboBox : commTextField
+                KeyNavigation.tab: (settings.satActive || (satnComboBox.currentIndex !== 0) || satmTextField.text) ? satnComboBox : commTextField
                 visible: settings.sotaActive || sotaTextField.text || sotsTextField.text
             }
 
@@ -647,7 +656,9 @@ Page {
                                 ctssTextField.text,
                                 ctsrTextField.text,
                                 sotaTextField.text,
-                                sotsTextField.text
+                                sotsTextField.text,
+                                satnComboBox.currentText,
+                                satmTextField.text
                                 );
 
                         if(addQSO) {
@@ -686,7 +697,9 @@ Page {
                                    ctssTextField.text,
                                    ctsrTextField.text,
                                    sotaTextField.text,
-                                   sotsTextField.text
+                                   sotsTextField.text,
+                                   satnComboBox.currentText,
+                                   satmTextField.text
                                    );
                         stackView.pop()
                     }

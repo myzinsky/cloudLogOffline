@@ -40,7 +40,9 @@ public:
                      QString ctss,
                      QString ctsr,
                      QString sota,
-                     QString sots
+                     QString sots,
+                     QString satn,
+                     QString satm
             );
 
     QString generate();

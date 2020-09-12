@@ -24,6 +24,10 @@ migrationManager::migrationManager()
             // Do Migration(s):
             if(database == QVersionNumber::fromString("1.0.3")) {
                 from_1_0_3_to_1_0_4();
+                from_1_0_4_to_1_0_5();
+            }
+            else if(database == QVersionNumber::fromString("1.0.4")) {
+                from_1_0_4_to_1_0_5();
             }
 
             // Update Database:
@@ -38,6 +42,15 @@ void migrationManager::from_1_0_3_to_1_0_4()
     res = res & addQSOColumn("sots", "TEXT"); // MYSOTA
     if(res == true) {
         updateDatabaseVersion("1.0.4");
+    }
+}
+
+void migrationManager::from_1_0_4_to_1_0_5()
+{
+    bool res = addQSOColumn("satn", "TEXT");
+    res = res & addQSOColumn("satm", "TEXT");
+    if(res == true) {
+        updateDatabaseVersion("1.0.5");
     }
 }
 

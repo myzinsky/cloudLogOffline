@@ -21,6 +21,7 @@ private:
 
     // Migration Methods:
     void from_1_0_3_to_1_0_4();
+    void from_1_0_4_to_1_0_5();
 };
 
 #endif // MIGRATIONMANAGER_H

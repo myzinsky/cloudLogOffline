@@ -26,7 +26,9 @@ cloudlogManager::cloudlogManager(qsoModel *model) : model(model)
                         "ctsr, "
                         "sync, "
                         "sota, "
-                        "sots "
+                        "sots, "
+                        "satn, "
+                        "satm "
                         "FROM qsos WHERE sync = 0");
 }
 
@@ -48,7 +50,9 @@ void cloudlogManager::uploadQSO(QString url,
                                 QString ctss,
                                 QString ctsr,
                                 QString sota,
-                                QString sots
+                                QString sots,
+                                QString satn,
+                                QString satm
                                 )
 {
     QDateTime currentTime = QDateTime::currentDateTime();
@@ -74,7 +78,9 @@ void cloudlogManager::uploadQSO(QString url,
                       ctss,
                       ctsr,
                       sota,
-                      sots
+                      sots,
+                      satn,
+                      satm
                       ) +
         "\"" +
     "}";
@@ -187,6 +193,8 @@ void cloudlogManager::uploadNext()
     QString sync = selectQuery.value(15).toString();
     QString sota = selectQuery.value(16).toString();
     QString sots = selectQuery.value(17).toString();
+    QString satn = selectQuery.value(18).toString();
+    QString satm = selectQuery.value(19).toString();
 
     currentIdInUpload = id;
 
@@ -208,7 +216,9 @@ void cloudlogManager::uploadNext()
               ctss,
               ctsr,
               sota,
-              sots
+              sots,
+              satn,
+              satm
               );
 }
 

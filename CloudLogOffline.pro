@@ -12,7 +12,7 @@ CONFIG += c++11
 #GIT_VERSION ~= s/-/"."
 #GIT_VERSION ~= s/g/""
 #GIT_VERSION ~= s/\.\d+\.[a-f0-9]{6,}//
-GIT_VERSION = "1.0.4"
+GIT_VERSION = "1.0.5"
 message($$GIT_VERSION)
 DEFINES += GIT_VERSION=\\\"$$GIT_VERSION\\\"
 
@@ -108,8 +108,8 @@ HEADERS += src/csvtools.h
 HEADERS += src/logtools.h
 HEADERS += src/migrationmanager.h
 
-DISTFILES += android/AndroidManifest.xml \
-    qml/TimePicker.qml
+DISTFILES += android/AndroidManifest.xml
+DISTFILES += qml/TimePicker.qml
 DISTFILES += android/build.gradle
 DISTFILES += android/gradle/wrapper/gradle-wrapper.jar
 DISTFILES += android/gradle/wrapper/gradle-wrapper.properties

@@ -50,7 +50,9 @@ void qsoModel::addQSO(QString call,
                       QString ctss,
                       QString ctsr,
                       QString sota,
-                      QString sots
+                      QString sots,
+                      QString satn,
+                      QString satm
                       )
 {
     QSqlRecord newRecord = record();
@@ -71,6 +73,8 @@ void qsoModel::addQSO(QString call,
     newRecord.setValue("ctsr", ctsr);
     newRecord.setValue("sota", sota);
     newRecord.setValue("sots", sots); // MYSOTA
+    newRecord.setValue("satn", satn);
+    newRecord.setValue("satm", satm);
 
     newRecord.setValue("sync", 0);
 
@@ -95,7 +99,9 @@ void qsoModel::updateQSO(int id,
                          QString ctss,
                          QString ctsr,
                          QString sota,
-                         QString sots
+                         QString sots,
+                         QString satn,
+                         QString satm
                          )
 {
     qDebug() << "UPDATE QSO" << id;
@@ -117,6 +123,8 @@ void qsoModel::updateQSO(int id,
     r.setValue("ctsr", ctsr);
     r.setValue("sota", sota);
     r.setValue("sots", sots); // MYSOTA
+    r.setValue("satn", satn);
+    r.setValue("satm", satm);
 
     setRecord(id, r);
     submit();
