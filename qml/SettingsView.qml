@@ -50,6 +50,8 @@ Page {
     ScrollView {
         id: settingsScrollView
         anchors.fill: parent
+        contentWidth: -1
+
         GridLayout {
             id: grid
             width: settingsView.width // Important

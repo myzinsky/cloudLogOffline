@@ -32,6 +32,7 @@ Page {
 
     ScrollView {
         anchors.fill: parent
+        contentWidth: -1
 
         GridLayout {
             id: grid

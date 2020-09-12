@@ -132,6 +132,7 @@ Page {
 
     ScrollView {
         anchors.fill: parent
+        contentWidth: -1
 
         ButtonGroup {
             buttons: grid.children

@@ -20,7 +20,7 @@ Popup {
     y: (parent.height - height) / 2
 
     Overlay.modal: Rectangle {
-        color: "#DD303030"
+        color: "#CCCCCCCC"
     }
 
     Calendar {

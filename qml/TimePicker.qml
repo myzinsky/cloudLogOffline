@@ -19,7 +19,7 @@ Popup {
     contentHeight: grid.implicitHeight
 
     Overlay.modal: Rectangle {
-        color: "#DD303030"
+        color: "#CCCCCCCC"
     }
 
     function zeroPad(num, places) {
