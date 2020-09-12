@@ -24,7 +24,9 @@ cloudlogManager::cloudlogManager(qsoModel *model) : model(model)
                         "comm, "
                         "ctss, "
                         "ctsr, "
-                        "sync "
+                        "sync, "
+                        "sota, "
+                        "sots "
                         "FROM qsos WHERE sync = 0");
 }
 
@@ -44,7 +46,9 @@ void cloudlogManager::uploadQSO(QString url,
                                 QString qqth,
                                 QString comm,
                                 QString ctss,
-                                QString ctsr
+                                QString ctsr,
+                                QString sota,
+                                QString sots
                                 )
 {
     QDateTime currentTime = QDateTime::currentDateTime();
@@ -68,7 +72,9 @@ void cloudlogManager::uploadQSO(QString url,
                       qqth,
                       comm,
                       ctss,
-                      ctsr
+                      ctsr,
+                      sota,
+                      sots
                       ) +
         "\"" +
     "}";
@@ -108,7 +114,7 @@ void cloudlogManager::callbackCloudLog(QNetworkReply *rep)
         std::cout << "DB: " << qS.toStdString() << std::endl;
 
         if(!query.exec()) {
-            qDebug() << "SQL Error";
+            qDebug() << "SQL Error:" << query.lastError().text();
         } else {
             qDebug() << "DB: Successfull";
         }
@@ -179,6 +185,8 @@ void cloudlogManager::uploadNext()
     QString ctss = selectQuery.value(13).toString();
     QString ctsr = selectQuery.value(14).toString();
     QString sync = selectQuery.value(15).toString();
+    QString sota = selectQuery.value(16).toString();
+    QString sots = selectQuery.value(17).toString();
 
     currentIdInUpload = id;
 
@@ -198,7 +206,9 @@ void cloudlogManager::uploadNext()
               qtth,
               comm,
               ctss,
-              ctsr
+              ctsr,
+              sota,
+              sots
               );
 }
 

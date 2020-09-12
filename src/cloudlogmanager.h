@@ -59,7 +59,9 @@ private:
                QString qqth,
                QString comm,
                QString ctss,
-               QString ctsr
+               QString ctsr,
+               QString sota,
+               QString sots
                );
 
     void uploadNext();

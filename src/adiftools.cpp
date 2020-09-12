@@ -17,7 +17,9 @@ adifTools::adifTools()
                         "comm, "
                         "ctss, "
                         "ctsr, "
-                        "sync "
+                        "sync, "
+                        "sota, "
+                        "sots "
                         "FROM qsos");
 }
 
@@ -94,7 +96,9 @@ QString adifTools::assemble(QString call,
                             QString qqth,
                             QString comm,
                             QString ctss,
-                            QString ctsr)
+                            QString ctsr,
+                            QString sota,
+                            QString sots)
 {
     QString band  = this->band(freq);
     QString dateN = convertDate(date);
@@ -137,6 +141,17 @@ QString adifTools::assemble(QString call,
         }
     }
 
+    // SOTA:
+    if(!sota.isEmpty()) {
+        str += QString("") +
+                "<sota_ref:" + QString::number(sota.size()) + ">" + sota;
+    }
+
+    if(!sots.isEmpty()) {
+        str += QString("") +
+                "<my_sota_ref:" + QString::number(sots.size()) + ">" + sots;
+    }
+
     str += QString("") +
            "<country:"    + QString::number(ctry.size()) + ">" + ctry +
            "<qth:"        + QString::number(qqth.size()) + ">" + qqth +
@@ -177,6 +192,8 @@ QString adifTools::generate()
         QString ctss = selectQuery.value(13).toString();
         QString ctsr = selectQuery.value(14).toString();
         QString sync = selectQuery.value(15).toString();
+        QString sota = selectQuery.value(16).toString();
+        QString sots = selectQuery.value(17).toString();
 
         output += assemble(call,
                            name,
@@ -191,7 +208,9 @@ QString adifTools::generate()
                            qtth,
                            comm,
                            ctss,
-                           ctsr
+                           ctsr,
+                           sota,
+                           sots
                           ) + "\n\n";
     }
     return output;
