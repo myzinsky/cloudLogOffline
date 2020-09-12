@@ -216,10 +216,6 @@
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Playground</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>QRZView</name>
@@ -321,6 +317,22 @@
         <source>Save QSO</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>SOTA (S)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SOTA (R)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SAT Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SAT Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SettingsView</name>
@@ -414,6 +426,26 @@
     </message>
     <message>
         <source>Port</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Summits on the Air (SOTA)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert here youre SOTA reference</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reference</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Satellite</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable satellites fields in QSO View</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -232,10 +232,6 @@
         <source>About</source>
         <translation>Über die App</translation>
     </message>
-    <message>
-        <source>Playground</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>QRZView</name>
@@ -337,6 +333,22 @@
         <source>Save QSO</source>
         <translation>QSO Speichern</translation>
     </message>
+    <message>
+        <source>SOTA (S)</source>
+        <translation>SOTA (S)</translation>
+    </message>
+    <message>
+        <source>SOTA (R)</source>
+        <translation>SOTA (R)</translation>
+    </message>
+    <message>
+        <source>SAT Name</source>
+        <translation>SAT Name</translation>
+    </message>
+    <message>
+        <source>SAT Mode</source>
+        <translation>SAT Mode</translation>
+    </message>
 </context>
 <context>
     <name>SettingsView</name>
@@ -431,6 +443,30 @@
     <message>
         <source>Port</source>
         <translation>Port</translation>
+    </message>
+    <message>
+        <source>Summits on the Air (SOTA)</source>
+        <translation>Summits on the Air (SOTA)</translation>
+    </message>
+    <message>
+        <source>Insert here youre SOTA reference</source>
+        <translation>Hier die eigene SOTA Referenz einfügen</translation>
+    </message>
+    <message>
+        <source>Reference</source>
+        <translation>Referenz</translation>
+    </message>
+    <message>
+        <source>Satellite</source>
+        <translation>Satellit</translation>
+    </message>
+    <message>
+        <source>Enable Satelites fields in QSO View</source>
+        <translation type="vanished">Schaltetn die Sateliten Felder in der QSO Ansicht an</translation>
+    </message>
+    <message>
+        <source>Enable satellites fields in QSO View</source>
+        <translation>Schaltetn die Sateliten Felder in der QSO Ansicht an</translation>
     </message>
 </context>
 </TS>
