@@ -86,6 +86,8 @@ ApplicationWindow {
 
         property string mySotaReference
         property bool sotaActive
+
+        property bool satActive
     }
 
     Material.theme: Material.Dark

@@ -41,6 +41,8 @@ Page {
         settings.mySotaReference = mySotaReference.text
         settings.sotaActive      = sotaSwitch.checked;
 
+        settings.satActive = satSwitch.checked;
+
         // Retrieve new key when settings changed:
         if(settings.qrzUser.length !== 0 &&
                 settings.qrzPass.length !== 0 &&
@@ -350,7 +352,16 @@ Page {
                 onEditingFinished: saveSettings();
             }
 
+            // ----------------
 
+            SettingsSwitch {
+                id: satSwitch
+                icon: "\uf7bf"
+                text: qsTr("Satellite")
+                helpText: qsTr("Enable Satelites fields in QSO View")
+                Layout.columnSpan: 2
+                checked: settings.satActive
+            }
         }
     }
 }

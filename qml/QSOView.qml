@@ -32,6 +32,9 @@ Page {
     property alias ctsr: ctsrTextField.text;
     property alias sota: sotaTextField.text;
     property alias sots: sotsTextField.text;
+    property alias satn: satnComboBox.currentText;
+    property alias satm: satmTextField.text;
+
 
     property int sync
 
@@ -45,6 +48,7 @@ Page {
         timeTextField.text = ""
         freqTextField.text = (liveQSO && settings.cqActive) ? settings.cqFreq : ""
         // TODO: modeComboBox.
+        // TODO: satnComboBox.
         sentTextField.text = ""
         recvTextField.text = ""
         gridTextField.text = ""
@@ -54,6 +58,7 @@ Page {
         ctsrTextField.text = ""
         sotaTextField.text = ""
         sotsTextField.text = settings.sotaActive ? settings.mySotaReference : ""
+        satmTextField.text = ""
         statusIndicator.Material.accent = Material.Green
     }
 
@@ -515,8 +520,69 @@ Page {
                 id: sotaTextField
                 Layout.columnSpan: 1
                 text: ""
-                KeyNavigation.tab: commTextField
+                KeyNavigation.tab: settings.satActive ? satnComboBox : commTextField
                 visible: settings.sotaActive || sotaTextField.text || sotsTextField.text
+            }
+
+            //--- SAT:
+
+            Label {
+                id: mySatLaable
+                text: qsTr("SAT Name") + ":"
+                visible: settings.satActive || (satnComboBox.currentIndex !== 0) || satmTextField.text
+            }
+
+            ComboBox {
+                id: satnComboBox
+                Layout.fillWidth: true
+                KeyNavigation.tab: satmTextField
+                model: [
+                    "",
+                    "AISAT-1",
+                    "ARISS",
+                    "AO-7",
+                    "AO-27",
+                    "AO-73",
+                    "AO-91",
+                    "AO-92",
+                    "CAS-3H",
+                    "CAS-4A",
+                    "CAS-4B",
+                    "CAS-6",
+                    "EO-88",
+                    "FO-29",
+                    "FO-99",
+                    "FS-3",
+                    "HO-107",
+                    "IO-86",
+                    "Lilacsat-1",
+                    "NO-84",
+                    "NO-104",
+                    "PO-101",
+                    "QO-100",
+                    "RS-44",
+                    "SO-50",
+                    "XW-2A",
+                    "XW-2B",
+                    "XW-2C",
+                    "XW-2D",
+                    "XW-2F",
+                ]
+                visible: settings.satActive || (satnComboBox.currentIndex !== 0) || satmTextField.text
+            }
+
+            Label {
+                id: satModeLable
+                text: qsTr("SAT Mode") + ":"
+                visible: settings.satActive || (satnComboBox.currentIndex !== 0) || satmTextField.text
+            }
+
+            QSOTextField {
+                id: satmTextField
+                Layout.columnSpan: 1
+                text: ""
+                KeyNavigation.tab: commTextField
+                visible: settings.satActive || (satnComboBox.currentIndex !== 0) || satmTextField.text
             }
 
             //--- Comments:
