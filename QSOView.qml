@@ -221,7 +221,14 @@ Page {
                     padding: 0
 
                     onClicked: {
-                        // TODO
+                        // TODO show previous contacts...
+                        var tmp = ctssTextField.text;
+                        page.reset();
+                        if(settings.contestActive) {
+                            ctssTextField.text = tmp;
+                            sentTextField.text = 59;
+                            recvTextField.text = 59;
+                        }
                     }
                 }
 
@@ -433,6 +440,8 @@ Page {
                     page.reset();
                     if(settings.contestActive) {
                         ctssTextField.text = tmp;
+                        sentTextField.text = 59;
+                        recvTextField.text = 59;
                     }
                 }
             }
@@ -484,6 +493,8 @@ Page {
                                     ctssTextField.text = contestNumber;
                                     settings.contestNumber = contestNumber;
                                 }
+                                sentTextField.text = 59;
+                                recvTextField.text = 59;
                             }
                         }
 
