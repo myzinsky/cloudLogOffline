@@ -1,4 +1,4 @@
-#include "qsomodel.h"
+﻿#include "qsomodel.h"
 
 qsoModel::qsoModel(QObject *parent) : QSqlTableModel(parent)
 {
@@ -48,7 +48,9 @@ void qsoModel::addQSO(QString call,
                       QString qqth,
                       QString comm,
                       QString ctss,
-                      QString ctsr
+                      QString ctsr,
+                      QString sota,
+                      QString sots
                       )
 {
     QSqlRecord newRecord = record();
@@ -67,6 +69,8 @@ void qsoModel::addQSO(QString call,
     newRecord.setValue("comm", comm);
     newRecord.setValue("ctss", ctss);
     newRecord.setValue("ctsr", ctsr);
+    newRecord.setValue("sota", sota);
+    newRecord.setValue("sots", sots); // MYSOTA
 
     newRecord.setValue("sync", 0);
 
@@ -89,7 +93,9 @@ void qsoModel::updateQSO(int id,
                          QString qqth,
                          QString comm,
                          QString ctss,
-                         QString ctsr
+                         QString ctsr,
+                         QString sota,
+                         QString sots
                          )
 {
     qDebug() << "UPDATE QSO" << id;
@@ -109,6 +115,8 @@ void qsoModel::updateQSO(int id,
     r.setValue("comm", comm);
     r.setValue("ctss", ctss);
     r.setValue("ctsr", ctsr);
+    r.setValue("sota", sota);
+    r.setValue("sots", sots); // MYSOTA
 
     setRecord(id, r);
     submit();

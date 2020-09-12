@@ -212,6 +212,8 @@ SwipeDelegate {
                                    "ctss"       : model.ctss,
                                    "ctsr"       : model.ctsr,
                                    "sync"       : model.sync,
+                                   "sota"       : model.sota,
+                                   "sots"       : model.sots,
                                });
             }
         }

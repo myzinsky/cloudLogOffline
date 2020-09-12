@@ -30,6 +30,8 @@ Page {
     property alias comm: commTextField.text;
     property alias ctss: ctssTextField.text;
     property alias ctsr: ctsrTextField.text;
+    property alias sota: sotaTextField.text;
+    property alias sots: sotsTextField.text;
 
     property int sync
 
@@ -50,6 +52,8 @@ Page {
         commTextField.text = ""
         ctssTextField.text = ""
         ctsrTextField.text = ""
+        sotaTextField.text = ""
+        sotsTextField.text = settings.sotaActive ? settings.mySotaReference : ""
         statusIndicator.Material.accent = Material.Green
     }
 
@@ -490,21 +494,21 @@ Page {
             Label {
                 id: mySotaable
                 text: qsTr("SOTA (S)") + ":"
-                visible: settings.sotaActive || sotaTextField.text || mySotaTextField.text
+                visible: settings.sotaActive || sotaTextField.text || sotsTextField.text
             }
 
             QSOTextField {
-                id: mySotaTextField
+                id: sotsTextField
                 Layout.columnSpan: 1
-                text: settings.sotaActive ? settings.mySotaReference : ""
+                text: (addQSO == true || liveQSO == true) ? (settings.sotaActive ? settings.mySotaReference : "") : sotsTextField.text
                 KeyNavigation.tab: commTextField
-                visible: settings.sotaActive || sotaTextField.text || mySotaTextField.text
+                visible: settings.sotaActive || sotaTextField.text || sotsTextField.text
             }
 
             Label {
                 id: sotaLable
                 text: qsTr("SOTA (R)") + ":"
-                visible: settings.sotaActive || sotaTextField.text || mySotaTextField.text
+                visible: settings.sotaActive || sotaTextField.text || sotsTextField.text
             }
 
             QSOTextField {
@@ -512,7 +516,7 @@ Page {
                 Layout.columnSpan: 1
                 text: ""
                 KeyNavigation.tab: commTextField
-                visible: settings.sotaActive || sotaTextField.text || mySotaTextField.text
+                visible: settings.sotaActive || sotaTextField.text || sotsTextField.text
             }
 
             //--- Comments:
@@ -575,7 +579,9 @@ Page {
                                 qqthTextField.text,
                                 commTextField.text,
                                 ctssTextField.text,
-                                ctsrTextField.text
+                                ctsrTextField.text,
+                                sotaTextField.text,
+                                sotsTextField.text
                                 );
 
                         if(addQSO) {
@@ -612,7 +618,9 @@ Page {
                                    qqthTextField.text,
                                    commTextField.text,
                                    ctssTextField.text,
-                                   ctsrTextField.text
+                                   ctsrTextField.text,
+                                   sotaTextField.text,
+                                   sotsTextField.text
                                    );
                         stackView.pop()
                     }

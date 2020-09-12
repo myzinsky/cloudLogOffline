@@ -35,7 +35,9 @@ public slots:
                 QString qqth,
                 QString comm,
                 QString ctss,
-                QString ctsr
+                QString ctsr,
+                QString sota,
+                QString sots
                 );
 
     void updateQSO(int id,
@@ -52,7 +54,9 @@ public slots:
                 QString qqth,
                 QString comm,
                 QString ctss,
-                QString ctsr
+                QString ctsr,
+                QString sota,
+                QString sots
                 );
 
     bool checkCall(QString call);

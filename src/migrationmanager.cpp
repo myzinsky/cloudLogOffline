@@ -34,8 +34,8 @@ migrationManager::migrationManager()
 
 void migrationManager::from_1_0_3_to_1_0_4()
 {
-    bool res = addQSOColumn("SOTA_REF", "TEXT");
-    res = res & addQSOColumn("MY_SOTAEF", "TEXT");
+    bool res = addQSOColumn("sota", "TEXT");
+    res = res & addQSOColumn("sots", "TEXT"); // MYSOTA
     if(res == true) {
         updateDatabaseVersion("1.0.4");
     }
