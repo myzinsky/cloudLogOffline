@@ -38,6 +38,9 @@ Page {
         settings.rigPort   = rigPort.text;
         settings.rigActive = rigSwitch.checked;
 
+        settings.mySotaReference = mySotaReference.text
+        settings.sotaActive      = sotaSwitch.checked;
+
         // Retrieve new key when settings changed:
         if(settings.qrzUser.length !== 0 &&
                 settings.qrzPass.length !== 0 &&
@@ -320,6 +323,34 @@ Page {
                 onTextEdited: saveSettings();
                 onEditingFinished: saveSettings();
             }
+
+            // ----------------
+
+            SettingsSwitch {
+                id: sotaSwitch
+                icon: "\uf6fc"
+                text: qsTr("Summits on the Air (SOTA)")
+                helpText: qsTr("Insert here youre SOTA reference")
+                Layout.columnSpan: 2
+                checked: settings.sotaActive
+            }
+
+            Label {
+                id: mySotaLabel
+                text: qsTr("Reference") + ":"
+                visible: sotaSwitch.checked
+            }
+
+            TextField {
+                id: mySotaReference
+                Layout.fillWidth: true
+                visible: sotaSwitch.checked
+                text: settings.mySotaReference
+                onTextEdited: saveSettings();
+                onEditingFinished: saveSettings();
+            }
+
+
         }
     }
 }

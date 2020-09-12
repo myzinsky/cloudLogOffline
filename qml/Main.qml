@@ -83,6 +83,9 @@ ApplicationWindow {
         property string rigHost
         property string rigPort
         property bool rigActive
+
+        property string mySotaReference
+        property bool sotaActive
     }
 
     Material.theme: Material.Dark

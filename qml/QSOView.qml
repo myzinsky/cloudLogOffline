@@ -482,8 +482,40 @@ Page {
                 id: gridTextField
                 Layout.columnSpan: 3
                 text: ""
-                KeyNavigation.tab: commTextField
+                KeyNavigation.tab: settings.sotaActive ? sotaTextField : commTextField
             }
+
+            //--- SOTA:
+
+            Label {
+                id: mySotaable
+                text: qsTr("SOTA (S)") + ":"
+                visible: settings.sotaActive || sotaTextField.text || mySotaTextField.text
+            }
+
+            QSOTextField {
+                id: mySotaTextField
+                Layout.columnSpan: 1
+                text: settings.sotaActive ? settings.mySotaReference : ""
+                KeyNavigation.tab: commTextField
+                visible: settings.sotaActive || sotaTextField.text || mySotaTextField.text
+            }
+
+            Label {
+                id: sotaLable
+                text: qsTr("SOTA (R)") + ":"
+                visible: settings.sotaActive || sotaTextField.text || mySotaTextField.text
+            }
+
+            QSOTextField {
+                id: sotaTextField
+                Layout.columnSpan: 1
+                text: ""
+                KeyNavigation.tab: commTextField
+                visible: settings.sotaActive || sotaTextField.text || mySotaTextField.text
+            }
+
+            //--- Comments:
 
             Label {
                 id: commLable
