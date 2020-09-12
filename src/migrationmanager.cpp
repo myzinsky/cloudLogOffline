@@ -38,6 +38,7 @@ migrationManager::migrationManager()
 
 void migrationManager::from_1_0_3_to_1_0_4()
 {
+    qDebug() << "Migrate from 1.0.3 to 1.0.4";
     bool res = addQSOColumn("sota", "TEXT");
     res = res & addQSOColumn("sots", "TEXT"); // MYSOTA
     if(res == true) {
@@ -47,6 +48,7 @@ void migrationManager::from_1_0_3_to_1_0_4()
 
 void migrationManager::from_1_0_4_to_1_0_5()
 {
+    qDebug() << "Migrate from 1.0.4 to 1.0.5";
     bool res = addQSOColumn("satn", "TEXT");
     res = res & addQSOColumn("satm", "TEXT");
     if(res == true) {
