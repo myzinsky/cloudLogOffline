@@ -1,27 +1,27 @@
 <RCC>
     <qresource prefix="/">
-        <file>Main.qml</file>
-        <file>QSOView.qml</file>
+        <file>qml/Main.qml</file>
+        <file>qml/QSOView.qml</file>
+        <file>qml/QSOListView.qml</file>
+        <file>qml/DrawerItem.qml</file>
+        <file>qml/PageDrawer.qml</file>
+        <file>qml/SettingsView.qml</file>
+        <file>qml/QSOItem.qml</file>
+        <file>qml/QSOTextField.qml</file>
+        <file>qml/AboutView.qml</file>
+        <file>qml/SettingsSwitch.qml</file>
+        <file>qml/QRZView.qml</file>
+        <file>qml/ExportView.qml</file>
+        <file>qml/IconButton.qml</file>
+        <file>qml/ExportHeader.qml</file>
         <file>qtquickcontrols2.conf</file>
-        <file>QSOListView.qml</file>
-        <file>fonts/fa-solid-900.ttf</file>
-        <file>DrawerItem.qml</file>
-        <file>PageDrawer.qml</file>
-        <file>SettingsView.qml</file>
-        <file>images/logo_circle.svg</file>
-        <file>QSOItem.qml</file>
-        <file>QSOTextField.qml</file>
-        <file>images/logo_square.svg</file>
-        <file>AboutView.qml</file>
-        <file>SettingsSwitch.qml</file>
-        <file>QRZView.qml</file>
-        <file>ExportView.qml</file>
-        <file>IconButton.qml</file>
-        <file>images/logo_circle.png</file>
         <file>translations/English.ts</file>
         <file>translations/German.ts</file>
         <file>fonts/Roboto-Regular.ttf</file>
         <file>fonts/LinLibertine_DR_G.ttf</file>
-        <file>ExportHeader.qml</file>
+        <file>images/logo_circle.png</file>
+        <file>images/logo_square.svg</file>
+        <file>images/logo_circle.svg</file>
+        <file>fonts/fa-solid-900.ttf</file>
     </qresource>
 </RCC>

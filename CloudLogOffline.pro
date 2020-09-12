@@ -26,20 +26,20 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-SOURCES += main.cpp
-SOURCES += tools.cpp
-SOURCES += translationmanager.cpp
-SOURCES += cloudlogmanager.cpp
-SOURCES += qrzmanager.cpp
-SOURCES += rigmanager.cpp
-SOURCES += dbmanager.cpp
-SOURCES += qsomodel.cpp
-SOURCES += shareutils.cpp
-SOURCES += logtools.cpp
-SOURCES += adiftools.cpp
-SOURCES += cabrillotools.cpp
-SOURCES += csvtools.cpp
-SOURCES += migrationmanager.cpp
+SOURCES += src/main.cpp
+SOURCES += src/tools.cpp
+SOURCES += src/translationmanager.cpp
+SOURCES += src/cloudlogmanager.cpp
+SOURCES += src/qrzmanager.cpp
+SOURCES += src/rigmanager.cpp
+SOURCES += src/dbmanager.cpp
+SOURCES += src/qsomodel.cpp
+SOURCES += src/shareutils.cpp
+SOURCES += src/logtools.cpp
+SOURCES += src/adiftools.cpp
+SOURCES += src/cabrillotools.cpp
+SOURCES += src/csvtools.cpp
+SOURCES += src/migrationmanager.cpp
 
 RESOURCES += qml.qrc
 
@@ -93,19 +93,19 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-HEADERS += cloudlogmanager.h
-HEADERS += tools.h
-HEADERS += translationmanager.h
-HEADERS += dbmanager.h
-HEADERS += qrzmanager.h
-HEADERS += qsomodel.h
-HEADERS += rigmanager.h
-HEADERS += shareutils.h
-HEADERS += adiftools.h
-HEADERS += cabrillotools.h
-HEADERS += csvtools.h
-HEADERS += logtools.h
-HEADERS += migrationmanager.h
+HEADERS += src/cloudlogmanager.h
+HEADERS += src/tools.h
+HEADERS += src/translationmanager.h
+HEADERS += src/dbmanager.h
+HEADERS += src/qrzmanager.h
+HEADERS += src/qsomodel.h
+HEADERS += src/rigmanager.h
+HEADERS += src/shareutils.h
+HEADERS += src/adiftools.h
+HEADERS += src/cabrillotools.h
+HEADERS += src/csvtools.h
+HEADERS += src/logtools.h
+HEADERS += src/migrationmanager.h
 
 DISTFILES += android/AndroidManifest.xml
 DISTFILES += android/build.gradle
@@ -117,6 +117,22 @@ DISTFILES += android/res/values/libs.xml
 
 DISTFILES += ios/MyLaunchScreen.xib
 DISTFILES += ios/info.plist
+
+DISTFILES += qml/Main.qml
+DISTFILES += qml/QSOView.qml
+DISTFILES += qml/qtquickcontrols2.conf
+DISTFILES += qml/QSOListView.qml
+DISTFILES += qml/DrawerItem.qml
+DISTFILES += qml/PageDrawer.qml
+DISTFILES += qml/SettingsView.qml
+DISTFILES += qml/QSOItem.qml
+DISTFILES += qml/QSOTextField.qml
+DISTFILES += qml/AboutView.qml
+DISTFILES += qml/SettingsSwitch.qml
+DISTFILES += qml/QRZView.qml
+DISTFILES += qml/ExportView.qml
+DISTFILES += qml/IconButton.qml
+DISTFILES += qml/ExportHeader.qml
 
 # Translations:
 TRANSLATIONS += translations/English.ts

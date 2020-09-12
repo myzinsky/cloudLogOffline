@@ -70,7 +70,7 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("tm", QVariant::fromValue(&tm));
     engine.rootContext()->setContextProperty("tools", QVariant::fromValue(&t));
 
-    engine.load(QUrl(QStringLiteral("qrc:/Main.qml")));
+    engine.load(QUrl(QStringLiteral("qrc:/qml/Main.qml")));
 
     return app.exec();
 }
