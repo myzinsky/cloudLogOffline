@@ -9,6 +9,85 @@
     </message>
 </context>
 <context>
+    <name>DatePicker</name>
+    <message>
+        <source>Su</source>
+        <translation>So</translation>
+    </message>
+    <message>
+        <source>Mo</source>
+        <translation>Mo</translation>
+    </message>
+    <message>
+        <source>Tu</source>
+        <translation>Di</translation>
+    </message>
+    <message>
+        <source>We</source>
+        <translation>Mi</translation>
+    </message>
+    <message>
+        <source>Th</source>
+        <translation>Do</translation>
+    </message>
+    <message>
+        <source>Fr</source>
+        <translation>Fr</translation>
+    </message>
+    <message>
+        <source>Sa</source>
+        <translation>Sa</translation>
+    </message>
+    <message>
+        <source>January</source>
+        <translation>Januar</translation>
+    </message>
+    <message>
+        <source>February</source>
+        <translation>Februar</translation>
+    </message>
+    <message>
+        <source>March</source>
+        <translation>März</translation>
+    </message>
+    <message>
+        <source>April</source>
+        <translation>April</translation>
+    </message>
+    <message>
+        <source>May</source>
+        <translation>Mai</translation>
+    </message>
+    <message>
+        <source>June</source>
+        <translation>Juni</translation>
+    </message>
+    <message>
+        <source>July</source>
+        <translation>Juli</translation>
+    </message>
+    <message>
+        <source>August</source>
+        <translation>August</translation>
+    </message>
+    <message>
+        <source>September</source>
+        <translation>September</translation>
+    </message>
+    <message>
+        <source>October</source>
+        <translation>Oktober</translation>
+    </message>
+    <message>
+        <source>November</source>
+        <translation>November</translation>
+    </message>
+    <message>
+        <source>December</source>
+        <translation>Dezember</translation>
+    </message>
+</context>
+<context>
     <name>ExportView</name>
     <message>
         <source>Cloud Log:</source>
@@ -152,6 +231,10 @@
     <message>
         <source>About</source>
         <translation>Über die App</translation>
+    </message>
+    <message>
+        <source>Playground</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

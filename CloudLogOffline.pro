@@ -107,7 +107,8 @@ HEADERS += src/csvtools.h
 HEADERS += src/logtools.h
 HEADERS += src/migrationmanager.h
 
-DISTFILES += android/AndroidManifest.xml
+DISTFILES += android/AndroidManifest.xml \
+    qml/TimePicker.qml
 DISTFILES += android/build.gradle
 DISTFILES += android/gradle/wrapper/gradle-wrapper.jar
 DISTFILES += android/gradle/wrapper/gradle-wrapper.properties
@@ -133,6 +134,8 @@ DISTFILES += qml/QRZView.qml
 DISTFILES += qml/ExportView.qml
 DISTFILES += qml/IconButton.qml
 DISTFILES += qml/ExportHeader.qml
+DISTFILES += qml/DatePicker.qml
+DISTFILES += qml/TimePicker.qml
 
 # Translations:
 TRANSLATIONS += translations/English.ts

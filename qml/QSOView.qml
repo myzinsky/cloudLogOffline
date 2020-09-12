@@ -113,6 +113,23 @@ Page {
         }
     }
 
+    DatePicker {
+        id: datePicker
+        modal: true
+        onClosed: {
+            var day = new Date(datePicker.selectedDate)
+            dateTextField.text = Qt.formatDateTime(day, "dd.MM.yyyy");
+        }
+    }
+
+    TimePicker {
+        id: timePicker
+        modal: true
+        onClosed: {
+            timeTextField.text = timePicker.selectedTime
+        }
+    }
+
     ScrollView {
         anchors.fill: parent
 
@@ -122,7 +139,7 @@ Page {
 
         GridLayout {
             id: grid
-            columns: 4
+            columns: 6
             width: page.width // Important
 
             Label {
@@ -147,6 +164,24 @@ Page {
                         var utc = new Date(now.getTime() + now.getTimezoneOffset() * 60000);
                         dateTextField.text = Qt.formatDateTime(utc, "dd.MM.yyyy");
                     }
+                }
+            }
+
+            IconButton {
+                id: calButton
+                enabled: !liveQSO
+                width: height
+                Layout.preferredWidth: height
+                font.family: fontAwesome.name
+                buttonIcon: "\uf073"
+                text: ""
+                highlighted: true
+                Material.theme:  Material.Light
+                Material.accent: Material.Green
+                padding: 0
+
+                onClicked: {
+                    datePicker.open()
                 }
             }
 
@@ -175,13 +210,31 @@ Page {
                 }
             }
 
+            IconButton {
+                id: timeButton
+                enabled: !liveQSO
+                width: height
+                Layout.preferredWidth: height
+                font.family: fontAwesome.name
+                buttonIcon: "\uf017"
+                text: ""
+                highlighted: true
+                Material.theme:  Material.Light
+                Material.accent: Material.Green
+                padding: 0
+
+                onClicked: {
+                    timePicker.open()
+                }
+            }
+
             Label {
                 id: callSignLable
                 text: qsTr("Callsign") + ":"
             }
 
             RowLayout {
-                Layout.columnSpan: 3
+                Layout.columnSpan: 5
 
                 QSOTextField {
                     id: callTextField
@@ -262,7 +315,7 @@ Page {
 
             ComboBox {
                 id: modeComboBox
-                Layout.columnSpan: 3
+                Layout.columnSpan: 5
                 Layout.fillWidth: true
                 KeyNavigation.tab: freqTextField
                 model: [
@@ -308,7 +361,7 @@ Page {
 
             QSOTextField {
                 id: freqTextField
-                Layout.columnSpan: 3
+                Layout.columnSpan: 5
                 text: (liveQSO && settings.cqActive) ? settings.cqFreq : ""
                 KeyNavigation.tab: sentTextField
                 inputMethodHints: Qt.ImhFormattedNumbersOnly
@@ -325,6 +378,7 @@ Page {
 
             QSOTextField {
                 id: sentTextField
+                Layout.columnSpan: 2
                 text: settings.contestActive ? "59" : ""
                 placeholderText: "59"
                 KeyNavigation.tab: recvTextField
@@ -338,6 +392,7 @@ Page {
 
             QSOTextField {
                 id: recvTextField
+                Layout.columnSpan: 2
                 text: settings.contestActive ? "59" : ""
                 placeholderText: "59"
                 KeyNavigation.tab: settings.contestActive ? ctssTextField : nameTextField
@@ -352,6 +407,7 @@ Page {
 
             QSOTextField {
                 id: ctssTextField
+                Layout.columnSpan: 2
                 text: ""
                 KeyNavigation.tab: ctsrTextField
                 visible: settings.contestActive || ctssTextField.text || ctsrTextField.text
@@ -365,6 +421,7 @@ Page {
 
             QSOTextField {
                 id: ctsrTextField
+                Layout.columnSpan: 2
                 text: ""
                 KeyNavigation.tab: nameTextField
                 visible: settings.contestActive || ctsrTextField.text || ctssTextField.text
@@ -377,7 +434,7 @@ Page {
 
             QSOTextField {
                 id: nameTextField
-                Layout.columnSpan: 3
+                Layout.columnSpan: 5
                 text: ""
                 KeyNavigation.tab: qqthTextField
             }
@@ -389,7 +446,7 @@ Page {
 
             QSOTextField {
                 id: qqthTextField
-                Layout.columnSpan: 3
+                Layout.columnSpan: 5
                 text: ""
                 KeyNavigation.tab: gridTextField
             }
@@ -401,7 +458,7 @@ Page {
 
             QSOTextField {
                 id: ctryTextField
-                Layout.columnSpan: 3
+                Layout.columnSpan: 5
                 text: ""
                 KeyNavigation.tab: gridTextField
             }
@@ -413,7 +470,7 @@ Page {
 
             QSOTextField {
                 id: gridTextField
-                Layout.columnSpan: 3
+                Layout.columnSpan: 5
                 text: ""
                 KeyNavigation.tab: commTextField
             }
@@ -425,7 +482,7 @@ Page {
 
             QSOTextField {
                 id: commTextField
-                Layout.columnSpan: 3
+                Layout.columnSpan: 5
                 text: ""
                 KeyNavigation.tab: saveButton
             }
@@ -454,7 +511,7 @@ Page {
 
             Button {
                 id: saveButton
-                Layout.columnSpan: 3
+                Layout.columnSpan: 5
                 text: qsTr("Save QSO")
                 Layout.fillWidth: true
                 highlighted: true

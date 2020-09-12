@@ -14,6 +14,7 @@
         <file>qml/ExportView.qml</file>
         <file>qml/IconButton.qml</file>
         <file>qml/ExportHeader.qml</file>
+        <file>qml/Playground.qml</file>
         <file>qtquickcontrols2.conf</file>
         <file>translations/English.ts</file>
         <file>translations/German.ts</file>
@@ -23,5 +24,7 @@
         <file>images/logo_square.svg</file>
         <file>images/logo_circle.svg</file>
         <file>fonts/fa-solid-900.ttf</file>
+        <file>qml/DatePicker.qml</file>
+        <file>qml/TimePicker.qml</file>
     </qresource>
 </RCC>
