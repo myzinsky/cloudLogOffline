@@ -28,22 +28,17 @@ migrationManager::migrationManager()
 
             // Update Database:
             updateDatabaseVersion(QString(GIT_VERSION));
-
-            // EXAMPLE:
-            //if(database == QVersionNumber::fromString("1.0.3")) {
-            //	  from_1_0_3_to_1_0_4();
-            //    from_1_0_4_to_1_0_5();
-            //}
-            //else if(database == QVersionNumber::fromString("1.0.4")) {
-            //    from_1_0_4_to_1_0_5();
-            //}
         }
     }
 }
 
 void migrationManager::from_1_0_3_to_1_0_4()
 {
-
+    bool res = addQSOColumn("SOTA_REF", "TEXT");
+    res = res & addQSOColumn("MY_SOTAEF", "TEXT");
+    if(res == true) {
+        updateDatabaseVersion("1.0.4");
+    }
 }
 
 bool migrationManager::updateDatabaseVersion(QString Version)
@@ -71,6 +66,21 @@ bool migrationManager::insertDatabaseVersion(QString Version)
 
     if(!versionQuery.exec()) {
         qDebug() << "selectQuery: SQL Error" << selectQuery.lastError();
+        return false;
+    }
+    return true;
+}
+
+bool migrationManager::addQSOColumn(QString name, QString type)
+{
+    QSqlQuery alterQuery;
+    QString queryTxt = QString("ALTER TABLE qsos ADD COLUMN ") +
+                        "\"" + name + "\" " + type + ";";
+    qDebug() << queryTxt;
+    alterQuery.prepare(queryTxt);
+
+    if(!alterQuery.exec()) {
+        qDebug() << "alterQuery: SQL Error" << selectQuery.lastError();
         return false;
     }
     return true;
