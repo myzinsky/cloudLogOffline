@@ -139,7 +139,7 @@ Page {
 
         GridLayout {
             id: grid
-            columns: 6
+            columns: 4
             width: page.width // Important
 
             Label {
@@ -147,41 +147,45 @@ Page {
                 text: qsTr("Date") + ":"
             }
 
-            QSOTextField {
-                id: dateTextField
-                text: ""
-                placeholderText: "DD.MM.YYYY"
-                KeyNavigation.tab: timeTextField
+            RowLayout {
+                Layout.columnSpan: 3
+                QSOTextField {
+                    id: dateTextField
+                    text: ""
+                    placeholderText: "DD.MM.YYYY"
+                    KeyNavigation.tab: timeTextField
+                    Layout.fillWidth: true
 
-                Timer {
-                    id: dateTextTimer
-                    interval: 1000
-                    repeat: liveQSO
-                    running: liveQSO
-                    triggeredOnStart: liveQSO
-                    onTriggered: {
-                        var now = new Date();
-                        var utc = new Date(now.getTime() + now.getTimezoneOffset() * 60000);
-                        dateTextField.text = Qt.formatDateTime(utc, "dd.MM.yyyy");
+                    Timer {
+                        id: dateTextTimer
+                        interval: 1000
+                        repeat: liveQSO
+                        running: liveQSO
+                        triggeredOnStart: liveQSO
+                        onTriggered: {
+                            var now = new Date();
+                            var utc = new Date(now.getTime() + now.getTimezoneOffset() * 60000);
+                            dateTextField.text = Qt.formatDateTime(utc, "dd.MM.yyyy");
+                        }
                     }
                 }
-            }
 
-            IconButton {
-                id: calButton
-                enabled: !liveQSO
-                width: height
-                Layout.preferredWidth: height
-                font.family: fontAwesome.name
-                buttonIcon: "\uf073"
-                text: ""
-                highlighted: true
-                Material.theme:  Material.Light
-                Material.accent: Material.Green
-                padding: 0
+                IconButton {
+                    id: calButton
+                    enabled: !liveQSO
+                    width: height
+                    Layout.preferredWidth: height
+                    font.family: fontAwesome.name
+                    buttonIcon: "\uf073"
+                    text: ""
+                    highlighted: true
+                    Material.theme:  Material.Light
+                    Material.accent: Material.Green
+                    padding: 0
 
-                onClicked: {
-                    datePicker.open()
+                    onClicked: {
+                        datePicker.open()
+                    }
                 }
             }
 
@@ -190,41 +194,46 @@ Page {
                 text: qsTr("Time") + ":"
             }
 
-            QSOTextField {
-                id: timeTextField
-                text: ""
-                placeholderText: "00:00"
-                KeyNavigation.tab: callTextField
+            RowLayout {
+                Layout.columnSpan: 3
+                QSOTextField {
+                    id: timeTextField
+                    text: ""
+                    placeholderText: "00:00"
+                    KeyNavigation.tab: callTextField
+                    Layout.columnSpan: 2
+                    Layout.fillWidth: true
 
-                Timer {
-                    id: timeTextTimer
-                    interval: 1000
-                    repeat: liveQSO
-                    running: liveQSO
-                    triggeredOnStart: liveQSO
-                    onTriggered: {
-                        var now = new Date();
-                        var utc = new Date(now.getTime() + now.getTimezoneOffset() * 60000);
-                        timeTextField.text = Qt.formatDateTime(utc, "HH:mm");
+                    Timer {
+                        id: timeTextTimer
+                        interval: 1000
+                        repeat: liveQSO
+                        running: liveQSO
+                        triggeredOnStart: liveQSO
+                        onTriggered: {
+                            var now = new Date();
+                            var utc = new Date(now.getTime() + now.getTimezoneOffset() * 60000);
+                            timeTextField.text = Qt.formatDateTime(utc, "HH:mm");
+                        }
                     }
                 }
-            }
 
-            IconButton {
-                id: timeButton
-                enabled: !liveQSO
-                width: height
-                Layout.preferredWidth: height
-                font.family: fontAwesome.name
-                buttonIcon: "\uf017"
-                text: ""
-                highlighted: true
-                Material.theme:  Material.Light
-                Material.accent: Material.Green
-                padding: 0
+                IconButton {
+                    id: timeButton
+                    enabled: !liveQSO
+                    width: height
+                    Layout.preferredWidth: height
+                    font.family: fontAwesome.name
+                    buttonIcon: "\uf017"
+                    text: ""
+                    highlighted: true
+                    Material.theme:  Material.Light
+                    Material.accent: Material.Green
+                    padding: 0
 
-                onClicked: {
-                    timePicker.open()
+                    onClicked: {
+                        timePicker.open()
+                    }
                 }
             }
 
@@ -234,7 +243,7 @@ Page {
             }
 
             RowLayout {
-                Layout.columnSpan: 5
+                Layout.columnSpan: 3
 
                 QSOTextField {
                     id: callTextField
@@ -295,7 +304,7 @@ Page {
                     highlighted: qrzFound
                     Material.theme:  Material.Light
                     Material.accent: Material.Green
-                    enabled: settings.qrzActive
+                    enabled: qrzFound && settings.qrzActive
                     padding: 0
 
                     onClicked: {
@@ -315,7 +324,7 @@ Page {
 
             ComboBox {
                 id: modeComboBox
-                Layout.columnSpan: 5
+                Layout.columnSpan: 3
                 Layout.fillWidth: true
                 KeyNavigation.tab: freqTextField
                 model: [
@@ -361,7 +370,7 @@ Page {
 
             QSOTextField {
                 id: freqTextField
-                Layout.columnSpan: 5
+                Layout.columnSpan: 3
                 text: (liveQSO && settings.cqActive) ? settings.cqFreq : ""
                 KeyNavigation.tab: sentTextField
                 inputMethodHints: Qt.ImhFormattedNumbersOnly
@@ -378,7 +387,7 @@ Page {
 
             QSOTextField {
                 id: sentTextField
-                Layout.columnSpan: 2
+                Layout.columnSpan: 1
                 text: settings.contestActive ? "59" : ""
                 placeholderText: "59"
                 KeyNavigation.tab: recvTextField
@@ -392,7 +401,7 @@ Page {
 
             QSOTextField {
                 id: recvTextField
-                Layout.columnSpan: 2
+                Layout.columnSpan: 1
                 text: settings.contestActive ? "59" : ""
                 placeholderText: "59"
                 KeyNavigation.tab: settings.contestActive ? ctssTextField : nameTextField
@@ -407,7 +416,7 @@ Page {
 
             QSOTextField {
                 id: ctssTextField
-                Layout.columnSpan: 2
+                Layout.columnSpan: 1
                 text: ""
                 KeyNavigation.tab: ctsrTextField
                 visible: settings.contestActive || ctssTextField.text || ctsrTextField.text
@@ -421,7 +430,7 @@ Page {
 
             QSOTextField {
                 id: ctsrTextField
-                Layout.columnSpan: 2
+                Layout.columnSpan: 1
                 text: ""
                 KeyNavigation.tab: nameTextField
                 visible: settings.contestActive || ctsrTextField.text || ctssTextField.text
@@ -434,7 +443,7 @@ Page {
 
             QSOTextField {
                 id: nameTextField
-                Layout.columnSpan: 5
+                Layout.columnSpan: 3
                 text: ""
                 KeyNavigation.tab: qqthTextField
             }
@@ -446,7 +455,7 @@ Page {
 
             QSOTextField {
                 id: qqthTextField
-                Layout.columnSpan: 5
+                Layout.columnSpan: 3
                 text: ""
                 KeyNavigation.tab: gridTextField
             }
@@ -458,7 +467,7 @@ Page {
 
             QSOTextField {
                 id: ctryTextField
-                Layout.columnSpan: 5
+                Layout.columnSpan: 3
                 text: ""
                 KeyNavigation.tab: gridTextField
             }
@@ -470,7 +479,7 @@ Page {
 
             QSOTextField {
                 id: gridTextField
-                Layout.columnSpan: 5
+                Layout.columnSpan: 3
                 text: ""
                 KeyNavigation.tab: commTextField
             }
@@ -482,7 +491,7 @@ Page {
 
             QSOTextField {
                 id: commTextField
-                Layout.columnSpan: 5
+                Layout.columnSpan: 3
                 text: ""
                 KeyNavigation.tab: saveButton
             }
@@ -511,7 +520,7 @@ Page {
 
             Button {
                 id: saveButton
-                Layout.columnSpan: 5
+                Layout.columnSpan: 3
                 text: qsTr("Save QSO")
                 Layout.fillWidth: true
                 highlighted: true

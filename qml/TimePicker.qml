@@ -55,6 +55,13 @@ Popup {
                     delegate: delegateComponent
                 }
 
+                Text {
+                    height: hoursTumbler.height
+                    text: ":"
+                    color: "white"
+                    verticalAlignment: Text.AlignVCenter
+                }
+
                 Tumbler {
                     id: minutesTumbler
                     model: 60

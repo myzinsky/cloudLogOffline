@@ -23,7 +23,7 @@
 #ifndef __IOSSHAREUTILS_H__
 #define __IOSSHAREUTILS_H__
 
-#include "shareutils.h"
+#include "src/shareutils.h"
 
 class iosShareUtils : public platformShareUtils
 {
