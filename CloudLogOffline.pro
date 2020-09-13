@@ -12,7 +12,7 @@ CONFIG += c++11
 #GIT_VERSION ~= s/-/"."
 #GIT_VERSION ~= s/g/""
 #GIT_VERSION ~= s/\.\d+\.[a-f0-9]{6,}//
-GIT_VERSION = "1.0.5"
+GIT_VERSION = "1.0.6"
 message($$GIT_VERSION)
 DEFINES += GIT_VERSION=\\\"$$GIT_VERSION\\\"
 

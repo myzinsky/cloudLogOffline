@@ -3,10 +3,12 @@
 #include <QSqlDatabase>
 #include <QDebug>
 #include <QSqlQuery>
+#include <QSqlError>
 #include <QStandardPaths>
 
 class dbManager
 {
+
 public:
     dbManager();
     ~dbManager();
@@ -16,6 +18,7 @@ public:
 
 private:
     QSqlDatabase db;
+    QSqlQuery versionQuery;
 
 };
 

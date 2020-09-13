@@ -2,24 +2,12 @@
 
 migrationManager::migrationManager()
 {
-    selectQuery.prepare("SELECT version FROM appData;");
-
-    // Perform select query:
-    if(!selectQuery.exec()) {
-        qDebug() << "selectQuery: SQL Error" << selectQuery.lastError();
-    }
-
-    if(selectQuery.next() == false) {
-        insertDatabaseVersion(QString(GIT_VERSION));
-    } else {
         // Find the right migration strategy:
-        QVersionNumber database = QVersionNumber::fromString(selectQuery.value(0).toString());
+        QVersionNumber database = QVersionNumber::fromString(getDatabaseVersion());
         QVersionNumber current  = QVersionNumber::fromString(QString(GIT_VERSION));
 
-        if(database == current) {
-            qDebug() << "No Database Migration Required.";
-        } else {
-            qDebug() << "Database Migration Required!";
+        if(database < current) {
+            qDebug() << "Database Migration Required! (" << database << " --> " << current << ")";
 
             // Do Migration(s):
             if(database == QVersionNumber::fromString("1.0.3")) {
@@ -30,9 +18,28 @@ migrationManager::migrationManager()
                 from_1_0_4_to_1_0_5();
             }
 
-            // Update Database:
-            updateDatabaseVersion(QString(GIT_VERSION));
+            // Bugfixes:
+            fix_1_0_5();
+
+        } else {
+            qDebug() << "No Database Migration Required";
         }
+}
+
+QString migrationManager::getDatabaseVersion()
+{
+    selectQuery.prepare("SELECT version FROM appData;");
+
+    // Perform select query:
+    if(!selectQuery.exec()) {
+        qDebug() << "selectQuery: SQL Error" << selectQuery.lastError();
+    }
+
+    if(selectQuery.next() == false) {
+        insertDatabaseVersion("1.0.3"); // Here we start!
+        return "1.0.3";
+    } else {
+        return selectQuery.value(0).toString();
     }
 }
 
@@ -53,6 +60,33 @@ void migrationManager::from_1_0_4_to_1_0_5()
     res = res & addQSOColumn("satm", "TEXT");
     if(res == true) {
         updateDatabaseVersion("1.0.5");
+    }
+}
+
+void migrationManager::fix_1_0_5()
+{
+    // This bug was in 1.0.5 when I started with migration scripts, i screwed-up the databases of some iPhone users. This bugfix resolves the issue.
+    QSqlQuery fixQuery;
+    fixQuery.prepare("SELECT COUNT(*) AS CNTREC FROM pragma_table_info('qsos') WHERE name='sota';");
+
+    if(!fixQuery.exec()) {
+        qDebug() << "selectQuery: SQL Error" << selectQuery.lastError();
+    }
+
+    if(selectQuery.value(0).toInt() == 0) {
+        qDebug() << "BUGFIX";
+        from_1_0_3_to_1_0_4();
+    }
+
+    fixQuery.prepare("SELECT COUNT(*) AS CNTREC FROM pragma_table_info('qsos') WHERE name='satn';");
+
+    if(!fixQuery.exec()) {
+        qDebug() << "selectQuery: SQL Error" << selectQuery.lastError();
+    }
+
+    if(selectQuery.value(0).toInt() == 0) {
+        qDebug() << "BUGFIX";
+        from_1_0_4_to_1_0_5();
     }
 }
 

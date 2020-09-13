@@ -69,6 +69,7 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("cl", QVariant::fromValue(&cl));
     engine.rootContext()->setContextProperty("tm", QVariant::fromValue(&tm));
     engine.rootContext()->setContextProperty("tools", QVariant::fromValue(&t));
+    engine.rootContext()->setContextProperty("database", QVariant::fromValue(&mm));
 
     engine.load(QUrl(QStringLiteral("qrc:/qml/Main.qml")));
 

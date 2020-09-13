@@ -18,7 +18,8 @@ bool dbManager::createTables()
     bool success2 = false;
 
     QSqlQuery query;
-    // 1.0.5:
+
+    // 1.0.3
     query.prepare("CREATE TABLE qsos("
                   "id INTEGER PRIMARY KEY,"
                   "call TEXT,"
@@ -35,11 +36,7 @@ bool dbManager::createTables()
                   "comm TEXT,"
                   "ctss TEXT,"
                   "ctsr TEXT,"
-                  "sync INTEGER DEFAULT 0,"
-                  "sota TEXT,"
-                  "sots TEXT,"
-                  "satn TEXT,"
-                  "satm TEXT"
+                  "sync INTEGER DEFAULT 0"
                   ");");
 
     success = query.exec();
