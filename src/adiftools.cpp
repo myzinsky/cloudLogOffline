@@ -108,17 +108,19 @@ QString adifTools::assemble(QString call,
     QString dateN = convertDate(date);
     QString timeN = convertTime(time);
     QString freqN = convertFreq(freq);
+    QString ownCall = settings.value("call").toString().toUpper();
 
     QString str = QString("") +
-                  "<call:"     + QString::number(call.size())  + ">" + call +
-                  "<band:"     + QString::number(band.size())  + ">" + band +
-                  "<mode:"     + QString::number(mode.size())  + ">" + mode +
-                  "<freq:"     + QString::number(freqN.size()) + ">" + freqN +
-                  "<qso_date:" + QString::number(dateN.size()) + ">" + dateN +
-                  "<time_on:"  + QString::number(timeN.size()) + ">" + timeN +
-                  "<time_off:" + QString::number(timeN.size()) + ">" + timeN +
-                  "<rst_rcvd:" + QString::number(recv.size())  + ">" + recv +
-                  "<rst_sent:" + QString::number(sent.size())  + ">" + sent;
+                  "<call:"             + QString::number(call.size())     + ">" + call +
+                  "<station_callsign:" + QString::number(ownCall.size())  + ">" + ownCall +
+                  "<band:"             + QString::number(band.size())     + ">" + band +
+                  "<mode:"             + QString::number(mode.size())     + ">" + mode +
+                  "<freq:"             + QString::number(freqN.size())    + ">" + freqN +
+                  "<qso_date:"         + QString::number(dateN.size())    + ">" + dateN +
+                  "<time_on:"          + QString::number(timeN.size())    + ">" + timeN +
+                  "<time_off:"         + QString::number(timeN.size())    + ">" + timeN +
+                  "<rst_rcvd:"         + QString::number(recv.size())     + ">" + recv +
+                  "<rst_sent:"         + QString::number(sent.size())     + ">" + sent;
 
     // Contest mode:
     if(!ctss.isEmpty()) {
