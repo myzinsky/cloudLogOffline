@@ -18,8 +18,6 @@ public slots:
     QString getDatabaseVersion();
 
 private:
-    QSqlQuery selectQuery;
-
     bool updateDatabaseVersion(QString Version);
     bool insertDatabaseVersion(QString Version);
     bool addQSOColumn(QString name, QString type);

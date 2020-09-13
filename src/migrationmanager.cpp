@@ -7,7 +7,7 @@ migrationManager::migrationManager()
         QVersionNumber current  = QVersionNumber::fromString(QString(GIT_VERSION));
 
         if(database < current) {
-            qDebug() << "Database Migration Required! (" << database << " --> " << current << ")";
+            qDebug() << "Database Migration might be Required! (" << database << " --> " << current << ")";
 
             // Do Migration(s):
             if(database == QVersionNumber::fromString("1.0.3")) {
@@ -28,6 +28,7 @@ migrationManager::migrationManager()
 
 QString migrationManager::getDatabaseVersion()
 {
+    QSqlQuery selectQuery;
     selectQuery.prepare("SELECT version FROM appData;");
 
     // Perform select query:
@@ -66,25 +67,18 @@ void migrationManager::from_1_0_4_to_1_0_5()
 void migrationManager::fix_1_0_5()
 {
     // This bug was in 1.0.5 when I started with migration scripts, i screwed-up the databases of some iPhone users. This bugfix resolves the issue.
+
     QSqlQuery fixQuery;
-    fixQuery.prepare("SELECT COUNT(*) AS CNTREC FROM pragma_table_info('qsos') WHERE name='sota';");
+    fixQuery.prepare("SELECT sota FROM QSOs");
 
     if(!fixQuery.exec()) {
-        qDebug() << "selectQuery: SQL Error" << selectQuery.lastError();
-    }
-
-    if(selectQuery.value(0).toInt() == 0) {
         qDebug() << "BUGFIX";
         from_1_0_3_to_1_0_4();
     }
 
-    fixQuery.prepare("SELECT COUNT(*) AS CNTREC FROM pragma_table_info('qsos') WHERE name='satn';");
+    fixQuery.prepare("SELECT satn FROM QSOs");
 
     if(!fixQuery.exec()) {
-        qDebug() << "selectQuery: SQL Error" << selectQuery.lastError();
-    }
-
-    if(selectQuery.value(0).toInt() == 0) {
         qDebug() << "BUGFIX";
         from_1_0_4_to_1_0_5();
     }
@@ -99,7 +93,7 @@ bool migrationManager::updateDatabaseVersion(QString Version)
     versionQuery.prepare(queryTxt);
 
     if(!versionQuery.exec()) {
-        qDebug() << "selectQuery: SQL Error" << selectQuery.lastError();
+        qDebug() << "versionQuery: SQL Error" << versionQuery.lastError();
         return false;
     }
     return true;
@@ -114,7 +108,7 @@ bool migrationManager::insertDatabaseVersion(QString Version)
     versionQuery.prepare(queryTxt);
 
     if(!versionQuery.exec()) {
-        qDebug() << "selectQuery: SQL Error" << selectQuery.lastError();
+        qDebug() << "versionQuery: SQL Error" << versionQuery.lastError();
         return false;
     }
     return true;
@@ -129,7 +123,7 @@ bool migrationManager::addQSOColumn(QString name, QString type)
     alterQuery.prepare(queryTxt);
 
     if(!alterQuery.exec()) {
-        qDebug() << "alterQuery: SQL Error" << selectQuery.lastError();
+        qDebug() << "alterQuery: SQL Error" << alterQuery.lastError();
         return false;
     }
     return true;
