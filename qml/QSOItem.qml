@@ -152,15 +152,69 @@ SwipeDelegate {
                 font.pixelSize: 20
             }
 
+            //--- SOTA
+
             Text {
-                id: rowNumber
+                id: sotaLogo
+                color: "#ffffff"
+                font.family: fontAwesome.name
+                text: (model.sota !== "" || model.sots !== "") ? "\uf6fc" : ""
+                anchors.top: parent.top
+                anchors.right: sotaName.left
+                anchors.topMargin: 50
+                anchors.rightMargin: (model.sota !== "" || model.sots !== "") ? 5 : 0
+                font.pixelSize: 12
+                opacity: 0.87
+            }
+
+            Text {
+                id: sotaName
+                color: "#ffffff"
+                text: (model.sota !== "" || model.sots !== "") ? "S:" + model.sots + " R:" + model.sota : ""
+                anchors.top: parent.top
+                anchors.right: satLogo.left
+                anchors.topMargin: 50
+                anchors.rightMargin: (model.sota !== "" || model.sots !== "") ? 5 : 0
+                font.pixelSize: 12
+                opacity: 0.87
+            }
+
+            //--- SAT
+
+            Text {
+                id: satLogo
+                color: "#ffffff"
+                font.family: fontAwesome.name
+                text: model.satn !== "" ? "\uf7bf" : ""
+                anchors.top: parent.top
+                anchors.right: satName.left
+                anchors.topMargin: 50
+                anchors.rightMargin: model.satn !== "" ? 5 : 0
+                font.pixelSize: 12
+                opacity: 0.87
+            }
+
+            Text {
+                id: satName
+                color: "#ffffff"
+                text: model.satn
+                anchors.top: parent.top
+                anchors.right: syncStatus.left
+                anchors.topMargin: 50
+                anchors.rightMargin: model.satn !== "" ? 5 : 0
+                font.pixelSize: 12
+                opacity: 0.87
+            }
+
+            Text {
+                id: syncStatus
                 color: "#ffffff"
                 font.family: fontAwesome.name
                 text: model.sync === 0 ? "" : "\uf382"
                 anchors.top: parent.top
                 anchors.right: parent.right
                 anchors.topMargin: 50
-                anchors.rightMargin: 5
+                anchors.rightMargin: model.sync !== 0 ? 5 : 0
                 font.pixelSize: 12
                 opacity: 0.87
             }
