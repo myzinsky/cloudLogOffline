@@ -71,6 +71,72 @@ Page {
         satnComboBox.currentIndex = 0;
     }
 
+    function save() {
+        if(addQSO == true || liveQSO == true) {
+            qsoModel.addQSO(callTextField.text,
+                    nameTextField.text,
+                    ctryTextField.text,
+                    dateTextField.text,
+                    timeTextField.text,
+                    freqTextField.text,
+                    modeComboBox.currentText,
+                    sentTextField.text,
+                    recvTextField.text,
+                    gridTextField.text,
+                    qqthTextField.text,
+                    commTextField.text,
+                    ctssTextField.text,
+                    ctsrTextField.text,
+                    sotaTextField.text,
+                    sotsTextField.text,
+                    satnComboBox.currentText,
+                    satmTextField.text
+                    );
+
+            if(addQSO) {
+                stackView.pop()
+            } else if(liveQSO) {
+                var tmp = ctssTextField.text;
+                page.reset();
+                if(settings.contestActive && liveQSO) {
+                    if(isNaN(tmp)) { // If it is e.g. a province
+                        ctssTextField.text = tmp;
+                    } else { // if its a running number
+                        var contestNumber = parseInt(tmp);
+                        contestNumber += 1;
+                        ctssTextField.text = contestNumber;
+                        settings.contestNumber = contestNumber;
+                    }
+                    sentTextField.text = 59;
+                    recvTextField.text = 59;
+                }
+            }
+
+        } else if(updateQSO == true) {
+            qsoModel.updateQSO(rid,
+                       callTextField.text,
+                       nameTextField.text,
+                       ctryTextField.text,
+                       dateTextField.text,
+                       timeTextField.text,
+                       freqTextField.text,
+                       modeComboBox.currentText,
+                       sentTextField.text,
+                       recvTextField.text,
+                       gridTextField.text,
+                       qqthTextField.text,
+                       commTextField.text,
+                       ctssTextField.text,
+                       ctsrTextField.text,
+                       sotaTextField.text,
+                       sotsTextField.text,
+                       satnComboBox.currentText,
+                       satmTextField.text
+                       );
+            stackView.pop()
+        }
+    }
+
     Timer {
         id: rigTimer
         interval: 1000
@@ -630,79 +696,18 @@ Page {
                 visible: updateQSO
             }
 
-            Button {
+            IconButton {
                 id: saveButton
                 Layout.columnSpan: 3
                 text: qsTr("Save QSO")
+                buttonIcon: "\uf0c7"
                 Layout.fillWidth: true
                 highlighted: true
                 Material.theme: Material.Light
                 Material.accent: Material.Green
 
                 onClicked: {
-                    if(addQSO == true || liveQSO == true) {
-                        qsoModel.addQSO(callTextField.text,
-                                nameTextField.text,
-                                ctryTextField.text,
-                                dateTextField.text,
-                                timeTextField.text,
-                                freqTextField.text,
-                                modeComboBox.currentText,
-                                sentTextField.text,
-                                recvTextField.text,
-                                gridTextField.text,
-                                qqthTextField.text,
-                                commTextField.text,
-                                ctssTextField.text,
-                                ctsrTextField.text,
-                                sotaTextField.text,
-                                sotsTextField.text,
-                                satnComboBox.currentText,
-                                satmTextField.text
-                                );
-
-                        if(addQSO) {
-                            stackView.pop()
-                        } else if(liveQSO) {
-                            var tmp = ctssTextField.text;
-                            page.reset();
-                            if(settings.contestActive && liveQSO) {
-                                if(isNaN(tmp)) { // If it is e.g. a province
-                                    ctssTextField.text = tmp;
-                                } else { // if its a running number
-                                    var contestNumber = parseInt(tmp);
-                                    contestNumber += 1;
-                                    ctssTextField.text = contestNumber;
-                                    settings.contestNumber = contestNumber;
-                                }
-                                sentTextField.text = 59;
-                                recvTextField.text = 59;
-                            }
-                        }
-
-                    } else if(updateQSO == true) {
-                        qsoModel.updateQSO(rid,
-                                   callTextField.text,
-                                   nameTextField.text,
-                                   ctryTextField.text,
-                                   dateTextField.text,
-                                   timeTextField.text,
-                                   freqTextField.text,
-                                   modeComboBox.currentText,
-                                   sentTextField.text,
-                                   recvTextField.text,
-                                   gridTextField.text,
-                                   qqthTextField.text,
-                                   commTextField.text,
-                                   ctssTextField.text,
-                                   ctsrTextField.text,
-                                   sotaTextField.text,
-                                   sotsTextField.text,
-                                   satnComboBox.currentText,
-                                   satmTextField.text
-                                   );
-                        stackView.pop()
-                    }
+                    save();
                 }
             }
         }

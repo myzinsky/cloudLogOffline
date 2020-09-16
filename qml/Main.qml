@@ -150,6 +150,22 @@ ApplicationWindow {
             anchors.rightMargin: Math.max(notchLeft, notchRight) // iPhoneX workaround
             anchors.bottom: parent.bottom // iPhoneX workaround
         }
+
+        ToolButton {
+            id: saveButton
+            text:"\uf0c7"
+            visible: (stackView.currentItem.toString().includes("QSOView"))
+            font.family: fontAwesome.name
+            font.pixelSize: Qt.application.font.pixelSize * 1.6
+
+            onClicked: {
+                stackView.currentItem.save();
+            }
+
+            anchors.right: parent.right // iPhoneX workaround
+            anchors.rightMargin: Math.max(notchLeft, notchRight) // iPhoneX workaround
+            anchors.bottom: parent.bottom // iPhoneX workaround
+        }
     }
 
     PageDrawer {
