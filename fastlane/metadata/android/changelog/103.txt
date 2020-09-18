@@ -1,0 +1,1 @@
+New 'Export' options added (ADIF, Cabrillo, CSV). User of the app are requested to do regular backups of their QSOs with that new feature.
