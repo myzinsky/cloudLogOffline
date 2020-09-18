@@ -5,7 +5,7 @@ import Qt.labs.qmlmodels 1.0
 Page {
     id: qsoListView
     title: qsTr("Logbook")
-    anchors.fill: parent
+    //anchors.fill: parent
     anchors.topMargin: 5
 
     ListView {

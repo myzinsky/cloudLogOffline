@@ -6,7 +6,7 @@ import Qt.labs.settings 1.0
 
 Page {
     id: page
-    anchors.fill: parent
+    //anchors.fill: parent
     title: (addQSO || liveQSO) ? qsTr("Add QSO") : qsTr("Edit QSO")
     anchors.margins: 5
 
@@ -41,11 +41,15 @@ Page {
     property bool qrzFound: false;
 
     Component.onCompleted: {
-        var i = modeComboBox.find(mode);
-        modeComboBox.currentIndex = i;
+        if(mode) {
+            var i = modeComboBox.find(mode);
+            modeComboBox.currentIndex = i;
+        }
 
-        var j = satnComboBox.find(satn);
-        satnComboBox.currentIndex = j;
+        if(satn) {
+            var j = satnComboBox.find(satn);
+            satnComboBox.currentIndex = j;
+        }
     }
 
     function reset() {

@@ -244,7 +244,7 @@ SwipeDelegate {
 
             onClicked: {
                 swipe.close()
-                stackView.push("QSOView.qml",
+                stackView.push("QSOViewWrapper.qml",
                                {
                                    "addQSO"     : false,
                                    "liveQSO"    : false,

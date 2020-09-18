@@ -108,7 +108,8 @@ HEADERS += src/csvtools.h
 HEADERS += src/logtools.h
 HEADERS += src/migrationmanager.h
 
-DISTFILES += android/AndroidManifest.xml
+DISTFILES += android/AndroidManifest.xml \
+    qml/QSOViewWrapper.qml
 DISTFILES += qml/TimePicker.qml
 DISTFILES += android/build.gradle
 DISTFILES += android/gradle/wrapper/gradle-wrapper.jar

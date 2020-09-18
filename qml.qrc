@@ -26,5 +26,6 @@
         <file>fonts/fa-solid-900.ttf</file>
         <file>qml/DatePicker.qml</file>
         <file>qml/TimePicker.qml</file>
+        <file>qml/QSOViewWrapper.qml</file>
     </qresource>
 </RCC>

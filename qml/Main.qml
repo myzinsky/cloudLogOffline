@@ -137,7 +137,7 @@ ApplicationWindow {
             font.pixelSize: Qt.application.font.pixelSize * 1.6
 
             onClicked: {
-                stackView.push("QSOView.qml",
+                stackView.push("QSOViewWrapper.qml",
                 {
                     "addQSO"    : false,
                     "liveQSO"   : true,
@@ -154,7 +154,7 @@ ApplicationWindow {
         ToolButton {
             id: saveButton
             text:"\uf0c7"
-            visible: (stackView.currentItem.toString().includes("QSOView"))
+            visible: (stackView.currentItem.toString().includes("QSOViewWrapper"))
             font.family: fontAwesome.name
             font.pixelSize: Qt.application.font.pixelSize * 1.6
 
@@ -188,7 +188,7 @@ ApplicationWindow {
                 stackView.push("QSOListView.qml")
             },
             1: function() {
-                stackView.push("QSOView.qml",
+                stackView.push("QSOViewWrapper.qml",
                        {
                            "addQSO"    : true,
                            "liveQSO"   : false,
@@ -196,7 +196,7 @@ ApplicationWindow {
                        });
             },
             2: function() {
-                stackView.push("QSOView.qml",
+                stackView.push("QSOViewWrapper.qml",
                        {
                            "addQSO"    : false,
                            "liveQSO"   : true,
