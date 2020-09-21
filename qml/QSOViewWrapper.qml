@@ -44,6 +44,5 @@ SplitView {
 
     QSOView {
         id: qsoView
-        Layout.margins: 5
     }
 }

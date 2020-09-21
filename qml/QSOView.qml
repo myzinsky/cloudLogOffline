@@ -6,9 +6,8 @@ import Qt.labs.settings 1.0
 
 Page {
     id: page
-    //anchors.fill: parent
     title: (addQSO || liveQSO) ? qsTr("Add QSO") : qsTr("Edit QSO")
-    anchors.margins: 5
+    //Layout.margins: 5
 
     property bool addQSO: true;
     property bool liveQSO: false;
@@ -220,6 +219,7 @@ Page {
 
     ScrollView {
         anchors.fill: parent
+        padding: 5
         contentWidth: -1
 
         ButtonGroup {
@@ -229,7 +229,7 @@ Page {
         GridLayout {
             id: grid
             columns: 4
-            width: page.width // Important
+            width: page.width - 10 // Important
 
             Label {
                 id: dateLable
