@@ -26,6 +26,7 @@ private slots:
 public slots:
     void uploadToCloudLog(QString ssl, QString url, QString key);
     void deleteUploadedQsos();
+    void deleteQsos();
 
 signals:
     void uploadSucessfull(double progress);

@@ -5,6 +5,7 @@ import QtQuick.Controls.Material 2.4
 import Qt.labs.settings 1.0
 import Qt.labs.platform 1.1
 import com.lasconic 1.0
+import QtQuick.Dialogs 1.1
 
 Page {
     id: page
@@ -14,7 +15,7 @@ Page {
 
     MessageDialog {
         id: cloudLogMessage
-        buttons: MessageDialog.Ok
+        standardButtons: MessageDialog.Ok
     }
 
     Connections{
@@ -84,6 +85,17 @@ Page {
                 Layout.columnSpan: 2
 
                 onClicked: {
+                    deleteUploadedMessage.open()
+                }
+            }
+
+            MessageDialog {
+                id: deleteUploadedMessage
+                title: qsTr("Delete?")
+                icon: StandardIcon.Question
+                text: qsTr("Delete all Uploaded QSOs?")
+                standardButtons: StandardButton.Yes | StandardButton.No
+                onYes: {
                     cl.deleteUploadedQsos()
                     qsoModel.submit();
                     qsoModel.select()
@@ -113,6 +125,35 @@ Page {
 
                 onClicked: {
                     shareUtils.shareADIF()
+                }
+            }
+
+            IconButton {
+                id: deleteOSOs
+                buttonIcon: "\uf2ed"
+                text: "Delete All QSOs"
+                Layout.fillWidth: true
+                highlighted: settings.cloudLogActive
+                enabled: settings.cloudLogActive
+                Material.theme: Material.Light
+                Material.accent: Material.Red
+                Layout.columnSpan: 2
+
+                onClicked: {
+                    deleteMessage.open()
+                }
+            }
+
+            MessageDialog {
+                id: deleteMessage
+                title: qsTr("Delete?")
+                icon: StandardIcon.Question
+                text: qsTr("Delete all QSOs?")
+                standardButtons: StandardButton.Yes | StandardButton.No
+                onYes: {
+                    cl.deleteQsos()
+                    qsoModel.submit()
+                    qsoModel.select()
                 }
             }
 

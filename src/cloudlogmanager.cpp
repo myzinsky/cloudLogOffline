@@ -232,4 +232,12 @@ void cloudlogManager::deleteUploadedQsos()
     }
 }
 
+void cloudlogManager::deleteQsos()
+{
+    QSqlQuery query;
+    query.prepare("DELETE FROM qsos");
 
+    if(!query.exec()) {
+        qDebug() << "SQL Error:" << query.lastError().text();
+    }
+}
