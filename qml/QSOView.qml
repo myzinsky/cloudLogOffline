@@ -76,7 +76,7 @@ Page {
 
     function save() {
         if(addQSO == true || liveQSO == true) {
-            qsoModel.addQSO(callTextField.text,
+            qsoModel.addQSO(callTextField.text.toUpperCase(),
                     nameTextField.text,
                     ctryTextField.text,
                     dateTextField.text,
@@ -90,10 +90,10 @@ Page {
                     commTextField.text,
                     ctssTextField.text,
                     ctsrTextField.text,
-                    sotaTextField.text,
-                    sotsTextField.text,
+                    sotaTextField.text.toUpperCase(),
+                    sotsTextField.text.toUpperCase(),
                     satnComboBox.currentText,
-                    satmTextField.text
+                    satmTextField.text.toUpperCase()
                     );
 
             if(addQSO) {
@@ -117,7 +117,7 @@ Page {
 
         } else if(updateQSO == true) {
             qsoModel.updateQSO(rid,
-                       callTextField.text,
+                       callTextField.text.toUpperCase(),
                        nameTextField.text,
                        ctryTextField.text,
                        dateTextField.text,
@@ -131,10 +131,10 @@ Page {
                        commTextField.text,
                        ctssTextField.text,
                        ctsrTextField.text,
-                       sotaTextField.text,
-                       sotsTextField.text,
+                       sotaTextField.text.toUpperCase(),
+                       sotsTextField.text.toUpperCase(),
                        satnComboBox.currentText,
-                       satmTextField.text
+                       satmTextField.text.toUpperCase()
                        );
             stackView.pop()
         }
@@ -587,6 +587,8 @@ Page {
                 text: (addQSO == true || liveQSO == true) ? (settings.sotaActive ? settings.mySotaReference : "") : sotsTextField.text
                 KeyNavigation.tab: sotaTextField
                 visible: settings.sotaActive || sotaTextField.text || sotsTextField.text
+                font.capitalization: Font.AllUppercase
+                inputMethodHints: Qt.ImhUppercaseOnly
             }
 
             Label {
@@ -601,6 +603,8 @@ Page {
                 text: ""
                 KeyNavigation.tab: (settings.satActive || (satnComboBox.currentIndex !== 0) || satmTextField.text) ? satnComboBox : commTextField
                 visible: settings.sotaActive || sotaTextField.text || sotsTextField.text
+                font.capitalization: Font.AllUppercase
+                inputMethodHints: Qt.ImhUppercaseOnly
             }
 
             //--- SAT:

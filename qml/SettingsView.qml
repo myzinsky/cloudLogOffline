@@ -350,6 +350,8 @@ Page {
                 text: settings.mySotaReference
                 onTextEdited: saveSettings();
                 onEditingFinished: saveSettings();
+                font.capitalization: Font.AllUppercase
+                inputMethodHints: Qt.ImhUppercaseOnly
             }
 
             // ----------------
