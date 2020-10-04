@@ -7,7 +7,6 @@ import Qt.labs.settings 1.0
 Page {
     id: page
     title: (addQSO || liveQSO) ? qsTr("Add QSO") : qsTr("Edit QSO")
-    //Layout.margins: 5
 
     property bool addQSO: true;
     property bool liveQSO: false;
@@ -448,8 +447,21 @@ Page {
                     "HELL80",
                     "MFSK16",
                     "JT6M",
-                    "ROS"
+                    "ROS",
                 ]
+
+                popup: Popup {
+                    x: (parent.width - width) / 2
+                    y: (page.height - height) / 2
+                    width: Math.max(200, modeComboBox.width)
+                    padding: 0
+                    contentItem: ListView {
+                        clip: true
+                        implicitHeight: page.height
+                        model: modeComboBox.popup.visible ? modeComboBox.delegateModel : null
+                        currentIndex: modeComboBox.highlightedIndex
+                    }
+                }
             }
 
             Label {
@@ -652,6 +664,19 @@ Page {
                     "XW-2F",
                 ]
                 visible: settings.satActive || (satnComboBox.currentIndex !== 0) || satmTextField.text
+
+                popup: Popup {
+                    x: (parent.width - width) / 2
+                    y: (parent.height - height) / 2
+                    width: Math.max(200, satnComboBox.width)
+                    padding: 0
+                    contentItem: ListView {
+                        clip: true
+                        implicitHeight: page.height
+                        model: satnComboBox.popup.visible ? satnComboBox.delegateModel : null
+                        currentIndex: satnComboBox.highlightedIndex
+                    }
+                }
             }
 
             Label {
