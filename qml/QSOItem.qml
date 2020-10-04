@@ -33,7 +33,7 @@ SwipeDelegate {
 
             Text {
                 id:call
-                text: model.call.replace("0","\u2205").toUpperCase()
+                text: model.call.replace(/0/g,"\u2205").toUpperCase()
                 font.underline: false
                 font.weight: Font.Bold
                 style: Text.Normal
