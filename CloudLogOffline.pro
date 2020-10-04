@@ -43,6 +43,7 @@ SOURCES += src/csvtools.cpp
 SOURCES += src/migrationmanager.cpp
 
 RESOURCES += qml.qrc
+QMAKE_RESOURCE_FLAGS += -no-compress
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
@@ -57,8 +58,6 @@ ios {
     #QMAKE_INFO_PLIST = ios/Info.plist
     app_launch_images.files = $$PWD/ios/myLaunchScreen.xib
     QMAKE_BUNDLE_DATA += app_launch_images
-    ios_translation.files = $$files($$PWD/translations/*.qm)
-    QMAKE_BUNDLE_DATA += ios_translation
     QMAKE_ASSET_CATALOGS += ios/Media.xcassets
     QMAKE_TARGET_BUNDLE_PREFIX = de.webappjung
 
@@ -71,8 +70,6 @@ macx {
     ICON = images/macos/logo_circle.icns
     QMAKE_INFO_PLIST = macos/Info.plist
     QT += widgets
-    macos_translation.files = $$files($$PWD/translations/*.qm)
-    macos_translation.path = "Contents/MacOS"
     QMAKE_BUNDLE_DATA += macos_translation
     QMAKE_TARGET_BUNDLE_PREFIX = de.webappjung
 }
@@ -81,9 +78,6 @@ android {
     ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
     include(/Users/myzinsky/Library/Android/sdk/android_openssl/openssl.pri) # TODO make generic path
     QT += androidextras
-    android_translation.files = $$files($$PWD/translations/*.qm)
-    android_translation.path = /assets
-    INSTALLS += android_translation
     OTHER_FILES += android/src/com/lasconic/QShareUtils.java
     HEADERS += android/androidshareutils.h
     SOURCES += android/androidshareutils.cpp
@@ -108,8 +102,8 @@ HEADERS += src/csvtools.h
 HEADERS += src/logtools.h
 HEADERS += src/migrationmanager.h
 
-DISTFILES += android/AndroidManifest.xml \
-    qml/QSOViewWrapper.qml
+DISTFILES += android/AndroidManifest.xml
+DISTFILES += qml/QSOViewWrapper.qml
 DISTFILES += qml/TimePicker.qml
 DISTFILES += android/build.gradle
 DISTFILES += android/gradle/wrapper/gradle-wrapper.jar

@@ -27,5 +27,7 @@
         <file>qml/DatePicker.qml</file>
         <file>qml/TimePicker.qml</file>
         <file>qml/QSOViewWrapper.qml</file>
+        <file>translations/German.qm</file>
+        <file>translations/English.qm</file>
     </qresource>
 </RCC>

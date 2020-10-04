@@ -19,7 +19,7 @@ void translationManager::switchToLanguage(const QString &language)
     if(success == true) { // Search for iOS:
         qDebug() << "Language Switched: " << language;
     } else { // Search for Android again:
-        success = translator->load("assets:/"+language+".qm");
+        success = translator->load(":/translations/"+language+".qm");
         if(success == true) {
             qDebug() << "Language Switched: " << language;
         } else {
