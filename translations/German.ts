@@ -193,6 +193,18 @@
         <source>Export CSV logfile in clipboard or context menu</source>
         <translation>CSV Logfile in die Zwischenablage oder das Kontextmenü exportieren</translation>
     </message>
+    <message>
+        <source>Delete?</source>
+        <translation>Löschen?</translation>
+    </message>
+    <message>
+        <source>Delete all Uploaded QSOs?</source>
+        <translation>Lösche alle hochgeladenen QSOs?</translation>
+    </message>
+    <message>
+        <source>Delete all QSOs?</source>
+        <translation>Alle QSOs löschen?</translation>
+    </message>
 </context>
 <context>
     <name>Main</name>
@@ -348,6 +360,17 @@
     <message>
         <source>SAT Mode</source>
         <translation>SAT Mode</translation>
+    </message>
+</context>
+<context>
+    <name>QSOViewWrapper</name>
+    <message>
+        <source>Add QSO</source>
+        <translation>QSO Hinzufügen</translation>
+    </message>
+    <message>
+        <source>Edit QSO</source>
+        <translation>QSO Bearbeiten</translation>
     </message>
 </context>
 <context>

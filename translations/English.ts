@@ -185,6 +185,18 @@
         <source>Export CSV logfile in clipboard or context menu</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Delete?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete all Uploaded QSOs?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete all QSOs?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Main</name>
@@ -331,6 +343,17 @@
     </message>
     <message>
         <source>SAT Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>QSOViewWrapper</name>
+    <message>
+        <source>Add QSO</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Edit QSO</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
