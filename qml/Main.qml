@@ -124,7 +124,6 @@ ApplicationWindow {
 
         Label {
             text: stackView.currentItem.title
-            //anchors.centerIn: parent
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.verticalCenter: toolButton.verticalCenter
         }

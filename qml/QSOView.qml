@@ -6,7 +6,7 @@ import Qt.labs.settings 1.0
 
 Page {
     id: page
-    title: (addQSO || liveQSO) ? qsTr("Add QSO") : qsTr("Edit QSO")
+    title: (addQSO || liveQSO) ? (qsTr("Add QSO") + "(" + qsoModel.numberOfQSOs() + ")") : qsTr("Edit QSO")
 
     property bool addQSO: true;
     property bool liveQSO: false;
@@ -75,6 +75,8 @@ Page {
 
         modeComboBox.currentIndex = 0;
         satnComboBox.currentIndex = 0;
+
+        qrzFound = false;
     }
 
     function save() {
@@ -397,10 +399,10 @@ Page {
                     font.family: fontAwesome.name
                     buttonIcon: "\uf7a2"
                     text: ""
-                    highlighted: qrzFound
+                    highlighted: qrzFound && callTextField.text
                     Material.theme:  Material.Light
                     Material.accent: Material.Green
-                    enabled: qrzFound && settings.qrzActive
+                    enabled: qrzFound && settings.qrzActive && callTextField.text
                     padding: 0
 
                     onClicked: {

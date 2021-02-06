@@ -141,8 +141,21 @@ bool qsoModel::checkCall(QString call)
     }
 
     query.next();
-    int number = query.value(0).toInt();
+    int number =  query.value(0).toInt();
     return number >= 1;
+}
+
+unsigned int qsoModel::numberOfQSOs()
+{
+    QSqlQuery query;
+    query.prepare("SELECT COUNT(*) FROM qsos;");
+
+    if(!query.exec()) {
+        qDebug() << "SQL Error:" << query.lastError().text();
+    }
+
+    query.next();
+    return query.value(0).toInt();
 }
 
 QString qsoModel::selectStatement() const

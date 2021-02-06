@@ -65,6 +65,8 @@ public slots:
 
     bool checkCall(QString call);
 
+    unsigned int numberOfQSOs();
+
 protected:
     QString selectStatement() const override;
 };
