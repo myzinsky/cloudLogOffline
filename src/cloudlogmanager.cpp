@@ -58,6 +58,8 @@ void cloudlogManager::uploadQSO(QString url,
     QDateTime currentTime = QDateTime::currentDateTime();
     QByteArray data;
 
+    name.replace("\"",""); // Remove " from names
+
     QString str = QString("") +
     "{" +
         "\"key\":\"" + key +"\"," +
