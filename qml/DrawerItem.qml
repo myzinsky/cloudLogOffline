@@ -140,8 +140,8 @@ ItemDelegate {
     //
     RowLayout {
         spacing: 16
-        anchors.margins: 16
         anchors.fill: parent
+        Layout.fillHeight: true
         visible: !isSpacer (index)
 
         Label {
@@ -151,9 +151,8 @@ ItemDelegate {
             opacity: 0.87
             text: iconSource (index)
             font.weight: Font.Medium
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.left: parent.left
-            anchors.leftMargin: Math.max(window.notchLeft, window.notchRight)
+            Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+            Layout.leftMargin: Math.max(window.notchLeft, window.notchRight) + 8
         }
 
         Item {
@@ -164,11 +163,9 @@ ItemDelegate {
             opacity: 0.87
             font.pixelSize: 14
             text: itemText (index)
-            Layout.fillWidth: true
             font.weight: Font.Medium
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.left: parent.left
-            anchors.leftMargin: Math.max(window.notchLeft, window.notchRight) + 50
+            Layout.fillWidth: true
+            Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
         }
     }
 }
