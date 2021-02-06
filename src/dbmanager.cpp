@@ -71,7 +71,7 @@ void dbManager::openDatabase()
     db.databaseName();
 
     if (!db.open()) {
-        qDebug() << "Error: connection with database fail";
+        qDebug() << "Error: connection with database failed: " << dbLocation << "/" << dbName;
     } else {
         qDebug() << "Database: connection ok";
     }
