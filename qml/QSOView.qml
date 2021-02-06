@@ -48,6 +48,10 @@ Page {
             var j = satnComboBox.find(satn);
             satnComboBox.currentIndex = j;
         }
+
+        if(updateQSO) {
+            qrz.lookupCall(callTextField.text);
+        }
     }
 
     function reset() {
