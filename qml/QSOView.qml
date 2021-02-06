@@ -159,18 +159,22 @@ Page {
         target: rig
 
         onFreqDone: {
-            freqTextField.text = freq
+            if(!updateQSO) {
+                freqTextField.text = freq
+            }
         }
 
         onModeDone: {
-            var m
-            if(mode == "USB" || mode == "LSB") {
-                m = "SSB"
-            } else {
-                m = mode
+            if(!updateQSO) {
+                var m
+                if(mode == "USB" || mode == "LSB") {
+                    m = "SSB"
+                } else {
+                    m = mode
+                }
+                var i = modeComboBox.find(m);
+                modeComboBox.currentIndex = i;
             }
-            var i = modeComboBox.find(m);
-            modeComboBox.currentIndex = i;
         }
     }
 
