@@ -69,6 +69,7 @@ ApplicationWindow {
 
         property bool contestActive
         property string contestNumber
+        property bool fixedNumber
 
         property string cloudLogURL
         property string cloudLogSSL

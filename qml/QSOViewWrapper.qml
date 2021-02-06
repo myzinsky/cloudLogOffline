@@ -6,7 +6,7 @@ SplitView {
     id: qsoViewWrapper
     anchors.fill: parent
     orientation: Qt.Horizontal
-    property string title: (addQSO || liveQSO) ? (qsTr("Add QSO") + "(" + (qsoModel.numberOfQSOs()+1) + ")") : qsTr("Edit QSO")
+    property string title: (addQSO || liveQSO) ? (qsTr("Add QSO") + " (" + (qsoModel.numberOfQSOs()+1) + ")") : qsTr("Edit QSO")
 
     property alias addQSO: qsoView.addQSO
     property alias liveQSO: qsoView.liveQSO

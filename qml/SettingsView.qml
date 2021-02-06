@@ -23,6 +23,7 @@ Page {
 
         settings.contestActive = contestSwitch.checked;
         settings.contestNumber = contestNumber.text
+        settings.fixedNumber   = fixedNumberSwitch.checked;
 
         settings.cloudLogURL      = cloudLogURL.text;
         settings.cloudLogSSL      = cloudLogSSL.currentText;
@@ -169,13 +170,27 @@ Page {
                 visible: contestSwitch.checked
             }
 
-            TextField {
-                id: contestNumber
-                Layout.fillWidth: true
+            RowLayout {
                 visible: contestSwitch.checked
-                text: settings.contestNumber
-                onTextEdited: saveSettings()
-                onEditingFinished: saveSettings();
+                TextField {
+                    id: contestNumber
+                    Layout.fillWidth: true
+                    text: settings.contestNumber
+                    onTextEdited: saveSettings()
+                    onEditingFinished: saveSettings();
+                }
+
+                Label {
+                    text: qsTr("Fixed Number") +":";
+                }
+
+                Switch {
+                    id: fixedNumberSwitch
+                    checked: settings.fixedNumber
+                    anchors.right: parent.right
+                    anchors.rightMargin: 0
+                    onToggled: saveSettings()
+                }
             }
 
             // ----------------

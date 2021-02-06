@@ -111,7 +111,9 @@ Page {
                         ctssTextField.text = tmp;
                     } else { // if its a running number
                         var contestNumber = parseInt(tmp);
-                        contestNumber += 1;
+                        if(!settings.fixedNumber) {
+                            contestNumber += 1;
+                        }
                         ctssTextField.text = contestNumber;
                         settings.contestNumber = contestNumber;
                     }
