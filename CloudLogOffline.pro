@@ -12,7 +12,7 @@ CONFIG += c++11
 #GIT_VERSION ~= s/-/"."
 #GIT_VERSION ~= s/g/""
 #GIT_VERSION ~= s/\.\d+\.[a-f0-9]{6,}//
-GIT_VERSION = "1.0.8"
+GIT_VERSION = "1.0.9"
 message($$GIT_VERSION)
 DEFINES += GIT_VERSION=\\\"$$GIT_VERSION\\\"
 
@@ -72,6 +72,10 @@ macx {
     QT += widgets
     QMAKE_BUNDLE_DATA += macos_translation
     QMAKE_TARGET_BUNDLE_PREFIX = de.webappjung
+
+    #Enititlements:
+    ENTITLEMENTS = macos/Entitlements.plist
+    OTHER_FILES += macos/Entitlements.plist
 }
 
 android {
