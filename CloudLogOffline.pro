@@ -85,6 +85,10 @@ android {
     OTHER_FILES += android/src/com/lasconic/QShareUtils.java
     HEADERS += android/androidshareutils.h
     SOURCES += android/androidshareutils.cpp
+    DISTFILES += \
+        android/AndroidManifest.xml \
+        android/build.gradle \
+        android/res/values/libs.xml
 }
 
 # Default rules for deployment.

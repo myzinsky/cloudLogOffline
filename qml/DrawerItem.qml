@@ -152,7 +152,7 @@ ItemDelegate {
             text: iconSource (index)
             font.weight: Font.Medium
             Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
-            Layout.leftMargin: Math.max(window.notchLeft, window.notchRight) + 8
+            Layout.leftMargin: Math.max(window.notchLeft, window.notchRight) + 16
         }
 
         Item {
