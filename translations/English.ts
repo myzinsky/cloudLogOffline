@@ -471,5 +471,9 @@
         <source>Enable satellites fields in QSO View</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Fixed Number</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>

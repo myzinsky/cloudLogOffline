@@ -489,7 +489,11 @@
     </message>
     <message>
         <source>Enable satellites fields in QSO View</source>
-        <translation>Schaltetn die Sateliten Felder in der QSO Ansicht an</translation>
+        <translation>Schaltet die Sateliten Felder in der QSO Ansicht an</translation>
+    </message>
+    <message>
+        <source>Fixed Number</source>
+        <translation>Feste Zahl</translation>
     </message>
 </context>
 </TS>
