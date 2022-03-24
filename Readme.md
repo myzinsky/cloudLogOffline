@@ -20,4 +20,5 @@ Currently CloudLogOffline supports following features:
 
 ## Community:
 - German Telegram Group: https://t.me/CloudLogOffline
+- International DARC Matrix Group: [#thema_cloudlogoffline:darc.de](https://matrix.to/#/#thema_cloudlogoffline:darc.de)
 - CloudLog Forum: https://forum.cloudlog.co.uk/d/27-cloudlog-app-interface-clouglogoffline
