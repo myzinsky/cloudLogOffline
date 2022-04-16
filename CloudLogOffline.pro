@@ -3,6 +3,8 @@ QT += sql
 QT += svg
 QT += xml
 QT += gui-private
+QT += positioning
+QT += location
 QTPLUGIN += qsvg
 
 CONFIG += c++11

@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
     qrzManager qrz;
     rigManager rig;
     qsoModel qModel;
-    repeaterModel rm;
+    rbManager rm;
     cloudlogManager cl(&qModel);
     translationManager tm(&app, &engine);
     tools t;
