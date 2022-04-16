@@ -51,6 +51,9 @@ public:
     QVariant data(const QModelIndex &index, int role) const;
     QHash<int, QByteArray> roleNames() const;
 
+public slots:
+    QString getLocator();
+
 private:
     QGeoPositionInfoSource *source;
     QGeoServiceProvider *prov;
@@ -59,11 +62,13 @@ private:
     QNetworkAccessManager *nm;
 
     QString country;
+    QString locator;
     QGeoCoordinate coord;
     bool found;
     void getRepeaters(QString country);
     bool filter(double rLat, double rLon, double radius);
     double distance(double rLat, double rLon);
+    void calculateMaidenhead(double lat, double lon);
 
     QList<relais> database;
 

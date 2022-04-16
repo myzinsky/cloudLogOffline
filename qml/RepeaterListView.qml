@@ -7,29 +7,9 @@ import de.webappjung 1.0
 
 Page {
     id: page
-    title: qsTr("Repeater Book")
+    title: qsTr("Repeater Book") + " (" + rb.getLocator() + ")"
     anchors.fill: parent
     Layout.margins: 5
-
-    Component.onCompleted:  {
-    //    if(settings.bmActive) {
-    //        console.log("Connect");
-    //        bm.connect();
-    //    }
-    }
-
-    Component.onDestruction: {
-    //    if(settings.bmActive) {
-    //        bm.stop();
-    //    }
-    }
-
-    Connections{
-    //    target: bm
-    //    onConnected: {
-    //        bm.start();
-    //    }
-    }
 
     ListView {
         id: rmListView
@@ -45,7 +25,7 @@ Page {
         // Show a placeholder when no QSO is in the list so far
         Label {
             id: placeholder
-            text: qsTr("Define Repeatermap Radius in Seetings")
+            text: qsTr("No repeaters found: define Repeatermap radius in settings!")
 
             anchors.margins: 60
             anchors.fill: parent

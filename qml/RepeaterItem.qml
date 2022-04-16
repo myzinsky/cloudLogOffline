@@ -148,33 +148,29 @@ SwipeDelegate {
 
             onClicked: {
                 swipe.close()
-                stackView.push("QSOViewWrapper.qml",
-                               {
-                                   "addQSO"     : true,
-                                   "liveQSO"    : true,
-                                   "updateQSO"  : false,
 
-                                   //"rid"        : index,
-                                   //"date"       : model.date,
-                                   //"time"       : model.time,
-                                   //"call"       : model.call,
-                                   //"mode"       : "DMR",
-                                   "freq"       : model.freq,
-                                   "sent"       : "5",
-                                   "recv"       : "5",
-                                   //"name"       : model.name,
-                                   //"ctry"       : model.ctry,
-                                   //"grid"       : model.grid,
-                                   //"qqth"       : model.qqth,
-                                   //"comm"       : model.comm,
-                                   //"ctss"       : model.ctss,
-                                   //"ctsr"       : model.ctsr,
-                                   //"sync"       : model.sync,
-                                   //"sota"       : model.sota,
-                                   //"sots"       : model.sots,
-                                   //"satn"       : model.satn,
-                                   //"satm"       : model.satm,
-                               });
+                var strippedMode = ""
+
+                if(mode.includes("FM")) {
+                    strippedMode = "FM";
+                } else if(mode.includes("DMR")) {
+                    strippedMode = "DMR";
+                } else if(mode.includes("Wires")) {
+                    strippedMode = "C4FM";
+                } else if(mode.includes("DSTAR")) {
+                    strippedMode = "DSTAR";
+                }
+
+                stackView.push("QSOViewWrapper.qml", {
+                    "addQSO"     : true,
+                    "liveQSO"    : true,
+                    "updateQSO"  : false,
+                    "mode"       : strippedMode,
+                    "freq"       : model.freq,
+                    "sent"       : "5",
+                    "recv"       : "5",
+                    "comm"       : "Via Repeater: " + model.call,
+                });
             }
         }
     }

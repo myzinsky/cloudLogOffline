@@ -58,7 +58,7 @@ ios {
     OBJECTIVE_SOURCES += ios/iosshareutils.mm
     HEADERS += ios/iosshareutils.h
 
-    #QMAKE_INFO_PLIST = ios/Info.plist
+    QMAKE_INFO_PLIST = ios/Info.plist
     app_launch_images.files = $$PWD/ios/myLaunchScreen.xib
     QMAKE_BUNDLE_DATA += app_launch_images
     QMAKE_ASSET_CATALOGS += ios/Media.xcassets

@@ -89,6 +89,9 @@ ApplicationWindow {
         property bool sotaActive
 
         property bool satActive
+
+        property bool rbActive
+        property string rbRadius
     }
 
     Material.theme: Material.Dark
