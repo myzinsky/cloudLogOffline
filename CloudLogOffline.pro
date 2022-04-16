@@ -35,6 +35,7 @@ SOURCES += src/qrzmanager.cpp
 SOURCES += src/rigmanager.cpp
 SOURCES += src/dbmanager.cpp
 SOURCES += src/qsomodel.cpp
+SOURCES += src/repeatermodel.cpp
 SOURCES += src/shareutils.cpp
 SOURCES += src/logtools.cpp
 SOURCES += src/adiftools.cpp
@@ -102,6 +103,7 @@ HEADERS += src/translationmanager.h
 HEADERS += src/dbmanager.h
 HEADERS += src/qrzmanager.h
 HEADERS += src/qsomodel.h
+HEADERS += src/repeatermodel.h
 HEADERS += src/rigmanager.h
 HEADERS += src/shareutils.h
 HEADERS += src/adiftools.h
@@ -110,7 +112,9 @@ HEADERS += src/csvtools.h
 HEADERS += src/logtools.h
 HEADERS += src/migrationmanager.h
 
-DISTFILES += android/AndroidManifest.xml
+DISTFILES += android/AndroidManifest.xml \
+    qml/RepeaterItem.qml \
+    qml/RepeaterListView.qml
 DISTFILES += qml/QSOViewWrapper.qml
 DISTFILES += qml/TimePicker.qml
 DISTFILES += android/build.gradle

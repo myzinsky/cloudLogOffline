@@ -5,6 +5,7 @@
 #include <QFontDatabase>
 
 #include "qsomodel.h"
+#include "repeatermodel.h"
 #include "dbmanager.h"
 #include "migrationmanager.h"
 #include "qrzmanager.h"
@@ -44,6 +45,7 @@ int main(int argc, char *argv[])
     qrzManager qrz;
     rigManager rig;
     qsoModel qModel;
+    repeaterModel rm;
     cloudlogManager cl(&qModel);
     translationManager tm(&app, &engine);
     tools t;
@@ -64,6 +66,7 @@ int main(int argc, char *argv[])
 
     // Load the QML and set the Context:
     engine.rootContext()->setContextProperty("qsoModel", QVariant::fromValue(&qModel));
+    engine.rootContext()->setContextProperty("repeaterModel", QVariant::fromValue(&rm));
     engine.rootContext()->setContextProperty("qrz", QVariant::fromValue(&qrz));
     engine.rootContext()->setContextProperty("rig", QVariant::fromValue(&rig));
     engine.rootContext()->setContextProperty("cl", QVariant::fromValue(&cl));
