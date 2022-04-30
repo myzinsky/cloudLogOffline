@@ -114,7 +114,7 @@ void cloudlogManager::callbackCloudLog(QNetworkReply *rep)
     if(jsonObject["status"] == "created") {
         QString adifStr = jsonObject["string"].toString();
 
-        qDebug() << "Callback: " << adifStr << endl;
+        qDebug() << "Callback: " << adifStr;
 
         QSqlQuery query;
 
