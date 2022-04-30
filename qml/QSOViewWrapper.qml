@@ -6,7 +6,7 @@ SplitView {
     id: qsoViewWrapper
     anchors.fill: parent
     orientation: Qt.Horizontal
-    property string title: (addQSO || liveQSO) ? (qsTr("Add QSO") + " (" + (qsoModel.numberOfQSOs()+1) + ")") : qsTr("Edit QSO")
+    property string title: (addQSO || liveQSO) ? (qsTr("Add QSO") + " (" + (qsoModel.numberOfQSOs()) + ")") : qsTr("Edit QSO")
 
     property alias addQSO: qsoView.addQSO
     property alias liveQSO: qsoView.liveQSO
@@ -35,7 +35,15 @@ SplitView {
 
     function save() {
         qsoView.save();
-        title = (addQSO || liveQSO) ? (qsTr("Add QSO") + "(" + qsoModel.numberOfQSOs() + ")") : qsTr("Edit QSO");
+    }
+
+    Connections{
+        target: qsoModel
+
+        function onUpdateNumberOfQSOs(number) {
+            qsoViewWrapper.title = (addQSO || liveQSO) ? (qsTr("Add QSO") + " (" + number + ")") : qsTr("Edit QSO")
+            console.log("Eiersalat!")
+        }
     }
 
     QSOListView {

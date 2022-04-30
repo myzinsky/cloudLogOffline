@@ -33,6 +33,8 @@ void qsoModel::deleteQSO(int id) {
     removeRows(id, 1 ,QModelIndex());
     endRemoveRows();
     submit();
+
+    emit updateNumberOfQSOs(numberOfQSOs());
 }
 
 void qsoModel::addQSO(QString call,
@@ -81,6 +83,8 @@ void qsoModel::addQSO(QString call,
     insertRecord(rowCount(), newRecord);
     submit();
     select();
+
+    emit updateNumberOfQSOs(numberOfQSOs());
 }
 
 void qsoModel::updateQSO(int id,

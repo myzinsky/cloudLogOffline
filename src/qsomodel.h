@@ -67,6 +67,9 @@ public slots:
 
     unsigned int numberOfQSOs();
 
+signals:
+    void updateNumberOfQSOs(int number);
+
 protected:
     QString selectStatement() const override;
 };
