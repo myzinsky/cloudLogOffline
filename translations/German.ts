@@ -436,11 +436,11 @@
     </message>
     <message>
         <source>Please specify the URL to Clouglog without https:// or http:// (e.g. log.cloud.com) and the specific key.</source>
-        <translation>Bitte gib die URL zu Clouglog ohne https:// oder http:// (z.B. log.cloud.com) und den spezifischen Key an.</translation>
+        <translation type="vanished">Bitte gib die URL zu Clouglog ohne https:// oder http:// (z.B. log.cloud.com) und den spezifischen Key an.</translation>
     </message>
     <message>
         <source>URL</source>
-        <translation>URL</translation>
+        <translation type="vanished">URL</translation>
     </message>
     <message>
         <source>Encryption</source>
@@ -521,6 +521,10 @@
     <message>
         <source>Radius</source>
         <translation>Radius</translation>
+    </message>
+    <message>
+        <source>Please specify the Hostname to Clouglog without https:// or http:// (e.g. log.cloud.com) and the specific key.</source>
+        <translation>Bitte gib den Servernamen zu Clouglog ohne https:// oder http:// (z.B. log.cloud.com) und den spezifischen Key an.</translation>
     </message>
 </context>
 </TS>

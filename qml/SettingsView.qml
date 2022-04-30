@@ -202,14 +202,14 @@ Page {
                 id: cloudLogSwitch
                 icon: "\uf0c2"
                 text: qsTr("Cloud Log API")
-                helpText: qsTr("Please specify the URL to Clouglog without https:// or http:// (e.g. log.cloud.com) and the specific key.")
+                helpText: qsTr("Please specify the Hostname to Clouglog without https:// or http:// (e.g. log.cloud.com) and the specific key.")
                 Layout.columnSpan: 2
                 checked: settings.cloudLogActive
             }
 
             Label {
                 id: cloudLogURLLabel
-                text: qsTr("URL") + ":"
+                text: qsTr("Hostname") + ":"
                 visible: cloudLogSwitch.checked
             }
 
