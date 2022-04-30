@@ -2,6 +2,7 @@ import QtQuick 2.12
 import QtQuick.Layouts 1.1
 import QtQuick.Controls 2.12
 import QtQuick.Controls.Material 2.12
+import QtGraphicalEffects 1.0
 
 SwipeDelegate {
     width: parent.width
@@ -30,40 +31,69 @@ SwipeDelegate {
             height: 50
             width: parent.width
 
-            Text {
-                id: call
-                text: model.call.replace(/0/g,"\u2205").toUpperCase()
-                font.underline: false
-                font.weight: Font.Bold
-                style: Text.Normal
+            Rectangle {
+                id: callcityrect
+                z: 100
+                color: "#555555"
+                width: call.contentWidth + city.contentWidth + 10
+                height: call.contentHeight
                 anchors.left: parent.left
                 anchors.leftMargin: 5
                 anchors.top: parent.top
                 anchors.topMargin: 5
-                font.wordSpacing: 0
-                font.capitalization: Font.Capitalize
-                color: "#607D8B"
-                font.pixelSize: 20
-                font.bold: true
+                Text {
+                    id: call
+                    text: model.call.replace(/0/g,"\u2205").toUpperCase()
+                    font.underline: false
+                    font.weight: Font.Bold
+                    style: Text.Normal
+                    font.wordSpacing: 0
+                    font.capitalization: Font.Capitalize
+                    color: "#607D8B"
+                    font.pixelSize: 20
+                    font.bold: true
+                }
+
+                Text {
+                    id: city
+                    anchors.top: parent.top
+                    anchors.left: call.right
+                    anchors.leftMargin: 10
+                    color: "#ffffff"
+                    text: model.city
+                    font.italic: true
+                    font.bold: false
+                    font.wordSpacing: 0
+                    opacity: 0.87
+                    font.pixelSize: 20
+                }
             }
 
-            Text {
-                id: city
-                color: "#ffffff"
-                text: model.city
-                anchors.leftMargin: 10
-                font.italic: true
-                font.bold: false
+            Rectangle {
+                id: gradient
+                z: 100
+                color: "transparent"
                 anchors.top: parent.top
-                anchors.left: call.right
+                anchors.left: callcityrect.right
                 anchors.topMargin: 5
-                font.wordSpacing: 0
-                opacity: 0.87
-                font.pixelSize: 20
+                anchors.leftMargin: 0
+                height: city.contentHeight
+                width: 50
+                LinearGradient {
+                    anchors.fill: parent
+                    start: Qt.point(0,0)
+                    end: Qt.point(gradient.width,0)
+                    gradient: Gradient {
+                        GradientStop { position: 0.0; color: "#555555" }
+                        GradientStop { position: 0.5; color: "#555555" }
+                        GradientStop { position: 1.0; color: "transparent" }
+                    }
+                }
             }
 
             Text {
                 id: modes
+                z: 50
                 color: "#ffffff"
                 text: model.mode
                 anchors.rightMargin: 10

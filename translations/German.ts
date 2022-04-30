@@ -244,6 +244,10 @@
         <source>About</source>
         <translation>Über die App</translation>
     </message>
+    <message>
+        <source>Add Repeater QSO</source>
+        <translation>Repeater QSO hinzufügen</translation>
+    </message>
 </context>
 <context>
     <name>QRZView</name>
@@ -374,6 +378,17 @@
     </message>
 </context>
 <context>
+    <name>RepeaterListView</name>
+    <message>
+        <source>Repeater Book</source>
+        <translation>Repeater Book</translation>
+    </message>
+    <message>
+        <source>No repeaters found: No GPS or no radius defined in settings!</source>
+        <translation>Keine Repeater gefunden: Kein GPS oder kein Radius in den Einstellungen konfiguriert!</translation>
+    </message>
+</context>
+<context>
     <name>SettingsView</name>
     <message>
         <source>Settings</source>
@@ -494,6 +509,18 @@
     <message>
         <source>Fixed Number</source>
         <translation>Feste Zahl</translation>
+    </message>
+    <message>
+        <source>Repeater Book</source>
+        <translation>Repeater Book</translation>
+    </message>
+    <message>
+        <source>Activate this to see repeaters near to you</source>
+        <translation>Aktiviere diesen Punkt um Repeater in deiner Nähe zu sehen</translation>
+    </message>
+    <message>
+        <source>Radius</source>
+        <translation>Radius</translation>
     </message>
 </context>
 </TS>
