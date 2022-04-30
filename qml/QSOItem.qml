@@ -2,6 +2,7 @@ import QtQuick 2.12
 import QtQuick.Layouts 1.0
 import QtQuick.Controls 2.12
 import QtQuick.Controls.Material 2.12
+import QtGraphicalEffects 1.0
 
 SwipeDelegate {
     width: parent.width
@@ -121,19 +122,49 @@ SwipeDelegate {
                 opacity: 0.87
             }
 
-            Text {
-                id: country
-                color: "#ffffff"
-                text: model.ctry
+            Rectangle {
+                id: countryrect
+                z: 100
+                color: "#555555"
                 anchors.right: parent.right
-                anchors.rightMargin: 5
-                font.italic: false
-                font.bold: false
+                anchors.rightMargin: 0
                 anchors.top: parent.top
                 anchors.topMargin: 5
-                font.wordSpacing: 0
-                font.pixelSize: 20
-                opacity: 0.87
+                width: country.contentWidth + 5
+                height: country.contentHeight
+
+                Text {
+                    id: country
+                    color: "#ffffff"
+                    text: model.ctry
+                    font.italic: false
+                    font.bold: false
+                    font.wordSpacing: 0
+                    font.pixelSize: 20
+                    opacity: 0.87
+                }
+            }
+
+            Rectangle {
+                id: gradient
+                z: 100
+                color: "transparent"
+                anchors.top: parent.top
+                anchors.right: countryrect.left
+                anchors.topMargin: 5
+                anchors.rightMargin: 0
+                height: country.contentHeight
+                width: 50
+                LinearGradient {
+                    anchors.fill: parent
+                    start: Qt.point(gradient.width,0)
+                    end: Qt.point(0,0)
+                    gradient: Gradient {
+                        GradientStop { position: 0.0; color: "#555555" }
+                        GradientStop { position: 0.5; color: "#555555" }
+                        GradientStop { position: 1.0; color: "transparent" }
+                    }
+                }
             }
 
 
