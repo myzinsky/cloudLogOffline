@@ -44,6 +44,9 @@ Page {
 
         settings.satActive = satSwitch.checked;
 
+        settings.rbActive = rbSwitch.checked;
+        settings.rbRadius = rbRadius.text;
+
         // Retrieve new key when settings changed:
         if(settings.qrzUser.length !== 0 &&
                 settings.qrzPass.length !== 0 &&
@@ -378,6 +381,33 @@ Page {
                 helpText: qsTr("Enable satellites fields in QSO View")
                 Layout.columnSpan: 2
                 checked: settings.satActive
+            }
+
+            // ----------------
+
+            SettingsSwitch {
+                id: rbSwitch
+                icon: "\uf519"
+                text: qsTr("Repeater Book")
+                helpText: qsTr("Activate this to see repeaters near to you")
+                Layout.columnSpan: 2
+                checked: settings.rbActive
+            }
+
+            Label {
+                text: qsTr("Radius") + ":"
+                visible: rbSwitch.checked
+            }
+
+            TextField {
+                id: rbRadius
+                Layout.fillWidth: true
+                visible: rbSwitch.checked
+                text: settings.rbActive ? settings.rbRadius : "25"
+                onTextEdited: saveSettings();
+                onEditingFinished: saveSettings();
+                font.capitalization: Font.AllUppercase
+                inputMethodHints: Qt.ImhUppercaseOnly
             }
         }
     }

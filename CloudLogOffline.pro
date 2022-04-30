@@ -3,6 +3,8 @@ QT += sql
 QT += svg
 QT += xml
 QT += gui-private
+QT += positioning
+QT += location
 QTPLUGIN += qsvg
 
 CONFIG += c++11
@@ -35,6 +37,7 @@ SOURCES += src/qrzmanager.cpp
 SOURCES += src/rigmanager.cpp
 SOURCES += src/dbmanager.cpp
 SOURCES += src/qsomodel.cpp
+SOURCES += src/repeatermodel.cpp
 SOURCES += src/shareutils.cpp
 SOURCES += src/logtools.cpp
 SOURCES += src/adiftools.cpp
@@ -55,7 +58,7 @@ ios {
     OBJECTIVE_SOURCES += ios/iosshareutils.mm
     HEADERS += ios/iosshareutils.h
 
-    #QMAKE_INFO_PLIST = ios/Info.plist
+    QMAKE_INFO_PLIST = ios/Info.plist
     app_launch_images.files = $$PWD/ios/myLaunchScreen.xib
     QMAKE_BUNDLE_DATA += app_launch_images
     QMAKE_ASSET_CATALOGS += ios/Media.xcassets
@@ -102,6 +105,7 @@ HEADERS += src/translationmanager.h
 HEADERS += src/dbmanager.h
 HEADERS += src/qrzmanager.h
 HEADERS += src/qsomodel.h
+HEADERS += src/repeatermodel.h
 HEADERS += src/rigmanager.h
 HEADERS += src/shareutils.h
 HEADERS += src/adiftools.h
@@ -110,7 +114,9 @@ HEADERS += src/csvtools.h
 HEADERS += src/logtools.h
 HEADERS += src/migrationmanager.h
 
-DISTFILES += android/AndroidManifest.xml
+DISTFILES += android/AndroidManifest.xml \
+    qml/RepeaterItem.qml \
+    qml/RepeaterListView.qml
 DISTFILES += qml/QSOViewWrapper.qml
 DISTFILES += qml/TimePicker.qml
 DISTFILES += android/build.gradle

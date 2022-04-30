@@ -89,6 +89,9 @@ ApplicationWindow {
         property bool sotaActive
 
         property bool satActive
+
+        property bool rbActive
+        property string rbRadius
     }
 
     Material.theme: Material.Dark
@@ -204,13 +207,17 @@ ApplicationWindow {
                            "ctss"      : settings.contestActive ? settings.contestNumber : "",
                        });
             },
-            5: function() {
-                stackView.push("ExportView.qml");
+            3: function() {
+                rb.init();
+                stackView.push("RepeaterListView.qml");
             },
             6: function() {
-                stackView.push("SettingsView.qml")
+                stackView.push("ExportView.qml");
             },
             7: function() {
+                stackView.push("SettingsView.qml")
+            },
+            8: function() {
                 stackView.push("AboutView.qml")
             }
         }
@@ -237,24 +244,29 @@ ApplicationWindow {
             }
 
             ListElement { // 3
-                spacer: true
+                pageTitle: qsTr ("Add Repeater QSO")
+                pageIcon: "\uf055"
             }
 
             ListElement { // 4
-                separator: true
+                spacer: true
             }
 
             ListElement { // 5
+                separator: true
+            }
+
+            ListElement { // 6
                 pageTitle: qsTr ("Export")
                 pageIcon: "\uf56e"
             }
 
-            ListElement { // 6
+            ListElement { // 7
                 pageTitle: qsTr ("Settings")
                 pageIcon: "\uf013"
             }
 
-            ListElement { // 7
+            ListElement { // 8
                 pageTitle: qsTr ("About")
                 pageIcon: "\uf05a"
             }

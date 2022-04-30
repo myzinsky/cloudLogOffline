@@ -29,5 +29,7 @@
         <file>qml/QSOViewWrapper.qml</file>
         <file>translations/German.qm</file>
         <file>translations/English.qm</file>
+        <file>qml/RepeaterListView.qml</file>
+        <file>qml/RepeaterItem.qml</file>
     </qresource>
 </RCC>
