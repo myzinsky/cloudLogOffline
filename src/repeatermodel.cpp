@@ -3,26 +3,34 @@
 rbManager::rbManager(QObject *parent)
     : QAbstractListModel(parent)
 {
-    found = false;
-    locator = "";
+}
 
-    prov = new QGeoServiceProvider("osm");
-    prov->setLocale(QLocale::English);
-    geoCoder = prov->geocodingManager();
+void rbManager::init()
+{
+    if(initialized == false) {
+        initialized = true;
+        locator = "";
 
-    source = QGeoPositionInfoSource::createDefaultSource(this);
+        prov = new QGeoServiceProvider("osm");
+        prov->setLocale(QLocale::English);
+        geoCoder = prov->geocodingManager();
 
-    connect(source,
-            SIGNAL(positionUpdated(QGeoPositionInfo)),
-            this,
-            SLOT(positionUpdated(QGeoPositionInfo)));
-    source->startUpdates();
+        source = QGeoPositionInfoSource::createDefaultSource(this);
 
-    nm = new QNetworkAccessManager(this);
-    connect(nm,
-            SIGNAL(finished(QNetworkReply*)),
-            this,
-            SLOT(parseNetworkResponse(QNetworkReply*)));
+        connect(source,
+                SIGNAL(positionUpdated(QGeoPositionInfo)),
+                this,
+                SLOT(positionUpdated(QGeoPositionInfo)));
+
+        source->setUpdateInterval(60*1000);
+        source->startUpdates();
+
+        nm = new QNetworkAccessManager(this);
+        connect(nm,
+                SIGNAL(finished(QNetworkReply*)),
+                this,
+                SLOT(parseNetworkResponse(QNetworkReply*)));
+    }
 }
 
 int rbManager::rowCount(const QModelIndex &parent) const
@@ -39,7 +47,7 @@ QVariant rbManager::data(const QModelIndex &index, int role) const
             case call: return database[index.row()].call;
             case lati: return database[index.row()].lat;
             case lond: return database[index.row()].lon;
-            case dist: return database[index.row()].distance;
+            case dist: return QString::number(database[index.row()].distance);
             case freq: return database[index.row()].frequency;
             case shif: return database[index.row()].shift;
             case tone: return database[index.row()].tone;
@@ -74,14 +82,13 @@ void rbManager::positionUpdated(const QGeoPositionInfo &info)
 
 void rbManager::positionDecoded()
 {
-    if(reply->locations().length() == 1) {
+    if(reply->locations().length() >= 1) {
         QGeoLocation loc = reply->locations().at(0);
         QGeoAddress addr = loc.address();
         country = addr.country();
         coord = loc.coordinate();
         qDebug() << country << coord.latitude() << coord.longitude();
         calculateMaidenhead(coord.latitude(),coord.longitude());
-        found = true;
         getRepeaters(country);
     }
 
@@ -126,13 +133,13 @@ void rbManager::calculateMaidenhead(double lat, double lon)
     QString grid_lon_subsq = alphabet.at(int(lon_remainder/5));
 
     locator = grid_lon_sq + grid_lat_sq + grid_lon_field + grid_lat_field + grid_lon_subsq + grid_lat_subsq;
+    emit locatorDone(locator);
 }
 
 QString rbManager::getLocator()
 {
     return locator;
 }
-
 
 void rbManager::parseNetworkResponse(QNetworkReply *nreply)
 {
@@ -142,6 +149,7 @@ void rbManager::parseNetworkResponse(QNetworkReply *nreply)
 
     QJsonArray repeaters = json["results"].toArray();
 
+    beginResetModel();
     database.clear();
 
     for(auto repeater : repeaters) {
@@ -157,7 +165,7 @@ void rbManager::parseNetworkResponse(QNetworkReply *nreply)
             r.lat       = repeater.toObject()["Lat"].toString();
             r.lon       = repeater.toObject()["Long"].toString();
             r.shift     = QString::number(repeater.toObject()["Input Freq"].toString().toDouble() - r.frequency.toDouble());
-            r.distance  = QString::number(distance(rlat, rlon));
+            r.distance  = distance(rlat, rlon);
             r.tone      = repeater.toObject()["PL"].toString();
             r.city      = repeater.toObject()["Nearest City"].toString();
             r.modes     = "";
@@ -168,7 +176,7 @@ void rbManager::parseNetworkResponse(QNetworkReply *nreply)
             r.modes += repeater.toObject()["System Fusion"].toString() == "Yes" ? "Fusion " : "";
             r.modes += repeater.toObject()["Wires Node"].toString() != "" ? "Wires " : "";
 
-            qDebug() << r.call << r.lat << r.lon << r.frequency << r.shift << r.distance << r.tone << r.modes;
+            //qDebug() << r.call << r.lat << r.lon << r.frequency << r.shift << r.distance << r.tone << r.modes;
 
             database.append(r);
         }
@@ -177,4 +185,6 @@ void rbManager::parseNetworkResponse(QNetworkReply *nreply)
     std::sort(database.begin(), database.end(), [](relais a, relais b) {
         return a.distance < b.distance;
     });
+
+    endResetModel();
 }

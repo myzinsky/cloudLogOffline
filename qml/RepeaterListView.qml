@@ -7,7 +7,7 @@ import de.webappjung 1.0
 
 Page {
     id: page
-    title: qsTr("Repeater Book") + " (" + rb.getLocator() + ")"
+    title: (rb.getLocator() === "") ? qsTr("Repeater Book") : qsTr("Repeater Book") + " (" + rb.getLocator() + ")";
     anchors.fill: parent
     Layout.margins: 5
 
@@ -15,6 +15,13 @@ Page {
         id: rmListView
         anchors.fill: parent
         spacing: 5
+
+        Connections{
+            target: rb
+            function onLocatorDone(locator) {
+                page.title = qsTr("Repeater Book") + " (" + locator + ")"
+            }
+        }
 
         ScrollBar.vertical: ScrollBar {}
 

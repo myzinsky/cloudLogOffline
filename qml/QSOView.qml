@@ -6,7 +6,7 @@ import Qt.labs.settings 1.0
 
 Page {
     id: page
-    title: (addQSO || liveQSO) ? (qsTr("Add QSO") + "(" + qsoModel.numberOfQSOs() + ")") : qsTr("Edit QSO")
+    title: (addQSO || liveQSO) ? (qsTr("Add QSO") + "(" + qsoModel.numberOfQSOs() + ")") : qsTr("Edit QSO") // TODO UPDATE WITH SIGNAL!
 
     property bool addQSO: true;
     property bool liveQSO: false;

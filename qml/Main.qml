@@ -208,7 +208,8 @@ ApplicationWindow {
                        });
             },
             3: function() {
-                stackView.push("RepeaterListView.qml")
+                rb.init();
+                stackView.push("RepeaterListView.qml");
             },
             6: function() {
                 stackView.push("ExportView.qml");

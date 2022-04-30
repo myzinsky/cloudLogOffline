@@ -21,7 +21,7 @@ struct relais {
     QString call;
     QString lat;
     QString lon;
-    QString distance;
+    double  distance;
     QString frequency;
     QString shift;
     QString modes;
@@ -51,8 +51,12 @@ public:
     QVariant data(const QModelIndex &index, int role) const;
     QHash<int, QByteArray> roleNames() const;
 
+signals:
+    void locatorDone(const QString &locator);
+
 public slots:
     QString getLocator();
+    void init();
 
 private:
     QGeoPositionInfoSource *source;
@@ -64,7 +68,7 @@ private:
     QString country;
     QString locator;
     QGeoCoordinate coord;
-    bool found;
+    bool initialized;
     void getRepeaters(QString country);
     bool filter(double rLat, double rLon, double radius);
     double distance(double rLat, double rLon);

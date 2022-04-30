@@ -157,7 +157,7 @@ SwipeDelegate {
                     strippedMode = "DMR";
                 } else if(mode.includes("Wires")) {
                     strippedMode = "C4FM";
-                } else if(mode.includes("DSTAR")) {
+                } else if(mode.includes("D-Star")) {
                     strippedMode = "DSTAR";
                 }
 
