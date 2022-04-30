@@ -32,7 +32,7 @@ Page {
         // Show a placeholder when no QSO is in the list so far
         Label {
             id: placeholder
-            text: qsTr("No repeaters found: define Repeatermap radius in settings!")
+            text: qsTr("No repeaters found: No GPS or no radius defined in settings!")
 
             anchors.margins: 60
             anchors.fill: parent

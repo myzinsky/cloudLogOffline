@@ -3,6 +3,23 @@
 rbManager::rbManager(QObject *parent)
     : QAbstractListModel(parent)
 {
+    prov = nullptr;
+    nm = nullptr;
+    reply = nullptr;
+}
+
+rbManager::~rbManager()
+{
+    source->stopUpdates();
+
+    if(prov != nullptr) {
+        delete prov;
+    }
+
+    if(nm != nullptr) {
+        delete nm;
+    }
+
 }
 
 void rbManager::init()
@@ -75,7 +92,6 @@ QHash<int, QByteArray> rbManager::roleNames() const
 
 void rbManager::positionUpdated(const QGeoPositionInfo &info)
 {
-    qDebug() << "Position updated:" << info;
     reply = geoCoder->reverseGeocode(info.coordinate());
     connect(reply, &QGeoCodeReply::finished, this, &rbManager::positionDecoded);
 }
@@ -87,12 +103,10 @@ void rbManager::positionDecoded()
         QGeoAddress addr = loc.address();
         country = addr.country();
         coord = loc.coordinate();
-        qDebug() << country << coord.latitude() << coord.longitude();
         calculateMaidenhead(coord.latitude(),coord.longitude());
+        qDebug() << "Location:" << country << coord.latitude() << coord.longitude() << locator;
         getRepeaters(country);
     }
-
-    delete reply;
 }
 
 // ----
@@ -141,7 +155,7 @@ QString rbManager::getLocator()
     return locator;
 }
 
-void rbManager::parseNetworkResponse(QNetworkReply *nreply)
+void rbManager::parseNetworkResponse(QNetworkReply *nreply) // from getRepeaters
 {
     QString rawJson = nreply->readAll();
     QJsonDocument jsonResponse = QJsonDocument::fromJson(rawJson.toUtf8());
