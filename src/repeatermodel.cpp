@@ -10,8 +10,6 @@ rbManager::rbManager(QObject *parent)
 
 rbManager::~rbManager()
 {
-    source->stopUpdates();
-
     if(prov != nullptr) {
         delete prov;
     }
@@ -19,7 +17,6 @@ rbManager::~rbManager()
     if(nm != nullptr) {
         delete nm;
     }
-
 }
 
 void rbManager::init()
