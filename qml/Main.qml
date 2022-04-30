@@ -88,6 +88,9 @@ ApplicationWindow {
         property string mySotaReference
         property bool sotaActive
 
+        property string myWwffReference
+        property bool wwffActive
+
         property bool satActive
 
         property bool rbActive
