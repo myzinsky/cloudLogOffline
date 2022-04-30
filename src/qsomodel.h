@@ -38,6 +38,8 @@ public slots:
                 QString ctsr,
                 QString sota,
                 QString sots,
+                QString wwff,
+                QString wwfs,
                 QString satn,
                 QString satm
                 );
@@ -59,6 +61,8 @@ public slots:
                 QString ctsr,
                 QString sota,
                 QString sots,
+                QString wwff,
+                QString wwfs,
                 QString satn,
                 QString satm
                 );
