@@ -42,6 +42,9 @@ Page {
         settings.mySotaReference = mySotaReference.text
         settings.sotaActive      = sotaSwitch.checked;
 
+        settings.myWwffReference = myWwffReference.text
+        settings.wwffActive      = wwffSwitch.checked;
+
         settings.satActive = satSwitch.checked;
 
         settings.rbActive = rbSwitch.checked;
@@ -366,6 +369,34 @@ Page {
                 Layout.fillWidth: true
                 visible: sotaSwitch.checked
                 text: settings.mySotaReference
+                onTextEdited: saveSettings();
+                onEditingFinished: saveSettings();
+                font.capitalization: Font.AllUppercase
+                inputMethodHints: Qt.ImhUppercaseOnly
+            }
+
+            // ----------------
+
+            SettingsSwitch {
+                id: wwffSwitch
+                icon: "\uf1bb"
+                text: qsTr("World Wide Flora & Fauna (WWFF)")
+                helpText: qsTr("Insert here youre WWFF reference")
+                Layout.columnSpan: 2
+                checked: settings.wwffActive
+            }
+
+            Label {
+                id: myWWFFLabel
+                text: qsTr("Reference") + ":"
+                visible: wwffSwitch.checked
+            }
+
+            TextField {
+                id: myWwffReference
+                Layout.fillWidth: true
+                visible: wwffSwitch.checked
+                text: settings.myWwffReference
                 onTextEdited: saveSettings();
                 onEditingFinished: saveSettings();
                 font.capitalization: Font.AllUppercase

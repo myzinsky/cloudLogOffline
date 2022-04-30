@@ -13,9 +13,14 @@ migrationManager::migrationManager()
             if(database == QVersionNumber::fromString("1.0.3")) {
                 from_1_0_3_to_1_0_4();
                 from_1_0_4_to_1_0_5();
+                from_1_0_9_to_1_1_0();
             }
             else if(database == QVersionNumber::fromString("1.0.4")) {
                 from_1_0_4_to_1_0_5();
+                from_1_0_9_to_1_1_0();
+            }
+            else if(database == QVersionNumber::fromString("1.0.5")) { // Inlcudes also 1.0.9
+                from_1_0_9_to_1_1_0();
             }
 
             // Bugfixes:
@@ -41,6 +46,16 @@ QString migrationManager::getDatabaseVersion()
         return "1.0.3";
     } else {
         return selectQuery.value(0).toString();
+    }
+}
+
+void migrationManager::from_1_0_9_to_1_1_0()
+{
+    qDebug() << "Migrate from 1.0.9 to 1.1.0";
+    bool res = addQSOColumn("wwff", "TEXT");
+    res = res & addQSOColumn("wwfs", "TEXT"); // MYWFF
+    if(res == true) {
+        updateDatabaseVersion("1.1.0");
     }
 }
 

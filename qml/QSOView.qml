@@ -29,6 +29,8 @@ Page {
     property alias ctsr: ctsrTextField.text;
     property alias sota: sotaTextField.text;
     property alias sots: sotsTextField.text;
+    property alias wwff: wwffTextField.text;
+    property alias wwfs: wwfsTextField.text;
     property alias satm: satmTextField.text;
 
     property string mode
@@ -70,6 +72,8 @@ Page {
         ctsrTextField.text = ""
         sotaTextField.text = ""
         sotsTextField.text = settings.sotaActive ? settings.mySotaReference : ""
+        wwffTextField.text = ""
+        wwfsTextField.text = settings.wwffActive ? settings.myWwffReference : ""
         satmTextField.text = ""
         statusIndicator.Material.accent = Material.Green
 
@@ -97,6 +101,8 @@ Page {
                     ctsrTextField.text,
                     sotaTextField.text.toUpperCase(),
                     sotsTextField.text.toUpperCase(),
+                    wwffTextField.text.toUpperCase(),
+                    wwfsTextField.text.toUpperCase(),
                     satnComboBox.currentText,
                     satmTextField.text.toUpperCase()
                     );
@@ -140,6 +146,8 @@ Page {
                        ctsrTextField.text,
                        sotaTextField.text.toUpperCase(),
                        sotsTextField.text.toUpperCase(),
+                       wwffTextField.text.toUpperCase(),
+                       wwfsTextField.text.toUpperCase(),
                        satnComboBox.currentText,
                        satmTextField.text.toUpperCase()
                        );
@@ -164,14 +172,13 @@ Page {
 
         function onUpdateNumberOfQSOs(number) {
             page.title = (addQSO || liveQSO) ? (qsTr("Add QSO") + " (" + number + ")") : qsTr("Edit QSO")
-            console.log("Eiersalat!")
         }
     }
 
     Connections{
         target: rig
 
-        onFreqDone: {
+        function onFreqDone(freq) {
             if(!updateQSO) {
                 freqTextField.text = freq
             }
@@ -639,6 +646,41 @@ Page {
                 font.capitalization: Font.AllUppercase
                 inputMethodHints: Qt.ImhUppercaseOnly
             }
+
+            //--- WWFF:
+
+            Label {
+                id: myWwfsable
+                text: qsTr("WWFF (S)") + ":"
+                visible: settings.wwffActive || wwffTextField.text || wwfsTextField.text
+            }
+
+            QSOTextField {
+                id: wwfsTextField
+                Layout.columnSpan: 1
+                text: (addQSO == true || liveQSO == true) ? (settings.wwffActive ? settings.myWwffReference : "") : wwfsTextField.text
+                KeyNavigation.tab: wwffTextField
+                visible: settings.wwffActive || wwffTextField.text || wwfsTextField.text
+                font.capitalization: Font.AllUppercase
+                inputMethodHints: Qt.ImhUppercaseOnly
+            }
+
+            Label {
+                id: wwffLable
+                text: qsTr("WWFF (R)") + ":"
+                visible: settings.wwffActive || wwffTextField.text || sotsTextField.text
+            }
+
+            QSOTextField {
+                id: wwffTextField
+                Layout.columnSpan: 1
+                text: ""
+                KeyNavigation.tab: (settings.satActive || (satnComboBox.currentIndex !== 0) || satmTextField.text) ? satnComboBox : commTextField
+                visible: settings.wwffActive || wwffTextField.text || wwfsTextField.text
+                font.capitalization: Font.AllUppercase
+                inputMethodHints: Qt.ImhUppercaseOnly
+            }
+
 
             //--- SAT:
 

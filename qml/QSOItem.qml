@@ -210,6 +210,33 @@ SwipeDelegate {
                 opacity: 0.87
             }
 
+            //--- WWFF
+
+            Text {
+                id: wwffLogo
+                color: "#ffffff"
+                font.family: fontAwesome.name
+                text: (model.wwff !== "" || model.wwfs !== "") ? "\uf1bb" : ""
+                anchors.top: parent.top
+                anchors.right: wwffName.left
+                anchors.topMargin: 50
+                anchors.rightMargin: (model.wwff !== "" || model.wwfs !== "") ? 5 : 0
+                font.pixelSize: 12
+                opacity: 0.87
+            }
+
+            Text {
+                id: wwffName
+                color: "#ffffff"
+                text: (model.wwff !== "" || model.wwfs !== "") ? "S:" + model.wwfs + " R:" + model.wwff : ""
+                anchors.top: parent.top
+                anchors.right: satLogo.left
+                anchors.topMargin: 50
+                anchors.rightMargin: (model.wwff !== "" || model.wwfs !== "") ? 5 : 0
+                font.pixelSize: 12
+                opacity: 0.87
+            }
+
             //--- SAT
 
             Text {
@@ -299,6 +326,8 @@ SwipeDelegate {
                                    "sync"       : model.sync,
                                    "sota"       : model.sota,
                                    "sots"       : model.sots,
+                                   "wwff"       : model.wwff,
+                                   "wwfs"       : model.wwfs,
                                    "satn"       : model.satn,
                                    "satm"       : model.satm,
                                });

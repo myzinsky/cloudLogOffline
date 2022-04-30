@@ -51,6 +51,8 @@ void cloudlogManager::uploadQSO(QString url,
                                 QString ctsr,
                                 QString sota,
                                 QString sots,
+                                QString wwff,
+                                QString wwfs,
                                 QString satn,
                                 QString satm
                                 )
@@ -81,6 +83,8 @@ void cloudlogManager::uploadQSO(QString url,
                       ctsr,
                       sota,
                       sots,
+                      wwff,
+                      wwfs,
                       satn,
                       satm
                       ) +
@@ -110,7 +114,7 @@ void cloudlogManager::callbackCloudLog(QNetworkReply *rep)
     if(jsonObject["status"] == "created") {
         QString adifStr = jsonObject["string"].toString();
 
-        qDebug() << "Callback: " << adifStr << endl;
+        qDebug() << "Callback: " << adifStr;
 
         QSqlQuery query;
 
@@ -195,8 +199,10 @@ void cloudlogManager::uploadNext()
     QString sync = selectQuery.value(15).toString();
     QString sota = selectQuery.value(16).toString();
     QString sots = selectQuery.value(17).toString();
-    QString satn = selectQuery.value(18).toString();
-    QString satm = selectQuery.value(19).toString();
+    QString wwff = selectQuery.value(18).toString();
+    QString wwfs = selectQuery.value(19).toString();
+    QString satn = selectQuery.value(20).toString();
+    QString satm = selectQuery.value(21).toString();
 
     currentIdInUpload = id;
 
@@ -219,6 +225,8 @@ void cloudlogManager::uploadNext()
               ctsr,
               sota,
               sots,
+              wwff,
+              wwfs,
               satn,
               satm
               );

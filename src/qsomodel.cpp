@@ -53,6 +53,8 @@ void qsoModel::addQSO(QString call,
                       QString ctsr,
                       QString sota,
                       QString sots,
+                      QString wwff,
+                      QString wwfs,
                       QString satn,
                       QString satm
                       )
@@ -75,6 +77,8 @@ void qsoModel::addQSO(QString call,
     newRecord.setValue("ctsr", ctsr);
     newRecord.setValue("sota", sota);
     newRecord.setValue("sots", sots); // MYSOTA
+    newRecord.setValue("wwff", wwff);
+    newRecord.setValue("wwfs", wwfs); // MYWWFF
     newRecord.setValue("satn", satn);
     newRecord.setValue("satm", satm);
 
@@ -104,6 +108,8 @@ void qsoModel::updateQSO(int id,
                          QString ctsr,
                          QString sota,
                          QString sots,
+                         QString wwff,
+                         QString wwfs,
                          QString satn,
                          QString satm
                          )
@@ -127,6 +133,8 @@ void qsoModel::updateQSO(int id,
     r.setValue("ctsr", ctsr);
     r.setValue("sota", sota);
     r.setValue("sots", sots); // MYSOTA
+    r.setValue("wwff", wwff);
+    r.setValue("wwfs", wwfs); // MYWWFF
     r.setValue("satn", satn);
     r.setValue("satm", satm);
 
