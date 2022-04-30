@@ -18,7 +18,23 @@ Currently CloudLogOffline supports following features:
 - SOTA Fields
 - SAT Fields
 
+## Build Instructions:
+
+There is just one requirement, which ist [Qt](https://www.qt.io/download-open-source).
+
+After intalling Qt just follow these steps on command line:
+
+```bash
+git clone --recursive https://github.com/myzinsky/cloudLogOffline.git
+cd cloudLogOffline/
+mkdir build
+qmake ../CloudLogOffline.pro
+make -j
+```
+Or use QtCreator to build the project.
+
+Then run the binary, app or exe
+
 ## Community:
 - German Telegram Group: https://t.me/CloudLogOffline
 - International DARC Matrix Group: [#thema_cloudlogoffline:darc.de](https://matrix.to/#/#thema_cloudlogoffline:darc.de)
-- CloudLog Forum: https://forum.cloudlog.co.uk/d/27-cloudlog-app-interface-clouglogoffline
