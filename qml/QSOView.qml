@@ -6,7 +6,7 @@ import Qt.labs.settings 1.0
 
 Page {
     id: page
-    title: (addQSO || liveQSO) ? (qsTr("Add QSO") + "(" + qsoModel.numberOfQSOs() + ")") : qsTr("Edit QSO") // TODO UPDATE WITH SIGNAL!
+    title: (addQSO || liveQSO) ? (qsTr("Add QSO") + " (" + qsoModel.numberOfQSOs() + ")") : qsTr("Edit QSO")
 
     property bool addQSO: true;
     property bool liveQSO: false;
@@ -156,6 +156,15 @@ Page {
         onTriggered: {
             rig.getFrequency(settings.rigHost, settings.rigPort)
             rig.getMode(settings.rigHost, settings.rigPort)
+        }
+    }
+
+    Connections{
+        target: qsoModel
+
+        function onUpdateNumberOfQSOs(number) {
+            page.title = (addQSO || liveQSO) ? (qsTr("Add QSO") + " (" + number + ")") : qsTr("Edit QSO")
+            console.log("Eiersalat!")
         }
     }
 
