@@ -5,6 +5,7 @@ import QtQuick.Controls.Material 2.12
 import QtGraphicalEffects 1.0
 
 SwipeDelegate {
+    id: swipeDelegateId
     width: parent.width
     height: 70
 
@@ -172,6 +173,8 @@ SwipeDelegate {
                 id: name
                 color: "#ffffff"
                 text: model.name
+                width: swipeDelegateId.width - call.width - country.width - 20;
+                elide: Text.ElideRight
                 anchors.leftMargin: 10
                 font.italic: true
                 font.bold: false
