@@ -7,7 +7,7 @@ import de.webappjung 1.0
 
 Page {
     id: page
-    title: (rb.getLocator() === "") ? qsTr("Repeater Book") : qsTr("Repeater Book") + " (" + rb.getLocator() + ")";
+    title: (rb.getLocator() === "") ? qsTr("Hear HAM Repeater List") : qsTr("Hear HAM Repeater List") + " (" + rb.getLocator() + ")";
     anchors.fill: parent
     Layout.margins: 5
 
@@ -19,7 +19,7 @@ Page {
         Connections{
             target: rb
             function onLocatorDone(locator) {
-                page.title = qsTr("Repeater Book") + " (" + locator + ")"
+                page.title = qsTr("Hear HAM Repeater List") + " (" + locator + ")"
             }
         }
 
