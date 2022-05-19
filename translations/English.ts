@@ -420,6 +420,10 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Station ID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>QRZ.com API Synchronization</source>
         <translation type="unfinished"></translation>
     </message>

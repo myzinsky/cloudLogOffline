@@ -35,6 +35,7 @@ cloudlogManager::cloudlogManager(qsoModel *model) : model(model)
 void cloudlogManager::uploadQSO(QString url,
                                 QString ssl,
                                 QString key,
+                                QString station_id,
                                 QString call,
                                 QString name,
                                 QString mode,
@@ -65,6 +66,7 @@ void cloudlogManager::uploadQSO(QString url,
     QString str = QString("") +
     "{" +
         "\"key\":\"" + key +"\"," +
+        "\"station_profile_id\":\"" + station_id +"\"," +
         "\"type\":\"adif\"," +
         "\"string\":\"" +
         adif.assemble(call,
@@ -146,10 +148,11 @@ void cloudlogManager::callbackCloudLog(QNetworkReply *rep)
     // TODO: what if callback is not happening or request fails?
 }
 
-void cloudlogManager::uploadToCloudLog(QString ssl, QString url, QString key)
+void cloudlogManager::uploadToCloudLog(QString ssl, QString url, QString key, QString station_id)
 {
     this->url = url;
     this->key = key;
+    this->station_id = station_id;
     this->ssl = ssl;
 
     // Estimate how many uploads:
@@ -209,6 +212,7 @@ void cloudlogManager::uploadNext()
     uploadQSO(url,
               ssl,
               key,
+              station_id,
               call,
               name,
               mode,

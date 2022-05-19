@@ -451,6 +451,10 @@
         <translation>Key</translation>
     </message>
     <message>
+        <source>Station ID</source>
+        <translation type="vanished">Stations-ID</translation>
+    </message>
+    <message>
         <source>QRZ.com API Synchronization</source>
         <translation>QRZ.com API Synchronisation</translation>
     </message>

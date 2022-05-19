@@ -25,11 +25,12 @@ Page {
         settings.contestNumber = contestNumber.text
         settings.fixedNumber   = fixedNumberSwitch.checked;
 
-        settings.cloudLogURL      = cloudLogURL.text;
-        settings.cloudLogSSL      = cloudLogSSL.currentText;
-        settings.cloudLogSSLIndex = cloudLogSSL.currentIndex
-        settings.cloudLogKey      = cloudLogKey.text;
-        settings.cloudLogActive   = cloudLogSwitch.checked;
+        settings.cloudLogURL       = cloudLogURL.text;
+        settings.cloudLogSSL       = cloudLogSSL.currentText;
+        settings.cloudLogSSLIndex  = cloudLogSSL.currentIndex
+        settings.cloudLogKey       = cloudLogKey.text;
+        settings.cloudLogStationId = cloudLogStationId.text;
+        settings.cloudLogActive    = cloudLogSwitch.checked;
 
         settings.qrzUser   = qrzUser.text;
         settings.qrzPass   = qrzPass.text;
@@ -260,6 +261,21 @@ Page {
                 visible: cloudLogSwitch.checked
                 text: settings.cloudLogKey
                 echoMode: TextInput.Password
+                onTextEdited: saveSettings()
+                onEditingFinished: saveSettings();
+            }
+
+            Label {
+                id: cloudLogStationIdLabel
+                text: qsTr("Station ID") + ":"
+                visible: cloudLogSwitch.checked
+            }
+
+            TextField {
+                id: cloudLogStationId
+                Layout.fillWidth: true
+                visible: cloudLogSwitch.checked
+                text: settings.cloudLogStationId
                 onTextEdited: saveSettings()
                 onEditingFinished: saveSettings();
             }

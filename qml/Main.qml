@@ -75,6 +75,7 @@ ApplicationWindow {
         property string cloudLogSSL
         property int cloudLogSSLIndex
         property string cloudLogKey
+        property string cloudLogStationId
         property bool cloudLogActive
 
         property string qrzUser

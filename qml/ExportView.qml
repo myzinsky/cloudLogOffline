@@ -69,7 +69,8 @@ Page {
                 onClicked: {
                     cl.uploadToCloudLog(settings.cloudLogSSL,
                                         settings.cloudLogURL,
-                                        settings.cloudLogKey)
+                                        settings.cloudLogKey,
+                                        settings.cloudLogStationId)
                 }
             }
 
