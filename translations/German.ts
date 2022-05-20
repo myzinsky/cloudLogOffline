@@ -365,6 +365,14 @@
         <source>SAT Mode</source>
         <translation>SAT Mode</translation>
     </message>
+    <message>
+        <source>WWFF (S)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>WWFF (R)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>QSOViewWrapper</name>
@@ -452,7 +460,7 @@
     </message>
     <message>
         <source>Station ID</source>
-        <translation type="vanished">Stations-ID</translation>
+        <translation>Stations-ID</translation>
     </message>
     <message>
         <source>QRZ.com API Synchronization</source>
@@ -529,6 +537,14 @@
     <message>
         <source>Please specify the Hostname to Clouglog without https:// or http:// (e.g. log.cloud.com) and the specific key.</source>
         <translation>Bitte gib den Servernamen zu Clouglog ohne https:// oder http:// (z.B. log.cloud.com) und den spezifischen Key an.</translation>
+    </message>
+    <message>
+        <source>World Wide Flora &amp; Fauna (WWFF)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert here youre WWFF reference</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
