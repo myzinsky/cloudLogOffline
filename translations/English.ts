@@ -495,7 +495,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Please specify the Hostname to Clouglog without https:// or http:// (e.g. log.cloud.com) and the specific key.</source>
+        <source>Please specify the Hostname to Clouglog without https:// or http:// (e.g. log.cloud.com) and the specific API key. The station ID is optional for Cloudlog v1 and mandatory for v2. You can find the IDs in the &quot;Station Locations&quot; section inside your profile of your Cloudlog instance.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

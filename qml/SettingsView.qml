@@ -206,7 +206,7 @@ Page {
                 id: cloudLogSwitch
                 icon: "\uf0c2"
                 text: qsTr("Cloud Log API")
-                helpText: qsTr("Please specify the Hostname to Clouglog without https:// or http:// (e.g. log.cloud.com) and the specific key.")
+                helpText: qsTr("Please specify the Hostname to Clouglog without https:// or http:// (e.g. log.cloud.com) and the specific API key. The station ID is optional for Cloudlog v1 and mandatory for v2. You can find the IDs in the \"Station Locations\" section inside your profile of your Cloudlog instance.")
                 Layout.columnSpan: 2
                 checked: settings.cloudLogActive
             }

@@ -535,8 +535,8 @@
         <translation>Radius</translation>
     </message>
     <message>
-        <source>Please specify the Hostname to Clouglog without https:// or http:// (e.g. log.cloud.com) and the specific key.</source>
-        <translation>Bitte gib den Servernamen zu Clouglog ohne https:// oder http:// (z.B. log.cloud.com) und den spezifischen Key an.</translation>
+        <source>Please specify the Hostname to Clouglog without https:// or http:// (e.g. log.cloud.com) and the specific API key. The station ID is optional for Cloudlog v1 and mandatory for v2. You can find the IDs in the &quot;Station Locations&quot; section inside your profile of your Cloudlog instance.</source>
+        <translation>Bitte gib den Hostnamen zu Clouglog ohne https:// oder http:// (z.B. log.cloud.com) und den spezifischen API-Key an. Die Stations-ID is optional für Cloudlog v1 und obligatorisch für v2. Die IDs können im Abschnitt &quot;Station Locations&quot; in deinem Profil deiner Cloudlog Instanz eingesehen werden.</translation>
     </message>
     <message>
         <source>World Wide Flora &amp; Fauna (WWFF)</source>
