@@ -425,7 +425,7 @@ Page {
                 id: satSwitch
                 icon: "\uf7bf"
                 text: qsTr("Satellite")
-                helpText: qsTr("Enable satellites fields in QSO View")
+                helpText: qsTr("Enable satellite fields in QSO View")
                 Layout.columnSpan: 2
                 checked: settings.satActive
             }

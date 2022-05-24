@@ -487,7 +487,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Enable satellites fields in QSO View</source>
+        <source>Enable satellite fields in QSO View</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

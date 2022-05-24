@@ -511,12 +511,12 @@
         <translation>Satellit</translation>
     </message>
     <message>
-        <source>Enable Satelites fields in QSO View</source>
-        <translation type="vanished">Schaltetn die Sateliten Felder in der QSO Ansicht an</translation>
+        <source>Enable Satellite fields in QSO View</source>
+        <translation type="vanished">Schaltet die Satelliten Felder in der QSO Ansicht an</translation>
     </message>
     <message>
-        <source>Enable satellites fields in QSO View</source>
-        <translation>Schaltet die Sateliten Felder in der QSO Ansicht an</translation>
+        <source>Enable satellite fields in QSO View</source>
+        <translation>Schaltet die Satelliten Felder in der QSO Ansicht an</translation>
     </message>
     <message>
         <source>Fixed Number</source>
