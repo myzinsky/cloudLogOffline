@@ -443,8 +443,8 @@
         <translation>Cloug Log API</translation>
     </message>
     <message>
-        <source>CloudlogAPIHelpText</source>
-        <translation>Bitte gib die URL zu Clouglog ohne https:// oder http:// (z.B. log.cloud.com) und den spezifischen API-Key an. Die Stations-ID is optional für Cloudlog v1 und obligatorisch für v2. Die IDs können im Abschnitt &quot;Station Locations&quot; in deinem Profil deiner Cloudlog Instanz eingesehen werden.</translation>
+        <source>Please specify the URL to Clouglog without https:// or http:// (e.g. log.cloud.com) and the specific key.</source>
+        <translation type="vanished">Bitte gib die URL zu Clouglog ohne https:// oder http:// (z.B. log.cloud.com) und den spezifischen Key an.</translation>
     </message>
     <message>
         <source>URL</source>
@@ -533,6 +533,10 @@
     <message>
         <source>Radius</source>
         <translation>Radius</translation>
+    </message>
+    <message>
+        <source>Please specify the Hostname to Clouglog without https:// or http:// (e.g. log.cloud.com) and the specific key.</source>
+        <translation>Bitte gib den Servernamen zu Clouglog ohne https:// oder http:// (z.B. log.cloud.com) und den spezifischen Key an.</translation>
     </message>
     <message>
         <source>World Wide Flora &amp; Fauna (WWFF)</source>
