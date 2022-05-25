@@ -228,6 +228,10 @@
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Add Repeater QSO</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>QRZView</name>
@@ -345,6 +349,14 @@
         <source>SAT Mode</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>WWFF (S)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>WWFF (R)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>QSOViewWrapper</name>
@@ -354,6 +366,17 @@
     </message>
     <message>
         <source>Edit QSO</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>RepeaterListView</name>
+    <message>
+        <source>Repeater Book</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No repeaters found: No GPS or no radius defined in settings!</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -404,19 +427,15 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Please specify the URL to Clouglog without https:// or http:// (e.g. log.cloud.com) and the specific key.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>URL</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Encryption</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Key</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Station ID</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -468,11 +487,35 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Enable satellites fields in QSO View</source>
+        <source>Enable satellite fields in QSO View</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Fixed Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please specify the Hostname to Clouglog without https:// or http:// (e.g. log.cloud.com) and the specific API key. The station ID is optional for Cloudlog v1 and mandatory for v2. You can find the IDs in the &quot;Station Locations&quot; section inside your profile of your Cloudlog instance.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>World Wide Flora &amp; Fauna (WWFF)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert here youre WWFF reference</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Repeater Book</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Activate this to see repeaters near to you</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Radius</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

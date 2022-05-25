@@ -24,7 +24,7 @@ private slots:
     void callbackCloudLog(QNetworkReply *rep);
 
 public slots:
-    void uploadToCloudLog(QString ssl, QString url, QString key);
+    void uploadToCloudLog(QString ssl, QString url, QString key, QString station_id);
     void deleteUploadedQsos();
     void deleteQsos();
 
@@ -38,6 +38,7 @@ private:
     QSqlQuery selectQuery;
     QString url;
     QString key;
+    QString station_id;
     QString ssl;
     qsoModel *model;
     int number;
@@ -47,6 +48,7 @@ private:
     void uploadQSO(QString url,
                    QString ssl,
                    QString key,
+                   QString station_id,
                    QString call,
                    QString name,
                    QString mode,

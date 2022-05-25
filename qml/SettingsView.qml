@@ -25,11 +25,12 @@ Page {
         settings.contestNumber = contestNumber.text
         settings.fixedNumber   = fixedNumberSwitch.checked;
 
-        settings.cloudLogURL      = cloudLogURL.text;
-        settings.cloudLogSSL      = cloudLogSSL.currentText;
-        settings.cloudLogSSLIndex = cloudLogSSL.currentIndex
-        settings.cloudLogKey      = cloudLogKey.text;
-        settings.cloudLogActive   = cloudLogSwitch.checked;
+        settings.cloudLogURL       = cloudLogURL.text;
+        settings.cloudLogSSL       = cloudLogSSL.currentText;
+        settings.cloudLogSSLIndex  = cloudLogSSL.currentIndex
+        settings.cloudLogKey       = cloudLogKey.text;
+        settings.cloudLogStationId = cloudLogStationId.text;
+        settings.cloudLogActive    = cloudLogSwitch.checked;
 
         settings.qrzUser   = qrzUser.text;
         settings.qrzPass   = qrzPass.text;
@@ -205,7 +206,7 @@ Page {
                 id: cloudLogSwitch
                 icon: "\uf0c2"
                 text: qsTr("Cloud Log API")
-                helpText: qsTr("Please specify the Hostname to Clouglog without https:// or http:// (e.g. log.cloud.com) and the specific key.")
+                helpText: qsTr("Please specify the Hostname to Clouglog without https:// or http:// (e.g. log.cloud.com) and the specific API key. The station ID is optional for Cloudlog v1 and mandatory for v2. You can find the IDs in the \"Station Locations\" section inside your profile of your Cloudlog instance.")
                 Layout.columnSpan: 2
                 checked: settings.cloudLogActive
             }
@@ -260,6 +261,21 @@ Page {
                 visible: cloudLogSwitch.checked
                 text: settings.cloudLogKey
                 echoMode: TextInput.Password
+                onTextEdited: saveSettings()
+                onEditingFinished: saveSettings();
+            }
+
+            Label {
+                id: cloudLogStationIdLabel
+                text: qsTr("Station ID") + ":"
+                visible: cloudLogSwitch.checked
+            }
+
+            TextField {
+                id: cloudLogStationId
+                Layout.fillWidth: true
+                visible: cloudLogSwitch.checked
+                text: settings.cloudLogStationId
                 onTextEdited: saveSettings()
                 onEditingFinished: saveSettings();
             }
@@ -409,7 +425,7 @@ Page {
                 id: satSwitch
                 icon: "\uf7bf"
                 text: qsTr("Satellite")
-                helpText: qsTr("Enable satellites fields in QSO View")
+                helpText: qsTr("Enable satellite fields in QSO View")
                 Layout.columnSpan: 2
                 checked: settings.satActive
             }

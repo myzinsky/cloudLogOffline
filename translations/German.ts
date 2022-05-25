@@ -365,6 +365,14 @@
         <source>SAT Mode</source>
         <translation>SAT Mode</translation>
     </message>
+    <message>
+        <source>WWFF (S)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>WWFF (R)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>QSOViewWrapper</name>
@@ -451,6 +459,10 @@
         <translation>Key</translation>
     </message>
     <message>
+        <source>Station ID</source>
+        <translation>Stations-ID</translation>
+    </message>
+    <message>
         <source>QRZ.com API Synchronization</source>
         <translation>QRZ.com API Synchronisation</translation>
     </message>
@@ -499,12 +511,12 @@
         <translation>Satellit</translation>
     </message>
     <message>
-        <source>Enable Satelites fields in QSO View</source>
-        <translation type="vanished">Schaltetn die Sateliten Felder in der QSO Ansicht an</translation>
+        <source>Enable Satellite fields in QSO View</source>
+        <translation type="vanished">Schaltet die Satelliten Felder in der QSO Ansicht an</translation>
     </message>
     <message>
-        <source>Enable satellites fields in QSO View</source>
-        <translation>Schaltet die Sateliten Felder in der QSO Ansicht an</translation>
+        <source>Enable satellite fields in QSO View</source>
+        <translation>Schaltet die Satelliten Felder in der QSO Ansicht an</translation>
     </message>
     <message>
         <source>Fixed Number</source>
@@ -523,8 +535,16 @@
         <translation>Radius</translation>
     </message>
     <message>
-        <source>Please specify the Hostname to Clouglog without https:// or http:// (e.g. log.cloud.com) and the specific key.</source>
-        <translation>Bitte gib den Servernamen zu Clouglog ohne https:// oder http:// (z.B. log.cloud.com) und den spezifischen Key an.</translation>
+        <source>Please specify the Hostname to Clouglog without https:// or http:// (e.g. log.cloud.com) and the specific API key. The station ID is optional for Cloudlog v1 and mandatory for v2. You can find the IDs in the &quot;Station Locations&quot; section inside your profile of your Cloudlog instance.</source>
+        <translation>Bitte gib den Hostnamen zu Clouglog ohne https:// oder http:// (z.B. log.cloud.com) und den spezifischen API-Key an. Die Stations-ID is optional für Cloudlog v1 und obligatorisch für v2. Die IDs können im Abschnitt &quot;Station Locations&quot; in deinem Profil deiner Cloudlog Instanz eingesehen werden.</translation>
+    </message>
+    <message>
+        <source>World Wide Flora &amp; Fauna (WWFF)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert here youre WWFF reference</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
