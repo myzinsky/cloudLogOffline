@@ -17,11 +17,11 @@ void translationManager::switchToLanguage(const QString &language)
     bool success = translator->load(language);
 
     if(success == true) { // Search for iOS:
-        qDebug() << "Language Switched: " << language;
+        qDebug() << "Language Switched iOS: " << language;
     } else { // Search for Android again:
         success = translator->load(":/translations/"+language+".qm");
         if(success == true) {
-            qDebug() << "Language Switched: " << language;
+            qDebug() << "Language Switched Android: " << language;
         } else {
             qDebug() << "Language File Not Found: " << language;
         }

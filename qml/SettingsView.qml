@@ -435,7 +435,7 @@ Page {
             SettingsSwitch {
                 id: rbSwitch
                 icon: "\uf519"
-                text: qsTr("Repeater Book")
+                text: qsTr("Hear HAM Repeater List")
                 helpText: qsTr("Activate this to see repeaters near to you")
                 Layout.columnSpan: 2
                 checked: settings.rbActive

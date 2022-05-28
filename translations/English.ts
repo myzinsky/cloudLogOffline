@@ -372,11 +372,11 @@
 <context>
     <name>RepeaterListView</name>
     <message>
-        <source>Repeater Book</source>
+        <source>No repeaters found: No GPS or no radius defined in settings!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>No repeaters found: No GPS or no radius defined in settings!</source>
+        <source>Hear HAM Repeater List</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -507,15 +507,15 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Repeater Book</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Activate this to see repeaters near to you</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Radius</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hear HAM Repeater List</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

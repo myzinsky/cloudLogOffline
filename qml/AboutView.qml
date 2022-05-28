@@ -29,7 +29,7 @@ Page {
 
                 text: "<h1>About</h1>
 CloudLogApp is developed by Web &amp; App Dr.-Ing. Matthias Jung (DL9MJ),
-http://www.webappjung.de/<br>"
+http://www.webappjung.de/<br>. The repeater list is provided by https://hearham.com<br>"
                 color: "white"
             }
 

@@ -367,11 +367,11 @@
     </message>
     <message>
         <source>WWFF (S)</source>
-        <translation type="unfinished"></translation>
+        <translation>WWFF (S)</translation>
     </message>
     <message>
         <source>WWFF (R)</source>
-        <translation type="unfinished"></translation>
+        <translation>WWFF (R)</translation>
     </message>
 </context>
 <context>
@@ -389,11 +389,15 @@
     <name>RepeaterListView</name>
     <message>
         <source>Repeater Book</source>
-        <translation>Repeater Book</translation>
+        <translation type="vanished">Repeater Book</translation>
     </message>
     <message>
         <source>No repeaters found: No GPS or no radius defined in settings!</source>
         <translation>Keine Repeater gefunden: Kein GPS oder kein Radius in den Einstellungen konfiguriert!</translation>
+    </message>
+    <message>
+        <source>Hear HAM Repeater List</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -524,7 +528,7 @@
     </message>
     <message>
         <source>Repeater Book</source>
-        <translation>Repeater Book</translation>
+        <translation type="vanished">Repeater Book</translation>
     </message>
     <message>
         <source>Activate this to see repeaters near to you</source>
@@ -540,10 +544,14 @@
     </message>
     <message>
         <source>World Wide Flora &amp; Fauna (WWFF)</source>
-        <translation type="unfinished"></translation>
+        <translation>World Wide Flora &amp; Fauna (WWFF)</translation>
     </message>
     <message>
         <source>Insert here youre WWFF reference</source>
+        <translation>Bitte hier die WWFF Referenz hinzufügen</translation>
+    </message>
+    <message>
+        <source>Hear HAM Repeater List</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
