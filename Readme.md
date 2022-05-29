@@ -17,6 +17,8 @@ Currently CloudLogOffline supports following features:
 - Live and post QSOs
 - SOTA Fields
 - SAT Fields
+- WWFF Fields
+- [Hear Ham Repeater List](https://hearham.com/repeaters)
 
 ## Build Instructions:
 
