@@ -27,6 +27,8 @@ cloudlogManager::cloudlogManager(qsoModel *model) : model(model)
                         "sync, "
                         "sota, "
                         "sots, "
+                        "wwff, "
+                        "wwfs, "
                         "satn, "
                         "satm "
                         "FROM qsos WHERE sync = 0");
