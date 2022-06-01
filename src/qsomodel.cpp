@@ -56,7 +56,8 @@ void qsoModel::addQSO(QString call,
                       QString wwff,
                       QString wwfs,
                       QString satn,
-                      QString satm
+                      QString satm,
+                      QString propmode
                       )
 {
     QSqlRecord newRecord = record();
@@ -81,6 +82,7 @@ void qsoModel::addQSO(QString call,
     newRecord.setValue("wwfs", wwfs); // MYWWFF
     newRecord.setValue("satn", satn);
     newRecord.setValue("satm", satm);
+    newRecord.setValue("propmode", propmode);
 
     newRecord.setValue("sync", 0);
 
@@ -111,7 +113,8 @@ void qsoModel::updateQSO(int id,
                          QString wwff,
                          QString wwfs,
                          QString satn,
-                         QString satm
+                         QString satm,
+                         QString propmode
                          )
 {
     qDebug() << "UPDATE QSO" << id;
@@ -137,6 +140,7 @@ void qsoModel::updateQSO(int id,
     r.setValue("wwfs", wwfs); // MYWWFF
     r.setValue("satn", satn);
     r.setValue("satm", satm);
+    r.setValue("propmode", propmode);
 
     setRecord(id, r);
     submit();

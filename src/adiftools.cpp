@@ -23,7 +23,8 @@ adifTools::adifTools()
                         "wwff, "
                         "wwfs, "
                         "satn, "
-                        "satm "
+                        "satm, "
+                        "propmode "
                         "FROM qsos");
 }
 
@@ -56,10 +57,10 @@ void adifTools::parse(QString adif,
     QRegularExpressionMatch match = re.match(adif);
 
     if (match.hasMatch()) {
-       call = match.captured( 1);
-       name = match.captured(12);
-       mode = match.captured( 3);
-       freq = match.captured( 4);
+       call     = match.captured( 1);
+       name     = match.captured(12);
+       mode     = match.captured( 3);
+       freq     = match.captured( 4);
 
        QString d = match.captured( 5);
 
@@ -106,7 +107,8 @@ QString adifTools::assemble(QString call,
                             QString wwff,
                             QString wwfs,
                             QString satn,
-                            QString satm)
+                            QString satm,
+                            QString propmode)
 {
     QString band  = this->band(freq);
     QString dateN = convertDate(date);
@@ -187,6 +189,11 @@ QString adifTools::assemble(QString call,
                 "<sat_mode:" + QString::number(satm.size()) + ">" + satm;
     }
 
+    if(!propmode.isEmpty()) {
+        str += QString("") +
+                "<prop_mode:" + QString::number(propmode.size()) + ">" + propmode;
+    }
+
     str += QString("") +
            "<country:"    + QString::number(ctry.size()) + ">" + ctry +
            "<qth:"        + QString::number(qqth.size()) + ">" + qqth +
@@ -211,28 +218,29 @@ QString adifTools::generate()
             "<EOH>\n\n";
 
     while(selectQuery.next()) {
-        QString id   = selectQuery.value( 0).toString();
-        QString call = selectQuery.value( 1).toString();
-        QString name = selectQuery.value( 2).toString();
-        QString ctry = selectQuery.value( 3).toString();
-        QString date = selectQuery.value( 4).toString();
-        QString time = selectQuery.value( 5).toString();
-        QString freq = selectQuery.value( 6).toString();
-        QString mode = selectQuery.value( 7).toString();
-        QString sent = selectQuery.value( 8).toString();
-        QString recv = selectQuery.value( 9).toString();
-        QString grid = selectQuery.value(10).toString();
-        QString qtth = selectQuery.value(11).toString();
-        QString comm = selectQuery.value(12).toString();
-        QString ctss = selectQuery.value(13).toString();
-        QString ctsr = selectQuery.value(14).toString();
-        QString sync = selectQuery.value(15).toString();
-        QString sota = selectQuery.value(16).toString();
-        QString sots = selectQuery.value(17).toString();
-        QString wwff = selectQuery.value(18).toString();
-        QString wwfs = selectQuery.value(19).toString();
-        QString satn = selectQuery.value(20).toString();
-        QString satm = selectQuery.value(21).toString();
+        QString id       = selectQuery.value( 0).toString();
+        QString call     = selectQuery.value( 1).toString();
+        QString name     = selectQuery.value( 2).toString();
+        QString ctry     = selectQuery.value( 3).toString();
+        QString date     = selectQuery.value( 4).toString();
+        QString time     = selectQuery.value( 5).toString();
+        QString freq     = selectQuery.value( 6).toString();
+        QString mode     = selectQuery.value( 7).toString();
+        QString sent     = selectQuery.value( 8).toString();
+        QString recv     = selectQuery.value( 9).toString();
+        QString grid     = selectQuery.value(10).toString();
+        QString qtth     = selectQuery.value(11).toString();
+        QString comm     = selectQuery.value(12).toString();
+        QString ctss     = selectQuery.value(13).toString();
+        QString ctsr     = selectQuery.value(14).toString();
+        QString sync     = selectQuery.value(15).toString();
+        QString sota     = selectQuery.value(16).toString();
+        QString sots     = selectQuery.value(17).toString();
+        QString wwff     = selectQuery.value(18).toString();
+        QString wwfs     = selectQuery.value(19).toString();
+        QString satn     = selectQuery.value(20).toString();
+        QString satm     = selectQuery.value(21).toString();
+        QString propmode = selectQuery.value(22).toString();
 
         output += assemble(call,
                            name,
@@ -253,7 +261,8 @@ QString adifTools::generate()
                            wwff,
                            wwfs,
                            satn,
-                           satm
+                           satm,
+                           propmode
                           ) + "\n\n";
     }
     return output;

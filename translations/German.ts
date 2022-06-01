@@ -338,6 +338,10 @@
         <translation>QTH-Kenner</translation>
     </message>
     <message>
+        <source>Propagation Mode</source>
+        <translation>Ausbreitungsmodus</translation>
+    </message>
+    <message>
         <source>Comment</source>
         <translation>Kommentar</translation>
     </message>

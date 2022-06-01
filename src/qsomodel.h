@@ -41,7 +41,8 @@ public slots:
                 QString wwff,
                 QString wwfs,
                 QString satn,
-                QString satm
+                QString satm,
+                QString propmode
                 );
 
     void updateQSO(int id,
@@ -64,7 +65,8 @@ public slots:
                 QString wwff,
                 QString wwfs,
                 QString satn,
-                QString satm
+                QString satm,
+                QString propmode
                 );
 
     bool checkCall(QString call);

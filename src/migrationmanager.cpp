@@ -22,6 +22,9 @@ migrationManager::migrationManager()
             else if(database == QVersionNumber::fromString("1.0.5")) { // Inlcudes also 1.0.9
                 from_1_0_9_to_1_1_0();
             }
+            else if(database == QVersionNumber::fromString("1.1.0")) {
+                from_1_1_0_to_1_1_1();
+            }
 
             // Bugfixes:
             fix_1_0_5();
@@ -46,6 +49,15 @@ QString migrationManager::getDatabaseVersion()
         return "1.0.3";
     } else {
         return selectQuery.value(0).toString();
+    }
+}
+
+void migrationManager::from_1_1_0_to_1_1_1()
+{
+    qDebug() << "Migrate from 1.1.0 to 1.1.1";
+    bool res = addQSOColumn("propmode", "TEXT");
+    if(res == true) {
+        updateDatabaseVersion("1.1.1");
     }
 }
 

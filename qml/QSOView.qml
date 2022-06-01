@@ -34,6 +34,7 @@ Page {
     property alias satm: satmTextField.text;
 
     property string mode
+    property string propmode
     property string satn
 
     property int sync
@@ -49,6 +50,11 @@ Page {
         if(satn) {
             var j = satnComboBox.find(satn);
             satnComboBox.currentIndex = j;
+        }
+
+        if(propmode) {
+            var k = propModeComboBox.find(propmode);
+            propModeComboBox.currentIndex = k;
         }
 
         if(updateQSO) {
@@ -79,6 +85,7 @@ Page {
 
         modeComboBox.currentIndex = 0;
         satnComboBox.currentIndex = 0;
+        propModeComboBox.currentIndex = 0;
 
         qrzFound = false;
     }
@@ -104,7 +111,8 @@ Page {
                     wwffTextField.text.toUpperCase(),
                     wwfsTextField.text.toUpperCase(),
                     satnComboBox.currentText,
-                    satmTextField.text.toUpperCase()
+                    satmTextField.text.toUpperCase(),
+                    propModeComboBox.currentText
                     );
 
             if(addQSO) {
@@ -149,7 +157,8 @@ Page {
                        wwffTextField.text.toUpperCase(),
                        wwfsTextField.text.toUpperCase(),
                        satnComboBox.currentText,
-                       satmTextField.text.toUpperCase()
+                       satmTextField.text.toUpperCase(),
+                       propModeComboBox.currentText
                        );
             stackView.pop()
         }
@@ -610,7 +619,53 @@ Page {
                 id: gridTextField
                 Layout.columnSpan: 3
                 text: ""
+                KeyNavigation.tab: propModeComboBox
+            }
+
+            Label {
+                id: propModeLable
+                text: qsTr("Propagation Mode") + ":"
+            }
+
+            ComboBox {
+                id: propModeComboBox
+                Layout.columnSpan: 3
+                Layout.fillWidth: true
                 KeyNavigation.tab: settings.sotaActive ? sotsTextField : ( settings.satActive ? satnComboBox : commTextField)
+                model: [
+                    "",
+                    "AS",
+                    "AUE",
+                    "AUR",
+                    "BS",
+                    "ECH",
+                    "EME",
+                    "ES",
+                    "F2",
+                    "FAI",
+                    "INTERNET",
+                    "ION",
+                    "IRL",
+                    "MS",
+                    "RPT",
+                    "RS",
+                    "SAT",
+                    "TEP",
+                    "TR",
+                ]
+
+                popup: Popup {
+                    x: (parent.width - width) / 2
+                    y: (page.height - height) / 2
+                    width: Math.max(200, propModeComboBox.width)
+                    padding: 0
+                    contentItem: ListView {
+                        clip: true
+                        implicitHeight: page.height
+                        model: propModeComboBox.popup.visible ? propModeComboBox.delegateModel : null
+                        currentIndex: propModeComboBox.highlightedIndex
+                    }
+                }
             }
 
             //--- SOTA:
@@ -694,6 +749,14 @@ Page {
                 id: satnComboBox
                 Layout.fillWidth: true
                 KeyNavigation.tab: satmTextField
+                onCurrentIndexChanged: {
+                    if (satnComboBox.currentIndex !== 0) {
+                        propModeComboBox.currentIndex = 16; 
+                    } else {
+                        propModeComboBox.currentIndex = 0; 
+                    }
+                }
+
                 model: [
                     "",
                     "AISAT-1",

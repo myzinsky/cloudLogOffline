@@ -322,6 +322,10 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Propagation Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Comment</source>
         <translation type="unfinished"></translation>
     </message>
