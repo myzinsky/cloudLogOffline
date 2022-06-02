@@ -53,7 +53,7 @@ Page {
         }
 
         if(propmode) {
-            var k = propModeComboBox.find(propmode);
+            var k = propModeComboBox.indexOfValue(propmode);
             propModeComboBox.currentIndex = k;
         }
 
@@ -112,7 +112,7 @@ Page {
                     wwfsTextField.text.toUpperCase(),
                     satnComboBox.currentText,
                     satmTextField.text.toUpperCase(),
-                    propModeComboBox.currentText
+                    propModeComboBox.currentValue
                     );
 
             if(addQSO) {
@@ -632,28 +632,30 @@ Page {
                 Layout.columnSpan: 3
                 Layout.fillWidth: true
                 KeyNavigation.tab: settings.sotaActive ? sotsTextField : ( settings.satActive ? satnComboBox : commTextField)
-                model: [
-                    "",
-                    "AS",
-                    "AUE",
-                    "AUR",
-                    "BS",
-                    "ECH",
-                    "EME",
-                    "ES",
-                    "F2",
-                    "FAI",
-                    "INTERNET",
-                    "ION",
-                    "IRL",
-                    "MS",
-                    "RPT",
-                    "RS",
-                    "SAT",
-                    "TEP",
-                    "TR",
-                ]
-
+                textRole: "value"
+                valueRole: "key"
+                model: ListModel {
+                    id: cbItems
+                    ListElement { key: ""; value: "" }
+                    ListElement { key: "AS"; value: "Aircraft Scatter" }
+                    ListElement { key: "AUE"; value: "Aurora-E" }
+                    ListElement { key: "AUR"; value: "Aurora" }
+                    ListElement { key: "BS"; value: "Back scatter" }
+                    ListElement { key: "ECH"; value: "EchoLink" }
+                    ListElement { key: "EME"; value: "Earth-Moon-Earth" }
+                    ListElement { key: "ES"; value: "Sporadic E" }
+                    ListElement { key: "F2"; value: "F2 Reflection" }
+                    ListElement { key: "FAI"; value: "Field Aligned Irregularities" }
+                    ListElement { key: "INTERNET"; value: "Internet-assisted" }
+                    ListElement { key: "ION"; value: "Ionoscatter" }
+                    ListElement { key: "IRL"; value: "IRLP" }
+                    ListElement { key: "MS"; value: "Meteor scatter" }
+                    ListElement { key: "RPT"; value: "Terrestrial or atmospheric repeater or transponder" }
+                    ListElement { key: "RS"; value: "Rain scatter" }
+                    ListElement { key: "SAT"; value: "Satellite" }
+                    ListElement { key: "TEP"; value: "Trans-equatorial" }
+                    ListElement { key: "TR"; value: "Tropospheric ducting" }
+                }
                 popup: Popup {
                     x: (parent.width - width) / 2
                     y: (page.height - height) / 2
