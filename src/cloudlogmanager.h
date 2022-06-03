@@ -69,7 +69,8 @@ private:
                    QString wwfs,
                    QString satn,
                    QString satm,
-                   QString propmode
+                   QString propmode,
+                   QString rxfreq
                );
 
     void uploadNext();

@@ -377,6 +377,10 @@
         <source>WWFF (R)</source>
         <translation>WWFF (R)</translation>
     </message>
+    <message>
+        <source>RX Frequency</source>
+        <translation type="unfinished">RX Frequenz</translation>
+    </message>
 </context>
 <context>
     <name>QSOViewWrapper</name>
@@ -433,6 +437,10 @@
     <message>
         <source>Frequency</source>
         <translation>Frequenz</translation>
+    </message>
+    <message>
+        <source>RX Frequency</source>
+        <translation type="vanished">RX Frequenz</translation>
     </message>
     <message>
         <source>Contest Mode</source>

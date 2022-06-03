@@ -24,7 +24,8 @@ adifTools::adifTools()
                         "wwfs, "
                         "satn, "
                         "satm, "
-                        "propmode "
+                        "propmode, "
+                        "rxfreq "
                         "FROM qsos");
 }
 
@@ -108,12 +109,15 @@ QString adifTools::assemble(QString call,
                             QString wwfs,
                             QString satn,
                             QString satm,
-                            QString propmode)
+                            QString propmode,
+                            QString rxfreq)
 {
-    QString band  = this->band(freq);
-    QString dateN = convertDate(date);
-    QString timeN = convertTime(time);
-    QString freqN = convertFreq(freq);
+    QString band   = this->band(freq);
+    QString rxband = this->band(rxfreq);
+    QString dateN  = convertDate(date);
+    QString timeN  = convertTime(time);
+    QString freqN  = convertFreq(freq);
+    QString rxfreqN = convertFreq(rxfreq);
     QString ownCall = settings.value("call").toString().toUpper();
 
     QString str = QString("") +
@@ -179,6 +183,7 @@ QString adifTools::assemble(QString call,
     }
 
     // SAT:
+    // u
     if(!satn.isEmpty()) {
         str += QString("") +
                 "<sat_name:" + QString::number(satn.size()) + ">" + satn;
@@ -192,6 +197,12 @@ QString adifTools::assemble(QString call,
     if(!propmode.isEmpty()) {
         str += QString("") +
                 "<prop_mode:" + QString::number(propmode.size()) + ">" + propmode;
+    }
+
+    if(!rxfreq.isEmpty()) {
+        str += QString("") +
+                "<freq_rx:"   + QString::number(rxfreqN.size())    + ">" + rxfreqN +
+                "<band_rx:"   + QString::number(rxband.size())     + ">" + rxband;
     }
 
     str += QString("") +
@@ -241,6 +252,7 @@ QString adifTools::generate()
         QString satn     = selectQuery.value(20).toString();
         QString satm     = selectQuery.value(21).toString();
         QString propmode = selectQuery.value(22).toString();
+        QString rxfreq   = selectQuery.value(23).toString();
 
         output += assemble(call,
                            name,
@@ -262,7 +274,8 @@ QString adifTools::generate()
                            wwfs,
                            satn,
                            satm,
-                           propmode
+                           propmode,
+                           rxfreq
                           ) + "\n\n";
     }
     return output;

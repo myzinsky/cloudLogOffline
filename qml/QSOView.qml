@@ -32,6 +32,7 @@ Page {
     property alias wwff: wwffTextField.text;
     property alias wwfs: wwfsTextField.text;
     property alias satm: satmTextField.text;
+    property alias rxfreq: freqRxTextField.text
 
     property string mode
     property string propmode
@@ -81,6 +82,7 @@ Page {
         wwffTextField.text = ""
         wwfsTextField.text = settings.wwffActive ? settings.myWwffReference : ""
         satmTextField.text = ""
+        freqRxTextField.text =  ""
         statusIndicator.Material.accent = Material.Green
 
         modeComboBox.currentIndex = 0;
@@ -112,7 +114,8 @@ Page {
                     wwfsTextField.text.toUpperCase(),
                     satnComboBox.currentText,
                     satmTextField.text.toUpperCase(),
-                    propModeComboBox.currentValue
+                    propModeComboBox.currentValue,
+                    freqRxTextField.text
                     );
 
             if(addQSO) {
@@ -158,7 +161,8 @@ Page {
                        wwfsTextField.text.toUpperCase(),
                        satnComboBox.currentText,
                        satmTextField.text.toUpperCase(),
-                       propModeComboBox.currentText
+                       propModeComboBox.currentText,
+                       freqRxTextField.text
                        );
             stackView.pop()
         }
@@ -510,12 +514,31 @@ Page {
                 id: freqTextField
                 Layout.columnSpan: 3
                 text: (liveQSO && settings.cqActive) ? settings.cqFreq : ""
-                KeyNavigation.tab: sentTextField
+                KeyNavigation.tab: (settings.satActive || (satnComboBox.currentIndex !== 0) || satmTextField.text) ? freqRxTextField : sentTextField
                 inputMethodHints: Qt.ImhFormattedNumbersOnly
 
                 onEditingFinished: {
                     freqTextField.text = freqTextField.text.replace(",", ".");
                 }
+            }
+
+            Label {
+                id: freqRxLable
+                text: qsTr("RX Frequency") + ":"
+                visible: settings.satActive
+            }
+
+            QSOTextField {
+                id: freqRxTextField
+                Layout.columnSpan: 3
+                text: ""
+                KeyNavigation.tab: sentTextField
+                inputMethodHints: Qt.ImhFormattedNumbersOnly
+
+                onEditingFinished: {
+                    freqRxTextField.text = freqRxTextField.text.replace(",", ".");
+                }
+                visible: settings.satActive
             }
 
             Label {

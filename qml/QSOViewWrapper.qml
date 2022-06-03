@@ -33,6 +33,7 @@ SplitView {
     property alias mode: qsoView.mode
     property alias satn: qsoView.satn
     property alias propmode: qsoView.propmode
+    property alias rxfreq: qsoView.rxfreq
     property alias sync: qsoView.sync
     property alias qrzFound: qsoView.qrzFound;
 
