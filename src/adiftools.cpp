@@ -117,6 +117,7 @@ QString adifTools::assemble(QString call,
     QString str = QString("") +
                   "<call:"             + QString::number(call.size())     + ">" + call +
                   "<station_callsign:" + QString::number(ownCall.size())  + ">" + ownCall +
+                  "<operator:"         + QString::number(ownCall.size())  + ">" + ownCall +
                   "<band:"             + QString::number(band.size())     + ">" + band +
                   "<mode:"             + QString::number(mode.size())     + ">" + mode +
                   "<freq:"             + QString::number(freqN.size())    + ">" + freqN +
