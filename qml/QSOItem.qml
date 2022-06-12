@@ -90,7 +90,7 @@ SwipeDelegate {
             Text {
                 id: mode
                 color: "#ffffff"
-                text: model.mode
+                text: model.mode + (model.propmode ? (" (" + model.propmode + ")") : "")
                 anchors.left: frequency.right
                 anchors.leftMargin: 10
                 anchors.top: parent.top
@@ -333,6 +333,7 @@ SwipeDelegate {
                                    "wwfs"       : model.wwfs,
                                    "satn"       : model.satn,
                                    "satm"       : model.satm,
+                                   "propmode"   : model.propmode,
                                });
             }
         }
