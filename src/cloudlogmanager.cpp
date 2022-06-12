@@ -31,7 +31,8 @@ cloudlogManager::cloudlogManager(qsoModel *model) : model(model)
                         "wwfs, "
                         "satn, "
                         "satm, "
-                        "propmode "
+                        "propmode, "
+                        "rxfreq "
                         "FROM qsos WHERE sync = 0");
 }
 
@@ -59,7 +60,8 @@ void cloudlogManager::uploadQSO(QString url,
                                 QString wwfs,
                                 QString satn,
                                 QString satm,
-                                QString propmode
+                                QString propmode,
+                                QString rxfreq
                                 )
 {
     QDateTime currentTime = QDateTime::currentDateTime();
@@ -93,7 +95,8 @@ void cloudlogManager::uploadQSO(QString url,
                       wwfs,
                       satn,
                       satm,
-                      propmode
+                      propmode,
+                      rxfreq
                       ) +
         "\"" +
     "}";
@@ -212,6 +215,7 @@ void cloudlogManager::uploadNext()
     QString satn     = selectQuery.value(20).toString();
     QString satm     = selectQuery.value(21).toString();
     QString propmode = selectQuery.value(22).toString();
+    QString rxfreq   = selectQuery.value(23).toString();
 
     currentIdInUpload = id;
 
@@ -239,7 +243,8 @@ void cloudlogManager::uploadNext()
               wwfs,
               satn,
               satm,
-              propmode
+              propmode,
+              rxfreq
               );
 }
 
