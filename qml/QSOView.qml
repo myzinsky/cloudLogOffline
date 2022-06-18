@@ -134,8 +134,6 @@ Page {
                         ctssTextField.text = contestNumber;
                         settings.contestNumber = contestNumber;
                     }
-                    sentTextField.text = 59;
-                    recvTextField.text = 59;
                 }
             }
 
@@ -417,8 +415,6 @@ Page {
                         page.reset();
                         if(settings.contestActive) {
                             ctssTextField.text = tmp;
-                            sentTextField.text = 59;
-                            recvTextField.text = 59;
                         }
                     }
                 }
@@ -456,6 +452,15 @@ Page {
                 Layout.columnSpan: 3
                 Layout.fillWidth: true
                 KeyNavigation.tab: freqTextField
+                onCurrentIndexChanged: {
+                    if (modeComboBox.currentIndex === 3) {
+                        sentTextField.placeholderText = "599";
+                        recvTextField.placeholderText = "599";
+                    } else {
+                        sentTextField.placeholderText = "59";
+                        recvTextField.placeholderText = "59";
+                    }
+                }
                 model: [
                     "SSB",
                     "FM",
@@ -549,7 +554,7 @@ Page {
             QSOTextField {
                 id: sentTextField
                 Layout.columnSpan: 1
-                text: settings.contestActive ? "59" : ""
+                text: ""
                 placeholderText: "59"
                 KeyNavigation.tab: recvTextField
                 inputMethodHints: Qt.ImhDigitsOnly
@@ -563,7 +568,7 @@ Page {
             QSOTextField {
                 id: recvTextField
                 Layout.columnSpan: 1
-                text: settings.contestActive ? "59" : ""
+                text: ""
                 placeholderText: "59"
                 KeyNavigation.tab: settings.contestActive ? ctssTextField : nameTextField
                 inputMethodHints: Qt.ImhDigitsOnly
@@ -868,8 +873,6 @@ Page {
                     page.reset();
                     if(settings.contestActive) {
                         ctssTextField.text = tmp;
-                        sentTextField.text = 59;
-                        recvTextField.text = 59;
                     }
                 }
             }
