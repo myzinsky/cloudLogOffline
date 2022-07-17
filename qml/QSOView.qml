@@ -46,6 +46,8 @@ Page {
         if(mode) {
             var i = modeComboBox.find(mode);
             modeComboBox.currentIndex = i;
+        } else if (liveQSO && settings.cqActive) {
+            modeComboBox.currentIndex = settings.cqModeIndex;
         }
 
         if(satn) {
@@ -495,9 +497,7 @@ Page {
                     "JT6M",
                     "ROS",
                 ]
-                Component.onCompleted: {
-                    currentIndex = (liveQSO && settings.cqActive) ? settings.cqModeIndex : 0
-                }
+
                 popup: Popup {
                     x: (parent.width - width) / 2
                     y: (page.height - height) / 2
