@@ -379,7 +379,7 @@
     </message>
     <message>
         <source>RX Frequency</source>
-        <translation type="unfinished">RX Frequenz</translation>
+        <translation>RX Frequenz</translation>
     </message>
 </context>
 <context>
@@ -405,7 +405,7 @@
     </message>
     <message>
         <source>Hear HAM Repeater List</source>
-        <translation type="unfinished"></translation>
+        <translation>Hear HAM Repeater Liste</translation>
     </message>
 </context>
 <context>
@@ -428,11 +428,11 @@
     </message>
     <message>
         <source>CQ Frequency</source>
-        <translation>CQ Frequenz</translation>
+        <translation type="vanished">CQ Frequenz</translation>
     </message>
     <message>
         <source>With &apos;CQ Frequency&apos; you can define a QRG which will be prefilled in the &apos;Live QSO&apos; view. This mode is beneficial if you cannot connect to FlRig.</source>
-        <translation>Mit &apos;CQ-Frequenz&apos; kannst Du eine QRG definieren, die in der &apos;Live QSO&apos;-Ansicht als Standardwert eingetragen wird. Dieser Modus ist vorteilhaft, wenn Du dich nicht mit FlRig verbinden kannst.</translation>
+        <translation type="vanished">Mit &apos;CQ-Frequenz&apos; kannst Du eine QRG definieren, die in der &apos;Live QSO&apos;-Ansicht als Standardwert eingetragen wird. Dieser Modus ist vorteilhaft, wenn Du dich nicht mit FlRig verbinden kannst.</translation>
     </message>
     <message>
         <source>Frequency</source>
@@ -564,7 +564,19 @@
     </message>
     <message>
         <source>Hear HAM Repeater List</source>
-        <translation type="unfinished"></translation>
+        <translation>Hear HAM Repeater Liste</translation>
+    </message>
+    <message>
+        <source>CQ Mode / Frequency</source>
+        <translation>CQ Betriebsart / Frequenz</translation>
+    </message>
+    <message>
+        <source>With &apos;CQ Mode / Frequency&apos; you can define a mode and QRG which will be prefilled in the &apos;Live QSO&apos; view. This mode is beneficial if you cannot connect to FlRig.</source>
+        <translation>Mit &apos;CQ Betriebsart / Frequenz&apos; kannst Du eine Betriebsart und QRG definieren, die in der &apos;Live QSO&apos;-Ansicht als Standardwert eingetragen wird. Dieser Modus ist vorteilhaft, wenn Du dich nicht mit FlRig verbinden kannst.</translation>
+    </message>
+    <message>
+        <source>Mode</source>
+        <translation>Betriebsart</translation>
     </message>
 </context>
 </TS>

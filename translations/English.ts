@@ -407,14 +407,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>CQ Frequency</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>With &apos;CQ Frequency&apos; you can define a QRG which will be prefilled in the &apos;Live QSO&apos; view. This mode is beneficial if you cannot connect to FlRig.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Frequency</source>
         <translation type="unfinished"></translation>
     </message>
@@ -524,6 +516,18 @@
     </message>
     <message>
         <source>Hear HAM Repeater List</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>CQ Mode / Frequency</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>With &apos;CQ Mode / Frequency&apos; you can define a mode and QRG which will be prefilled in the &apos;Live QSO&apos; view. This mode is beneficial if you cannot connect to FlRig.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mode</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -85,7 +85,7 @@ Page {
         freqRxTextField.text =  ""
         statusIndicator.Material.accent = Material.Green
 
-        modeComboBox.currentIndex = 0;
+        modeComboBox.currentIndex = (liveQSO && settings.cqActive) ? settings.cqModeIndex : 0;
         satnComboBox.currentIndex = 0;
         propModeComboBox.currentIndex = 0;
 
@@ -495,7 +495,9 @@ Page {
                     "JT6M",
                     "ROS",
                 ]
-
+                Component.onCompleted: {
+                    currentIndex = (liveQSO && settings.cqActive) ? settings.cqModeIndex : 0
+                }
                 popup: Popup {
                     x: (parent.width - width) / 2
                     y: (page.height - height) / 2

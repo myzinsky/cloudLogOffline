@@ -64,6 +64,8 @@ ApplicationWindow {
         property string language
         property int languageIndex
 
+        property string cqMode
+        property int cqModeIndex
         property string cqFreq
         property bool cqActive
 
