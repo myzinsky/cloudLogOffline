@@ -123,7 +123,7 @@
     </message>
     <message>
         <source>Mode</source>
-        <translation>Betriebsart</translation>
+        <translation>Übertragungsverfahren</translation>
     </message>
     <message>
         <source>Operator</source>
@@ -315,7 +315,7 @@
     </message>
     <message>
         <source>Mode</source>
-        <translation>Betriebsart</translation>
+        <translation>Übertragungsverfahren</translation>
     </message>
     <message>
         <source>Frequency</source>
@@ -568,15 +568,15 @@
     </message>
     <message>
         <source>CQ Mode / Frequency</source>
-        <translation>CQ Betriebsart / Frequenz</translation>
+        <translation>CQ Übertragungsverfahren / Frequenz</translation>
     </message>
     <message>
         <source>With &apos;CQ Mode / Frequency&apos; you can define a mode and QRG which will be prefilled in the &apos;Live QSO&apos; view. This mode is beneficial if you cannot connect to FlRig.</source>
-        <translation>Mit &apos;CQ Betriebsart / Frequenz&apos; kannst Du eine Betriebsart und QRG definieren, die in der &apos;Live QSO&apos;-Ansicht als Standardwert eingetragen wird. Dieser Modus ist vorteilhaft, wenn Du dich nicht mit FlRig verbinden kannst.</translation>
+        <translation>Mit &apos;CQ Übertragungsverfahren / Frequenz&apos; kannst Du ein Übertragungsverfahren und QRG definieren, die in der &apos;Live QSO&apos;-Ansicht als Standardwert eingetragen wird. Dieser Modus ist vorteilhaft, wenn Du dich nicht mit FlRig verbinden kannst.</translation>
     </message>
     <message>
         <source>Mode</source>
-        <translation>Betriebsart</translation>
+        <translation>Übertragungsverfahren</translation>
     </message>
 </context>
 </TS>
