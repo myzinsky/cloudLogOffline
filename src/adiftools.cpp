@@ -125,13 +125,31 @@ QString adifTools::assemble(QString call,
                   "<station_callsign:" + QString::number(ownCall.size())  + ">" + ownCall +
                   "<operator:"         + QString::number(ownCall.size())  + ">" + ownCall +
                   "<band:"             + QString::number(band.size())     + ">" + band +
-                  "<mode:"             + QString::number(mode.size())     + ">" + mode +
                   "<freq:"             + QString::number(freqN.size())    + ">" + freqN +
                   "<qso_date:"         + QString::number(dateN.size())    + ">" + dateN +
                   "<time_on:"          + QString::number(timeN.size())    + ">" + timeN +
                   "<time_off:"         + QString::number(timeN.size())    + ">" + timeN +
                   "<rst_rcvd:"         + QString::number(recv.size())     + ">" + recv +
                   "<rst_sent:"         + QString::number(sent.size())     + ">" + sent;
+
+    // mode / submode
+    if (mode.contains(" / ")) {
+        QStringList modeParts = mode.split(" / ");
+        if (modeParts.size() == 2) {
+            // mode and submode
+            str += QString("") +
+                    "<mode:" + QString::number(modeParts.at(0).size()) + ">" + modeParts.at(0) +
+                    "<submode:" + QString::number(modeParts.at(1).size()) + ">" + modeParts.at(1);
+        } else {
+            // mode only
+            str += QString("") +
+                    "<mode:" + QString::number(mode.size()) + ">" + mode;
+        }
+    } else {
+        // mode only
+        str += QString("") +
+                "<mode:" + QString::number(mode.size()) + ">" + mode;
+    }
 
     // Contest mode:
     if(!ctss.isEmpty()) {

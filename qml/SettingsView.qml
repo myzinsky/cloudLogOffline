@@ -161,6 +161,8 @@ Page {
                 visible: cqSwitch.checked
                 model: [
                     "SSB",
+                    "SSB / LSB",
+                    "SSB / USB",
                     "FM",
                     "AM",
                     "CW",

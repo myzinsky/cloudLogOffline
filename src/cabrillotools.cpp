@@ -22,11 +22,20 @@ QString cabrilloTools::assemble(QString call,
     // QSO:  3500 CW 2010-10-16 1758 DJ9MH         599 B10    DQ750UEM      599 750UEM
     // QSO:  3500 PH 2010-10-17 1023 DJ9MH         59  B10    DB6MC         59  NM
 
+    // remove submode
+    QString modeWithoutSubmode = mode;
+    if (mode.contains(" / ")) {
+        QStringList modeParts = mode.split(" / ");
+        if (modeParts.size() == 2) {
+            modeWithoutSubmode = modeParts.at(0);
+        }
+    }
+
     QString str = QString("") +
             "QSO: " +
             convertFreq(freq) +
             " " +
-            mode +
+            modeWithoutSubmode +
             " " +
             convertDate(date) +
             " " +

@@ -20,13 +20,25 @@ QString csvTools::assemble(QString call,
                            QString ctss,
                            QString ctsr)
 {
+    // handle submode
+    QString modeWithoutSubmode = QString("");
+    QString submode = QString("");
+    if (mode.contains(" / ")) {
+        QStringList modeParts = mode.split(" / ");
+        if (modeParts.size() == 2) {
+            modeWithoutSubmode = modeParts.at(0);
+            submode = modeParts.at(1);
+        }
+    }
+
     return QString("") +
            date + ", " +
            time + ", " +
            call + ", " +
            name + ", " +
            freq + ", " +
-           mode + ", " +
+           modeWithoutSubmode + ", " +
+           submode + ", " +
            recv + ", " +
            sent + ", " +
            ctsr + ", " +
@@ -48,6 +60,7 @@ QString csvTools::generate()
                "Name, "
                "Frequency, "
                "Mode, "
+               "Submode, "
                "Received, "
                "Sent, "
                "Contest Received, "
