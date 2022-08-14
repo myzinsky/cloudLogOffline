@@ -46,6 +46,8 @@ Page {
         if(mode) {
             var i = modeComboBox.find(mode);
             modeComboBox.currentIndex = i;
+        } else if (liveQSO && settings.cqActive) {
+            modeComboBox.currentIndex = settings.cqModeIndex;
         }
 
         if(satn) {
@@ -85,7 +87,7 @@ Page {
         freqRxTextField.text =  ""
         statusIndicator.Material.accent = Material.Green
 
-        modeComboBox.currentIndex = 0;
+        modeComboBox.currentIndex = (liveQSO && settings.cqActive) ? settings.cqModeIndex : 0;
         satnComboBox.currentIndex = 0;
         propModeComboBox.currentIndex = 0;
 

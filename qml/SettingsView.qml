@@ -18,8 +18,10 @@ Page {
         settings.language = language.currentText;
         settings.languageIndex = language.currentIndex;
 
-        settings.cqFreq   = cqFreq.text;
-        settings.cqActive = cqSwitch.checked;
+        settings.cqMode         = cqMode.currentText;
+        settings.cqModeIndex    = cqMode.currentIndex;
+        settings.cqFreq         = cqFreq.text;
+        settings.cqActive       = cqSwitch.checked;
 
         settings.contestActive = contestSwitch.checked;
         settings.contestNumber = contestNumber.text
@@ -27,7 +29,7 @@ Page {
 
         settings.cloudLogURL       = cloudLogURL.text;
         settings.cloudLogSSL       = cloudLogSSL.currentText;
-        settings.cloudLogSSLIndex  = cloudLogSSL.currentIndex
+        settings.cloudLogSSLIndex  = cloudLogSSL.currentIndex;
         settings.cloudLogKey       = cloudLogKey.text;
         settings.cloudLogStationId = cloudLogStationId.text;
         settings.cloudLogActive    = cloudLogSwitch.checked;
@@ -136,13 +138,67 @@ Page {
                 }
             }
 
+            // ----------------
+
             SettingsSwitch {
                 id: cqSwitch
                 icon: "\uf519"
-                text: qsTr("CQ Frequency")
-                helpText: qsTr("With 'CQ Frequency' you can define a QRG which will be prefilled in the 'Live QSO' view. This mode is beneficial if you cannot connect to FlRig.")
+                text: qsTr("CQ Mode / Frequency")
+                helpText: qsTr("With 'CQ Mode / Frequency' you can define a mode and QRG which will be prefilled in the 'Live QSO' view. This mode is beneficial if you cannot connect to FlRig.")
                 Layout.columnSpan: 2
                 checked: settings.cqActive
+            }
+
+            Label {
+                id: cqModeLabel
+                text: qsTr("Mode") + ":"
+                visible: cqSwitch.checked
+            }
+
+            ComboBox {
+                id: cqMode
+                Layout.fillWidth: true
+                visible: cqSwitch.checked
+                model: [
+                    "SSB",
+                    "FM",
+                    "AM",
+                    "CW",
+                    "DSTAR",
+                    "C4FM",
+                    "DMR",
+                    "DIGITALVOICE",
+                    "PSK31",
+                    "PSK63",
+                    "RTTY",
+                    "JT65",
+                    "JT65B",
+                    "JT6C",
+                    "JT9-1",
+                    "JT9",
+                    "FT4",
+                    "FT8",
+                    "JS8",
+                    "FSK441",
+                    "JTMS",
+                    "ISCAT",
+                    "MSK144",
+                    "JTMSK",
+                    "QRA64",
+                    "PKT",
+                    "SSTV",
+                    "HELL",
+                    "HELL80",
+                    "MFSK16",
+                    "JT6M",
+                    "ROS",
+                ]
+                Component.onCompleted: {
+                    currentIndex = settings.cqModeIndex
+                }
+                onActivated: {
+                    saveSettings();
+                }
             }
 
             Label {
