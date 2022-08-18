@@ -200,8 +200,10 @@ Page {
         onModeDone: {
             if(!updateQSO) {
                 var m
-                if(mode == "USB" || mode == "LSB") {
-                    m = "SSB"
+                if (mode == "USB") {
+                    m = "SSB / USB"
+                } else if (mode == "LSB") {
+                    m = "SSB / LSB"
                 } else {
                     m = mode
                 }
