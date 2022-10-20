@@ -191,7 +191,7 @@ Page {
     Connections{
         target: rig
 
-        function onFreqDone(freq) {
+        onFreqDone: {
             if(!updateQSO) {
                 freqTextField.text = freq
             }
