@@ -106,6 +106,8 @@ Page {
         saveButtonGlobal.enabled = false;
 
         qrzFound = false;
+
+        callTextField.forceActiveFocus();
     }
 
     function save() {
