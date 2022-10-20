@@ -64,6 +64,7 @@ Page {
 
         if(updateQSO) { // Repair QRZ infromation, if not fetched previously
             qrz.lookupCall(callTextField.text);
+            console.log(rxfreq)
         }
 
         if(settings.contestActive) {
@@ -580,7 +581,7 @@ Page {
             Label {
                 id: freqRxLable
                 text: qsTr("RX QRG [MHz]") + ":"
-                visible: settings.satActive || repeaterQSO || freqRxTextField.text
+                visible: settings.satActive || repeaterQSO || rxfreq
             }
 
             QSOTextField {
