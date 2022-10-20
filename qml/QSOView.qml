@@ -87,7 +87,16 @@ Page {
         freqRxTextField.text =  ""
         statusIndicator.Material.accent = Material.Green
 
-        modeComboBox.currentIndex = (liveQSO && settings.cqActive) ? settings.cqModeIndex : 0;
+        if(liveQSO) {
+            if(settings.cqActive) {
+                 modeComboBox.currentIndex = settings.cqModeIndex;
+            } else {
+                 modeComboBox.currentIndex = modeComboBox.currentIndex; // Keep it
+            }
+        } else {
+            modeComboBox.currentIndex = 0;
+        }
+
         satnComboBox.currentIndex = 0;
         propModeComboBox.currentIndex = 0;
 
