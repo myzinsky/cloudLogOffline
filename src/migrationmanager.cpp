@@ -47,8 +47,10 @@ migrationManager::migrationManager()
             // Something is utterly wrong, throw an error and give up.
             qDebug() << "Migration ERROR?!?";
         }
+
         // Bugfixes:
         fix_1_0_5();
+
     } else {
         qDebug() << "No Database Migration Required";
     }

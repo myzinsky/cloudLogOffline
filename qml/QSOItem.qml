@@ -335,6 +335,7 @@ SwipeDelegate {
                                    "satn"        : model.satn,
                                    "satm"        : model.satm,
                                    "propmode"    : model.propmode,
+                                   "rxfreq"      : model.rxfreq,
                                });
             }
         }

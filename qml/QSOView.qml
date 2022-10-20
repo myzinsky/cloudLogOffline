@@ -74,8 +74,10 @@ Page {
             }
         }
 
-        saveButton.enabled = false;
-        saveButtonGlobal.enabled = false;
+        if(!updateQSO) {
+            saveButton.enabled = false;
+            saveButtonGlobal.enabled = false;
+        }
     }
 
 
