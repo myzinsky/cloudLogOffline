@@ -90,15 +90,12 @@ Page {
         if(liveQSO) {
             if(settings.cqActive) {
                  modeComboBox.currentIndex = settings.cqModeIndex;
-            } else {
-                 modeComboBox.currentIndex = modeComboBox.currentIndex; // Keep it
-            }
+            } // else: keep it!
         } else {
             modeComboBox.currentIndex = 0;
+            satnComboBox.currentIndex = 0;
+            propModeComboBox.currentIndex = 0;
         }
-
-        satnComboBox.currentIndex = 0;
-        propModeComboBox.currentIndex = 0;
 
         qrzFound = false;
     }
