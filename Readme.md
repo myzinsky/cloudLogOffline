@@ -1,6 +1,6 @@
 # CloudLogOffline
 
-[![CloudLogOfflineDemo](http://img.youtube.com/vi/fIP1E9rO_GM/0.jpg)](http://www.youtube.com/watch?v=fIP1E9rO_GM "CloudLogOffline Demo")
+[![CloudLogOfflineDemo](http://img.youtube.com/vi/jgX52e1QWU0/0.jpg)](https://youtu.be/jgX52e1QWU0 "CloudLogOffline Demo")
 
 <a href=""><img src="https://www.webappjung.de/images/assets/google2.png" style="height:40px;border-radius:0!important;"  alt=""/></a>&nbsp;<a href="https://apps.apple.com/de/app/cloudlogoffline/id1528219213"><img src="https://www.webappjung.de/images/assets/iOS2.png"  style="height:40px;border-radius:0!important;" alt=""/></a>
 
