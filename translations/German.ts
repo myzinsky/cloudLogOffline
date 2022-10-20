@@ -578,5 +578,13 @@
         <source>Mode</source>
         <translation>Übertragungsverfahren</translation>
     </message>
+    <message>
+        <source>Locator</source>
+        <translation>QTH-Kenner</translation>
+    </message>
+    <message>
+        <source>Lookup</source>
+        <translation>Abfrage</translation>
+    </message>
 </context>
 </TS>

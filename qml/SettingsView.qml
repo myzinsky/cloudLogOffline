@@ -63,6 +63,14 @@ Page {
         }
     }
 
+    Connections{
+        target: rb
+        function onLocatorDone(locator) {
+            gridsquare.text = locator
+            saveSettings();
+        }
+    }
+
     ScrollView {
         id: settingsScrollView
         anchors.fill: parent
@@ -120,13 +128,26 @@ Page {
                 text: qsTr("Locator") + ":"
             }
 
-            TextField {
-                id: gridsquare
-                Layout.fillWidth: true
-                text: settings.gridsquare
-                onTextEdited: saveSettings()
-                onEditingFinished: saveSettings();
-                font.capitalization: Font.AllUppercase
+            GridLayout {
+                id: locatorgrid
+                columns: 2
+
+                TextField {
+                    id: gridsquare
+                    Layout.fillWidth: true
+                    text: settings.gridsquare
+                    onTextEdited: saveSettings()
+                    onEditingFinished: saveSettings();
+                    font.capitalization: Font.AllUppercase
+                }
+
+                Button {
+                    text : qsTr("Lookup")
+                    onClicked: {
+                        rb.init();
+                        gridsquare.text = rb.getLocator();
+                    }
+                }
             }
 
             Label {

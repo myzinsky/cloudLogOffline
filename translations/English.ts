@@ -530,5 +530,13 @@
         <source>Mode</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Locator</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lookup</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>
