@@ -2,55 +2,58 @@
 
 migrationManager::migrationManager()
 {
-        // Find the right migration strategy:
-        QVersionNumber database = QVersionNumber::fromString(getDatabaseVersion());
-        QVersionNumber current  = QVersionNumber::fromString(QString(GIT_VERSION));
+    // Find the right migration strategy:
+    QVersionNumber database = QVersionNumber::fromString(getDatabaseVersion());
+    QVersionNumber current  = QVersionNumber::fromString(QString(GIT_VERSION));
 
-        if(database < current) {
-            qDebug() << "Database Migration might be Required! (" << database << " --> " << current << ")";
+    if(database < current) {
 
-            // Do Migration(s):
-            if(database == QVersionNumber::fromString("1.0.3")) {
-                from_1_0_3_to_1_0_4();
-                from_1_0_4_to_1_0_5();
-                from_1_0_9_to_1_1_0();
-                from_1_1_0_to_1_1_1();
-                from_1_1_1_to_1_1_2();
-                from_1_1_2_to_1_1_3();
-            }
-            else if(database == QVersionNumber::fromString("1.0.4")) {
-                from_1_0_4_to_1_0_5();
-                from_1_0_9_to_1_1_0();
-                from_1_1_0_to_1_1_1();
-                from_1_1_1_to_1_1_2();
-                from_1_1_2_to_1_1_3();
-            }
-            else if(database == QVersionNumber::fromString("1.0.5")) { // Inlcudes also 1.0.9
-                from_1_0_9_to_1_1_0();
-                from_1_1_0_to_1_1_1();
-                from_1_1_1_to_1_1_2();
-                from_1_1_2_to_1_1_3();
-            }
-            else if(database == QVersionNumber::fromString("1.1.0")) {
-                from_1_1_0_to_1_1_1();
-                from_1_1_1_to_1_1_2();
-                from_1_1_2_to_1_1_3();
-            }
-            else if(database == QVersionNumber::fromString("1.1.1")) {
-                from_1_1_1_to_1_1_2();
-                from_1_1_2_to_1_1_3();
-            }
-            else if(database == QVersionNumber::fromString("1.1.2")) {
-                from_1_1_2_to_1_1_3();
-            }
+        qDebug() << "Database Migration might be Required! (" << database << " --> " << current << ")";
 
-            // Bugfixes:
-            fix_1_0_5();
+        QVersionNumber databaseNow = database;
 
-        } else {
-            qDebug() << "No Database Migration Required";
+        if(databaseNow == QVersionNumber::fromString("1.0.3")) {
+            from_1_0_3_to_1_0_4();
+            databaseNow = QVersionNumber::fromString("1.0.4");
         }
+
+        if(databaseNow == QVersionNumber::fromString("1.0.4")) {
+            from_1_0_4_to_1_0_5();
+            databaseNow = QVersionNumber::fromString("1.0.5");
+        }
+
+        if(databaseNow == QVersionNumber::fromString("1.0.5")) {
+            // 1.0.5 also includes 1.0.9
+            from_1_0_9_to_1_1_0();
+            databaseNow = QVersionNumber::fromString("1.1.0");
+        }
+
+        if(databaseNow == QVersionNumber::fromString("1.1.0")) {
+            from_1_1_0_to_1_1_1();
+            databaseNow = QVersionNumber::fromString("1.1.1");
+        }
+
+        if(databaseNow == QVersionNumber::fromString("1.1.1")) {
+            from_1_1_1_to_1_1_2();
+            databaseNow = QVersionNumber::fromString("1.1.2");
+        }
+
+        if(databaseNow == QVersionNumber::fromString("1.1.2")) {
+            from_1_1_2_to_1_1_3();
+            databaseNow = QVersionNumber::fromString("1.1.3");
+        }
+
+        if(databaseNow != current) {
+            // Something is utterly wrong, throw an error and give up.
+            qDebug() << "Migration ERROR?!?";
+        }
+        // Bugfixes:
+        fix_1_0_5();
+    } else {
+        qDebug() << "No Database Migration Required";
+    }
 }
+
 
 QString migrationManager::getDatabaseVersion()
 {
