@@ -46,7 +46,8 @@ public:
                      QString satn,
                      QString satm,
                      QString propmode,
-                     QString rxfreq
+                     QString rxfreq,
+                     QString loca
             );
 
     QString generate();

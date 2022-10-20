@@ -17,7 +17,8 @@ logTools::logTools()
                         "comm, "
                         "ctss, "
                         "ctsr, "
-                        "sync "
+                        "sync, "
+                        "loca "
                         "FROM qsos");
 }
 

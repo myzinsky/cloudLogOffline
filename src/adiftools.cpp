@@ -25,7 +25,8 @@ adifTools::adifTools()
                         "satn, "
                         "satm, "
                         "propmode, "
-                        "rxfreq "
+                        "rxfreq, "
+                        "loca "
                         "FROM qsos");
 }
 
@@ -110,7 +111,9 @@ QString adifTools::assemble(QString call,
                             QString satn,
                             QString satm,
                             QString propmode,
-                            QString rxfreq)
+                            QString rxfreq,
+                            QString loca
+                            )
 {
     QString band   = this->band(freq);
     QString rxband = this->band(rxfreq);
@@ -207,11 +210,12 @@ QString adifTools::assemble(QString call,
     }
 
     str += QString("") +
-           "<country:"    + QString::number(ctry.size()) + ">" + ctry +
-           "<qth:"        + QString::number(qqth.size()) + ">" + qqth +
-           "<gridsquare:" + QString::number(grid.size()) + ">" + grid +
-           "<name:"       + QString::number(name.size()) + ">" + name +
-           "<comment:"    + QString::number(comm.size()) + ">" + comm +
+           "<country:"       + QString::number(ctry.size()) + ">" + ctry +
+           "<qth:"           + QString::number(qqth.size()) + ">" + qqth +
+           "<gridsquare:"    + QString::number(grid.size()) + ">" + grid +
+           "<my_gridsquare:" + QString::number(loca.size()) + ">" + loca +
+           "<name:"          + QString::number(name.size()) + ">" + name +
+           "<comment:"       + QString::number(comm.size()) + ">" + comm +
            "<eor>";
 
     return str;
@@ -254,6 +258,7 @@ QString adifTools::generate()
         QString satm     = selectQuery.value(21).toString();
         QString propmode = selectQuery.value(22).toString();
         QString rxfreq   = selectQuery.value(23).toString();
+        QString loca     = selectQuery.value(24).toString();
 
         output += assemble(call,
                            name,
@@ -276,7 +281,8 @@ QString adifTools::generate()
                            satn,
                            satm,
                            propmode,
-                           rxfreq
+                           rxfreq,
+                           loca
                           ) + "\n\n";
     }
     return output;

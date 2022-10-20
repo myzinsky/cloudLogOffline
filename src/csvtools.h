@@ -21,7 +21,8 @@ public:
                      QString qqth,
                      QString comm,
                      QString ctss,
-                     QString ctsr
+                     QString ctsr,
+                     QString loca
             );
 
     QString generate();

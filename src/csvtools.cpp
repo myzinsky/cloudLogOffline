@@ -18,7 +18,9 @@ QString csvTools::assemble(QString call,
                            QString qqth,
                            QString comm,
                            QString ctss,
-                           QString ctsr)
+                           QString ctsr,
+                           QString loca
+                           )
 {
     return QString("") +
            date + ", " +
@@ -33,6 +35,7 @@ QString csvTools::assemble(QString call,
            ctss + ", " +
            ctry + ", " +
            grid + ", " +
+           loca + ", " +
            qqth + ", " +
            comm;
 }
@@ -54,6 +57,7 @@ QString csvTools::generate()
                "Contest Sent, "
                "Country, "
                "Grid, "
+               "MyGrid, "
                "QTH, "
                "Comment\n";
 
@@ -74,6 +78,7 @@ QString csvTools::generate()
         QString ctss = selectQuery.value(13).toString();
         QString ctsr = selectQuery.value(14).toString();
         QString sync = selectQuery.value(15).toString();
+        QString loca = selectQuery.value(16).toString();
 
         output += assemble(call,
                            name,
@@ -88,7 +93,8 @@ QString csvTools::generate()
                            qtth,
                            comm,
                            ctss,
-                           ctsr
+                           ctsr,
+                           loca
                           ) + "\n";
     }
     return output;
