@@ -67,7 +67,10 @@ Page {
         }
     }
 
-    function doQRZLookup() {
+
+    function zeroPad(num, places) {
+        var zero = places - num.toString().length + 1;
+        return Array(+(zero > 0 && zero)).join("0") + num;
     }
 
     function reset() {
@@ -96,6 +99,14 @@ Page {
             if(settings.cqActive) {
                  modeComboBox.currentIndex = settings.cqModeIndex;
             } // else: keep it!
+
+            if(settings.contestActive) {
+                if(isNaN(settings.contestNumber)) { // If it is e.g. a province
+                    ctssTextField.text = settings.contestNumber;
+                } else {
+                    ctssTextField.text = zeroPad(settings.contestNumber,3);
+                }
+            }
         } else {
             modeComboBox.currentIndex = 0;
             satnComboBox.currentIndex = 0;
@@ -148,7 +159,7 @@ Page {
                         if(!settings.fixedNumber) {
                             contestNumber += 1;
                         }
-                        ctssTextField.text = contestNumber;
+                        ctssTextField.text = zeroPad(contestNumber,3);
                         settings.contestNumber = contestNumber;
                     }
                 }
