@@ -28,6 +28,9 @@ migrationManager::migrationManager()
             else if(database == QVersionNumber::fromString("1.1.1")) {
                 from_1_1_1_to_1_1_2();
             }
+            else if(database == QVersionNumber::fromString("1.1.2")) {
+                from_1_1_2_to_1_1_3();
+            }
 
             // Bugfixes:
             fix_1_0_5();
@@ -70,6 +73,15 @@ void migrationManager::from_1_1_1_to_1_1_2()
     bool res = addQSOColumn("rxfreq", "TEXT");
     if(res == true) {
         updateDatabaseVersion("1.1.2");
+    }
+}
+
+void migrationManager::from_1_1_2_to_1_1_3()
+{
+    qDebug() << "Migrate from 1.1.2 to 1.1.3";
+    bool res = addQSOColumn("loca", "TEXT");
+    if(res == true) {
+        updateDatabaseVersion("1.1.3");
     }
 }
 

@@ -61,6 +61,7 @@ ApplicationWindow {
         id: settings
 
         property string call
+        property string gridsquare
         property string language
         property int languageIndex
 

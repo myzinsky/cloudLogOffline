@@ -58,7 +58,8 @@ void qsoModel::addQSO(QString call,
                       QString satn,
                       QString satm,
                       QString propmode,
-                      QString rxfreq
+                      QString rxfreq,
+                      QString loca
                       )
 {
     QSqlRecord newRecord = record();
@@ -78,13 +79,14 @@ void qsoModel::addQSO(QString call,
     newRecord.setValue("ctss", ctss);
     newRecord.setValue("ctsr", ctsr);
     newRecord.setValue("sota", sota);
-    newRecord.setValue("sots", sots); // MYSOTA
+    newRecord.setValue("sots", sots); // MY_SOTA
     newRecord.setValue("wwff", wwff);
-    newRecord.setValue("wwfs", wwfs); // MYWWFF
+    newRecord.setValue("wwfs", wwfs); // MY_WWFF
     newRecord.setValue("satn", satn);
     newRecord.setValue("satm", satm);
     newRecord.setValue("propmode", propmode);
     newRecord.setValue("rxfreq", rxfreq);
+    newRecord.setValue("loca", loca); // MY_GRIDSQUARE
 
     newRecord.setValue("sync", 0);
 
@@ -117,7 +119,8 @@ void qsoModel::updateQSO(int id,
                          QString satn,
                          QString satm,
                          QString propmode,
-                         QString rxfreq
+                         QString rxfreq,
+                         QString loca
                          )
 {
     qDebug() << "UPDATE QSO" << id;
@@ -138,13 +141,14 @@ void qsoModel::updateQSO(int id,
     r.setValue("ctss", ctss);
     r.setValue("ctsr", ctsr);
     r.setValue("sota", sota);
-    r.setValue("sots", sots); // MYSOTA
+    r.setValue("sots", sots); // MY_SOTA
     r.setValue("wwff", wwff);
-    r.setValue("wwfs", wwfs); // MYWWFF
+    r.setValue("wwfs", wwfs); // MY_WWFF
     r.setValue("satn", satn);
     r.setValue("satm", satm);
     r.setValue("propmode", propmode);
     r.setValue("rxfreq", rxfreq);
+    r.setValue("loca", loca); // MY_GRIDSQUARE
 
     setRecord(id, r);
     submit();

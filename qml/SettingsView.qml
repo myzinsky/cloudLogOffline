@@ -15,6 +15,7 @@ Page {
         console.log("Settings Saved");
 
         settings.call = call.text;
+        settings.gridsquare = gridsquare.text;
         settings.language = language.currentText;
         settings.languageIndex = language.currentIndex;
 
@@ -109,6 +110,20 @@ Page {
                 id: call
                 Layout.fillWidth: true
                 text: settings.call
+                onTextEdited: saveSettings()
+                onEditingFinished: saveSettings();
+                font.capitalization: Font.AllUppercase
+            }
+
+            Label {
+                id: gridsquareLabel
+                text: qsTr("Locator") + ":"
+            }
+
+            TextField {
+                id: gridsquare
+                Layout.fillWidth: true
+                text: settings.gridsquare
                 onTextEdited: saveSettings()
                 onEditingFinished: saveSettings();
                 font.capitalization: Font.AllUppercase

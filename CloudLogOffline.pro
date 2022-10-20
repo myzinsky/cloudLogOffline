@@ -9,12 +9,7 @@ QTPLUGIN += qsvg
 
 CONFIG += c++11
 
-# Get Verison number from Tag:
-#GIT_VERSION = $$system(git --git-dir $$PWD/.git --work-tree $$PWD describe --always --tags)
-#GIT_VERSION ~= s/-/"."
-#GIT_VERSION ~= s/g/""
-#GIT_VERSION ~= s/\.\d+\.[a-f0-9]{6,}//
-GIT_VERSION = "1.1.2"
+GIT_VERSION = "1.1.3"
 message($$GIT_VERSION)
 DEFINES += GIT_VERSION=\\\"$$GIT_VERSION\\\"
 
@@ -114,9 +109,9 @@ HEADERS += src/csvtools.h
 HEADERS += src/logtools.h
 HEADERS += src/migrationmanager.h
 
-DISTFILES += android/AndroidManifest.xml \
-    qml/RepeaterItem.qml \
-    qml/RepeaterListView.qml
+DISTFILES += android/AndroidManifest.xml
+DISTFILES += qml/RepeaterItem.qml
+DISTFILES += qml/RepeaterListView.qml
 DISTFILES += qml/QSOViewWrapper.qml
 DISTFILES += qml/TimePicker.qml
 DISTFILES += android/build.gradle

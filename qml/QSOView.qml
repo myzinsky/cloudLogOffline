@@ -106,8 +106,6 @@ Page {
         saveButtonGlobal.enabled = false;
 
         qrzFound = false;
-
-        callTextField.forceActiveFocus();
     }
 
     function save() {
@@ -133,7 +131,8 @@ Page {
                     satnComboBox.currentText,
                     satmTextField.text.toUpperCase(),
                     propModeComboBox.currentValue,
-                    freqRxTextField.text
+                    freqRxTextField.text,
+                    settings.gridsquare
                     );
 
             if(addQSO) {
@@ -178,11 +177,15 @@ Page {
                        satnComboBox.currentText,
                        satmTextField.text.toUpperCase(),
                        propModeComboBox.currentText,
-                       freqRxTextField.text
+                       freqRxTextField.text,
+                       settings.gridsquare
                        );
             stackView.pop()
         }
+
+        callTextField.forceActiveFocus();
     }
+
 
     Timer {
         id: rigTimer
@@ -247,7 +250,7 @@ Page {
         }
 
         onQrzFail: {
-            if(error == "Session Timeout") {
+            if(error === "Session Timeout") {
                 qrz.receiveKey();
                 qrz.lookupCall(callTextField.text);
             } else {
@@ -411,7 +414,6 @@ Page {
                             } else {
                                 statusIndicator.Material.accent = Material.Green
                             }
-
                         }
                     }
                 }
