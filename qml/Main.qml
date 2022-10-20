@@ -153,7 +153,6 @@ ApplicationWindow {
                     "liveQSO"     : true,
                     "updateQSO"   : false,
                     "repeaterQSO" : false,
-                    "ctss"        : settings.contestActive ? settings.contestNumber : "",
                 });
             }
 
@@ -213,7 +212,6 @@ ApplicationWindow {
                            "addQSO"      : false,
                            "liveQSO"     : true,
                            "updateQSO"   : false,
-                           "ctss"        : settings.contestActive ? settings.contestNumber : "",
                            "repeaterQSO" : false,
                        });
             },

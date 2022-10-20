@@ -167,13 +167,16 @@ SwipeDelegate {
                         strippedMode = "DSTAR";
                     }
 
+                    var txfreq =  parseFloat(model.freq) + parseFloat(model.shif)
+
                     stackView.push("QSOViewWrapper.qml", {
                                        "addQSO"      : true,
                                        "liveQSO"     : true,
                                        "updateQSO"   : false,
                                        "repeaterQSO" : true,
                                        "mode"        : strippedMode,
-                                       "freq"        : model.freq,
+                                       "freq"        : txfreq,
+                                       "rxfreq"      : model.freq,
                                        "sent"        : "5",
                                        "recv"        : "5",
                                        "comm"        : "Via Repeater: " + model.call,

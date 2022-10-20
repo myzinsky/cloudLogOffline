@@ -11,6 +11,7 @@ SplitView {
     property alias addQSO: qsoView.addQSO
     property alias liveQSO: qsoView.liveQSO
     property alias updateQSO: qsoView.updateQSO
+    property alias repeaterQSO: qsoView.repeaterQSO
     property alias rid: qsoView.rid
     property alias date: qsoView.date
     property alias time: qsoView.time
@@ -46,7 +47,6 @@ SplitView {
 
         function onUpdateNumberOfQSOs(number) {
             qsoViewWrapper.title = (addQSO || liveQSO) ? (qsTr("Add QSO") + " (" + number + ")") : qsTr("Edit QSO")
-            console.log("Eiersalat!")
         }
     }
 

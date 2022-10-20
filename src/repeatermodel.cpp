@@ -180,7 +180,6 @@ void rbManager::parseNetworkResponse(QNetworkReply *nreply) // from getRepeaters
             r.tone      = repeater.toObject()["decode"].toString();
             r.city      = repeater.toObject()["city"].toString().split(QLatin1Char(','))[0];
             r.modes     = repeater.toObject()["mode"].toString();
-            //qDebug() << r.call << r.city << r.lat << r.lon << r.frequency << r.shift << r.distance << r.tone << r.modes;
             database.append(r);
         }
     }

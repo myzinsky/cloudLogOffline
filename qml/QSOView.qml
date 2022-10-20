@@ -11,7 +11,7 @@ Page {
     property bool addQSO: true;
     property bool liveQSO: false;
     property bool updateQSO: false;
-    property bool repeaterQSOrepeaterQSO: false;
+    property bool repeaterQSO: false;
 
     property int rid;
 
@@ -45,11 +45,6 @@ Page {
 
     Component.onCompleted: {
 
-        if(!(updateQSO || repeaterQSO)) {
-            console.log(repeaterQSO)
-            reset();
-        }
-
         if(mode) {
             var i = modeComboBox.find(mode);
             modeComboBox.currentIndex = i;
@@ -67,9 +62,20 @@ Page {
             propModeComboBox.currentIndex = k;
         }
 
-        if(updateQSO) {
+        if(updateQSO) { // Repair QRZ infromation, if not fetched previously
             qrz.lookupCall(callTextField.text);
         }
+
+        if(settings.contestActive) {
+            if(isNaN(settings.contestNumber)) { // If it is e.g. a province
+                ctssTextField.text = settings.contestNumber;
+            } else {
+                ctssTextField.text = zeroPad(settings.contestNumber,3);
+            }
+        }
+
+        saveButton.enabled = false;
+        saveButtonGlobal.enabled = false;
     }
 
 
@@ -79,7 +85,6 @@ Page {
     }
 
     function reset() {
-        console.log("RESET")
         callTextField.text = ""
         nameTextField.text = ""
         ctryTextField.text = ""
@@ -200,7 +205,7 @@ Page {
             stackView.pop()
         }
 
-        callTextField.forceActiveFocus();
+        callTextField.forceActiveFocus()
     }
 
 
@@ -418,10 +423,13 @@ Page {
                     KeyNavigation.tab: freqTextField
                     font.capitalization: Font.AllUppercase
                     inputMethodHints: Qt.ImhUppercaseOnly
+                    focus: true;
 
                     onEditingFinished: {
-                        saveButton.enabled = true;
-                        saveButtonGlobal.enabled = true;
+                        if(callTextField.text != "") {
+                            saveButton.enabled = true;
+                            saveButtonGlobal.enabled = true;
+                        }
 
                         if(settings.qrzActive) {
                             qrz.lookupCall(callTextField.text)
@@ -453,11 +461,7 @@ Page {
 
                     onClicked: {
                         // TODO show previous contacts...
-                        var tmp = ctssTextField.text;
                         page.reset();
-                        if(settings.contestActive) {
-                            ctssTextField.text = tmp;
-                        }
                     }
                 }
 
@@ -556,7 +560,7 @@ Page {
 
             Label {
                 id: freqLable
-                text: qsTr("TX QRG (MHz)") + ":"
+                text: qsTr("TX QRG [MHz]") + ":"
             }
 
             QSOTextField {
@@ -573,8 +577,8 @@ Page {
 
             Label {
                 id: freqRxLable
-                text: qsTr("RX QRG (MHz)") + ":"
-                visible: settings.satActive
+                text: qsTr("RX QRG [MHz]") + ":"
+                visible: settings.satActive || repeaterQSO || freqRxTextField.text
             }
 
             QSOTextField {
@@ -587,7 +591,7 @@ Page {
                 onEditingFinished: {
                     freqRxTextField.text = freqRxTextField.text.replace(",", ".");
                 }
-                visible: settings.satActive
+                visible: settings.satActive || repeaterQSO || freqRxTextField.text
             }
 
             Label {
@@ -913,11 +917,7 @@ Page {
                 visible: (addQSO || liveQSO)
 
                 onClicked: {
-                    var tmp = ctssTextField.text;
                     page.reset();
-                    if(settings.contestActive) {
-                        ctssTextField.text = tmp;
-                    }
                 }
             }
 

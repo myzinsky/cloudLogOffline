@@ -241,7 +241,7 @@ Page {
 
             Label {
                 id: cqFreqLabel
-                text: qsTr("Frequency") + ":"
+                text: qsTr("QRG [MHz]") + ":"
                 visible: cqSwitch.checked
             }
 
