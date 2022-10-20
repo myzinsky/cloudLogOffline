@@ -161,7 +161,7 @@ ApplicationWindow {
         }
 
         ToolButton {
-            id: saveButton
+            id: saveButtonGlobal
             text:"\uf0c7"
             visible: (stackView.currentItem.toString().includes("QSOViewWrapper"))
             font.family: fontAwesome.name

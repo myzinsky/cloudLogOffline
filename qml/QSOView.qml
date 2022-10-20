@@ -43,6 +43,8 @@ Page {
     property bool qrzFound: false;
 
     Component.onCompleted: {
+        reset();
+
         if(mode) {
             var i = modeComboBox.find(mode);
             modeComboBox.currentIndex = i;
@@ -63,6 +65,9 @@ Page {
         if(updateQSO) {
             qrz.lookupCall(callTextField.text);
         }
+    }
+
+    function doQRZLookup() {
     }
 
     function reset() {
@@ -96,6 +101,9 @@ Page {
             satnComboBox.currentIndex = 0;
             propModeComboBox.currentIndex = 0;
         }
+
+        saveButton.enabled = false;
+        saveButtonGlobal.enabled = false;
 
         qrzFound = false;
     }
@@ -388,6 +396,9 @@ Page {
                     inputMethodHints: Qt.ImhUppercaseOnly
 
                     onEditingFinished: {
+                        saveButton.enabled = true;
+                        saveButtonGlobal.enabled = true;
+
                         if(settings.qrzActive) {
                             qrz.lookupCall(callTextField.text)
                         }
