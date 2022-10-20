@@ -14,19 +14,31 @@ migrationManager::migrationManager()
                 from_1_0_3_to_1_0_4();
                 from_1_0_4_to_1_0_5();
                 from_1_0_9_to_1_1_0();
+                from_1_1_0_to_1_1_1();
+                from_1_1_1_to_1_1_2();
+                from_1_1_2_to_1_1_3();
             }
             else if(database == QVersionNumber::fromString("1.0.4")) {
                 from_1_0_4_to_1_0_5();
                 from_1_0_9_to_1_1_0();
+                from_1_1_0_to_1_1_1();
+                from_1_1_1_to_1_1_2();
+                from_1_1_2_to_1_1_3();
             }
             else if(database == QVersionNumber::fromString("1.0.5")) { // Inlcudes also 1.0.9
                 from_1_0_9_to_1_1_0();
+                from_1_1_0_to_1_1_1();
+                from_1_1_1_to_1_1_2();
+                from_1_1_2_to_1_1_3();
             }
             else if(database == QVersionNumber::fromString("1.1.0")) {
                 from_1_1_0_to_1_1_1();
+                from_1_1_1_to_1_1_2();
+                from_1_1_2_to_1_1_3();
             }
             else if(database == QVersionNumber::fromString("1.1.1")) {
                 from_1_1_1_to_1_1_2();
+                from_1_1_2_to_1_1_3();
             }
             else if(database == QVersionNumber::fromString("1.1.2")) {
                 from_1_1_2_to_1_1_3();
