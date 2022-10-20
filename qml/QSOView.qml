@@ -233,8 +233,10 @@ Page {
         onModeDone: {
             if(!updateQSO) {
                 var m
-                if(mode == "USB" || mode == "LSB") {
-                    m = "SSB"
+                if (mode == "USB") {
+                    m = "SSB / USB"
+                } else if (mode == "LSB") {
+                    m = "SSB / LSB"
                 } else {
                     m = mode
                 }
@@ -490,7 +492,7 @@ Page {
                 Layout.fillWidth: true
                 KeyNavigation.tab: freqTextField
                 onCurrentIndexChanged: {
-                    if (modeComboBox.currentIndex === 3) {
+                    if (modeComboBox.currentIndex === 5) {
                         sentTextField.placeholderText = "599";
                         recvTextField.placeholderText = "599";
                     } else {
@@ -500,6 +502,8 @@ Page {
                 }
                 model: [
                     "SSB",
+                    "SSB / LSB",
+                    "SSB / USB",
                     "FM",
                     "AM",
                     "CW",
