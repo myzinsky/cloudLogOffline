@@ -59,7 +59,7 @@ void rigManager::getFromFLRig(QString hostname,
 {
     QByteArray data;
     data.append("<?xml version=\"1.0\"?><methodCall><methodName>"
-                + command
+                + command.toUtf8()
                 + "</methodName><params></params></methodCall>");
 
     QUrl url = QUrl("http://"+hostname);
