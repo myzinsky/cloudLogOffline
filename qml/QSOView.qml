@@ -43,7 +43,10 @@ Page {
     property bool qrzFound: false;
 
     Component.onCompleted: {
-        reset();
+
+        if(!updateQSO) {
+            reset();
+        }
 
         if(mode) {
             var i = modeComboBox.find(mode);
