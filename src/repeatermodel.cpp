@@ -103,11 +103,11 @@ void rbManager::positionDecoded()
         coord = loc.coordinate();
         calculateMaidenhead(coord.latitude(),coord.longitude());
         qDebug() << "Location:" << country << coord.latitude() << coord.longitude() << locator;
-        getRepeaters(country);
+        getRepeaters();
     }
 }
 
-void rbManager::getRepeaters(QString country)
+void rbManager::getRepeaters()
 {
     //QString url = "https://www.repeaterbook.com/api/exportROW.php?country="+country;
     QString url = "https://hearham.com/api/repeaters/v1";

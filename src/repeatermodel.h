@@ -70,7 +70,7 @@ private:
     QString locator;
     QGeoCoordinate coord;
     bool initialized;
-    void getRepeaters(QString country);
+    void getRepeaters();
     bool filter(double rLat, double rLon, double radius);
     double distance(double rLat, double rLon);
     void calculateMaidenhead(double lat, double lon);
