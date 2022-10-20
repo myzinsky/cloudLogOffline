@@ -28,13 +28,14 @@ Page {
                 Layout.maximumWidth: scrollView.width
 
                 text: "<h1>About</h1>
-CloudLogApp is developed by Web &amp; App Dr.-Ing. Matthias Jung (DL9MJ),
-http://www.webappjung.de/<br>. The repeater list is provided by https://hearham.com<br>"
+CloudLogApp is developed by Web &amp; App Dr.-Ing. Matthias Jung (DL9MJ, AJ9MJ),
+http://www.webappjung.de/.<br>The repeater list is provided by https://hearham.com<br>"
                 color: "white"
             }
 
             Label {
                 id: versionLabel
+                padding: 5
                 text: "Version: " + AppInfo.version + " Database: " + database.getDatabaseVersion() + "<br>"
             }
 
