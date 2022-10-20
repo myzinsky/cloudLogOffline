@@ -55,140 +55,139 @@ Page {
         anchors.fill: parent
         contentWidth: -1
 
-    GridLayout {
-                columns: 1
-
-        Rectangle {
-            implicitWidth: page.width
-            implicitHeight: grid.implicitHeight
-            color: "#555555"
-            GridLayout {
-                id: grid
-                width: page.width // Important
-                flow:  page.width > 400 ? GridLayout.LeftToRight : GridLayout.TopToBottom
-
-
-                Image {
-                    sourceSize.width: page.width > 400 ? 200 : page.width
-                    width: page.width > 400 ? 200 : page.width
-                    fillMode: Image.PreserveAspectFit
-                    id: imageField
-                }
-
-                GridLayout {
-                    id: infoGrid
-                    Layout.fillWidth: true
-                    columns: 1
-
-
-                    Label {
-                        id: nameLabel
-                        font.weight: Font.Bold
-                        font.pixelSize: 20
-                        Layout.fillWidth: true
-                    }
-
-                    Label {
-                        id: addr1Label
-                        Layout.fillWidth: true
-                    }
-
-                    Label {
-                        id: addr2Label
-                        Layout.fillWidth: true
-                    }
-
-                    Label {
-                        id: countryLabel
-                        Layout.fillWidth: true
-                    }
-
-                    Label {
-                        Layout.fillWidth: true
-                        text: " "
-                    }
-
-                    Label {
-                        id: qslmgrLabel
-                        Layout.fillWidth: true
-                        wrapMode: Label.WordWrap
-                    }
-                }
-            }
-        }
-
         GridLayout {
-            id: gridRest
-            width: page.width // Important
-            columns: 2
+            columns: 1
+
+            Rectangle {
+                implicitWidth: page.width
+                implicitHeight: grid.implicitHeight
+                color: "#555555"
+                GridLayout {
+                    id: grid
+                    width: page.width // Important
+                    flow:  page.width > 400 ? GridLayout.LeftToRight : GridLayout.TopToBottom
 
 
-            Label {
-                text: qsTr("Born") + ":"
+                    Image {
+                        sourceSize.width: page.width > 400 ? 200 : page.width
+                        width: page.width > 400 ? 200 : page.width
+                        fillMode: Image.PreserveAspectFit
+                        id: imageField
+                    }
+
+                    GridLayout {
+                        id: infoGrid
+                        Layout.fillWidth: true
+                        columns: 1
+
+
+                        Label {
+                            id: nameLabel
+                            font.weight: Font.Bold
+                            font.pixelSize: 20
+                            Layout.fillWidth: true
+                        }
+
+                        Label {
+                            id: addr1Label
+                            Layout.fillWidth: true
+                        }
+
+                        Label {
+                            id: addr2Label
+                            Layout.fillWidth: true
+                        }
+
+                        Label {
+                            id: countryLabel
+                            Layout.fillWidth: true
+                        }
+
+                        Label {
+                            Layout.fillWidth: true
+                            text: " "
+                        }
+
+                        Label {
+                            id: qslmgrLabel
+                            Layout.fillWidth: true
+                            wrapMode: Label.WordWrap
+                        }
+                    }
+                }
             }
 
-            Label {
-                id: bornLabel
-                Layout.fillWidth: true
-            }
-
-            Label {
-                text: qsTr("Grid") + ":"
-            }
-
-            Label {
-                id: gridLabel
-                Layout.fillWidth: true
-            }
+            GridLayout {
+                id: gridRest
+                width: page.width // Important
+                columns: 2
 
 
-            Label {
-                text: qsTr("Latitude") + ":"
-            }
+                Label {
+                    text: qsTr("Born") + ":"
+                }
 
-            Label {
-                id: latLabel
-                Layout.fillWidth: true
-            }
+                Label {
+                    id: bornLabel
+                    Layout.fillWidth: true
+                }
 
-            Label {
-                text: qsTr("Longitude") + ":"
-            }
+                Label {
+                    text: qsTr("Grid") + ":"
+                }
 
-            Label {
-                id: lonLabel
-                Layout.fillWidth: true
-            }
+                Label {
+                    id: gridLabel
+                    Layout.fillWidth: true
+                }
 
-            Label {
-                text: qsTr("Class") + ":"
-            }
 
-            Label {
-                id: classLabel
-                Layout.fillWidth: true
-            }
+                Label {
+                    text: qsTr("Latitude") + ":"
+                }
 
-            Label {
-                text: qsTr("CQ Zone") + ":"
-            }
+                Label {
+                    id: latLabel
+                    Layout.fillWidth: true
+                }
 
-            Label {
-                id: cqLabel
-                Layout.fillWidth: true
-            }
+                Label {
+                    text: qsTr("Longitude") + ":"
+                }
 
-            Label {
-                text: qsTr("ITU Zone") + ":"
-            }
+                Label {
+                    id: lonLabel
+                    Layout.fillWidth: true
+                }
 
-            Label {
-                id: ituLabel
-                Layout.fillWidth: true
+                Label {
+                    text: qsTr("Class") + ":"
+                }
+
+                Label {
+                    id: classLabel
+                    Layout.fillWidth: true
+                }
+
+                Label {
+                    text: qsTr("CQ Zone") + ":"
+                }
+
+                Label {
+                    id: cqLabel
+                    Layout.fillWidth: true
+                }
+
+                Label {
+                    text: qsTr("ITU Zone") + ":"
+                }
+
+                Label {
+                    id: ituLabel
+                    Layout.fillWidth: true
+                }
             }
         }
-
-    }
     }
 }
 
