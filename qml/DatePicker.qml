@@ -23,6 +23,13 @@ Popup {
         color: "#CCCCCCCC"
     }
 
+
+    Component.onCompleted: {
+        var now = new Date();
+        var utc = new Date(now.getTime() + now.getTimezoneOffset() * 60000);
+        cal.selectedDate = utc
+    }
+
     Calendar {
         id: cal
 
