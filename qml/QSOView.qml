@@ -412,7 +412,7 @@ Page {
                 QSOTextField {
                     id: callTextField
                     text: ""
-                    KeyNavigation.tab: modeComboBox
+                    KeyNavigation.tab: freqTextField
                     font.capitalization: Font.AllUppercase
                     inputMethodHints: Qt.ImhUppercaseOnly
 
@@ -553,7 +553,7 @@ Page {
 
             Label {
                 id: freqLable
-                text: qsTr("Frequency") + ":"
+                text: qsTr("TX QRG (MHz)") + ":"
             }
 
             QSOTextField {
@@ -570,7 +570,7 @@ Page {
 
             Label {
                 id: freqRxLable
-                text: qsTr("RX Frequency") + ":"
+                text: qsTr("RX QRG (MHz)") + ":"
                 visible: settings.satActive
             }
 
