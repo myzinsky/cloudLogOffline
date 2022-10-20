@@ -17,10 +17,6 @@ SwipeDelegate {
     opacity: 1.0
     scale: 1.0
 
-    checkable: true
-    checked: swipe.complete
-    onCheckedChanged: if (!checked) swipe.close()
-
     contentItem: Item {
         id: element
         width: parent.width
@@ -158,8 +154,6 @@ SwipeDelegate {
 
 
                 onClicked: {
-                    swipe.close()
-
 
                     var strippedMode = ""
 
@@ -174,14 +168,15 @@ SwipeDelegate {
                     }
 
                     stackView.push("QSOViewWrapper.qml", {
-                                       "addQSO"     : true,
-                                       "liveQSO"    : true,
-                                       "updateQSO"  : false,
-                                       "mode"       : strippedMode,
-                                       "freq"       : model.freq,
-                                       "sent"       : "5",
-                                       "recv"       : "5",
-                                       "comm"       : "Via Repeater: " + model.call,
+                                       "addQSO"      : true,
+                                       "liveQSO"     : true,
+                                       "updateQSO"   : false,
+                                       "repeaterQSO" : true,
+                                       "mode"        : strippedMode,
+                                       "freq"        : model.freq,
+                                       "sent"        : "5",
+                                       "recv"        : "5",
+                                       "comm"        : "Via Repeater: " + model.call,
                                    });
                 }
             }

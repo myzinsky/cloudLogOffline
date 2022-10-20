@@ -149,10 +149,11 @@ ApplicationWindow {
             onClicked: {
                 stackView.push("QSOViewWrapper.qml",
                 {
-                    "addQSO"    : false,
-                    "liveQSO"   : true,
-                    "updateQSO" : false,
-                    "ctss"      : settings.contestActive ? settings.contestNumber : "",
+                    "addQSO"      : false,
+                    "liveQSO"     : true,
+                    "updateQSO"   : false,
+                    "repeaterQSO" : false,
+                    "ctss"        : settings.contestActive ? settings.contestNumber : "",
                 });
             }
 
@@ -200,18 +201,20 @@ ApplicationWindow {
             1: function() {
                 stackView.push("QSOViewWrapper.qml",
                        {
-                           "addQSO"    : true,
-                           "liveQSO"   : false,
-                           "updateQSO" : false,
+                           "addQSO"      : true,
+                           "liveQSO"     : false,
+                           "updateQSO"   : false,
+                           "repeaterQSO" : false,
                        });
             },
             2: function() {
                 stackView.push("QSOViewWrapper.qml",
                        {
-                           "addQSO"    : false,
-                           "liveQSO"   : true,
-                           "updateQSO" : false,
-                           "ctss"      : settings.contestActive ? settings.contestNumber : "",
+                           "addQSO"      : false,
+                           "liveQSO"     : true,
+                           "updateQSO"   : false,
+                           "ctss"        : settings.contestActive ? settings.contestNumber : "",
+                           "repeaterQSO" : false,
                        });
             },
             3: function() {

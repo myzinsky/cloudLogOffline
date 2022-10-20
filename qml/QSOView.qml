@@ -11,6 +11,7 @@ Page {
     property bool addQSO: true;
     property bool liveQSO: false;
     property bool updateQSO: false;
+    property bool repeaterQSOrepeaterQSO: false;
 
     property int rid;
 
@@ -44,7 +45,8 @@ Page {
 
     Component.onCompleted: {
 
-        if(!updateQSO) {
+        if(!(updateQSO || repeaterQSO)) {
+            console.log(repeaterQSO)
             reset();
         }
 
@@ -77,6 +79,7 @@ Page {
     }
 
     function reset() {
+        console.log("RESET")
         callTextField.text = ""
         nameTextField.text = ""
         ctryTextField.text = ""
