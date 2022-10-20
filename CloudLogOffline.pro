@@ -78,7 +78,8 @@ macx {
 
 android {
     ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
-    include(/Users/myzinsky/Library/Android/sdk/android_openssl/openssl.pri) # TODO make generic path
+    ANDROID_OPENSSL_DIR = $$PWD/android_openssl
+    include($$ANDROID_OPENSSL_DIR/openssl.pri)
     QT += androidextras
     OTHER_FILES += android/src/com/lasconic/QShareUtils.java
     HEADERS += android/androidshareutils.h
@@ -146,6 +147,6 @@ DISTFILES += qml/TimePicker.qml
 TRANSLATIONS += translations/English.ts
 TRANSLATIONS += translations/German.ts
 
-android: include(/Users/myzinsky/Library/Android/sdk/android_openssl/openssl.pri)
+android: include($$ANDROID_OPENSSL_DIR/openssl.pri)
 
 ANDROID_ABIS = armeabi-v7a arm64-v8a
