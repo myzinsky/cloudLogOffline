@@ -32,7 +32,7 @@ Page {
         settings.cloudLogSSL       = cloudLogSSL.currentText;
         settings.cloudLogSSLIndex  = cloudLogSSL.currentIndex;
         settings.cloudLogKey       = cloudLogKey.text;
-        settings.cloudLogStationId = cloudLogStationId.text;
+        settings.cloudLogStationId = cloudLogStationId.value;
         settings.cloudLogActive    = cloudLogSwitch.checked;
 
         settings.qrzUser   = qrzUser.text;
@@ -365,13 +365,14 @@ Page {
                 visible: cloudLogSwitch.checked
             }
 
-            TextField {
+            SpinBox {
                 id: cloudLogStationId
-                Layout.fillWidth: true
                 visible: cloudLogSwitch.checked
-                text: settings.cloudLogStationId
-                onTextEdited: saveSettings()
-                onEditingFinished: saveSettings();
+                from: 1
+                to: 999
+                editable: true
+                value: settings.cloudLogStationId
+                onValueModified: saveSettings();
             }
 
             // ----------------
