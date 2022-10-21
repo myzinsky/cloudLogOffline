@@ -110,6 +110,7 @@ void cloudlogManager::uploadQSO(QString url,
 
     QNetworkRequest request(u);
     request.setHeader(QNetworkRequest::ContentTypeHeader, QVariant("application/json"));
+    request.setRawHeader ("User-Agent", "CloudLogOffline v"+QByteArray(GIT_VERSION));
     manager->post(request, data);
 
     qDebug() << "Update Cloud Log: " << str;
