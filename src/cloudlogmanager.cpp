@@ -118,45 +118,75 @@ void cloudlogManager::uploadQSO(QString url,
 
 void cloudlogManager::callbackCloudLog(QNetworkReply *rep)
 {
-    //{\"status\":\"created\", ...
-    //"{\"status\":\"failed\",\"reason\":\"missing api key\"}"
-
+    QString contentType = rep->header(QNetworkRequest::ContentTypeHeader).toString();
     QString response = rep->readAll();
-    QJsonDocument jsonResponse = QJsonDocument::fromJson(response.toUtf8());
-    QJsonObject jsonObject = jsonResponse.object();
 
-    if(jsonObject["status"] == "created") {
-        QString adifStr = jsonObject["string"].toString();
+    if (contentType.contains("application/json")) {
 
-        qDebug() << "Callback: " << adifStr;
+        //{\"status\":\"created\", ...
+        //"{\"status\":\"failed\",\"reason\":\"missing api key\"}"
 
-        QSqlQuery query;
+        QJsonDocument jsonResponse = QJsonDocument::fromJson(response.toUtf8());
+        QJsonObject jsonObject = jsonResponse.object();
 
-        QString qS = "UPDATE qsos SET sync = 1 WHERE id = "
-                   + currentIdInUpload + ";";
+        if(jsonObject["status"] == "created") {
+            QString adifStr = jsonObject["string"].toString();
 
-        query.prepare(qS);
+            qDebug() << "Callback: " << adifStr;
 
-        std::cout << "DB: " << qS.toStdString() << std::endl;
+            QSqlQuery query;
 
-        if(!query.exec()) {
-            qDebug() << "SQL Error:" << query.lastError().text();
+            QString qS = "UPDATE qsos SET sync = 1 WHERE id = "
+                    + currentIdInUpload + ";";
+
+            query.prepare(qS);
+
+            std::cout << "DB: " << qS.toStdString() << std::endl;
+
+            if(!query.exec()) {
+                qDebug() << "SQL Error:" << query.lastError().text();
+            } else {
+                qDebug() << "DB: Successfull";
+            }
+
+            done++;
+
+            if(done < number) {
+                uploadNext();
+            } else {
+                model->select(); // Done! Redraw the model!
+            }
+
+            emit uploadSucessfull(((double)done)/((double)number));
         } else {
-            qDebug() << "DB: Successfull";
+            emit uploadFailed("Upload Error: " + jsonObject["reason"].toString());
         }
-
-        done++;
-
-        if(done < number) {
-            uploadNext();
-        } else {
-            model->select(); // Done! Redraw the model!
-        }
-
-        emit uploadSucessfull(((double)done)/((double)number));
-    } else {
-        emit uploadFailed("Upload Error: " + jsonObject["reason"].toString());
     }
+
+    if (contentType.contains("text/xml")) {
+        QDomDocument xmlDoc;
+        xmlDoc.setContent(response.toUtf8());
+        QDomElement auth = xmlDoc.namedItem("auth").toElement();
+        if (auth.isNull()) {
+            emit apiKeyInvalid();
+        } else {
+            QDomElement status = auth.namedItem("status").toElement();
+            if (status.isNull()) {
+                QDomElement message = auth.namedItem("message").toElement();
+                qDebug() << "MESSAGE: " << message.text();
+                emit apiKeyInvalid();
+            }
+            else if (status.text() == "Valid") {
+                QDomElement rights = auth.namedItem("rights").toElement();
+                if (rights.text() == "rw") {
+                    emit apiKeyOk();
+                } else if (rights.text() == "r") {
+                    emit apiKeyRo();
+                }
+            }
+        }
+    }
+
     // TODO: what if callback is not happening or request fails?
 }
 
@@ -272,4 +302,14 @@ void cloudlogManager::deleteQsos()
     if(!query.exec()) {
         qDebug() << "SQL Error:" << query.lastError().text();
     }
+}
+
+void cloudlogManager::testApiKey(QString ssl, QString url, QString key)
+{
+    QUrl u = QUrl(ssl.toLower()+"://"+url+"/index.php/api/auth/"+key);
+    QNetworkRequest request(u);
+    request.setRawHeader ("User-Agent", "CloudLogOffline v"+QByteArray(GIT_VERSION));
+    request.setHeader(QNetworkRequest::ContentTypeHeader, QVariant("application/json"));
+    manager->get(request);
+    //return true;
 }

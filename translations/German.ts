@@ -598,5 +598,9 @@
         <source>QRG [MHz]</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Test API Key</source>
+        <translation>API Schlüssel testen</translation>
+    </message>
 </context>
 </TS>

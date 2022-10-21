@@ -538,5 +538,9 @@
         <source>API Key</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Test API Key</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>

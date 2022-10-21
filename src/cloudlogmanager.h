@@ -7,6 +7,7 @@
 #include <iostream>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QDomDocument>
 #include <QRegularExpression>
 #include <QSqlError>
 
@@ -27,10 +28,14 @@ public slots:
     void uploadToCloudLog(QString ssl, QString url, QString key, QString station_id);
     void deleteUploadedQsos();
     void deleteQsos();
+    void testApiKey(QString ssl, QString url, QString key);
 
 signals:
     void uploadSucessfull(double progress);
     void uploadFailed(const QString &error);
+    void apiKeyOk();
+    void apiKeyRo();
+    void apiKeyInvalid();
 
 private:
     adifTools adif;
