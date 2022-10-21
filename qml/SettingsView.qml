@@ -329,8 +329,8 @@ Page {
                 id: cloudLogSSL
                 Layout.fillWidth: true
                 model: [
-                    "http",
-                    "https"
+                    "HTTP",
+                    "HTTPS"
                 ]
 
                 Component.onCompleted: {

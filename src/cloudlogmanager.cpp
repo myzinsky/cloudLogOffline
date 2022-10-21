@@ -161,7 +161,7 @@ void cloudlogManager::callbackCloudLog(QNetworkReply *rep)
 
 void cloudlogManager::uploadToCloudLog(QString ssl, QString url, QString key, QString station_id)
 {
-    this->url = url;
+    this->url = url.toLower();
     this->key = key;
     this->station_id = station_id;
     this->ssl = ssl;
