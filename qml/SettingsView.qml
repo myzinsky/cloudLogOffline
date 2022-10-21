@@ -345,7 +345,7 @@ Page {
 
             Label {
                 id: cloudLogKeyLabel
-                text: qsTr("Key") + ":"
+                text: qsTr("API Key") + ":"
                 visible: cloudLogSwitch.checked
             }
 

@@ -302,10 +302,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Frequency</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Name</source>
         <translation type="unfinished"></translation>
     </message>
@@ -362,7 +358,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>RX Frequency</source>
+        <source>TX QRG [MHz]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>RX QRG [MHz]</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -407,10 +407,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Frequency</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Contest Mode</source>
         <translation type="unfinished"></translation>
     </message>
@@ -428,10 +424,6 @@
     </message>
     <message>
         <source>Encryption</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Key</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -536,6 +528,14 @@
     </message>
     <message>
         <source>Lookup</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>QRG [MHz]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>API Key</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

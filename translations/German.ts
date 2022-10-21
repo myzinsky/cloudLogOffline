@@ -319,7 +319,7 @@
     </message>
     <message>
         <source>Frequency</source>
-        <translation>Frequenz</translation>
+        <translation type="vanished">Frequenz</translation>
     </message>
     <message>
         <source>Name</source>
@@ -379,7 +379,15 @@
     </message>
     <message>
         <source>RX Frequency</source>
-        <translation>RX Frequenz</translation>
+        <translation type="vanished">RX Frequenz</translation>
+    </message>
+    <message>
+        <source>TX QRG [MHz]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>RX QRG [MHz]</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -436,7 +444,7 @@
     </message>
     <message>
         <source>Frequency</source>
-        <translation>Frequenz</translation>
+        <translation type="vanished">Frequenz</translation>
     </message>
     <message>
         <source>RX Frequency</source>
@@ -471,8 +479,8 @@
         <translation>Verschlüsselung</translation>
     </message>
     <message>
-        <source>Key</source>
-        <translation>Key</translation>
+        <source>API Key</source>
+        <translation>API Schlüssel</translation>
     </message>
     <message>
         <source>Station ID</source>
@@ -585,6 +593,10 @@
     <message>
         <source>Lookup</source>
         <translation>Abfrage</translation>
+    </message>
+    <message>
+        <source>QRG [MHz]</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
