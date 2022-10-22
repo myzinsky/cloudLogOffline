@@ -32,7 +32,7 @@ Page {
         settings.cloudLogSSL       = cloudLogSSL.currentText;
         settings.cloudLogSSLIndex  = cloudLogSSL.currentIndex;
         settings.cloudLogKey       = cloudLogKey.text;
-        settings.cloudLogStationId = cloudLogStationId.text;
+        settings.cloudLogStationId = cloudLogStationId.value;
         settings.cloudLogActive    = cloudLogSwitch.checked;
 
         settings.qrzUser   = qrzUser.text;
@@ -63,11 +63,39 @@ Page {
         }
     }
 
+    function apiKeyOk() {
+        cloudLogApiKeyTestButton.background.color = "#00ff00";
+    }
+
+    function apiKeyRo() {
+        cloudLogApiKeyTestButton.background.color = "#ff9900";
+    }
+
+    function apiKeyInvalid()
+    {
+        cloudLogApiKeyTestButton.background.color = "#ff0000";
+    }
+
     Connections{
         target: rb
         function onLocatorDone(locator) {
             gridsquare.text = locator
             saveSettings();
+        }
+    }
+
+    Connections{
+        target: cl
+        function onApiKeyOk() {
+            apiKeyOk();
+        }
+
+        function onApiKeyRo() {
+            apiKeyRo();
+        }
+
+        function onApiKeyInvalid() {
+            apiKeyInvalid();
         }
     }
 
@@ -329,8 +357,8 @@ Page {
                 id: cloudLogSSL
                 Layout.fillWidth: true
                 model: [
-                    "http",
-                    "https"
+                    "HTTP",
+                    "HTTPS"
                 ]
 
                 Component.onCompleted: {
@@ -345,18 +373,34 @@ Page {
 
             Label {
                 id: cloudLogKeyLabel
-                text: qsTr("Key") + ":"
+                text: qsTr("API Key") + ":"
                 visible: cloudLogSwitch.checked
             }
 
-            TextField {
-                id: cloudLogKey
-                Layout.fillWidth: true
+            GridLayout {
+                id: apiKey
                 visible: cloudLogSwitch.checked
-                text: settings.cloudLogKey
-                echoMode: TextInput.Password
-                onTextEdited: saveSettings()
-                onEditingFinished: saveSettings();
+                columns: 2
+
+                TextField {
+                    id: cloudLogKey
+                    Layout.fillWidth: true
+                    visible: cloudLogSwitch.checked
+                    text: settings.cloudLogKey
+                    echoMode: TextInput.Password
+                    onTextEdited: saveSettings()
+                    onEditingFinished: saveSettings();
+                }
+
+                Button {
+                    id: cloudLogApiKeyTestButton
+                    text : qsTr("Test API Key")
+                    visible: cloudLogSwitch.checked
+
+                    onClicked: {
+                        cl.testApiKey(settings.cloudLogSSL, settings.cloudLogURL, cloudLogKey.text);
+                    }
+                }
             }
 
             Label {
@@ -365,13 +409,14 @@ Page {
                 visible: cloudLogSwitch.checked
             }
 
-            TextField {
+            SpinBox {
                 id: cloudLogStationId
-                Layout.fillWidth: true
                 visible: cloudLogSwitch.checked
-                text: settings.cloudLogStationId
-                onTextEdited: saveSettings()
-                onEditingFinished: saveSettings();
+                from: 1
+                to: 999
+                editable: true
+                value: settings.cloudLogStationId
+                onValueModified: saveSettings();
             }
 
             // ----------------
