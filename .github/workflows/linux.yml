@@ -20,4 +20,4 @@ jobs:
       - name: qmake
         run: cd build && qmake ../CloudLogOffline.pro
       - name: make
-        run: make -j
+        run: cd build && make -j
