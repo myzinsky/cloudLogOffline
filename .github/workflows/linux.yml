@@ -1,0 +1,21 @@
+name: windows
+
+on:
+  push:
+      branches: [ main ]
+  pull_request:
+      branches: [ main ]
+
+jobs:
+  build:
+      runs-on: ubuntu-latest
+      steps:
+      - uses: actions/checkout@v2
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v3.0.0
+      - name: build-dor
+        run: mkdir build
+      - name: qmake
+        run: cd build && qmake ../CloudLogOffline.pro
+      - name: make
+        run: make -j
