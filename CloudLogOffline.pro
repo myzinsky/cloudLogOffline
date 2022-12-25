@@ -9,7 +9,7 @@ QTPLUGIN += qsvg
 
 CONFIG += c++11
 
-GIT_VERSION = "1.1.3"
+GIT_VERSION = "1.1.4"
 message($$GIT_VERSION)
 DEFINES += GIT_VERSION=\\\"$$GIT_VERSION\\\"
 

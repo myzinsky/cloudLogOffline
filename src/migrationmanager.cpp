@@ -43,6 +43,10 @@ migrationManager::migrationManager()
             databaseNow = QVersionNumber::fromString("1.1.3");
         }
 
+        if(databaseNow == QVersionNumber::fromString("1.1.3")) {
+            databaseNow = QVersionNumber::fromString("1.1.4");
+        }
+
         if(databaseNow != current) {
             // Something is utterly wrong, throw an error and give up.
             qDebug() << "Migration ERROR?!?";
