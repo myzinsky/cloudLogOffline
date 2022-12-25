@@ -150,3 +150,4 @@ TRANSLATIONS += translations/German.ts
 android: include($$ANDROID_OPENSSL_DIR/openssl.pri)
 
 ANDROID_ABIS = armeabi-v7a arm64-v8a
+#android: include(/Users/myzinsky/Library/Android/sdk/android_openssl/openssl.pri)

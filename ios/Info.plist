@@ -29,7 +29,11 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Locating repeaters near your location</string>
 	<key>UILaunchStoryboardName</key>
-	<string>myLaunchScreen</string>
+	<string>LaunchScreen.storyboard</string>
+	<key>UIRequiresFullScreen</key>
+	<true/>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleDarkContent</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
