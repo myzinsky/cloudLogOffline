@@ -40,3 +40,4 @@ Then run the binary, app or exe
 ## Community:
 - German Telegram Group: https://t.me/CloudLogOffline
 - International DARC Matrix Group: [#thema_cloudlogoffline:darc.de](https://matrix.to/#/#thema_cloudlogoffline:darc.de)
+- News: <a rel="me" href="https://social.darc.de/@DL9MJ">Mastodon DL9MJ</a>
