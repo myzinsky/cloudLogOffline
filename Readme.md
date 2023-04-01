@@ -22,16 +22,16 @@ Currently CloudLogOffline supports following features:
 
 ## Build Instructions:
 
-There is just one requirement, which ist [Qt](https://www.qt.io/download-open-source).
+There is just one requirement, which is [Qt](https://www.qt.io/download-open-source). On Debian-based system you might want to install `libqt5svg5-dev` and `qtbase5-private-dev` as well.
 
-After intalling Qt just follow these steps on command line:
+After installing Qt just follow these steps on command line:
 
 ```bash
 git clone --recursive https://github.com/myzinsky/cloudLogOffline.git
 cd cloudLogOffline/
-mkdir build
+mkdir build && cd build
 qmake ../CloudLogOffline.pro
-make -j
+make -j $(nproc)
 ```
 Or use QtCreator to build the project.
 
