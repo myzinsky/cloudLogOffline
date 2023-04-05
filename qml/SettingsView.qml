@@ -28,7 +28,20 @@ Page {
         settings.contestNumber = contestNumber.text
         settings.fixedNumber   = fixedNumberSwitch.checked;
 
-        settings.cloudLogURL       = cloudLogURL.text;
+        var clURL = cloudLogURL.text;
+        if (clURL.endsWith("/")) {
+            clURL = clURL.substring(0, clURL.length - 1);
+        }
+        if (clURL.endsWith("/index.php/api/qso")) {
+            clURL = clURL.substring(0, clURL.length - 18);
+        }
+        if (clURL.startsWith("http://")) {
+            clURL = clURL.substring(7, clURL.length);
+        }
+        if (clURL.startsWith("https://")) {
+            clURL = clURL.substring(8, clURL.length);
+        }
+        settings.cloudLogURL       = clURL;
         settings.cloudLogSSL       = cloudLogSSL.currentText;
         settings.cloudLogSSLIndex  = cloudLogSSL.currentIndex;
         settings.cloudLogKey       = cloudLogKey.text;
@@ -344,7 +357,7 @@ Page {
                 Layout.fillWidth: true
                 visible: cloudLogSwitch.checked
                 text: settings.cloudLogURL
-                onTextEdited: saveSettings()
+                onEditingFinished: saveSettings()
             }
 
             Label {
