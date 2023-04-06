@@ -192,7 +192,7 @@ void cloudlogManager::callbackCloudLog(QNetworkReply *rep)
 
 void cloudlogManager::uploadToCloudLog(QString ssl, QString url, QString key, QString station_id)
 {
-    this->url = url.toLower();
+    this->url = url;
     this->key = key;
     this->station_id = station_id;
     this->ssl = ssl;
@@ -306,7 +306,7 @@ void cloudlogManager::deleteQsos()
 
 void cloudlogManager::testApiKey(QString ssl, QString url, QString key)
 {
-    QUrl u = QUrl(ssl.toLower()+"://"+url+"/index.php/api/auth/"+key);
+    QUrl u = QUrl(ssl+"://"+url+"/index.php/api/auth/"+key);
     QNetworkRequest request(u);
     request.setRawHeader ("User-Agent", "CloudLogOffline v"+QByteArray(GIT_VERSION));
     request.setHeader(QNetworkRequest::ContentTypeHeader, QVariant("application/json"));
