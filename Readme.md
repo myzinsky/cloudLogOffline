@@ -31,7 +31,7 @@ git clone --recursive https://github.com/myzinsky/cloudLogOffline.git
 cd cloudLogOffline/
 mkdir build && cd build
 qmake ../CloudLogOffline.pro
-make -j $(nproc)
+make -j
 ```
 Or use QtCreator to build the project.
 
