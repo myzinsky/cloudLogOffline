@@ -26,6 +26,7 @@ private slots:
 
 public slots:
     void uploadToCloudLog(QString ssl, QString url, QString key, QString station_id);
+    void resetMarkedQSOs();
     void deleteUploadedQsos();
     void deleteQsos();
     void testApiKey(QString ssl, QString url, QString key);

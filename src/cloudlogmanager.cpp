@@ -221,6 +221,16 @@ void cloudlogManager::uploadToCloudLog(QString ssl, QString url, QString key, QS
     }
 }
 
+void cloudlogManager::resetMarkedQSOs()
+{
+    QSqlQuery query;
+    query.prepare("UPDATE qsos SET sync=0;");
+
+    if(!query.exec()) {
+        qDebug() << "SQL Error:" << query.lastError().text();
+    }
+}
+
 void cloudlogManager::uploadNext()
 {
     qDebug() << "Upload" << (done+1) << "/" << number;

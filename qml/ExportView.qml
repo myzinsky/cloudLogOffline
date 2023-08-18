@@ -75,6 +75,22 @@ Page {
             }
 
             IconButton {
+                id: cloudLogReset
+                buttonIcon: "\uf2f9"
+                text: "Reset marked QSOs"
+                Layout.fillWidth: true
+                highlighted: settings.cloudLogActive
+                enabled: settings.cloudLogActive
+                Material.theme: Material.Light
+                Material.accent: Material.Green
+                Layout.columnSpan: 2
+
+                onClicked: {
+                    cl.resetMarkedQSOs()
+                }
+            }
+
+            IconButton {
                 id: cloudLogDelete
                 buttonIcon: "\uf2ed"
                 text: "Delete Uploaded QSOs"
