@@ -260,18 +260,10 @@ Page {
     Connections{
         target: qrz
         onQrzDone: {
-            if (nameTextField.text.length == 0) {
-                nameTextField.text = fname + " " + name
-            }
-            if (ctryTextField.text.length == 0) {
-                ctryTextField.text = country
-            }
-            if (gridTextField.text.length == 0) {
-                gridTextField.text = locator
-            }
-            if (qqthTextField.text.length == 0) {
-                qqthTextField.text = addr2
-            }
+            nameTextField.text = fname + " " + name
+            ctryTextField.text = country
+            gridTextField.text = locator
+            qqthTextField.text = addr2
 
             page.qrzFound = true
         }
