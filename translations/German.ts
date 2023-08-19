@@ -103,11 +103,11 @@
     </message>
     <message>
         <source>Export ADIF logfile in clipboard or context menu.</source>
-        <translation>ADIF Logfile in die Zwischenablage oder das Kontextmenü exportieren.</translation>
+        <translation type="vanished">ADIF Logfile in die Zwischenablage oder das Kontextmenü exportieren.</translation>
     </message>
     <message>
         <source>Export Cabrillo logfile in clipboard or context menu. The provided fields can be filled according to the requirements of the specific contest.</source>
-        <translation>Cabrillo Logfile in die Zwischenablage oder das Kontextmenü exportieren. Die zusätzlichen Felder können je nach Contest-Anforderungen befüllt werden.</translation>
+        <translation type="vanished">Cabrillo Logfile in die Zwischenablage oder das Kontextmenü exportieren. Die zusätzlichen Felder können je nach Contest-Anforderungen befüllt werden.</translation>
     </message>
     <message>
         <source>Contest</source>
@@ -204,6 +204,38 @@
     <message>
         <source>Delete all QSOs?</source>
         <translation>Alle QSOs löschen?</translation>
+    </message>
+    <message>
+        <source>Upload QSOs to Cloudlog</source>
+        <translation>QSOs nach Cloudlog laden</translation>
+    </message>
+    <message>
+        <source>Reset uploaded QSOs</source>
+        <translation>Hochgeladene QSOs zurücksetzen</translation>
+    </message>
+    <message>
+        <source>Delete Uploaded QSOs</source>
+        <translation>Hochgelande QSOs Löschen</translation>
+    </message>
+    <message>
+        <source>Exported</source>
+        <translation>Exportiert</translation>
+    </message>
+    <message>
+        <source>Copied to Clipboard</source>
+        <translation>In die Zwischenablage kopiert</translation>
+    </message>
+    <message>
+        <source>Export ADIF logfile in clipboard.</source>
+        <translation>Exportiere ADIF Logfile in die Zwischenablage.</translation>
+    </message>
+    <message>
+        <source>Delete All QSOs</source>
+        <translation>Alle QSOs löschen</translation>
+    </message>
+    <message>
+        <source>Export Cabrillo logfile in clipboard. The provided fields can be filled according to the requirements of the specific contest.</source>
+        <translation>Exportiere Cabrillo Logfile in die Zwischenablage.</translation>
     </message>
 </context>
 <context>
@@ -383,11 +415,19 @@
     </message>
     <message>
         <source>TX QRG [MHz]</source>
-        <translation type="unfinished"></translation>
+        <translation>TX QRG [MHz]</translation>
     </message>
     <message>
         <source>RX QRG [MHz]</source>
-        <translation type="unfinished"></translation>
+        <translation>RX QRG [MHz]</translation>
+    </message>
+    <message>
+        <source>POTA (S)</source>
+        <translation>POTA (S)</translation>
+    </message>
+    <message>
+        <source>POTA (R)</source>
+        <translation>POTA (R)</translation>
     </message>
 </context>
 <context>
@@ -596,11 +636,19 @@
     </message>
     <message>
         <source>QRG [MHz]</source>
-        <translation type="unfinished"></translation>
+        <translation>QRG [MHz]</translation>
     </message>
     <message>
         <source>Test API Key</source>
         <translation>API Schlüssel testen</translation>
+    </message>
+    <message>
+        <source>Parks on the Air</source>
+        <translation>Parks on the Air</translation>
+    </message>
+    <message>
+        <source>Insert here youre POTA reference</source>
+        <translation>Bitte hier die POTA Referenz hinzufügen</translation>
     </message>
 </context>
 </TS>

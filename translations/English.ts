@@ -94,14 +94,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Export ADIF logfile in clipboard or context menu.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Export Cabrillo logfile in clipboard or context menu. The provided fields can be filled according to the requirements of the specific contest.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Contest</source>
         <translation type="unfinished"></translation>
     </message>
@@ -195,6 +187,38 @@
     </message>
     <message>
         <source>Delete all QSOs?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Upload QSOs to Cloudlog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset uploaded QSOs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete Uploaded QSOs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Exported</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copied to Clipboard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Export ADIF logfile in clipboard.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete All QSOs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Export Cabrillo logfile in clipboard. The provided fields can be filled according to the requirements of the specific contest.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -363,6 +387,14 @@
     </message>
     <message>
         <source>RX QRG [MHz]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>POTA (S)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>POTA (R)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -540,6 +572,14 @@
     </message>
     <message>
         <source>Test API Key</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Parks on the Air</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert here youre POTA reference</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
