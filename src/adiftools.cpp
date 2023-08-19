@@ -195,35 +195,28 @@ QString adifTools::assemble(QString call,
     }
 
     // WWFF:
-
     if(!wwff.isEmpty()) {
         str += QString("") +
-                "<sig:4>WWFF"+
-                "<sig_info:" + QString::number(wwff.size()) + ">" + wwff;
+               "<wwff_ref:" + QString::number(wwff.size()) + ">" + wwff;
     }
 
     if(!wwfs.isEmpty()) {
         str += QString("") +
-                "<my_sig:4>WWFF"+
-                "<my_sig_info:" + QString::number(wwfs.size()) + ">" + wwfs;
+               "<my_wwff_ref:" + QString::number(wwfs.size()) + ">" + wwfs;
     }
 
     // POTA:
-
-    if(!wwff.isEmpty()) {
+    if(!pota.isEmpty()) {
         str += QString("") +
-               "<sig:4>POTA"+
-               "<sig_info:" + QString::number(pota.size()) + ">" + pota;
+               "<pota_ref:" + QString::number(pota.size()) + ">" + pota;
     }
 
-    if(!wwfs.isEmpty()) {
+    if(!pots.isEmpty()) {
         str += QString("") +
-               "<my_sig:4>POTA"+
-               "<my_sig_info:" + QString::number(pots.size()) + ">" + pots;
+               "<my_pota_ref:" + QString::number(pots.size()) + ">" + pots;
     }
 
     // SAT:
-    // u
     if(!satn.isEmpty()) {
         str += QString("") +
                 "<sat_name:" + QString::number(satn.size()) + ">" + satn;
