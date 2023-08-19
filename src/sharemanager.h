@@ -1,20 +1,19 @@
-#ifndef SHAREUTILS_H
-#define SHAREUTILS_H
+#ifndef SHAREMANAGER_H
+#define SHAREMANAGER_H
 
 #include <QQuickItem>
 #include <QApplication>
 #include <QClipboard>
-//#include <QMessageBox>
 
 #include "adiftools.h"
 #include "cabrillotools.h"
 #include "csvtools.h"
 
-class shareUtils : public QQuickItem
+class shareManager : public QQuickItem
 {
     Q_OBJECT
 public:
-    explicit shareUtils(QQuickItem *parent = 0);
+    explicit shareManager(QQuickItem *parent = 0);
     Q_INVOKABLE void shareADIF();
     Q_INVOKABLE void shareCabrillo(
             QString cabrilloContest,
@@ -47,4 +46,4 @@ private:
     csvTools csv;
 };
 
-#endif //SHAREUTILS_H
+#endif //SHAREMANAGER_H

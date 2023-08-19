@@ -1,25 +1,21 @@
-#include "shareutils.h"
+#include "sharemanager.h"
 
-shareUtils::shareUtils(QQuickItem *parent) : QQuickItem(parent)
+shareManager::shareManager(QQuickItem *parent) : QQuickItem(parent)
 {
 }
 
-void shareUtils::share(const QString &text)
+void shareManager::share(const QString &text)
 {
     QClipboard *clipboard = QApplication::clipboard();
     clipboard->setText(text);
-    //
-    //QMessageBox msgBox;
-    //msgBox.setText("Copied to Clipboard");
-    //msgBox.exec();
 }
 
-void shareUtils::shareADIF()
+void shareManager::shareADIF()
 {
     share(adif.generate());
 }
 
-void shareUtils::shareCabrillo(
+void shareManager::shareCabrillo(
         QString cabrilloContest,
         QString cabrilloAssisted,
         QString cabrilloBand,
@@ -66,7 +62,7 @@ void shareUtils::shareCabrillo(
               ));
 }
 
-void shareUtils::shareCSV()
+void shareManager::shareCSV()
 {
     share(csv.generate());
 }
