@@ -48,6 +48,7 @@ migrationManager::migrationManager()
         }
 
         if(databaseNow == QVersionNumber::fromString("1.1.4")) {
+            from_1_1_4_to_1_1_5();
             databaseNow = QVersionNumber::fromString("1.1.5");
         }
 
@@ -107,6 +108,16 @@ void migrationManager::from_1_1_2_to_1_1_3()
     bool res = addQSOColumn("loca", "TEXT");
     if(res == true) {
         updateDatabaseVersion("1.1.3");
+    }
+}
+
+void migrationManager::from_1_1_4_to_1_1_5()
+{
+    qDebug() << "Migrate from 1.1.3/4 to 1.1.5";
+    bool res = addQSOColumn("pota", "TEXT");
+    res = res & addQSOColumn("pots", "TEXT"); // MYPOTA
+    if(res == true) {
+        updateDatabaseVersion("1.1.5");
     }
 }
 

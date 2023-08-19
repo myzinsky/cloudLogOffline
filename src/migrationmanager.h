@@ -29,6 +29,7 @@ private:
     void from_1_1_0_to_1_1_1();
     void from_1_1_1_to_1_1_2();
     void from_1_1_2_to_1_1_3();
+    void from_1_1_4_to_1_1_5();
 
     // Bugfixes:
     void fix_1_0_5();
