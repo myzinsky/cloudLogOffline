@@ -58,7 +58,7 @@ Page {
             IconButton {
                 id: cloudLogUpload
                 buttonIcon: "\uf382"
-                text: "Upload QSOs to Cloudlog"
+                text: qsTr("Upload QSOs to Cloudlog")
                 Layout.fillWidth: true
                 highlighted: settings.cloudLogActive
                 enabled: settings.cloudLogActive
@@ -77,7 +77,7 @@ Page {
             IconButton {
                 id: cloudLogReset
                 buttonIcon: "\uf2f9"
-                text: "Reset marked QSOs"
+                text: qsTr("Reset uploaded QSOs")
                 Layout.fillWidth: true
                 highlighted: settings.cloudLogActive
                 enabled: settings.cloudLogActive
@@ -93,7 +93,7 @@ Page {
             IconButton {
                 id: cloudLogDelete
                 buttonIcon: "\uf2ed"
-                text: "Delete Uploaded QSOs"
+                text: qsTr("Delete Uploaded QSOs")
                 Layout.fillWidth: true
                 highlighted: settings.cloudLogActive
                 enabled: settings.cloudLogActive
@@ -128,7 +128,7 @@ Page {
             ExportHeader {
                 icon: "\uf15c"
                 text: "ADIF"
-                helpText: qsTr("Export ADIF logfile in clipboard or context menu.")
+                helpText: qsTr("Export ADIF logfile in clipboard.")
                 Layout.columnSpan: 2
             }
 
@@ -184,7 +184,7 @@ Page {
             ExportHeader {
                 icon: "\uf15c"
                 text: "Cabrillo"
-                helpText: qsTr("Export Cabrillo logfile in clipboard or context menu. The provided fields can be filled according to the requirements of the specific contest.")
+                helpText: qsTr("Export Cabrillo logfile in clipboard. The provided fields can be filled according to the requirements of the specific contest.")
                 Layout.columnSpan: 2
             }
 
