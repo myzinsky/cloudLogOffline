@@ -570,6 +570,33 @@ Page {
                 font.capitalization: Font.AllUppercase
                 inputMethodHints: Qt.ImhUppercaseOnly
             }
+            // ----------------
+
+            SettingsSwitch {
+                id: potaSwitch
+                icon: "\uf540"
+                text: qsTr("Parks on the Air")
+                helpText: qsTr("Insert here youre POTA reference")
+                Layout.columnSpan: 2
+                checked: settings.wwffActive
+            }
+
+            Label {
+                id: myPotaLabel
+                text: qsTr("Reference") + ":"
+                visible: potaSwitch.checked
+            }
+
+            TextField {
+                id: myPotaReference
+                Layout.fillWidth: true
+                visible: potaSwitch.checked
+                text: settings.myPotaReference
+                onTextEdited: saveSettings();
+                onEditingFinished: saveSettings();
+                font.capitalization: Font.AllUppercase
+                inputMethodHints: Qt.ImhUppercaseOnly
+            }
 
             // ----------------
 

@@ -95,6 +95,9 @@ ApplicationWindow {
         property string myWwffReference
         property bool wwffActive
 
+        property string myPotaReference
+        property bool potaActive
+
         property bool satActive
 
         property bool rbActive
