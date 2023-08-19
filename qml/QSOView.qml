@@ -32,6 +32,8 @@ Page {
     property alias sots: sotsTextField.text;
     property alias wwff: wwffTextField.text;
     property alias wwfs: wwfsTextField.text;
+    property alias pota: potaTextField.text;
+    property alias pots: potsTextField.text;
     property alias satm: satmTextField.text;
     property alias rxfreq: freqRxTextField.text
 
@@ -105,6 +107,8 @@ Page {
         sotsTextField.text = settings.sotaActive ? settings.mySotaReference : ""
         wwffTextField.text = ""
         wwfsTextField.text = settings.wwffActive ? settings.myWwffReference : ""
+        potaTextField.text = ""
+        potsTextField.text = settings.potaActive ? settings.myPotaReference : ""
         satmTextField.text = ""
         freqRxTextField.text =  ""
         statusIndicator.Material.accent = Material.Green
@@ -153,6 +157,8 @@ Page {
                     sotsTextField.text.toUpperCase(),
                     wwffTextField.text.toUpperCase(),
                     wwfsTextField.text.toUpperCase(),
+                    potaTextField.text.toUpperCase(),
+                    potsTextField.text.toUpperCase(),
                     satnComboBox.currentText,
                     satmTextField.text.toUpperCase(),
                     propModeComboBox.currentValue,
@@ -199,6 +205,8 @@ Page {
                        sotsTextField.text.toUpperCase(),
                        wwffTextField.text.toUpperCase(),
                        wwfsTextField.text.toUpperCase(),
+                       potaTextField.text.toUpperCase(),
+                       potsTextField.text.toUpperCase(),
                        satnComboBox.currentText,
                        satmTextField.text.toUpperCase(),
                        propModeComboBox.currentText,
@@ -809,6 +817,39 @@ Page {
                 inputMethodHints: Qt.ImhUppercaseOnly
             }
 
+            //--- POTA:
+
+            Label {
+                id: myPotsable
+                text: qsTr("POTA (S)") + ":"
+                visible: settings.potaActive || potaTextField.text || potsTextField.text
+            }
+
+            QSOTextField {
+                id: potsTextField
+                Layout.columnSpan: 1
+                text: (addQSO == true || liveQSO == true) ? (settings.potaActive ? settings.myPotaReference : "") : potsTextField.text
+                KeyNavigation.tab: potaTextField
+                visible: settings.potaActive || potaTextField.text || potsTextField.text
+                font.capitalization: Font.AllUppercase
+                inputMethodHints: Qt.ImhUppercaseOnly
+            }
+
+            Label {
+                id: potaLable
+                text: qsTr("POTA (R)") + ":"
+                visible: settings.potaActive || potaTextField.text || potsTextField.text
+            }
+
+            QSOTextField {
+                id: potaTextField
+                Layout.columnSpan: 1
+                text: ""
+                KeyNavigation.tab: (settings.satActive || (satnComboBox.currentIndex !== 0) || satmTextField.text) ? satnComboBox : commTextField
+                visible: settings.potaActive || potaTextField.text || potsTextField.text
+                font.capitalization: Font.AllUppercase
+                inputMethodHints: Qt.ImhUppercaseOnly
+            }
 
             //--- SAT:
 

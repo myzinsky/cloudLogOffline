@@ -62,6 +62,9 @@ Page {
         settings.myWwffReference = myWwffReference.text
         settings.wwffActive      = wwffSwitch.checked;
 
+        settings.myPotaReference = myPotaReference.text
+        settings.potaActive      = potaSwitch.checked;
+
         settings.satActive = satSwitch.checked;
 
         settings.rbActive = rbSwitch.checked;
@@ -578,7 +581,7 @@ Page {
                 text: qsTr("Parks on the Air")
                 helpText: qsTr("Insert here youre POTA reference")
                 Layout.columnSpan: 2
-                checked: settings.wwffActive
+                checked: settings.potaActive
             }
 
             Label {

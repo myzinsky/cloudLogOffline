@@ -55,6 +55,8 @@ void qsoModel::addQSO(QString call,
                       QString sots,
                       QString wwff,
                       QString wwfs,
+                      QString pota,
+                      QString pots,
                       QString satn,
                       QString satm,
                       QString propmode,
@@ -82,6 +84,8 @@ void qsoModel::addQSO(QString call,
     newRecord.setValue("sots", sots); // MY_SOTA
     newRecord.setValue("wwff", wwff);
     newRecord.setValue("wwfs", wwfs); // MY_WWFF
+    newRecord.setValue("pota", pota);
+    newRecord.setValue("pots", pots); // MY_POTA
     newRecord.setValue("satn", satn);
     newRecord.setValue("satm", satm);
     newRecord.setValue("propmode", propmode);
@@ -116,6 +120,8 @@ void qsoModel::updateQSO(int id,
                          QString sots,
                          QString wwff,
                          QString wwfs,
+                         QString pota,
+                         QString pots,
                          QString satn,
                          QString satm,
                          QString propmode,
@@ -144,6 +150,8 @@ void qsoModel::updateQSO(int id,
     r.setValue("sots", sots); // MY_SOTA
     r.setValue("wwff", wwff);
     r.setValue("wwfs", wwfs); // MY_WWFF
+    r.setValue("pota", pota);
+    r.setValue("pots", pots); // MY_POTA
     r.setValue("satn", satn);
     r.setValue("satm", satm);
     r.setValue("propmode", propmode);
