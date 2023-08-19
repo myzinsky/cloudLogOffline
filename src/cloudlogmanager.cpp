@@ -29,6 +29,8 @@ cloudlogManager::cloudlogManager(qsoModel *model) : model(model)
                         "sots, "
                         "wwff, "
                         "wwfs, "
+                        "pota, "
+                        "pots, "
                         "satn, "
                         "satm, "
                         "propmode, "
@@ -59,6 +61,8 @@ void cloudlogManager::uploadQSO(QString url,
                                 QString sots,
                                 QString wwff,
                                 QString wwfs,
+                                QString pota,
+                                QString pots,
                                 QString satn,
                                 QString satm,
                                 QString propmode,
@@ -95,6 +99,8 @@ void cloudlogManager::uploadQSO(QString url,
                       sots,
                       wwff,
                       wwfs,
+                      pota,
+                      pots,
                       satn,
                       satm,
                       propmode,
@@ -256,11 +262,13 @@ void cloudlogManager::uploadNext()
     QString sots     = selectQuery.value(17).toString();
     QString wwff     = selectQuery.value(18).toString();
     QString wwfs     = selectQuery.value(19).toString();
-    QString satn     = selectQuery.value(20).toString();
-    QString satm     = selectQuery.value(21).toString();
-    QString propmode = selectQuery.value(22).toString();
-    QString rxfreq   = selectQuery.value(23).toString();
-    QString loca     = selectQuery.value(24).toString();
+    QString pota     = selectQuery.value(20).toString();
+    QString pots     = selectQuery.value(21).toString();
+    QString satn     = selectQuery.value(22).toString();
+    QString satm     = selectQuery.value(23).toString();
+    QString propmode = selectQuery.value(24).toString();
+    QString rxfreq   = selectQuery.value(25).toString();
+    QString loca     = selectQuery.value(26).toString();
 
     currentIdInUpload = id;
 
@@ -286,6 +294,8 @@ void cloudlogManager::uploadNext()
               sots,
               wwff,
               wwfs,
+              pota,
+              pots,
               satn,
               satm,
               propmode,

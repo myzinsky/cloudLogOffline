@@ -32,7 +32,7 @@ void qrzManager::receiveKey()
             + qrzPass
             +";agent=q5.0";
 
-    qDebug() << qrzUrl;
+    //qDebug() << qrzUrl;
 
     request.setUrl(QUrl(qrzUrl));
     keyManager->get(request);
@@ -45,7 +45,7 @@ void qrzManager::lookupCall(QString call)
             + ";callsign="
             + call;
 
-    qDebug() << qrzUrl;
+    //qDebug() << qrzUrl;
 
     request.setUrl(QUrl(qrzUrl));
     queryManager->get(request);

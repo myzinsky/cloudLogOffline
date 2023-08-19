@@ -233,9 +233,36 @@ SwipeDelegate {
                 color: "#ffffff"
                 text: (model.wwff !== "" || model.wwfs !== "") ? "S:" + model.wwfs + " R:" + model.wwff : ""
                 anchors.top: parent.top
-                anchors.right: satLogo.left
+                anchors.right: potaLogo.left
                 anchors.topMargin: 50
                 anchors.rightMargin: (model.wwff !== "" || model.wwfs !== "") ? 5 : 0
+                font.pixelSize: 12
+                opacity: 0.87
+            }
+
+            //--- POTA
+
+            Text {
+                id: potaLogo
+                color: "#ffffff"
+                font.family: fontAwesome.name
+                text: (model.pota !== "" || model.pots !== "") ? "\uf540" : ""
+                anchors.top: parent.top
+                anchors.right: potaName.left
+                anchors.topMargin: 50
+                anchors.rightMargin: (model.pota !== "" || model.pots !== "") ? 5 : 0
+                font.pixelSize: 12
+                opacity: 0.87
+            }
+
+            Text {
+                id: potaName
+                color: "#ffffff"
+                text: (model.pota !== "" || model.wwfs !== "") ? "S:" + model.pots + " R:" + model.pota : ""
+                anchors.top: parent.top
+                anchors.right: satLogo.left
+                anchors.topMargin: 50
+                anchors.rightMargin: (model.pota !== "" || model.pots !== "") ? 5 : 0
                 font.pixelSize: 12
                 opacity: 0.87
             }

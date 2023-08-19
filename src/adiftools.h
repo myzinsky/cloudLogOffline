@@ -43,6 +43,8 @@ public:
                      QString sots,
                      QString wwff,
                      QString wwfs,
+                     QString pota,
+                     QString pots,
                      QString satn,
                      QString satm,
                      QString propmode,

@@ -22,6 +22,8 @@ adifTools::adifTools()
                         "sots, "
                         "wwff, "
                         "wwfs, "
+                        "pota, "
+                        "pots, "
                         "satn, "
                         "satm, "
                         "propmode, "
@@ -108,6 +110,8 @@ QString adifTools::assemble(QString call,
                             QString sots,
                             QString wwff,
                             QString wwfs,
+                            QString pota,
+                            QString pots,
                             QString satn,
                             QString satm,
                             QString propmode,
@@ -204,6 +208,20 @@ QString adifTools::assemble(QString call,
                 "<my_sig_info:" + QString::number(wwfs.size()) + ">" + wwfs;
     }
 
+    // POTA:
+
+    if(!wwff.isEmpty()) {
+        str += QString("") +
+               "<sig:4>POTA"+
+               "<sig_info:" + QString::number(pota.size()) + ">" + pota;
+    }
+
+    if(!wwfs.isEmpty()) {
+        str += QString("") +
+               "<my_sig:4>POTA"+
+               "<my_sig_info:" + QString::number(pots.size()) + ">" + pots;
+    }
+
     // SAT:
     // u
     if(!satn.isEmpty()) {
@@ -272,11 +290,13 @@ QString adifTools::generate()
         QString sots     = selectQuery.value(17).toString();
         QString wwff     = selectQuery.value(18).toString();
         QString wwfs     = selectQuery.value(19).toString();
-        QString satn     = selectQuery.value(20).toString();
-        QString satm     = selectQuery.value(21).toString();
-        QString propmode = selectQuery.value(22).toString();
-        QString rxfreq   = selectQuery.value(23).toString();
-        QString loca     = selectQuery.value(24).toString();
+        QString pota     = selectQuery.value(20).toString();
+        QString pots     = selectQuery.value(21).toString();
+        QString satn     = selectQuery.value(22).toString();
+        QString satm     = selectQuery.value(23).toString();
+        QString propmode = selectQuery.value(24).toString();
+        QString rxfreq   = selectQuery.value(25).toString();
+        QString loca     = selectQuery.value(26).toString();
 
         output += assemble(call,
                            name,
@@ -296,6 +316,8 @@ QString adifTools::generate()
                            sots,
                            wwff,
                            wwfs,
+                           pota,
+                           pots,
                            satn,
                            satm,
                            propmode,
