@@ -119,6 +119,12 @@ Page {
                 }
             }
 
+            MessageDialog {
+                id: exportMessage
+                title: qsTr("Exported")
+                text: qsTr("Copied to Clipboard")
+            }
+
             ExportHeader {
                 icon: "\uf15c"
                 text: "ADIF"
@@ -142,13 +148,14 @@ Page {
 
                 onClicked: {
                     shareUtils.shareADIF()
+                    exportMessage.visible=true
                 }
             }
 
             IconButton {
                 id: deleteOSOs
                 buttonIcon: "\uf2ed"
-                text: "Delete All QSOs"
+                text: qsTr("Delete All QSOs")
                 Layout.fillWidth: true
                 highlighted: settings.cloudLogActive
                 enabled: settings.cloudLogActive
@@ -697,27 +704,28 @@ Page {
 
                 onClicked: {
                     shareUtils.shareCabrillo(
-                                cabrilloContest.currentText,
-                                cabrilloAssisted.currentText,
-                                cabrilloBand.currentText,
-                                cabrilloMode.currentText,
-                                cabrilloOperator.currentText,
-                                cabrilloPower.currentText,
-                                cabrilloStation.currentText,
-                                cabrilloTime.currentText,
-                                cabrilloTransmitter.currentText,
-                                cabrilloOverlay.currentText,
-                                cabrilloCertificate.currentText,
-                                cabrilloScore.text,
-                                cabrilloClub.text,
-                                cabrilloEmail.text,
-                                cabrilloLocator.text,
-                                cabrilloLocation.text,
-                                cabrilloName.text,
-                                cabrilloAddress.text,
-                                cabrilloOperators.text,
-                                cabrilloSoapbox.text
-                                )
+                        cabrilloContest.currentText,
+                        cabrilloAssisted.currentText,
+                        cabrilloBand.currentText,
+                        cabrilloMode.currentText,
+                        cabrilloOperator.currentText,
+                        cabrilloPower.currentText,
+                        cabrilloStation.currentText,
+                        cabrilloTime.currentText,
+                        cabrilloTransmitter.currentText,
+                        cabrilloOverlay.currentText,
+                        cabrilloCertificate.currentText,
+                        cabrilloScore.text,
+                        cabrilloClub.text,
+                        cabrilloEmail.text,
+                        cabrilloLocator.text,
+                        cabrilloLocation.text,
+                        cabrilloName.text,
+                        cabrilloAddress.text,
+                        cabrilloOperators.text,
+                        cabrilloSoapbox.text
+                    )
+                    exportMessage.visible=true
                 }
             }
 
@@ -740,6 +748,7 @@ Page {
 
                 onClicked: {
                     shareUtils.shareCSV()
+                    exportMessage.visible=true
                 }
             }
         }

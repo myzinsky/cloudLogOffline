@@ -9,7 +9,7 @@ QTPLUGIN += qsvg
 
 CONFIG += c++11
 
-GIT_VERSION = "1.1.4"
+GIT_VERSION = "1.1.5"
 message($$GIT_VERSION)
 DEFINES += GIT_VERSION=\\\"$$GIT_VERSION\\\"
 
@@ -50,9 +50,6 @@ QML_IMPORT_PATH =
 QML_DESIGNER_IMPORT_PATH =
 
 ios {
-    OBJECTIVE_SOURCES += ios/iosshareutils.mm
-    HEADERS += ios/iosshareutils.h
-
     QMAKE_INFO_PLIST = ios/Info.plist
     app_launch_images.files = $$PWD/ios/myLaunchScreen.xib
     QMAKE_BUNDLE_DATA += app_launch_images
@@ -82,8 +79,8 @@ android {
     include($$ANDROID_OPENSSL_DIR/openssl.pri)
     QT += androidextras
     OTHER_FILES += android/src/com/lasconic/QShareUtils.java
-    HEADERS += android/androidshareutils.h
-    SOURCES += android/androidshareutils.cpp
+    HEADERS +=
+    SOURCES +=
     DISTFILES += \
         android/AndroidManifest.xml \
         android/build.gradle \

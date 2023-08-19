@@ -15,14 +15,6 @@
 #include "tools.h"
 #include "shareutils.h"
 
-#ifdef Q_OS_IOS
-#include "ios/iosshareutils.h"
-#endif
-
-#ifdef Q_OS_ANDROID
-#include "android/androidshareutils.h"
-#endif
-
 // Create Singelton for Version Number:
 static QJSValue appVersionSingletonProvider(QQmlEngine *engine, QJSEngine *scriptEngine)
 {
@@ -62,7 +54,7 @@ int main(int argc, char *argv[])
 #endif
 
     qmlRegisterSingletonType("de.webappjung", 1, 0, "AppInfo", appVersionSingletonProvider);
-    qmlRegisterType<shareUtils> ("com.lasconic", 1, 0, "ShareUtils");
+    qmlRegisterType<shareUtils> ("de.webappjung", 1, 0, "ShareUtils");
 
     // Load the QML and set the Context:
     engine.rootContext()->setContextProperty("qsoModel", QVariant::fromValue(&qModel));
