@@ -43,10 +43,10 @@ Page {
 
     property int sync
 
-    property bool qrzFound: false;
+    property bool qrzFound: false
 
     Component.onCompleted: {
-
+        console.log("Start View: "+call)
         if(mode) {
             var i = modeComboBox.find(mode);
             modeComboBox.currentIndex = i;
@@ -80,9 +80,10 @@ Page {
         if(!updateQSO) {
             saveButton.enabled = false;
             saveButtonGlobal.enabled = false;
+            reset();
         }
-    }
 
+    }
 
     function zeroPad(num, places) {
         var zero = places - num.toString().length + 1;
@@ -216,7 +217,6 @@ Page {
             stackView.pop()
         }
 
-        callTextField.forceActiveFocus()
     }
 
 
@@ -482,10 +482,9 @@ Page {
                     padding: 0
 
                     onClicked: {
-                        stackView.push("QRZView.qml",
-                                   {
-                                       "call" : callTextField.text
-                                   });
+                        stackView.push("QRZView.qml",{
+                            "call" : callTextField.text
+                        });
                     }
                 }
 
@@ -786,7 +785,7 @@ Page {
             //--- WWFF:
 
             Label {
-                id: myWwfsable
+                id: wwfsLable
                 text: qsTr("WWFF (S)") + ":"
                 visible: settings.wwffActive || wwffTextField.text || wwfsTextField.text
             }
@@ -804,7 +803,7 @@ Page {
             Label {
                 id: wwffLable
                 text: qsTr("WWFF (R)") + ":"
-                visible: settings.wwffActive || wwffTextField.text || sotsTextField.text
+                visible: settings.wwffActive || wwffTextField.text || wwfsTextField.text
             }
 
             QSOTextField {
@@ -820,7 +819,7 @@ Page {
             //--- POTA:
 
             Label {
-                id: myPotsable
+                id: potsLable
                 text: qsTr("POTA (S)") + ":"
                 visible: settings.potaActive || potaTextField.text || potsTextField.text
             }
