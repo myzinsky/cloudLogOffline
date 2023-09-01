@@ -57,5 +57,6 @@ SplitView {
 
     QSOView {
         id: qsoView
+        focus: true
     }
 }

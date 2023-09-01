@@ -78,7 +78,6 @@ android {
     ANDROID_OPENSSL_DIR = $$PWD/android_openssl
     include($$ANDROID_OPENSSL_DIR/openssl.pri)
     QT += androidextras
-    OTHER_FILES += android/src/com/lasconic/QShareUtils.java
     HEADERS +=
     SOURCES +=
     DISTFILES += \
@@ -143,6 +142,7 @@ DISTFILES += qml/TimePicker.qml
 # Translations:
 TRANSLATIONS += translations/English.ts
 TRANSLATIONS += translations/German.ts
+TRANSLATIONS += translations/Armenian.ts
 
 android: include($$ANDROID_OPENSSL_DIR/openssl.pri)
 

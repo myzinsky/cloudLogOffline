@@ -204,7 +204,8 @@ Page {
                 Layout.fillWidth: true
                 model: [
                     "English",
-                    "German"
+                    "German",
+                    "Armenian"
                 ]
 
                 Component.onCompleted: {

@@ -332,6 +332,7 @@ SwipeDelegate {
 
             onClicked: {
                 swipe.close()
+                console.log("Goto QSOViewWrapper.qml")
                 stackView.push("QSOViewWrapper.qml",
                                {
                                    "addQSO"      : false,
@@ -359,6 +360,8 @@ SwipeDelegate {
                                    "sots"        : model.sots,
                                    "wwff"        : model.wwff,
                                    "wwfs"        : model.wwfs,
+                                   "pota"        : model.pota,
+                                   "pots"        : model.pots,
                                    "satn"        : model.satn,
                                    "satm"        : model.satm,
                                    "propmode"    : model.propmode,
