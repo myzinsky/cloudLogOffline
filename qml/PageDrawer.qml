@@ -23,7 +23,7 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.0
 import QtQuick.Controls 2.0
-import QtGraphicalEffects 1.0
+import QtQuick.Shapes
 import QtQuick.Controls.Material 2.4
 
 Drawer {
@@ -56,6 +56,11 @@ Drawer {
     //
     property alias items: listView.model
     property alias index: listView.currentIndex
+
+    Component.onCompleted: {
+        derGradient1.orientation = Gradient.Horizontal
+        derGradient2.orientation = Gradient.Horizontal
+    }
 
     //
     // Execute appropiate action when the index changes
@@ -114,16 +119,10 @@ Drawer {
             Layout.fillWidth: true
             visible: window.notchTop == 0 ? false : true
 
-            LinearGradient {
-
-                anchors.fill: parent
-                start: Qt.point (0, 0)
-                end: Qt.point (parent.width, 0)
-
-                gradient: Gradient {
-                    GradientStop { position: 0; color: iconBgColorLeft }
-                    GradientStop { position: 1; color: iconBgColorRight }
-                }
+            gradient: Gradient {
+                id: derGradient2
+                GradientStop { position: 0.0; color: iconBgColorLeft }
+                GradientStop { position: 1.0; color: iconBgColorRight }
             }
         }
 
@@ -141,15 +140,10 @@ Drawer {
             Rectangle {
                 anchors.fill: parent
 
-                LinearGradient {
-                    anchors.fill: parent
-                    start: Qt.point (0, 0)
-                    end: Qt.point (parent.width, 0)
-
-                    gradient: Gradient {
-                        GradientStop { position: 0; color: iconBgColorLeft }
-                        GradientStop { position: 1; color: iconBgColorRight }
-                    }
+                gradient: Gradient {
+                    id: derGradient1
+                    GradientStop { position: 0.0; color: iconBgColorLeft }
+                    GradientStop { position: 1.0; color: iconBgColorRight }
                 }
             }
 
