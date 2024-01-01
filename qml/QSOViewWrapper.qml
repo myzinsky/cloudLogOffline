@@ -1,5 +1,5 @@
 import QtQuick 2.0
-import QtQuick.Controls 1.4
+import QtQuick.Controls
 import QtQuick.Layouts 1.1
 
 SplitView {
