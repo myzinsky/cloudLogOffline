@@ -243,18 +243,18 @@ Page {
     Connections{
         target: rig
 
-        onFreqDone: {
+        function onFreqDone (freq) {
             if(!updateQSO) {
                 freqTextField.text = freq
             }
         }
 
-        onModeDone: {
+        function onModeDone (mode) {
             if(!updateQSO) {
                 var m
-                if (mode == "USB") {
+                if (mode === "USB") {
                     m = "SSB / USB"
-                } else if (mode == "LSB") {
+                } else if (mode === "LSB") {
                     m = "SSB / LSB"
                 } else {
                     m = mode
@@ -267,16 +267,31 @@ Page {
 
     Connections{
         target: qrz
-        onQrzDone: {
+        function onQrzDone(
+                fname,
+                name,
+                addr1,
+                addr2,
+                zip,
+                country,
+                qslmgr,
+                locator,
+                lat,
+                lon,
+                license,
+                cqzone,
+                ituzone,
+                born,
+                image
+            ) {
             nameTextField.text = fname + " " + name
             ctryTextField.text = country
             gridTextField.text = locator
             qqthTextField.text = addr2
-
             page.qrzFound = true
         }
 
-        onQrzFail: {
+        function onQrzFail(error) {
             if(error === "Session Timeout") {
                 qrz.receiveKey();
                 qrz.lookupCall(callTextField.text);
