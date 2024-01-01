@@ -79,7 +79,7 @@ ItemDelegate {
     //
     // Calculate height depending on the type of item that we are
     //
-    height: {
+    height: function () {
         if (isSpacer (index)) {
             var usedHeight = 0
             for (var i = 0; i < model.count; ++i) {
