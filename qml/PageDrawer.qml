@@ -45,6 +45,11 @@ Drawer {
     property color iconBgColorLeft: "#de6262"
     property color iconBgColorRight: "#ffb850"
 
+    background: Rectangle {
+        color: "#424242"
+        border.width: 0
+    }
+
     //
     // List model that generates the page selector
     // Options for selector items are:
@@ -58,8 +63,7 @@ Drawer {
     property alias index: listView.currentIndex
 
     Component.onCompleted: {
-        derGradient1.orientation = Gradient.Horizontal
-        derGradient2.orientation = Gradient.Horizontal
+        grad.orientation = Gradient.Horizontal
     }
 
     //
@@ -118,12 +122,7 @@ Drawer {
             height: window.notchTop
             Layout.fillWidth: true
             visible: window.notchTop == 0 ? false : true
-
-            gradient: Gradient {
-                id: derGradient2
-                GradientStop { position: 0.0; color: iconBgColorLeft }
-                GradientStop { position: 1.0; color: iconBgColorRight }
-            }
+            color: "#424242"
         }
 
         //
@@ -141,7 +140,7 @@ Drawer {
                 anchors.fill: parent
 
                 gradient: Gradient {
-                    id: derGradient1
+                    id: grad
                     GradientStop { position: 0.0; color: iconBgColorLeft }
                     GradientStop { position: 1.0; color: iconBgColorRight }
                 }
