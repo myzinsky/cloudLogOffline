@@ -6,6 +6,7 @@ QT += gui-private
 QT += positioning
 QT += location
 QT += widgets
+QT += core
 
 CONFIG += c++11
 
@@ -50,6 +51,7 @@ QML_IMPORT_PATH =
 QML_DESIGNER_IMPORT_PATH =
 
 ios {
+    message(Build for IOS)
     QMAKE_INFO_PLIST = ios/Info.plist
     app_launch_images.files = $$PWD/ios/myLaunchScreen.xib
     QMAKE_BUNDLE_DATA += app_launch_images
@@ -62,6 +64,7 @@ ios {
 }
 
 macx {
+    message(Build for MacOS)
     ICON = images/macos/logo_circle.icns
     QMAKE_INFO_PLIST = macos/Info.plist
     QT += widgets
@@ -74,6 +77,7 @@ macx {
 }
 
 android {
+    message(Build for Android)
     ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
     ANDROID_OPENSSL_DIR = $$PWD/android_openssl
     include($$ANDROID_OPENSSL_DIR/openssl.pri)
