@@ -320,7 +320,7 @@ Page {
 
     ScrollView {
         anchors.fill: parent
-        padding: 5
+        padding: 10
         contentWidth: -1
 
         ButtonGroup {
@@ -330,7 +330,7 @@ Page {
         GridLayout {
             id: grid
             columns: 4
-            width: page.width - 10 // Important
+            width: page.width - 20 // Important
 
             Label {
                 id: dateLable
