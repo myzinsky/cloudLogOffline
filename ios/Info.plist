@@ -20,8 +20,6 @@
 	<string>${QMAKE_PKGINFO_TYPEINFO}</string>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
-	<key>LSRequiresIPhoneOS</key>
-	<true/>
 	<key>MinimumOSVersion</key>
 	<string>${IPHONEOS_DEPLOYMENT_TARGET}</string>
 	<key>NOTE</key>
@@ -29,7 +27,7 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Locating repeaters near your location</string>
 	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen.storyboard</string>
+	<string>myLaunchScreen.xib</string>
 	<key>UIRequiresFullScreen</key>
 	<true/>
 	<key>UIStatusBarStyle</key>

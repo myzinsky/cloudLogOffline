@@ -152,8 +152,6 @@ Drawer {
                 anchors {
                     fill: parent
                     centerIn: parent
-                    //horizontalCenter: parent.horizontalCenter
-                    //bottom: parent.bottom
                     leftMargin: 16 + Math.max(window.notchLeft, window.notchRight)
                     rightMargin: 16
                     topMargin: 16

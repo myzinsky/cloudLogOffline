@@ -1,11 +1,11 @@
-import QtQuick 2.12
-import QtQuick.Controls 2.5
+import QtQuick
+import QtQuick.Controls
 import QtQuick.Layouts
-import QtQuick.Controls.Material 2.4
-import Qt.labs.settings 1.0
-import Qt.labs.platform 1.1
+import QtQuick.Controls.Material
+//import Qt.labs.settings
+//import Qt.labs.platform
 import de.webappjung 1.0
-import QtQuick.Dialogs
+import Qt.labs.platform
 
 Page {
     id: page
@@ -21,13 +21,13 @@ Page {
     Connections{
         target: cl
 
-        onUploadSucessfull: {
+        function onUploadSucessfull(progress) {
             progressBar.value = progress
         }
 
-        onUploadFailed: {
+        function onUploadFailed(error) {
             cloudLogMessage.text = error
-            cloudLogMessage.open
+            cloudLogMessage.open()
         }
     }
 
@@ -67,6 +67,7 @@ Page {
                 Layout.columnSpan: 2
 
                 onClicked: {
+                    console.log("Upload QSOs to CloudLog")
                     cl.uploadToCloudLog(settings.cloudLogSSL,
                                         settings.cloudLogURL,
                                         settings.cloudLogKey,
@@ -86,7 +87,10 @@ Page {
                 Layout.columnSpan: 2
 
                 onClicked: {
+                    console.log("Reset all Upload Marks")
                     cl.resetMarkedQSOs()
+                    qsoModel.submit();
+                    qsoModel.select()
                 }
             }
 
@@ -111,7 +115,8 @@ Page {
                 title: qsTr("Delete?")
                 text: qsTr("Delete all Uploaded QSOs?")
                 buttons: StandardButton.Yes | StandardButton.No
-                function onYesClicked() {
+                onYesClicked : {
+                    console.log("Delete Uploaded QSOs")
                     cl.deleteUploadedQsos()
                     qsoModel.submit();
                     qsoModel.select()
@@ -147,7 +152,7 @@ Page {
 
                 onClicked: {
                     shareUtils.shareADIF()
-                    exportMessage.visible=true
+                    exportMessage.open()
                 }
             }
 
@@ -173,7 +178,8 @@ Page {
                 //icon: StandardIcon.Question
                 text: qsTr("Delete all QSOs?")
                 buttons: StandardButton.Yes | StandardButton.No
-                function onYesClicked () {
+                onYesClicked : {
+                    console.log("Delete all QSOs")
                     cl.deleteQsos()
                     qsoModel.submit()
                     qsoModel.select()
@@ -724,7 +730,7 @@ Page {
                         cabrilloOperators.text,
                         cabrilloSoapbox.text
                     )
-                    exportMessage.visible=true
+                    exportMessage.open()
                 }
             }
 
@@ -747,7 +753,7 @@ Page {
 
                 onClicked: {
                     shareUtils.shareCSV()
-                    exportMessage.visible=true
+                    exportMessage.open()
                 }
             }
         }

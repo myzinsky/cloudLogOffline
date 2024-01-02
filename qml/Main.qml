@@ -1,8 +1,9 @@
 import QtQuick 2.12
-import QtQuick.Layouts 1.1
+import QtQuick.Layouts
 import QtQuick.Controls 2.5
 import QtQuick.Controls.Material 2.4
-import Qt.labs.settings 1.0
+//import Qt.labs.settings 1.0
+import QtCore
 import QtQuick.Window 2.12
 import de.webappjung 1.0
 
@@ -33,7 +34,7 @@ ApplicationWindow {
         }
     }
 
-    Screen.orientationUpdateMask: Qt.LandscapeOrientation | Qt.PortraitOrientation
+    //Screen.orientationUpdateMask: Qt.LandscapeOrientation | Qt.PortraitOrientation
     Screen.onPrimaryOrientationChanged: {
         oriTimer.start()
     }
