@@ -1,11 +1,11 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.5
-import QtQuick.Layouts 1.1
+import QtQuick.Layouts
 import QtQuick.Controls.Material 2.4
 import Qt.labs.settings 1.0
 import Qt.labs.platform 1.1
 import de.webappjung 1.0
-import QtQuick.Dialogs 1.1
+import QtQuick.Dialogs
 
 Page {
     id: page
@@ -15,7 +15,7 @@ Page {
 
     MessageDialog {
         id: cloudLogMessage
-        standardButtons: MessageDialog.Ok
+        buttons: MessageDialog.Ok
     }
 
     Connections{
@@ -109,10 +109,9 @@ Page {
             MessageDialog {
                 id: deleteUploadedMessage
                 title: qsTr("Delete?")
-                icon: StandardIcon.Question
                 text: qsTr("Delete all Uploaded QSOs?")
-                standardButtons: StandardButton.Yes | StandardButton.No
-                onYes: {
+                buttons: StandardButton.Yes | StandardButton.No
+                function onYesClicked() {
                     cl.deleteUploadedQsos()
                     qsoModel.submit();
                     qsoModel.select()
@@ -171,10 +170,10 @@ Page {
             MessageDialog {
                 id: deleteMessage
                 title: qsTr("Delete?")
-                icon: StandardIcon.Question
+                //icon: StandardIcon.Question
                 text: qsTr("Delete all QSOs?")
-                standardButtons: StandardButton.Yes | StandardButton.No
-                onYes: {
+                buttons: StandardButton.Yes | StandardButton.No
+                function onYesClicked () {
                     cl.deleteQsos()
                     qsoModel.submit()
                     qsoModel.select()
