@@ -10,8 +10,8 @@ import de.webappjung 1.0
 ApplicationWindow {
     id: window
     visible: true
-    width: 640
-    height: 480
+    width: 1024
+    height: 748
     title: qsTr("CloudLogOffline Logbook")
 
     // Full screen iPhone X workaround:
@@ -223,13 +223,13 @@ ApplicationWindow {
                 rb.init();
                 stackView.push("RepeaterListView.qml");
             },
-            6: function() {
+            5: function() {
                 stackView.push("ExportView.qml");
             },
-            7: function() {
+            6: function() {
                 stackView.push("SettingsView.qml")
             },
-            8: function() {
+            7: function() {
                 stackView.push("AboutView.qml")
             }
         }
@@ -261,24 +261,20 @@ ApplicationWindow {
             }
 
             ListElement { // 4
-                spacer: true
-            }
-
-            ListElement { // 5
                 separator: true
             }
 
-            ListElement { // 6
+            ListElement { // 5
                 pageTitle: qsTr ("Export")
                 pageIcon: "\uf56e"
             }
 
-            ListElement { // 7
+            ListElement { // 6
                 pageTitle: qsTr ("Settings")
                 pageIcon: "\uf013"
             }
 
-            ListElement { // 8
+            ListElement { // 7
                 pageTitle: qsTr ("About")
                 pageIcon: "\uf05a"
             }
