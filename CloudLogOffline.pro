@@ -5,7 +5,7 @@ QT += xml
 QT += gui-private
 QT += positioning
 QT += location
-QTPLUGIN += qsvg
+QT += widgets
 
 CONFIG += c++11
 
