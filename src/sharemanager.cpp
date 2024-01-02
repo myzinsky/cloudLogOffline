@@ -6,7 +6,7 @@ shareManager::shareManager(QQuickItem *parent) : QQuickItem(parent)
 
 void shareManager::share(const QString &text)
 {
-    QClipboard *clipboard = QApplication::clipboard();
+    QClipboard *clipboard = QGuiApplication::clipboard();
     clipboard->setText(text);
 }
 

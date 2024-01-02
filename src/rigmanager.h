@@ -1,9 +1,7 @@
 #ifndef RIGMANAGER_H
 #define RIGMANAGER_H
 
-#include <QMainWindow>
 #include <QNetworkAccessManager>
-#include <QMessageBox>
 #include <QXmlStreamReader>
 #include <QNetworkReply>
 #include <QSettings>
