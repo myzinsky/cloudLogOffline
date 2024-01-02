@@ -80,16 +80,22 @@ Page {
     }
 
     function apiKeyOk() {
-        cloudLogApiKeyTestButton.background.color = "#00ff00";
+        cloudLogApiKeyTestButton.highlighted = true
+        cloudLogApiKeyTestButton.Material.theme = Material.Light
+        cloudLogApiKeyTestButton.Material.accent = Material.Green
     }
 
     function apiKeyRo() {
-        cloudLogApiKeyTestButton.background.color = "#ff9900";
+        cloudLogApiKeyTestButton.highlighted = true
+        cloudLogApiKeyTestButton.Material.theme = Material.Light
+        cloudLogApiKeyTestButton.Material.accent = Material.Orange
     }
 
     function apiKeyInvalid()
     {
-        cloudLogApiKeyTestButton.background.color = "#ff0000";
+        cloudLogApiKeyTestButton.highlighted = true
+        cloudLogApiKeyTestButton.Material.theme = Material.Light
+        cloudLogApiKeyTestButton.Material.accent = Material.Red
     }
 
     Connections{
