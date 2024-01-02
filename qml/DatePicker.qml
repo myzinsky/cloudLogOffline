@@ -93,9 +93,10 @@ Popup {
                 id: mg
                 month: Calendar.December
                 year: 2015
-                locale: settings.language === "German"  ? Qt.locale("de_DE") :
-                        settings.language === "English" ? Qt.locale("en_EN") :
-                                                          Qt.locale("am_AM") ;
+                locale: settings.language === "German"   ? Qt.locale("de_DE") :
+                        settings.language === "English"  ? Qt.locale("en_EN") :
+                        settings.language === "Armenian" ? Qt.locale("am_AM") :
+                                                           Qt.locale("am_EN") ;
 
                 Layout.fillWidth: true
                 Layout.fillHeight: true
