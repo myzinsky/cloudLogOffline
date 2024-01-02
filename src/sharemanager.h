@@ -2,7 +2,7 @@
 #define SHAREMANAGER_H
 
 #include <QQuickItem>
-#include <QApplication>
+#include <QGuiApplication>
 #include <QClipboard>
 
 #include "adiftools.h"

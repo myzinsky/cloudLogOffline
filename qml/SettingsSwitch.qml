@@ -1,8 +1,8 @@
 import QtQuick 2.12
-import QtQuick.Controls 2.5
-import QtQuick.Layouts 1.1
-import QtQuick.Controls.Material 2.4
-import Qt.labs.platform 1.1
+import QtQuick.Controls
+import QtQuick.Layouts
+import QtQuick.Controls.Material
+import QtQuick.Dialogs
 
 Rectangle {
     height: 48
@@ -12,8 +12,13 @@ Rectangle {
     property alias checked: settingsSwitch.checked
     property alias icon:    settingsIcon.text
     property alias text:    settingsText.text
-
     property alias helpText: helpMessage.text
+
+
+    MessageDialog {
+        id: helpMessage
+        buttons: MessageDialog.Ok
+    }
 
     Label {
         id: settingsIcon
@@ -25,15 +30,10 @@ Rectangle {
         anchors.verticalCenter: parent.verticalCenter
     }
 
-    MessageDialog {
-        id: helpMessage
-        buttons: MessageDialog.Ok
-    }
-
     Label {
         id: settingsText
         anchors.left: settingsIcon.right
-        anchors.leftMargin: 5
+        anchors.leftMargin: 10
         font.pixelSize: 14
         opacity: 0.87
         anchors.verticalCenter: parent.verticalCenter
@@ -44,6 +44,7 @@ Rectangle {
         anchors.right: settingsSwitch.left
         anchors.leftMargin: 0
         flat: true
+        anchors.verticalCenter: parent.verticalCenter
         onClicked: {
             helpMessage.open();
         }
@@ -54,5 +55,6 @@ Rectangle {
         anchors.right: parent.right
         anchors.rightMargin: 0
         onToggled: saveSettings()
+        anchors.verticalCenter: parent.verticalCenter
     }
 }

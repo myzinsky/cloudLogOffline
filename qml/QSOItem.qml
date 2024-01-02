@@ -2,7 +2,7 @@ import QtQuick 2.12
 import QtQuick.Layouts 1.0
 import QtQuick.Controls 2.12
 import QtQuick.Controls.Material 2.12
-import QtGraphicalEffects 1.0
+import Qt5Compat.GraphicalEffects
 
 SwipeDelegate {
     id: swipeDelegateId
@@ -332,38 +332,40 @@ SwipeDelegate {
 
             onClicked: {
                 swipe.close()
-                stackView.push("QSOViewWrapper.qml",
-                               {
-                                   "addQSO"      : false,
-                                   "liveQSO"     : false,
-                                   "updateQSO"   : true,
-                                   "repeaterQSO" : false,
+                console.log("Goto QSOViewWrapper.qml")
+                stackView.push("QSOViewWrapper.qml", {
+                    "addQSO"      : false,
+                    "liveQSO"     : false,
+                    "updateQSO"   : true,
+                    "repeaterQSO" : false,
 
-                                   "rid"         : index,
-                                   "date"        : model.date,
-                                   "time"        : model.time,
-                                   "call"        : model.call,
-                                   "mode"        : model.mode,
-                                   "freq"        : model.freq,
-                                   "sent"        : model.sent,
-                                   "recv"        : model.recv,
-                                   "name"        : model.name,
-                                   "ctry"        : model.ctry,
-                                   "grid"        : model.grid,
-                                   "qqth"        : model.qqth,
-                                   "comm"        : model.comm,
-                                   "ctss"        : model.ctss,
-                                   "ctsr"        : model.ctsr,
-                                   "sync"        : model.sync,
-                                   "sota"        : model.sota,
-                                   "sots"        : model.sots,
-                                   "wwff"        : model.wwff,
-                                   "wwfs"        : model.wwfs,
-                                   "satn"        : model.satn,
-                                   "satm"        : model.satm,
-                                   "propmode"    : model.propmode,
-                                   "rxfreq"      : model.rxfreq,
-                               });
+                    "rid"         : index,
+                    "date"        : model.date,
+                    "time"        : model.time,
+                    "call"        : model.call,
+                    "mode"        : model.mode,
+                    "freq"        : model.freq,
+                    "sent"        : model.sent,
+                    "recv"        : model.recv,
+                    "name"        : model.name,
+                    "ctry"        : model.ctry,
+                    "grid"        : model.grid,
+                    "qqth"        : model.qqth,
+                    "comm"        : model.comm,
+                    "ctss"        : model.ctss,
+                    "ctsr"        : model.ctsr,
+                    "sync"        : model.sync,
+                    "sota"        : model.sota,
+                    "sots"        : model.sots,
+                    "wwff"        : model.wwff,
+                    "wwfs"        : model.wwfs,
+                    "pota"        : model.pota,
+                    "pots"        : model.pots,
+                    "satn"        : model.satn,
+                    "satm"        : model.satm,
+                    "propmode"    : model.propmode,
+                    "rxfreq"      : model.rxfreq,
+                });
             }
         }
     }

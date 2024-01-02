@@ -1,7 +1,6 @@
 import QtQuick 2.9
-import QtQuick.Controls 2.2
+import QtQuick.Controls
 import QtQuick.Controls.Material 2.2
-import QtQuick.Controls 1.4
 import QtQuick 2.12
 import QtQuick.Window 2.2
 import QtQuick.Controls 2.12
@@ -34,7 +33,6 @@ Popup {
             opacity: 1.0 - Math.abs(Tumbler.displacement) / (Tumbler.tumbler.visibleItemCount / 2)
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
-            font.pixelSize: fontMetrics.font.pixelSize * 1.25
         }
     }
 

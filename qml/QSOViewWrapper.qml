@@ -1,11 +1,12 @@
 import QtQuick 2.0
-import QtQuick.Controls 1.4
+import QtQuick.Controls
 import QtQuick.Layouts 1.1
 
 SplitView {
     id: qsoViewWrapper
     anchors.fill: parent
     orientation: Qt.Horizontal
+
     property string title: (addQSO || liveQSO) ? (qsTr("Add QSO") + " (" + (qsoModel.numberOfQSOs()) + ")") : qsTr("Edit QSO")
 
     property alias addQSO: qsoView.addQSO
@@ -52,10 +53,11 @@ SplitView {
 
     QSOListView {
         visible: (window.width > 1000)
-        width: 400
+        SplitView.minimumWidth: 400
     }
 
     QSOView {
         id: qsoView
+        focus: true
     }
 }

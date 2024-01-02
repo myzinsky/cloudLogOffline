@@ -43,10 +43,10 @@ Page {
 
     property int sync
 
-    property bool qrzFound: false;
+    property bool qrzFound: false
 
     Component.onCompleted: {
-
+        console.log("Start View: "+call)
         if(mode) {
             var i = modeComboBox.find(mode);
             modeComboBox.currentIndex = i;
@@ -80,9 +80,10 @@ Page {
         if(!updateQSO) {
             saveButton.enabled = false;
             saveButtonGlobal.enabled = false;
+            reset();
         }
-    }
 
+    }
 
     function zeroPad(num, places) {
         var zero = places - num.toString().length + 1;
@@ -216,7 +217,6 @@ Page {
             stackView.pop()
         }
 
-        callTextField.forceActiveFocus()
     }
 
 
@@ -243,18 +243,18 @@ Page {
     Connections{
         target: rig
 
-        onFreqDone: {
+        function onFreqDone (freq) {
             if(!updateQSO) {
                 freqTextField.text = freq
             }
         }
 
-        onModeDone: {
+        function onModeDone (mode) {
             if(!updateQSO) {
                 var m
-                if (mode == "USB") {
+                if (mode === "USB") {
                     m = "SSB / USB"
-                } else if (mode == "LSB") {
+                } else if (mode === "LSB") {
                     m = "SSB / LSB"
                 } else {
                     m = mode
@@ -267,16 +267,31 @@ Page {
 
     Connections{
         target: qrz
-        onQrzDone: {
+        function onQrzDone(
+                fname,
+                name,
+                addr1,
+                addr2,
+                zip,
+                country,
+                qslmgr,
+                locator,
+                lat,
+                lon,
+                license,
+                cqzone,
+                ituzone,
+                born,
+                image
+            ) {
             nameTextField.text = fname + " " + name
             ctryTextField.text = country
             gridTextField.text = locator
             qqthTextField.text = addr2
-
             page.qrzFound = true
         }
 
-        onQrzFail: {
+        function onQrzFail(error) {
             if(error === "Session Timeout") {
                 qrz.receiveKey();
                 qrz.lookupCall(callTextField.text);
@@ -305,7 +320,7 @@ Page {
 
     ScrollView {
         anchors.fill: parent
-        padding: 5
+        padding: 10
         contentWidth: -1
 
         ButtonGroup {
@@ -315,7 +330,7 @@ Page {
         GridLayout {
             id: grid
             columns: 4
-            width: page.width - 10 // Important
+            width: page.width - 20 // Important
 
             Label {
                 id: dateLable
@@ -482,10 +497,9 @@ Page {
                     padding: 0
 
                     onClicked: {
-                        stackView.push("QRZView.qml",
-                                   {
-                                       "call" : callTextField.text
-                                   });
+                        stackView.push("QRZView.qml",{
+                            "call" : callTextField.text
+                        });
                     }
                 }
 
@@ -786,7 +800,7 @@ Page {
             //--- WWFF:
 
             Label {
-                id: myWwfsable
+                id: wwfsLable
                 text: qsTr("WWFF (S)") + ":"
                 visible: settings.wwffActive || wwffTextField.text || wwfsTextField.text
             }
@@ -804,7 +818,7 @@ Page {
             Label {
                 id: wwffLable
                 text: qsTr("WWFF (R)") + ":"
-                visible: settings.wwffActive || wwffTextField.text || sotsTextField.text
+                visible: settings.wwffActive || wwffTextField.text || wwfsTextField.text
             }
 
             QSOTextField {
@@ -820,7 +834,7 @@ Page {
             //--- POTA:
 
             Label {
-                id: myPotsable
+                id: potsLable
                 text: qsTr("POTA (S)") + ":"
                 visible: settings.potaActive || potaTextField.text || potsTextField.text
             }

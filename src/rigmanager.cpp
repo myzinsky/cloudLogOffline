@@ -26,7 +26,7 @@ QString rigManager::parseXML(QString xml)
 {
     QXmlStreamReader reader(xml);
     while(!reader.atEnd() && !reader.hasError()) {
-        if(reader.readNext() == QXmlStreamReader::StartElement && reader.name() == "value") {
+        if(reader.readNext() == QXmlStreamReader::StartElement && reader.name().compare("value")) {
             return reader.readElementText();
         }
     }

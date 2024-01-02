@@ -31,5 +31,7 @@
         <file>translations/English.qm</file>
         <file>qml/RepeaterListView.qml</file>
         <file>qml/RepeaterItem.qml</file>
+        <file>translations/Armenian.ts</file>
+        <file>translations/Armenian.qm</file>
     </qresource>
 </RCC>
