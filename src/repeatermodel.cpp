@@ -22,6 +22,14 @@ rbManager::~rbManager()
 
 void rbManager::init()
 {
+    qApp->requestPermission(QLocationPermission{}, [](const QPermission &permission) {
+        if (permission.status() == Qt::PermissionStatus::Granted) {
+            qDebug() << "PERMISSION GRANTED";
+        } else {
+            qDebug() << "PERMISSION NOT GRANTED";
+        }
+    });
+
     if(initialized == false) {
         initialized = true;
         locator = "";

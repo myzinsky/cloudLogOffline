@@ -16,6 +16,8 @@
 #include <QGeoCircle>
 #include <QSettings>
 #include <QAbstractListModel>
+#include <QPermissions>
+#include <QApplication>
 
 struct relais {
     QString call;
