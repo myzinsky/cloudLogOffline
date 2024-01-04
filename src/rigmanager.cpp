@@ -24,11 +24,11 @@ rigManager::~rigManager()
 
 QString rigManager::parseXML(QString xml)
 {
-    QXmlStreamReader reader(xml);
-    while(!reader.atEnd() && !reader.hasError()) {
-        if(reader.readNext() == QXmlStreamReader::StartElement && reader.name().compare("value")) {
-            return reader.readElementText();
-        }
+    QRegularExpression re(".+<value>(.+)</value>.+");
+    QRegularExpressionMatch match = re.match(xml);
+
+    if(match.hasMatch()){
+        return match.captured(1);
     }
 
     return QString("ERROR");

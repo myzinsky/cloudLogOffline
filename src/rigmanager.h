@@ -2,8 +2,8 @@
 #define RIGMANAGER_H
 
 #include <QNetworkAccessManager>
-#include <QXmlStreamReader>
 #include <QNetworkReply>
+#include <QRegularExpression>
 #include <QSettings>
 
 class rigManager : public QObject
