@@ -83,6 +83,13 @@ Page {
             reset();
         }
 
+        Qt.callLater(correctFocus)
+
+    }
+
+    function correctFocus () {
+        console.log("CORRECT FOCUS CALLED")
+        callTextField.forceActiveFocus();
     }
 
     function zeroPad(num, places) {
