@@ -220,7 +220,6 @@ ApplicationWindow {
                        });
             },
             3: function() {
-                rb.init();
                 stackView.push("RepeaterListView.qml");
             },
             5: function() {

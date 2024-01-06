@@ -3,8 +3,18 @@
 rbManager::rbManager(QObject *parent)
     : QAbstractListModel(parent)
 {
-    initialized = false;
     nm = nullptr;
+    initialized = false;
+
+    QLocationPermission locationPermission;
+    locationPermission.setAccuracy(QLocationPermission::Precise);
+
+    if(qApp->checkPermission(locationPermission) != Qt::PermissionStatus::Granted) {
+        qApp->requestPermission(QLocationPermission{}, this, &rbManager::permissionUpdated);
+    } else {
+        qDebug() << "PERMISSION ALREADY GRANTED";
+        init();
+    }
 }
 
 rbManager::~rbManager()
@@ -14,16 +24,17 @@ rbManager::~rbManager()
     }
 }
 
+void rbManager::permissionUpdated(const QPermission &permission) {
+    if (permission.status() == Qt::PermissionStatus::Granted) {
+        qDebug() << "PERMISSION GRANTED";
+        init();
+    } else {
+        qDebug() << "PERMISSION NOT GRANTED";
+    }
+}
+
 void rbManager::init()
 {
-    qApp->requestPermission(QLocationPermission{}, [](const QPermission &permission) {
-        if (permission.status() == Qt::PermissionStatus::Granted) {
-            qDebug() << "PERMISSION GRANTED";
-        } else {
-            qDebug() << "PERMISSION NOT GRANTED";
-        }
-    });
-
     if(initialized == false) {
         qDebug() << "INIT";
         locator = "";

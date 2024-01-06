@@ -78,16 +78,10 @@ macx {
 
 android {
     message(Build for Android)
-   # ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
-   # ANDROID_OPENSSL_DIR = $$PWD/android_openssl
-   # include($$ANDROID_OPENSSL_DIR/openssl.pri)
-   # message($$ANDROID_OPENSSL_DIR)
-    HEADERS +=
-    SOURCES +=
-    DISTFILES += \
-        android/AndroidManifest.xml \
-        #android/build.gradle \
-        #android/res/values/libs.xml
+    ANDROID_OPENSSL_DIR = $$PWD/android_openssl
+    include($$ANDROID_OPENSSL_DIR/openssl.pri)
+    message($$ANDROID_OPENSSL_DIR)
+    DISTFILES += android/AndroidManifest.xml \
 }
 
 # Default rules for deployment.
@@ -147,5 +141,3 @@ DISTFILES += qml/TimePicker.qml
 TRANSLATIONS += translations/English.ts
 TRANSLATIONS += translations/German.ts
 TRANSLATIONS += translations/Armenian.ts
-
-#android: include($$ANDROID_OPENSSL_DIR/openssl.pri)

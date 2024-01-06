@@ -11,6 +11,10 @@ Page {
     anchors.fill: parent
     Layout.margins: 5
 
+    Component.onCompleted: {
+        rb.getRepeaters();
+    }
+
     ListView {
         id: rmListView
         anchors.fill: parent

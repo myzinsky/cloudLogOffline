@@ -194,7 +194,6 @@ Page {
                 Button {
                     text : qsTr("Lookup")
                     onClicked: {
-                        rb.init();
                         gridsquare.text = rb.getLocator();
                     }
                 }

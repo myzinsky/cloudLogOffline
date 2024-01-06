@@ -61,7 +61,6 @@ signals:
 public slots:
     QString getLocator();
     void getRepeaters();
-    void init();
 
 private:
     QGeoPositionInfoSource *source;
@@ -74,6 +73,8 @@ private:
     bool filter(double rLat, double rLon, double radius);
     double distance(double rLat, double rLon);
     void calculateMaidenhead(double lat, double lon);
+    void permissionUpdated(const QPermission &permission);
+    void init();
 
     QList<relais> database;
 

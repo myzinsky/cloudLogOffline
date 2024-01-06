@@ -88,7 +88,6 @@ Page {
     }
 
     function correctFocus () {
-        console.log("CORRECT FOCUS CALLED")
         callTextField.forceActiveFocus();
     }
 
