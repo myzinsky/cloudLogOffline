@@ -6,6 +6,7 @@
 #include <QSqlError>
 #include <QDebug>
 #include <QVersionNumber>
+#include "version.h"
 
 class migrationManager : public QObject
 {

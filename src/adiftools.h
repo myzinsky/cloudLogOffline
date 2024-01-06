@@ -7,6 +7,7 @@
 #include <QSqlError>
 #include <QSqlQuery>
 #include "logtools.h"
+#include "version.h"
 
 class adifTools : public logTools
 {

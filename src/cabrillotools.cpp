@@ -84,7 +84,7 @@ QString cabrilloTools::generate(
     QString output;
     output = QString("") +
             "START-OF-LOG: 3.0\n" +
-            "CREATED-BY: ClougLogOffline Version " + QString(GIT_VERSION) + " (c) 2020 by DL9MJ\n"
+            "CREATED-BY: ClougLogOffline Version " + QString(PROJECT_VERSION) + " (c) 2020 by DL9MJ\n"
             "CONTEST: " + " " + "\n" +
             "CALLSIGN: " + settings.value("call").toString().toUpper() + "\n"
             "SPECIFIC: " + settings.value("contestNumber").toString().toUpper() + "\n"

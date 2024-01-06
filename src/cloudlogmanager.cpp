@@ -116,7 +116,7 @@ void cloudlogManager::uploadQSO(QString url,
 
     QNetworkRequest request(u);
     request.setHeader(QNetworkRequest::ContentTypeHeader, QVariant("application/json"));
-    request.setRawHeader ("User-Agent", "CloudLogOffline v"+QByteArray(GIT_VERSION));
+    request.setRawHeader ("User-Agent", "CloudLogOffline v"+QByteArray(PROJECT_VERSION));
     manager->post(request, data);
 
     qDebug() << "Update Cloud Log: " << str;
@@ -328,7 +328,7 @@ void cloudlogManager::testApiKey(QString ssl, QString url, QString key)
 {
     QUrl u = QUrl(ssl+"://"+url+"/index.php/api/auth/"+key);
     QNetworkRequest request(u);
-    request.setRawHeader ("User-Agent", "CloudLogOffline v"+QByteArray(GIT_VERSION));
+    request.setRawHeader ("User-Agent", "CloudLogOffline v"+QByteArray(PROJECT_VERSION));
     request.setHeader(QNetworkRequest::ContentTypeHeader, QVariant("application/json"));
     manager->get(request);
     //return true;

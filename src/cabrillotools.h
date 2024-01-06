@@ -4,6 +4,7 @@
 #include <QString>
 #include <QRegularExpression>
 #include "logtools.h"
+#include "version.h"
 
 class cabrilloTools : public logTools
 {

@@ -104,17 +104,13 @@ HEADERS += src/csvtools.h
 HEADERS += src/logtools.h
 HEADERS += src/migrationmanager.h
 
+DISTFILES += CMakeLists.txt
+
 DISTFILES += android/AndroidManifest.xml
 DISTFILES += qml/RepeaterItem.qml
 DISTFILES += qml/RepeaterListView.qml
 DISTFILES += qml/QSOViewWrapper.qml
 DISTFILES += qml/TimePicker.qml
-#DISTFILES += android/build.gradle
-#DISTFILES += android/gradle/wrapper/gradle-wrapper.jar
-#DISTFILES += android/gradle/wrapper/gradle-wrapper.properties
-#DISTFILES += android/gradlew
-#DISTFILES += android/gradlew.bat
-#DISTFILES += android/res/values/libs.xml
 
 DISTFILES += ios/MyLaunchScreen.xib
 DISTFILES += ios/info.plist

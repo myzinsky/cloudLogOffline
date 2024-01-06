@@ -4,7 +4,7 @@ migrationManager::migrationManager()
 {
     // Find the right migration strategy:
     QVersionNumber database = QVersionNumber::fromString(getDatabaseVersion());
-    QVersionNumber current  = QVersionNumber::fromString(QString(GIT_VERSION));
+    QVersionNumber current  = QVersionNumber::fromString(QString(PROJECT_VERSION));
 
     if(database < current) {
 

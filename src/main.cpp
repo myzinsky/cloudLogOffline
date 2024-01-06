@@ -14,13 +14,14 @@
 #include "translationmanager.h"
 #include "tools.h"
 #include "sharemanager.h"
+#include "version.h"
 
 // Create Singelton for Version Number:
 static QJSValue appVersionSingletonProvider(QQmlEngine *engine, QJSEngine *scriptEngine)
 {
     Q_UNUSED(engine)
     QJSValue appInfo = scriptEngine->newObject();
-    appInfo.setProperty("version", GIT_VERSION);
+
     return appInfo;
 }
 

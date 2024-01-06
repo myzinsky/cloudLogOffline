@@ -259,7 +259,7 @@ QString adifTools::generate()
     output = QString("") +
             "<ADIF_VERS:5>3.1.0\n" +
             "<PROGRAMID:15>CloudLogOffline\n" +
-            "<PROGRAMVERSION:13>Version " + QString(GIT_VERSION) + "\n"
+            "<PROGRAMVERSION:13>Version " + QString(PROJECT_VERSION) + "\n"
             "<EOH>\n\n";
 
     while(selectQuery.next()) {
