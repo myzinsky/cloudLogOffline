@@ -4,17 +4,11 @@ rbManager::rbManager(QObject *parent)
     : QAbstractListModel(parent)
 {
     initialized = false;
-    prov = nullptr;
     nm = nullptr;
-    reply = nullptr;
 }
 
 rbManager::~rbManager()
 {
-    if(prov != nullptr) {
-        delete prov;
-    }
-
     if(nm != nullptr) {
         delete nm;
     }
@@ -31,12 +25,9 @@ void rbManager::init()
     });
 
     if(initialized == false) {
-        initialized = true;
+        qDebug() << "INIT";
         locator = "";
-
-        prov = new QGeoServiceProvider("osm");
-        prov->setLocale(QLocale::English);
-        geoCoder = prov->geocodingManager();
+        initialized = true;
 
         source = QGeoPositionInfoSource::createDefaultSource(this);
 
@@ -98,21 +89,10 @@ QHash<int, QByteArray> rbManager::roleNames() const
 
 void rbManager::positionUpdated(const QGeoPositionInfo &info)
 {
-    reply = geoCoder->reverseGeocode(info.coordinate());
-    connect(reply, &QGeoCodeReply::finished, this, &rbManager::positionDecoded);
-}
-
-void rbManager::positionDecoded()
-{
-    if(reply->locations().length() >= 1) {
-        QGeoLocation loc = reply->locations().at(0);
-        QGeoAddress addr = loc.address();
-        country = addr.country();
-        coord = loc.coordinate();
-        calculateMaidenhead(coord.latitude(),coord.longitude());
-        qDebug() << "Location:" << country << coord.latitude() << coord.longitude() << locator;
-        getRepeaters();
-    }
+    qDebug() << "Position updated: " << info;
+    coord = info.coordinate();
+    calculateMaidenhead(coord.latitude(), coord.longitude());
+    getRepeaters();
 }
 
 void rbManager::getRepeaters()
@@ -179,6 +159,7 @@ void rbManager::parseNetworkResponse(QNetworkReply *nreply) // from getRepeaters
         double radius = settings.value("rbRadius").toString().toDouble();
 
         if(filter(rlat, rlon, radius)) {
+            qDebug() << "Found: " << repeater.toObject()["callsign"].toString();
             r.call      = repeater.toObject()["callsign"].toString();
             r.frequency = QString::number(repeater.toObject()["frequency"].toDouble()/1000.0/1000.0);
             r.lat       = QString::number(rlat);

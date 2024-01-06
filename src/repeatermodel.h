@@ -18,6 +18,7 @@
 #include <QAbstractListModel>
 #include <QPermissions>
 #include <QApplication>
+#include <QString>
 
 struct relais {
     QString call;
@@ -59,20 +60,17 @@ signals:
 
 public slots:
     QString getLocator();
+    void getRepeaters();
     void init();
 
 private:
     QGeoPositionInfoSource *source;
-    QGeoServiceProvider *prov;
-    QGeoCodingManager *geoCoder;
-    QGeoCodeReply * reply;
     QNetworkAccessManager *nm;
 
     QString country;
     QString locator;
     QGeoCoordinate coord;
     bool initialized;
-    void getRepeaters();
     bool filter(double rLat, double rLon, double radius);
     double distance(double rLat, double rLon);
     void calculateMaidenhead(double lat, double lon);
@@ -81,7 +79,6 @@ private:
 
 private Q_SLOTS:
     void positionUpdated(const QGeoPositionInfo &info);
-    void positionDecoded();
     void parseNetworkResponse(QNetworkReply* nreply);
 
 protected:
