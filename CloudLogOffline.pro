@@ -78,16 +78,16 @@ macx {
 
 android {
     message(Build for Android)
-    ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
-    ANDROID_OPENSSL_DIR = $$PWD/android_openssl
-    include($$ANDROID_OPENSSL_DIR/openssl.pri)
-    QT += androidextras
+   # ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
+   # ANDROID_OPENSSL_DIR = $$PWD/android_openssl
+   # include($$ANDROID_OPENSSL_DIR/openssl.pri)
+   # message($$ANDROID_OPENSSL_DIR)
     HEADERS +=
     SOURCES +=
     DISTFILES += \
         android/AndroidManifest.xml \
-        android/build.gradle \
-        android/res/values/libs.xml
+        #android/build.gradle \
+        #android/res/values/libs.xml
 }
 
 # Default rules for deployment.
@@ -115,12 +115,12 @@ DISTFILES += qml/RepeaterItem.qml
 DISTFILES += qml/RepeaterListView.qml
 DISTFILES += qml/QSOViewWrapper.qml
 DISTFILES += qml/TimePicker.qml
-DISTFILES += android/build.gradle
-DISTFILES += android/gradle/wrapper/gradle-wrapper.jar
-DISTFILES += android/gradle/wrapper/gradle-wrapper.properties
-DISTFILES += android/gradlew
-DISTFILES += android/gradlew.bat
-DISTFILES += android/res/values/libs.xml
+#DISTFILES += android/build.gradle
+#DISTFILES += android/gradle/wrapper/gradle-wrapper.jar
+#DISTFILES += android/gradle/wrapper/gradle-wrapper.properties
+#DISTFILES += android/gradlew
+#DISTFILES += android/gradlew.bat
+#DISTFILES += android/res/values/libs.xml
 
 DISTFILES += ios/MyLaunchScreen.xib
 DISTFILES += ios/info.plist
@@ -148,7 +148,4 @@ TRANSLATIONS += translations/English.ts
 TRANSLATIONS += translations/German.ts
 TRANSLATIONS += translations/Armenian.ts
 
-android: include($$ANDROID_OPENSSL_DIR/openssl.pri)
-
-ANDROID_ABIS = armeabi-v7a arm64-v8a
-#android: include(/Users/myzinsky/Library/Android/sdk/android_openssl/openssl.pri)
+#android: include($$ANDROID_OPENSSL_DIR/openssl.pri)
