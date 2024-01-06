@@ -10,7 +10,7 @@ QT += core
 
 CONFIG += c++11
 
-GIT_VERSION = "1.1.5"
+GIT_VERSION = "1.1.6"
 message($$GIT_VERSION)
 DEFINES += GIT_VERSION=\\\"$$GIT_VERSION\\\"
 
