@@ -194,6 +194,7 @@ Page {
                 Button {
                     text : qsTr("Lookup")
                     onClicked: {
+                        rb.checkPermissions();
                         gridsquare.text = rb.getLocator();
                     }
                 }

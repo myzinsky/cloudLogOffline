@@ -5,31 +5,12 @@ rbManager::rbManager(QObject *parent)
 {
     nm = nullptr;
     initialized = false;
-
-    QLocationPermission locationPermission;
-    locationPermission.setAccuracy(QLocationPermission::Precise);
-
-    if(qApp->checkPermission(locationPermission) != Qt::PermissionStatus::Granted) {
-        qApp->requestPermission(QLocationPermission{}, this, &rbManager::permissionUpdated);
-    } else {
-        qDebug() << "PERMISSION ALREADY GRANTED";
-        init();
-    }
 }
 
 rbManager::~rbManager()
 {
     if(nm != nullptr) {
         delete nm;
-    }
-}
-
-void rbManager::permissionUpdated(const QPermission &permission) {
-    if (permission.status() == Qt::PermissionStatus::Granted) {
-        qDebug() << "PERMISSION GRANTED";
-        init();
-    } else {
-        qDebug() << "PERMISSION NOT GRANTED";
     }
 }
 
@@ -55,6 +36,28 @@ void rbManager::init()
                 SIGNAL(finished(QNetworkReply*)),
                 this,
                 SLOT(parseNetworkResponse(QNetworkReply*)));
+    }
+}
+
+void rbManager::precisePermissionUpdated(const QPermission &permission) {
+    if (permission.status() == Qt::PermissionStatus::Granted) {
+        qDebug() << "PRECISE PERMISSION GRANTED";
+        init();
+    } else {
+        qDebug() << "PRECISE PERMISSION NOT GRANTED";
+    }
+}
+
+void rbManager::checkPermissions()
+{
+    QLocationPermission preciselocationPermission;
+    preciselocationPermission.setAccuracy(QLocationPermission::Precise);
+
+    if(qApp->checkPermission(preciselocationPermission) != Qt::PermissionStatus::Granted) {
+        qApp->requestPermission(QLocationPermission{}, this, &rbManager::precisePermissionUpdated);
+    } else {
+        qDebug() << "PRECISE PERMISSION ALREADY GRANTED";
+        init();
     }
 }
 
