@@ -80,7 +80,9 @@ Page {
         if(!updateQSO) {
             saveButton.enabled = false;
             saveButtonGlobal.enabled = false;
-            reset();
+            if(!repeaterQSO) {
+                reset();
+            }
         }
 
         Qt.callLater(correctFocus)
@@ -177,7 +179,9 @@ Page {
                 stackView.pop()
             } else if(liveQSO) {
                 var tmp = ctssTextField.text;
-                page.reset();
+                if(!repeaterQSO) {
+                    page.reset();
+                }
                 if(settings.contestActive && liveQSO) {
                     if(isNaN(tmp)) { // If it is e.g. a province
                         ctssTextField.text = tmp;
