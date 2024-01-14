@@ -54,7 +54,7 @@ void rbManager::checkPermissions()
     preciselocationPermission.setAccuracy(QLocationPermission::Precise);
 
     if(qApp->checkPermission(preciselocationPermission) != Qt::PermissionStatus::Granted) {
-        qApp->requestPermission(QLocationPermission{}, this, &rbManager::precisePermissionUpdated);
+        qApp->requestPermission(preciselocationPermission, this, &rbManager::precisePermissionUpdated);
     } else {
         qDebug() << "PRECISE PERMISSION ALREADY GRANTED";
         init();

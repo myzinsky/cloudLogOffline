@@ -77,6 +77,10 @@ Page {
             console.log("Receive Key")
             qrz.receiveKey()
         }
+
+        if(rbSwitch.checked) {
+            rb.checkPermissions();
+        }
     }
 
     function apiKeyOk() {
@@ -100,7 +104,8 @@ Page {
 
     Connections{
         target: rb
-        function onLocatorDone(locator) {
+        onLocatorDone: {
+            console.log("LOCATOR DONE")
             gridsquare.text = locator
             saveSettings();
         }
@@ -125,6 +130,7 @@ Page {
         id: settingsScrollView
         anchors.fill: parent
         contentWidth: -1
+        contentHeight: grid.height
 
         GridLayout {
             id: grid
@@ -195,7 +201,7 @@ Page {
                     text : qsTr("Lookup")
                     onClicked: {
                         rb.checkPermissions();
-                        gridsquare.text = rb.getLocator();
+                        //gridsquare.text = rb.getLocator();
                     }
                 }
             }
@@ -639,7 +645,7 @@ Page {
                 id: rbRadius
                 Layout.fillWidth: true
                 visible: rbSwitch.checked
-                text: settings.rbActive ? settings.rbRadius : "25"
+                text: settings.rbRadius
                 onTextEdited: saveSettings();
                 onEditingFinished: saveSettings();
                 font.capitalization: Font.AllUppercase

@@ -12,7 +12,9 @@ Page {
     Layout.margins: 5
 
     Component.onCompleted: {
-        rb.getRepeaters();
+        if(settings.rbActive && settings.rbRadius) {
+            rb.getRepeaters();
+        }
     }
 
     ListView {
