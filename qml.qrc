@@ -16,8 +16,6 @@
         <file>qml/ExportHeader.qml</file>
         <file>qml/Playground.qml</file>
         <file>qtquickcontrols2.conf</file>
-        <file>translations/English.ts</file>
-        <file>translations/German.ts</file>
         <file>fonts/Roboto-Regular.ttf</file>
         <file>fonts/LinLibertine_DR_G.ttf</file>
         <file>images/logo_circle.png</file>
@@ -31,7 +29,6 @@
         <file>translations/English.qm</file>
         <file>qml/RepeaterListView.qml</file>
         <file>qml/RepeaterItem.qml</file>
-        <file>translations/Armenian.ts</file>
         <file>translations/Armenian.qm</file>
     </qresource>
 </RCC>
