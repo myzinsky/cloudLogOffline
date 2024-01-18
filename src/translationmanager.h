@@ -4,21 +4,21 @@
 #include <QObject>
 #include <QTranslator>
 #include <QQmlApplicationEngine>
-#include <QApplication>
+#include <QCoreApplication>
 #include <QDebug>
 
 class translationManager : public QObject
 {
     Q_OBJECT
 public:
-    translationManager(QApplication *app, QQmlApplicationEngine *engine);
+    translationManager(QCoreApplication *app, QQmlApplicationEngine *engine);
 
 public slots:
     void switchToLanguage(const QString &language);
 
 private:
     QTranslator *translator;
-    QApplication *app;
+    QCoreApplication *app;
     QQmlApplicationEngine *engine;
 };
 
