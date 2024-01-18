@@ -4,9 +4,6 @@
 #include <QGeoCoordinate>
 #include <QGeoPositionInfoSource>
 #include <QDebug>
-#include <QGeoCodingManager>
-#include <QGeoServiceProvider>
-#include <QGeoAddress>
 #include <QGeoLocation>
 #include <QJsonDocument>
 #include <QJsonObject>
