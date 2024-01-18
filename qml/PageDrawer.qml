@@ -67,7 +67,7 @@ Drawer {
     }
 
     //
-    // Execute appropiate action when the index changes
+    // Execute appropriate action when the index changes
     //
     onIndexChanged: {
         var isSpacer = false

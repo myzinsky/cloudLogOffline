@@ -15,7 +15,7 @@
 #include "tools.h"
 #include "sharemanager.h"
 
-// Create Singelton for Version Number:
+// Create Singleton for Version Number:
 static QJSValue appVersionSingletonProvider(QQmlEngine *engine, QJSEngine *scriptEngine)
 {
     Q_UNUSED(engine)

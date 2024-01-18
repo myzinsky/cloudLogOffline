@@ -563,7 +563,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Insert here youre SOTA reference</source>
+        <source>Insert here your SOTA reference</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -607,7 +607,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Insert here youre WWFF reference</source>
+        <source>Insert here your WWFF reference</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -647,7 +647,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Insert here youre POTA reference</source>
+        <source>Insert here your POTA reference</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
