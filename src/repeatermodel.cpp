@@ -1,5 +1,10 @@
 ﻿#include "repeatermodel.h"
 
+QT_BEGIN_NAMESPACE
+#include <QCoreApplication>
+QT_END_NAMESPACE
+
+
 rbManager::rbManager(QObject *parent)
     : QAbstractListModel(parent)
 {
