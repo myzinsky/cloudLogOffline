@@ -28,7 +28,7 @@ ItemDelegate {
         return false
     }
 
-    // Returns true if \c separator is defiend and is equal to \c true
+    // Returns true if \c separator is defined and is equal to \c true
     function isSeparator (index) {
         if (typeof (model.get (index).separator) !== "undefined")
             return model.get (index).separator

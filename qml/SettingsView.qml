@@ -537,7 +537,7 @@ Page {
                 id: sotaSwitch
                 icon: "\uf6fc"
                 text: qsTr("Summits on the Air (SOTA)")
-                helpText: qsTr("Insert here youre SOTA reference")
+                helpText: qsTr("Insert here your SOTA reference")
                 Layout.columnSpan: 2
                 checked: settings.sotaActive
             }
@@ -565,7 +565,7 @@ Page {
                 id: wwffSwitch
                 icon: "\uf1bb"
                 text: qsTr("World Wide Flora & Fauna (WWFF)")
-                helpText: qsTr("Insert here youre WWFF reference")
+                helpText: qsTr("Insert here your WWFF reference")
                 Layout.columnSpan: 2
                 checked: settings.wwffActive
             }
@@ -592,7 +592,7 @@ Page {
                 id: potaSwitch
                 icon: "\uf540"
                 text: qsTr("Parks on the Air")
-                helpText: qsTr("Insert here youre POTA reference")
+                helpText: qsTr("Insert here your POTA reference")
                 Layout.columnSpan: 2
                 checked: settings.potaActive
             }

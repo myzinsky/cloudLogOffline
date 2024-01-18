@@ -152,7 +152,7 @@ void cloudlogManager::callbackCloudLog(QNetworkReply *rep)
             if(!query.exec()) {
                 qDebug() << "SQL Error:" << query.lastError().text();
             } else {
-                qDebug() << "DB: Successfull";
+                qDebug() << "DB: Successful";
             }
 
             done++;
