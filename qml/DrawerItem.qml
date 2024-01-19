@@ -52,6 +52,14 @@ ItemDelegate {
         return ""
     }
 
+    // Returns the translation context for the drawer item
+    function trContext () {
+        if (typeof (model.trContext) !== "undefined")
+            return model.trContext
+
+        return ""
+    }
+
     // Decide if we should highlight the item
     highlighted: ListView.isCurrentItem ? !isLink (index) : false
 
@@ -76,7 +84,7 @@ ItemDelegate {
         Label {
             opacity: 0.87
             font.pixelSize: 14
-            text: itemText (index)
+            text: qsTranslate (trContext (), itemText (index))
             font.weight: Font.Medium
             Layout.fillWidth: true
             Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter

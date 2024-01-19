@@ -239,23 +239,25 @@ ApplicationWindow {
         items: ListModel {
             id: pagesModel
 
+            property string trContext: "Main"
+
             ListElement { // 0
-                pageTitle: qsTr ("Show Logbook")
+                pageTitle: QT_TR_NOOP ("Show Logbook")
                 pageIcon: "\uf02d"
             }
 
             ListElement { // 1
-                pageTitle: qsTr ("Add QSO")
+                pageTitle: QT_TR_NOOP ("Add QSO")
                 pageIcon: "\uf055"
             }
 
             ListElement { // 2
-                pageTitle: qsTr ("Add Live QSO")
+                pageTitle: QT_TR_NOOP ("Add Live QSO")
                 pageIcon: "\uf055"
             }
 
             ListElement { // 3
-                pageTitle: qsTr ("Add Repeater QSO")
+                pageTitle: QT_TR_NOOP ("Add Repeater QSO")
                 pageIcon: "\uf055"
             }
 
@@ -264,17 +266,17 @@ ApplicationWindow {
             }
 
             ListElement { // 5
-                pageTitle: qsTr ("Export")
+                pageTitle: QT_TR_NOOP ("Export")
                 pageIcon: "\uf56e"
             }
 
             ListElement { // 6
-                pageTitle: qsTr ("Settings")
+                pageTitle: QT_TR_NOOP ("Settings")
                 pageIcon: "\uf013"
             }
 
             ListElement { // 7
-                pageTitle: qsTr ("About")
+                pageTitle: QT_TR_NOOP ("About")
                 pageIcon: "\uf05a"
             }
         }
