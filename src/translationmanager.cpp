@@ -1,7 +1,7 @@
 #include "translationmanager.h"
 
 translationManager::translationManager(
-        QApplication *app,
+        QCoreApplication *app,
         QQmlApplicationEngine *engine) :
     app(app),
     engine(engine)
@@ -27,6 +27,6 @@ void translationManager::switchToLanguage(const QString &language)
         }
     }
 
-    app->installTranslator(translator);
+    QCoreApplication::installTranslator(translator);
     engine->retranslate();
 }

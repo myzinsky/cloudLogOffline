@@ -14,7 +14,6 @@
 #include <QSettings>
 #include <QAbstractListModel>
 #include <QPermissions>
-#include <QApplication>
 #include <QString>
 
 struct relais {

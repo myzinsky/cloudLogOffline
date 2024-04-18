@@ -4,7 +4,6 @@ QT += svg
 QT += xml
 QT += gui-private
 QT += positioning
-QT += widgets
 QT += core
 
 CONFIG += c++11

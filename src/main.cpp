@@ -1,5 +1,4 @@
 #include <QGuiApplication>
-#include <QApplication>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include <QFontDatabase>
@@ -15,7 +14,7 @@
 #include "tools.h"
 #include "sharemanager.h"
 
-// Create Singelton for Version Number:
+// Create Singleton for Version Number:
 static QJSValue appVersionSingletonProvider(QQmlEngine *engine, QJSEngine *scriptEngine)
 {
     Q_UNUSED(engine)
@@ -28,7 +27,7 @@ int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
-    QApplication app(argc, argv);
+    QGuiApplication app(argc, argv);
     app.setOrganizationName("webappjung");
     app.setOrganizationDomain("de.webappjung");
 

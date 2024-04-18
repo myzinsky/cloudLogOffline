@@ -563,7 +563,7 @@
         <translation>Summits on the Air (SOTA)</translation>
     </message>
     <message>
-        <source>Insert here youre SOTA reference</source>
+        <source>Insert here your SOTA reference</source>
         <translation>Hier die eigene SOTA Referenz einfügen</translation>
     </message>
     <message>
@@ -607,7 +607,7 @@
         <translation>World Wide Flora &amp; Fauna (WWFF)</translation>
     </message>
     <message>
-        <source>Insert here youre WWFF reference</source>
+        <source>Insert here your WWFF reference</source>
         <translation>Bitte hier die WWFF Referenz hinzufügen</translation>
     </message>
     <message>
@@ -647,7 +647,7 @@
         <translation>Parks on the Air</translation>
     </message>
     <message>
-        <source>Insert here youre POTA reference</source>
+        <source>Insert here your POTA reference</source>
         <translation>Bitte hier die POTA Referenz hinzufügen</translation>
     </message>
 </context>

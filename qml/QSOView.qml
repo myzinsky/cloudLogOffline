@@ -64,7 +64,7 @@ Page {
             propModeComboBox.currentIndex = k;
         }
 
-        if(updateQSO) { // Repair QRZ infromation, if not fetched previously
+        if(updateQSO) { // Repair QRZ information, if not fetched previously
             qrz.lookupCall(callTextField.text);
             console.log(rxfreq)
         }

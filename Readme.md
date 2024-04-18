@@ -6,7 +6,7 @@
 
 CloudLogOffline is an app interface for [Cloudlog](https://github.com/magicbug/Cloudlog) the cloud logbook for HAM radio OMs and YLs by 2M0SQL.
 
-The main purpose of CloudLogOffline is the portable operating mode, where no Wifi or 3G/LTE is availabe, e.g. SOTA, IOTA or COTA. The logs can be stored in the app and when back to a internet connection, the log can be uploaded to a selfhosted Cloudlog instance. This app is developed as cross-plattform tool for macOS, iOS, iPadOS, Android, Windows, Linux using the Qt framework.
+The main purpose of CloudLogOffline is the portable operating mode, where no Wifi or 3G/LTE is available, e.g. SOTA, IOTA or COTA. The logs can be stored in the app and when back to a internet connection, the log can be uploaded to a selfhosted Cloudlog instance. This app is developed as cross-plattform tool for macOS, iOS, iPadOS, Android, Windows, Linux using the Qt framework.
 
 Currently CloudLogOffline supports following features:
 
@@ -31,7 +31,7 @@ git clone --recursive https://github.com/myzinsky/cloudLogOffline.git
 cd cloudLogOffline/
 mkdir build && cd build
 qmake ../CloudLogOffline.pro
-make -j
+make -j4   # adjust to number of CPU cores
 ```
 Or use QtCreator to build the project.
 
