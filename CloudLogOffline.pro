@@ -74,10 +74,14 @@ android {
     DISTFILES += android/AndroidManifest.xml \
 }
 
-# Default rules for deployment.
-qnx: target.path = /tmp/$${TARGET}/bin
-else: unix:!android: target.path = /opt/$${TARGET}/bin
-!isEmpty(target.path): INSTALLS += target
+!isEmpty(PREFIX) {
+    target.path = $$PREFIX/bin
+    INSTALLS += target
+}
+else: !android {
+    qnx:  PREFIX = /tmp/$${TARGET}
+    else: PREFIX = /opt/$${TARGET}
+}
 
 HEADERS += src/cloudlogmanager.h
 HEADERS += src/tools.h
