@@ -1,3 +1,8 @@
+QT_MINIMUM_REQUIRED = 6.0.0
+!versionAtLeast(QT_VERSION, $$QT_MINIMUM_REQUIRED) {
+    error("CloudLogOffline needs Qt $$QT_MINIMUM_REQUIRED or newer (found: $${QT_VERSION})")
+}
+
 QT += quick
 QT += sql
 QT += svg

@@ -1,6 +1,6 @@
 # CloudLogOffline
 
-[![CloudLogOfflineDemo](http://img.youtube.com/vi/jgX52e1QWU0/0.jpg)](https://youtu.be/jgX52e1QWU0 "CloudLogOffline Demo")
+[![CloudLogOfflineDemo](https://img.youtube.com/vi/jgX52e1QWU0/0.jpg)](https://youtu.be/jgX52e1QWU0 "CloudLogOffline Demo")
 
 <a href=""><img src="https://www.webappjung.de/images/assets/google2.png" style="height:40px;border-radius:0!important;"  alt=""/></a>&nbsp;<a href="https://apps.apple.com/de/app/cloudlogoffline/id1528219213"><img src="https://www.webappjung.de/images/assets/iOS2.png"  style="height:40px;border-radius:0!important;" alt=""/></a>
 
@@ -12,7 +12,7 @@ Currently CloudLogOffline supports following features:
 
 - Upload to Cloudlog via API 
 - Query QRZ.com (if 3G/LTE is available)
-- Connect to [Flrig](http://www.w1hkj.com) by W1HKJ which e.g. runs on a Raspberry Pi which is connected to the radio and opens a Wifi to interact with CloudLogOffline
+- Connect to [Flrig](https://www.w1hkj.com) by W1HKJ which e.g. runs on a Raspberry Pi which is connected to the radio and opens a Wifi to interact with CloudLogOffline
 - Set a CQ QRG if Flrig is not available
 - Live and post QSOs
 - SOTA Fields
@@ -22,7 +22,11 @@ Currently CloudLogOffline supports following features:
 
 ## Build Instructions:
 
-There is just one requirement, which is [Qt](https://www.qt.io/download-open-source). On Debian-based system you might want to install `libqt5svg5-dev` and `qtbase5-private-dev` as well.
+There is just one requirement, which is [Qt 6](https://www.qt.io/download-open-source).
+On recent Debian-based system, you can install the system packages with
+```bash
+sudo apt install qt6-base-dev qt6-declarative-dev qt6-positioning-dev qt6-svg-dev
+```
 
 After installing Qt just follow these steps on command line:
 
