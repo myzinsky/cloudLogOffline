@@ -1,8 +1,11 @@
 ﻿#include "repeatermodel.h"
 
-QT_BEGIN_NAMESPACE
 #include <QCoreApplication>
-QT_END_NAMESPACE
+
+#if QT_VERSION >= QT_VERSION_CHECK(6, 5, 0)
+#  define CLO_HAVE_QPERMISSION
+#  include <QPermission>
+#endif
 
 
 rbManager::rbManager(QObject *parent)
@@ -44,26 +47,26 @@ void rbManager::init()
     }
 }
 
-void rbManager::precisePermissionUpdated(const QPermission &permission) {
-    if (permission.status() == Qt::PermissionStatus::Granted) {
-        qDebug() << "PRECISE PERMISSION GRANTED";
-        init();
-    } else {
-        qDebug() << "PRECISE PERMISSION NOT GRANTED";
-    }
-}
-
 void rbManager::checkPermissions()
 {
+#ifdef CLO_HAVE_QPERMISSION
     QLocationPermission preciselocationPermission;
     preciselocationPermission.setAccuracy(QLocationPermission::Precise);
 
     if(qApp->checkPermission(preciselocationPermission) != Qt::PermissionStatus::Granted) {
-        qApp->requestPermission(preciselocationPermission, this, &rbManager::precisePermissionUpdated);
+        qApp->requestPermission(preciselocationPermission, this, [this](const QPermission &permission) {
+            if (permission.status() == Qt::PermissionStatus::Granted) {
+                qDebug() << "PRECISE PERMISSION GRANTED";
+                init();
+            } else {
+                qDebug() << "PRECISE PERMISSION NOT GRANTED";
+            }
+        });
     } else {
         qDebug() << "PRECISE PERMISSION ALREADY GRANTED";
         init();
     }
+#endif
 }
 
 int rbManager::rowCount(const QModelIndex &parent) const

@@ -13,7 +13,6 @@
 #include <QGeoCircle>
 #include <QSettings>
 #include <QAbstractListModel>
-#include <QPermissions>
 #include <QString>
 
 struct relais {
@@ -70,7 +69,6 @@ private:
     bool filter(double rLat, double rLon, double radius);
     double distance(double rLat, double rLon);
     void calculateMaidenhead(double lat, double lon);
-    void precisePermissionUpdated(const QPermission &permission);
     void init();
 
     QList<relais> database;
