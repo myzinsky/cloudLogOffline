@@ -12,7 +12,7 @@ Page {
     Layout.margins: 5
 
     Component.onCompleted: {
-        if(settings.rbActive && settings.rbRadius) {
+        if(settings.rbActive) {
             rb.getRepeaters();
         }
     }

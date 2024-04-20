@@ -177,7 +177,9 @@ void rbManager::parseNetworkResponse(QNetworkReply *nreply) // from getRepeaters
     beginResetModel();
     database.clear();
 
-    const double radius = settings.value("rbRadius").toDouble();
+    double radius = settings.value("rbRadius").toDouble();
+    if (radius <= 0.0)
+        radius = 20.0;
 
     for (const auto& jsonRepeater : jsonRepeaters) {
         const QJsonObject repeater = jsonRepeater.toObject();
