@@ -167,29 +167,30 @@ void rbManager::parseNetworkResponse(QNetworkReply *nreply) // from getRepeaters
     const QByteArray rawJson = nreply->readAll();
     const QJsonDocument jsonResponse = QJsonDocument::fromJson(rawJson);
 
-    QJsonArray repeaters = jsonResponse.array();
+    const QJsonArray jsonRepeaters = jsonResponse.array();
 
     beginResetModel();
     database.clear();
 
-    double radius = settings.value("rbRadius").toString().toDouble();
-    
-    for(auto repeater : repeaters) {
-        double rlat = repeater.toObject()["latitude"].toDouble();
-        double rlon = repeater.toObject()["longitude"].toDouble();
+    const double radius = settings.value("rbRadius").toDouble();
+
+    for (const auto& jsonRepeater : jsonRepeaters) {
+        const QJsonObject repeater = jsonRepeater.toObject();
+        double rlat = repeater["latitude"].toDouble();
+        double rlon = repeater["longitude"].toDouble();
 
         if(filter(rlat, rlon, radius)) {
-            qDebug() << "Found: " << repeater.toObject()["callsign"].toString();
+            qDebug() << "Found: " << repeater["callsign"].toString();
             relais r;
-            r.call      = repeater.toObject()["callsign"].toString();
-            r.frequency = QString::number(repeater.toObject()["frequency"].toDouble()/1000.0/1000.0);
+            r.call      = repeater["callsign"].toString();
+            r.frequency = QString::number(repeater["frequency"].toDouble()/1000.0/1000.0);
             r.lat       = QString::number(rlat);
             r.lon       = QString::number(rlon);
-            r.shift     = QString::number(repeater.toObject()["offset"].toDouble()/1000.0/1000.0);
+            r.shift     = QString::number(repeater["offset"].toDouble()/1000.0/1000.0);
             r.distance  = distance(rlat, rlon);
-            r.tone      = repeater.toObject()["decode"].toString();
-            r.city      = repeater.toObject()["city"].toString().split(QLatin1Char(','))[0];
-            r.modes     = repeater.toObject()["mode"].toString();
+            r.tone      = repeater["decode"].toString();
+            r.city      = repeater["city"].toString().split(QLatin1Char(','))[0];
+            r.modes     = repeater["mode"].toString();
             database.append(r);
         }
     }
