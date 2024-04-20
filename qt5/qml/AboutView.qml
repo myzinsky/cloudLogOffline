@@ -6,7 +6,6 @@ import de.webappjung 1.0
 Page {
     id: page
     title: qsTr("About")
-    anchors.fill: parent
     anchors.margins: 5
 
     ScrollView {

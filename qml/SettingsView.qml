@@ -7,7 +7,6 @@ import QtQuick.Controls.Material 2.4
 Page {
     id: settingsView
     title: qsTr("Settings")
-    anchors.fill: parent
     anchors.margins: 5
 
     function saveSettings()

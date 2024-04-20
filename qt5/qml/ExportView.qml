@@ -7,7 +7,6 @@ import de.webappjung 1.0
 
 Page {
     id: page
-    anchors.fill: parent
     title: "Export"
     anchors.margins: 5
 
