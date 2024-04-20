@@ -164,9 +164,8 @@ QString rbManager::getLocator()
 
 void rbManager::parseNetworkResponse(QNetworkReply *nreply) // from getRepeaters
 {
-    QString rawJson = nreply->readAll();
-    QJsonDocument jsonResponse = QJsonDocument::fromJson(rawJson.toUtf8());
-    QJsonObject json = jsonResponse.object();
+    const QByteArray rawJson = nreply->readAll();
+    const QJsonDocument jsonResponse = QJsonDocument::fromJson(rawJson);
 
     QJsonArray repeaters = jsonResponse.array();
 
