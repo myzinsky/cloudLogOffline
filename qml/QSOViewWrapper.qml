@@ -30,6 +30,8 @@ SplitView {
     property alias sots: qsoView.sots
     property alias wwff: qsoView.wwff
     property alias wwfs: qsoView.wwfs
+    property alias pota: qsoView.pota;
+    property alias pots: qsoView.pots;
     property alias satm: qsoView.satm
     property alias mode: qsoView.mode
     property alias satn: qsoView.satn
