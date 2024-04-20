@@ -35,10 +35,10 @@ Page {
 
         delegate: RepeaterItem {}
 
-        // Show a placeholder when no QSO is in the list so far
+        // Show a placeholder when no repeater is in the list so far
         Label {
             id: placeholder
-            text: qsTr("No repeaters found: No GPS or no radius defined in settings!")
+            text: settings.rbActive ? qsTr("Waiting for position and repeaters") : qsTr("Hear HAM Repeater List disabled")
 
             anchors.margins: 60
             anchors.fill: parent
