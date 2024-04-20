@@ -195,7 +195,7 @@ void rbManager::parseNetworkResponse(QNetworkReply *nreply) // from getRepeaters
         }
     }
 
-    std::sort(database.begin(), database.end(), [](relais a, relais b) {
+    std::sort(database.begin(), database.end(), [](const relais &a, const relais &b) {
         return a.distance < b.distance;
     });
 
