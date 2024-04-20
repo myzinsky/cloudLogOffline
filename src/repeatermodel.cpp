@@ -38,12 +38,6 @@ void rbManager::init()
 
         source->setUpdateInterval(60*1000);
         source->startUpdates();
-
-        nm = new QNetworkAccessManager(this);
-        connect(nm,
-                SIGNAL(finished(QNetworkReply*)),
-                this,
-                SLOT(parseNetworkResponse(QNetworkReply*)));
     }
 }
 
@@ -120,6 +114,16 @@ void rbManager::positionUpdated(const QGeoPositionInfo &info)
 
 void rbManager::getRepeaters()
 {
+    checkPermissions();
+    if (!nm)
+    {
+        nm = new QNetworkAccessManager(this);
+        connect(nm,
+                SIGNAL(finished(QNetworkReply*)),
+                this,
+                SLOT(parseNetworkResponse(QNetworkReply*)));
+    }
+
     //QString url = "https://www.repeaterbook.com/api/exportROW.php?country="+country;
     QString url = "https://hearham.com/api/repeaters/v1";
     nm->get(QNetworkRequest(QUrl(url)));
