@@ -29,8 +29,6 @@ static QJSValue appVersionSingletonProvider(QQmlEngine *engine, QJSEngine *scrip
 
 int main(int argc, char *argv[])
 {
-    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-
     /**
      * QApplication is required for Widgets.
      * 
