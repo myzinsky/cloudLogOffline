@@ -3,6 +3,10 @@
 #include <QQmlContext>
 #include <QFontDatabase>
 
+#ifdef QT_WIDGETS_LIB
+#include <QApplication>
+#endif
+
 #include "qsomodel.h"
 #include "repeatermodel.h"
 #include "dbmanager.h"
@@ -27,7 +31,18 @@ int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
+    /**
+     * QApplication is required for Widgets.
+     * 
+     * QML MessageDialog from Qt Labs Platform (Qt.labs.platform) needs Widgets if !android:!ios.
+     * QML MessageDialog from Qt Quick Dialog (QtQuick.Dialogs) needs Qt 6.3 but not Widgets.
+     * However, the Quick fallback dialog is ugly and cuts off large content.
+     */
+#ifdef QT_WIDGETS_LIB
+    QApplication app(argc, argv);
+#else
     QGuiApplication app(argc, argv);
+#endif
     app.setOrganizationName("webappjung");
     app.setOrganizationDomain("de.webappjung");
 
