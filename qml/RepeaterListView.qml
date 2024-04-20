@@ -7,7 +7,6 @@ import de.webappjung 1.0
 Page {
     id: page
     title: (rb.getLocator() === "") ? qsTr("Hear HAM Repeater List") : qsTr("Hear HAM Repeater List") + " (" + rb.getLocator() + ")";
-    anchors.fill: parent
     Layout.margins: 5
 
     Component.onCompleted: {

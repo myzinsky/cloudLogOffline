@@ -7,7 +7,6 @@ import QtQml.Models 2.12
 Page {
     id: settingsView
     title: qsTr("Settings")
-    anchors.fill: parent
     anchors.margins: 5
 
     function saveSettings()

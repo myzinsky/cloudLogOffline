@@ -5,7 +5,6 @@ import Qt.labs.platform 1.1
 
 Page {
     id: page
-    anchors.fill: parent
     title: call
     anchors.margins: 5
 

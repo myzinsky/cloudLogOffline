@@ -4,7 +4,6 @@ import QtQuick.Layouts 1.1
 
 SplitView {
     id: qsoViewWrapper
-    anchors.fill: parent
     orientation: Qt.Horizontal
 
     property string title: (addQSO || liveQSO) ? (qsTr("Add QSO") + " (" + (qsoModel.numberOfQSOs()) + ")") : qsTr("Edit QSO")
