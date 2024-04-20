@@ -71,6 +71,7 @@ void rbManager::checkPermissions()
 
 int rbManager::rowCount(const QModelIndex &parent) const
 {
+    Q_UNUSED(parent)
     return database.size();
 }
 
