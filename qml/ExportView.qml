@@ -2,10 +2,9 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import QtQuick.Controls.Material
+import Qt.labs.platform // Qt 6.3: QtQuick.Dialogs
 //import Qt.labs.settings
-//import Qt.labs.platform
 import de.webappjung 1.0
-import Qt.labs.platform
 
 Page {
     id: page
@@ -114,8 +113,8 @@ Page {
                 id: deleteUploadedMessage
                 title: qsTr("Delete?")
                 text: qsTr("Delete all Uploaded QSOs?")
-                buttons: StandardButton.Yes | StandardButton.No
-                onYesClicked : {
+                buttons: MessageDialog.Yes | MessageDialog.No
+                onAccepted : {
                     console.log("Delete Uploaded QSOs")
                     cl.deleteUploadedQsos()
                     qsoModel.submit();
@@ -177,8 +176,8 @@ Page {
                 title: qsTr("Delete?")
                 //icon: StandardIcon.Question
                 text: qsTr("Delete all QSOs?")
-                buttons: StandardButton.Yes | StandardButton.No
-                onYesClicked : {
+                buttons: MessageDialog.Yes | MessageDialog.No
+                onAccepted : {
                     console.log("Delete all QSOs")
                     cl.deleteQsos()
                     qsoModel.submit()
