@@ -172,15 +172,15 @@ void rbManager::parseNetworkResponse(QNetworkReply *nreply) // from getRepeaters
     beginResetModel();
     database.clear();
 
+    double radius = settings.value("rbRadius").toString().toDouble();
+    
     for(auto repeater : repeaters) {
-        relais r;
         double rlat = repeater.toObject()["latitude"].toDouble();
         double rlon = repeater.toObject()["longitude"].toDouble();
 
-        double radius = settings.value("rbRadius").toString().toDouble();
-
         if(filter(rlat, rlon, radius)) {
             qDebug() << "Found: " << repeater.toObject()["callsign"].toString();
+            relais r;
             r.call      = repeater.toObject()["callsign"].toString();
             r.frequency = QString::number(repeater.toObject()["frequency"].toDouble()/1000.0/1000.0);
             r.lat       = QString::number(rlat);
