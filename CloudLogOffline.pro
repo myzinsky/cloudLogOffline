@@ -11,6 +11,9 @@ QT += gui-private
 QT += positioning
 QT += core
 
+# cf. main.cpp
+!android:!ios: QT += widgets
+
 CONFIG += c++11
 
 GIT_VERSION = "1.1.6"
@@ -61,7 +64,6 @@ macx {
     message(Build for MacOS)
     ICON = images/macos/logo_circle.icns
     QMAKE_INFO_PLIST = macos/Info.plist
-    QT += widgets
     QMAKE_BUNDLE_DATA += macos_translation
     QMAKE_TARGET_BUNDLE_PREFIX = de.webappjung
 

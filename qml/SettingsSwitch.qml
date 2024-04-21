@@ -2,7 +2,7 @@ import QtQuick 2.12
 import QtQuick.Controls
 import QtQuick.Layouts
 import QtQuick.Controls.Material
-import QtQuick.Dialogs
+import Qt.labs.platform // Qt 6.3: QtQuick.Dialogs
 
 Rectangle {
     height: 48
