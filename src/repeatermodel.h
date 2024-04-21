@@ -1,8 +1,10 @@
 #ifndef RBMODEL_H
 #define RBMODEL_H
 
+#include <QByteArray>
 #include <QGeoCoordinate>
 #include <QGeoPositionInfoSource>
+#include <QDateTime>
 #include <QDebug>
 #include <QGeoLocation>
 #include <QJsonDocument>
@@ -13,6 +15,7 @@
 #include <QGeoCircle>
 #include <QSettings>
 #include <QAbstractListModel>
+#include <QPermissions>
 #include <QString>
 
 struct relais {
@@ -46,30 +49,36 @@ class rbManager : public QAbstractListModel
 public:
     rbManager(QObject *parent = nullptr);
     ~rbManager();
+    
+    // Qt list model interface
     int rowCount(const QModelIndex &parent) const;
     QVariant data(const QModelIndex &index, int role) const;
     QHash<int, QByteArray> roleNames() const;
-
+    
+    // Positioning and locator interface
 signals:
-    void locatorDone(const QString &locator);
+    void locatorChanged(const QString &locator);
 
 public slots:
     QString getLocator();
     void getRepeaters();
-    void checkPermissions();
+    void tryStartPositioning();
+    void tryStartPositioning(const QString& oldLocator);
+    void stopPositioning();
 
 private:
-    QGeoPositionInfoSource *source;
-    QNetworkAccessManager *nm;
+    QGeoPositionInfoSource *source = nullptr;
+    QNetworkAccessManager *nm = nullptr;
 
     QString country;
     QString locator;
     QGeoCoordinate coord;
-    bool initialized;
-    bool filter(double rLat, double rLon, double radius);
-    double distance(double rLat, double rLon);
-    void calculateMaidenhead(double lat, double lon);
-    void init();
+    QByteArray raw_database;
+    QDateTime raw_database_stamp;
+    
+    void startPositioning();
+    
+    bool refreshModel(const QByteArray &rawData);
 
     QList<relais> database;
 

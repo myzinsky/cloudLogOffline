@@ -77,10 +77,6 @@ Page {
             console.log("Receive Key")
             qrz.receiveKey()
         }
-
-        if(rbSwitch.checked) {
-            rb.checkPermissions();
-        }
     }
 
     function apiKeyOk() {
@@ -104,10 +100,11 @@ Page {
 
     Connections{
         target: rb
-        onLocatorDone: {
-            console.log("LOCATOR DONE")
-            gridsquare.text = locator
+        onLocatorChanged: function(locator) {
+            console.log("LOCATOR CHANGED");
+            gridsquare.text = locator;
             saveSettings();
+            rb.stopPositioning();
         }
     }
 
@@ -200,8 +197,7 @@ Page {
                 Button {
                     text : qsTr("Lookup")
                     onClicked: {
-                        rb.checkPermissions();
-                        //gridsquare.text = rb.getLocator();
+                        rb.tryStartPositioning(gridsquare.text)
                     }
                 }
             }

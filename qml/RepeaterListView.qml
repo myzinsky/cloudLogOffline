@@ -24,7 +24,7 @@ Page {
 
         Connections{
             target: rb
-            function onLocatorDone(locator) {
+            function onLocatorChanged(locator) {
                 page.title = qsTr("Hear HAM Repeater List") + " (" + locator + ")"
             }
         }
