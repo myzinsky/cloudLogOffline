@@ -22,7 +22,7 @@ jobs:
       - name: build-dor
         run: mkdir build
       - name: qmake
-        run: cd build && qmake ../CloudLogOffline.pro PREFIX=$GITHUB_WORKSPACE/install
+        run: cd build && qmake ../CloudLogOffline.pro PREFIX=$GITHUB_WORKSPACE/install CONFIG+=qtquickcompiler
       - name: make
         run: cd build && make -j5
       - name: make install
