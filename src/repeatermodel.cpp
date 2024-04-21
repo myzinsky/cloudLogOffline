@@ -38,12 +38,6 @@ void rbManager::init()
 
         source->setUpdateInterval(60*1000);
         source->startUpdates();
-
-        nm = new QNetworkAccessManager(this);
-        connect(nm,
-                SIGNAL(finished(QNetworkReply*)),
-                this,
-                SLOT(parseNetworkResponse(QNetworkReply*)));
     }
 }
 
@@ -71,6 +65,7 @@ void rbManager::checkPermissions()
 
 int rbManager::rowCount(const QModelIndex &parent) const
 {
+    Q_UNUSED(parent)
     return database.size();
 }
 
@@ -119,6 +114,16 @@ void rbManager::positionUpdated(const QGeoPositionInfo &info)
 
 void rbManager::getRepeaters()
 {
+    checkPermissions();
+    if (!nm)
+    {
+        nm = new QNetworkAccessManager(this);
+        connect(nm,
+                SIGNAL(finished(QNetworkReply*)),
+                this,
+                SLOT(parseNetworkResponse(QNetworkReply*)));
+    }
+
     //QString url = "https://www.repeaterbook.com/api/exportROW.php?country="+country;
     QString url = "https://hearham.com/api/repeaters/v1";
     nm->get(QNetworkRequest(QUrl(url)));
@@ -164,38 +169,40 @@ QString rbManager::getLocator()
 
 void rbManager::parseNetworkResponse(QNetworkReply *nreply) // from getRepeaters
 {
-    QString rawJson = nreply->readAll();
-    QJsonDocument jsonResponse = QJsonDocument::fromJson(rawJson.toUtf8());
-    QJsonObject json = jsonResponse.object();
+    const QByteArray rawJson = nreply->readAll();
+    const QJsonDocument jsonResponse = QJsonDocument::fromJson(rawJson);
 
-    QJsonArray repeaters = jsonResponse.array();
+    const QJsonArray jsonRepeaters = jsonResponse.array();
 
     beginResetModel();
     database.clear();
 
-    for(auto repeater : repeaters) {
-        relais r;
-        double rlat = repeater.toObject()["latitude"].toDouble();
-        double rlon = repeater.toObject()["longitude"].toDouble();
+    double radius = settings.value("rbRadius").toDouble();
+    if (radius <= 0.0)
+        radius = 20.0;
 
-        double radius = settings.value("rbRadius").toString().toDouble();
+    for (const auto& jsonRepeater : jsonRepeaters) {
+        const QJsonObject repeater = jsonRepeater.toObject();
+        double rlat = repeater["latitude"].toDouble();
+        double rlon = repeater["longitude"].toDouble();
 
         if(filter(rlat, rlon, radius)) {
-            qDebug() << "Found: " << repeater.toObject()["callsign"].toString();
-            r.call      = repeater.toObject()["callsign"].toString();
-            r.frequency = QString::number(repeater.toObject()["frequency"].toDouble()/1000.0/1000.0);
+            qDebug() << "Found: " << repeater["callsign"].toString();
+            relais r;
+            r.call      = repeater["callsign"].toString();
+            r.frequency = QString::number(repeater["frequency"].toDouble()/1000.0/1000.0);
             r.lat       = QString::number(rlat);
             r.lon       = QString::number(rlon);
-            r.shift     = QString::number(repeater.toObject()["offset"].toDouble()/1000.0/1000.0);
+            r.shift     = QString::number(repeater["offset"].toDouble()/1000.0/1000.0);
             r.distance  = distance(rlat, rlon);
-            r.tone      = repeater.toObject()["decode"].toString();
-            r.city      = repeater.toObject()["city"].toString().split(QLatin1Char(','))[0];
-            r.modes     = repeater.toObject()["mode"].toString();
+            r.tone      = repeater["decode"].toString();
+            r.city      = repeater["city"].toString().split(QLatin1Char(','))[0];
+            r.modes     = repeater["mode"].toString();
             database.append(r);
         }
     }
 
-    std::sort(database.begin(), database.end(), [](relais a, relais b) {
+    std::sort(database.begin(), database.end(), [](const relais &a, const relais &b) {
         return a.distance < b.distance;
     });
 

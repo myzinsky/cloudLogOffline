@@ -167,7 +167,7 @@ SwipeDelegate {
                         strippedMode = "DSTAR";
                     }
 
-                    var txfreq =  parseFloat(model.freq) + parseFloat(model.shif)
+                    var txfreq = parseFloat((parseFloat(model.freq) + parseFloat(model.shif)).toFixed(6))
 
                     stackView.push("QSOViewWrapper.qml", {
                                        "addQSO"      : true,
