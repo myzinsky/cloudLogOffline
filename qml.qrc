@@ -14,7 +14,6 @@
         <file>qml/ExportView.qml</file>
         <file>qml/IconButton.qml</file>
         <file>qml/ExportHeader.qml</file>
-        <file>qml/Playground.qml</file>
         <file>qtquickcontrols2.conf</file>
         <file>fonts/Roboto-Regular.ttf</file>
         <file>fonts/LinLibertine_DR_G.ttf</file>
