@@ -58,6 +58,7 @@ Drawer {
     //     - separator: if the element shall be a separator item
     //     - separatorText: optional text for the separator item
     //     - pageIcon: the source of the image to display next to the title
+    //     - onTriggered: function to be called when an item is selected
     //
     property alias items: listView.model
     property alias index: listView.currentIndex
@@ -82,32 +83,9 @@ Drawer {
                 isSpacer = item.separator
 
             if (!isSpacer && !isSeparator)
-                actions [index]()
+                item.onTriggered()
         }
     }
-
-    //
-    // A list with functions that correspond with the index of each drawer item
-    // provided with the \a pages property
-    //
-    // For a string-based example, check this SO answer:
-    //     https://stackoverflow.com/a/26731377
-    //
-    // The only difference is that we are working with the index of each element
-    // in the list view, for example, if you want to define the function to call
-    // when the first item of the drawer is clicked, you should write:
-    //
-    //     actions: {
-    //         0: function() {
-    //             console.log ("First item clicked!")
-    //         },
-    //
-    //         1: function() {}...,
-    //         2: function() {}...,
-    //         n: function() {}...
-    //     }
-    //
-    property var actions
 
     //
     // Main layout of the drawer

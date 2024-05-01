@@ -193,47 +193,6 @@ ApplicationWindow {
         iconBgColorRight: "#607D8B"
 
         //
-        // Define the actions to take for each drawer item
-        // Drawers 5 and 6 are ignored, because they are used for
-        // displaying a spacer and a separator
-        //
-        actions: {
-            0: function() {
-                stackView.push("QSOListView.qml")
-            },
-            1: function() {
-                stackView.push("QSOViewWrapper.qml",
-                       {
-                           "addQSO"      : true,
-                           "liveQSO"     : false,
-                           "updateQSO"   : false,
-                           "repeaterQSO" : false,
-                       });
-            },
-            2: function() {
-                stackView.push("QSOViewWrapper.qml",
-                       {
-                           "addQSO"      : false,
-                           "liveQSO"     : true,
-                           "updateQSO"   : false,
-                           "repeaterQSO" : false,
-                       });
-            },
-            3: function() {
-                stackView.push("RepeaterListView.qml");
-            },
-            5: function() {
-                stackView.push("ExportView.qml");
-            },
-            6: function() {
-                stackView.push("SettingsView.qml")
-            },
-            7: function() {
-                stackView.push("AboutView.qml")
-            }
-        }
-
-        //
         // Define the drawer items
         //
         items: ListModel {
@@ -242,40 +201,73 @@ ApplicationWindow {
             ListElement { // 0
                 pageTitle: qsTr ("Show Logbook")
                 pageIcon: "\uf02d"
+                onTriggered: function() {
+                    stackView.push("QSOListView.qml")
+                }
             }
 
             ListElement { // 1
                 pageTitle: qsTr ("Add QSO")
                 pageIcon: "\uf055"
+                onTriggered: function() {
+                    stackView.push("QSOViewWrapper.qml",
+                                   {
+                                       "addQSO"      : true,
+                                       "liveQSO"     : false,
+                                       "updateQSO"   : false,
+                                       "repeaterQSO" : false,
+                                   });
+                }
             }
 
-            ListElement { // 2
+            ListElement {
                 pageTitle: qsTr ("Add Live QSO")
                 pageIcon: "\uf055"
+                onTriggered: function() {
+                    stackView.push("QSOViewWrapper.qml",
+                                   {
+                                       "addQSO"      : false,
+                                       "liveQSO"     : true,
+                                       "updateQSO"   : false,
+                                       "repeaterQSO" : false,
+                                   });
+                }
             }
 
-            ListElement { // 3
+            ListElement {
                 pageTitle: qsTr ("Add Repeater QSO")
                 pageIcon: "\uf055"
+                onTriggered: function() {
+                    stackView.push("RepeaterListView.qml");
+                }
             }
 
-            ListElement { // 4
+            ListElement {
                 separator: true
             }
 
-            ListElement { // 5
+            ListElement {
                 pageTitle: qsTr ("Export")
                 pageIcon: "\uf56e"
+                onTriggered: function() {
+                    stackView.push("ExportView.qml")
+                }
             }
 
-            ListElement { // 6
+            ListElement {
                 pageTitle: qsTr ("Settings")
                 pageIcon: "\uf013"
+                onTriggered: function() {
+                    stackView.push("SettingsView.qml")
+                }
             }
 
-            ListElement { // 7
+            ListElement {
                 pageTitle: qsTr ("About")
                 pageIcon: "\uf05a"
+                onTriggered: function() {
+                    stackView.push("AboutView.qml")
+                }
             }
         }
     }
