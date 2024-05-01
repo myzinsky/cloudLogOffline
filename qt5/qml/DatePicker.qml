@@ -2,6 +2,7 @@ import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
 import QtQuick.Window 2.12
+import Qt.labs.calendar 1.0
 import de.webappjung 1.0
 
 Popup {
@@ -19,8 +20,8 @@ Popup {
     Component.onCompleted: {
         var now = new Date();
         var utc = new Date(now.getTime() + now.getTimezoneOffset() * 60000);
-        //mg.month = utc.getMonth()
-        //mg.year = utc.getFullYear()
+        mg.month = utc.getMonth()
+        mg.year = utc.getFullYear()
     }
 
     GridLayout {
@@ -68,7 +69,6 @@ Popup {
             }
         }
 
-/*
         GridLayout {
             columns: 1
 
@@ -81,7 +81,7 @@ Popup {
                     color: "white"
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
-                    required property string shortName
+                    property string shortName
                     font.pointSize: 16
                 }
 
@@ -92,9 +92,8 @@ Popup {
                 month: Calendar.December
                 year: 2015
                 locale: settings.language === "German"   ? Qt.locale("de_DE") :
-                        settings.language === "English"  ? Qt.locale("en_EN") :
-                        settings.language === "Armenian" ? Qt.locale("am_AM") :
-                                                           Qt.locale("am_EN") ;
+                        settings.language === "Armenian" ? Qt.locale("hy_AM") :
+                                                           Qt.locale("en_US") ;
 
                 Layout.fillWidth: true
                 Layout.fillHeight: true
@@ -114,6 +113,5 @@ Popup {
                 }
             }
         }
-*/
     }
 }
