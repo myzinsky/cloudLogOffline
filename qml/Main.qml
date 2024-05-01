@@ -25,7 +25,7 @@ ApplicationWindow {
         id: oriTimer
         interval: 100; running: true; repeat: false
         onTriggered: {
-            console.log("Orientatino Changed")
+            console.log("Orientation changed")
             console.log("safe margins =", JSON.stringify(tools.getSafeAreaMargins(window)))
             notchTop   = tools.getSafeAreaMargins(window)["top"]
             notchLeft  = tools.getSafeAreaMargins(window)["left"]
