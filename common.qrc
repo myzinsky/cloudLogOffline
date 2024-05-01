@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/">
+        <file>fonts/LinLibertine_DR_G.ttf</file>
+        <file>fonts/Roboto-Regular.ttf</file>
+        <file>fonts/fa-solid-900.ttf</file>
+        <file>images/logo_circle.png</file>
+        <file>images/logo_circle.svg</file>
+        <file>images/logo_square.svg</file>
+        <file>qtquickcontrols2.conf</file>
+    </qresource>
+</RCC>

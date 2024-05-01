@@ -2,7 +2,8 @@ GIT_VERSION = "1.1.6"
 message("*** Configuring CloudLogOffline $$GIT_VERSION for $$QMAKE_PLATFORM ***")
 DEFINES += GIT_VERSION=\\\"$$GIT_VERSION\\\"
 
-QT_MINIMUM_REQUIRED = 6.0.0
+android|ios: QT_MINIMUM_REQUIRED = 6.5.0
+else:        QT_MINIMUM_REQUIRED = 5.12.0
 !versionAtLeast(QT_VERSION, $$QT_MINIMUM_REQUIRED) {
     error("CloudLogOffline needs Qt $$QT_MINIMUM_REQUIRED or newer (found: $${QT_VERSION})")
 }
@@ -38,14 +39,17 @@ SOURCES += src/sharemanager.cpp
 SOURCES += src/tools.cpp
 SOURCES += src/translationmanager.cpp
 
-RESOURCES += qml.qrc
 QMAKE_RESOURCE_FLAGS += -no-compress
-
-# Additional import path used to resolve QML modules in Qt Creator's code model
-QML_IMPORT_PATH =
-
-# Additional import path used to resolve QML modules just for Qt Quick Designer
-QML_DESIGNER_IMPORT_PATH =
+RESOURCES += common.qrc
+!versionAtLeast(QT_VERSION, 6.0.0) {
+    RESOURCES += qt5/qml.qrc
+    QML_IMPORT_PATH = qt5/qml
+}
+else {
+    CONFIG += qtquickcompiler
+    RESOURCES += qml.qrc
+    QML_IMPORT_PATH = qml
+}
 
 ios {
     QMAKE_INFO_PLIST = ios/Info.plist
@@ -122,6 +126,26 @@ DISTFILES += qml/RepeaterListView.qml
 DISTFILES += qml/SettingsSwitch.qml
 DISTFILES += qml/SettingsView.qml
 DISTFILES += qml/TimePicker.qml
+
+DISTFILES += qt5/qml/AboutView.qml
+DISTFILES += qt5/qml/DatePicker.qml
+DISTFILES += qt5/qml/DrawerItem.qml
+DISTFILES += qt5/qml/ExportHeader.qml
+DISTFILES += qt5/qml/ExportView.qml
+DISTFILES += qt5/qml/IconButton.qml
+DISTFILES += qt5/qml/Main.qml
+DISTFILES += qt5/qml/PageDrawer.qml
+DISTFILES += qt5/qml/QRZView.qml
+DISTFILES += qt5/qml/QSOItem.qml
+DISTFILES += qt5/qml/QSOListView.qml
+DISTFILES += qt5/qml/QSOTextField.qml
+DISTFILES += qt5/qml/QSOView.qml
+DISTFILES += qt5/qml/QSOViewWrapper.qml
+DISTFILES += qt5/qml/RepeaterItem.qml
+DISTFILES += qt5/qml/RepeaterListView.qml
+DISTFILES += qt5/qml/SettingsSwitch.qml
+DISTFILES += qt5/qml/SettingsView.qml
+DISTFILES += qt5/qml/TimePicker.qml
 
 CONFIG += lrelease embed_translations
 

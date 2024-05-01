@@ -1,6 +1,6 @@
 import QtQuick 2.12
-import QtQuick.Controls 2.5
-import QtQuick.Layouts 1.1
+import QtQuick.Controls 2.12
+import QtQuick.Layouts 1.12
 import de.webappjung 1.0
 
 Page {
@@ -35,7 +35,7 @@ CloudLogApp is developed by Matthias Jung (DL9MJ, AJ9MJ) and hosted by DARC e.V.
             Label {
                 id: versionLabel
                 padding: 5
-                text: "Version: " + AppInfo.version + " (Qt 6) Database: " + database.getDatabaseVersion() + "<br>"
+                text: "Version: " + AppInfo.version + " (Qt 5) Database: " + database.getDatabaseVersion() + "<br>"
             }
 
             Label {
