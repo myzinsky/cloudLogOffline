@@ -34,7 +34,7 @@ CloudLogOffline is developed by Matthias Jung (DL9MJ, AJ9MJ) and hosted by DARC 
             Label {
                 id: versionLabel
                 padding: 5
-                text: "Version: " + AppInfo.version + " (Qt 6) Database: " + database.getDatabaseVersion() + "<br>"
+                text: "Version: " + Qt.application.version + " Database: " + database.getDatabaseVersion() + "<br>"
             }
 
             Label {

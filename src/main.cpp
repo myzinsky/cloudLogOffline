@@ -18,15 +18,6 @@
 #include "tools.h"
 #include "sharemanager.h"
 
-// Create Singleton for Version Number:
-static QJSValue appVersionSingletonProvider(QQmlEngine *engine, QJSEngine *scriptEngine)
-{
-    Q_UNUSED(engine)
-    QJSValue appInfo = scriptEngine->newObject();
-    appInfo.setProperty("version", GIT_VERSION);
-    return appInfo;
-}
-
 int main(int argc, char *argv[])
 {
     /**
@@ -40,6 +31,9 @@ int main(int argc, char *argv[])
 #if QT_VERSION < QT_VERSION_CHECK(6,0,0)
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     qputenv("QT_FILE_SELECTORS", "qt5");
+#  define QT_VERSION_SUFFIX " (Qt 5)"
+#else
+#  define QT_VERSION_SUFFIX ""
 #endif
     QApplication app(argc, argv);
 #else
@@ -47,6 +41,7 @@ int main(int argc, char *argv[])
 #endif
     app.setOrganizationName("webappjung");
     app.setOrganizationDomain("de.webappjung");
+    app.setApplicationVersion(GIT_VERSION QT_VERSION_SUFFIX);
 
     QQmlApplicationEngine engine;
 
@@ -72,7 +67,6 @@ int main(int argc, char *argv[])
     QGuiApplication::setFont(font);
 #endif
 
-    qmlRegisterSingletonType("de.webappjung", 1, 0, "AppInfo", appVersionSingletonProvider);
     qmlRegisterType<shareManager> ("de.webappjung", 1, 0, "ShareUtils");
 
     // Load the QML and set the Context:

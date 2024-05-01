@@ -5,7 +5,6 @@ import QtQuick.Controls.Material 2.4
 //import Qt.labs.settings 1.0
 import QtCore
 import QtQuick.Window 2.12
-import de.webappjung 1.0
 
 ApplicationWindow {
     id: window
@@ -187,7 +186,7 @@ ApplicationWindow {
 
         iconTitle: "CloudLogOffline"
         iconSource: "qrc:///images/logo_circle.svg"
-        iconSubtitle: "Version " + AppInfo.version
+        iconSubtitle: "Version " + Qt.application.version
 
         iconBgColorLeft: "#B0BEC5"
         iconBgColorRight: "#607D8B"
