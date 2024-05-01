@@ -26,8 +26,5 @@
         <file>qml/SettingsSwitch.qml</file>
         <file>qml/SettingsView.qml</file>
         <file>qml/TimePicker.qml</file>
-        <file>translations/Armenian.qm</file>
-        <file>translations/English.qm</file>
-        <file>translations/German.qm</file>
     </qresource>
 </RCC>

@@ -123,6 +123,8 @@ DISTFILES += qml/SettingsSwitch.qml
 DISTFILES += qml/SettingsView.qml
 DISTFILES += qml/TimePicker.qml
 
+CONFIG += lrelease embed_translations
+
 TRANSLATIONS += translations/Armenian.ts
 TRANSLATIONS += translations/English.ts
 TRANSLATIONS += translations/German.ts
