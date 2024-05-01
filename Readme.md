@@ -6,7 +6,7 @@
 
 CloudLogOffline is an app interface for [Cloudlog](https://github.com/magicbug/Cloudlog) the cloud logbook for HAM radio OMs and YLs by 2M0SQL.
 
-The main purpose of CloudLogOffline is the portable operating mode, where no Wifi or 3G/LTE is available, e.g. SOTA, IOTA or COTA. The logs can be stored in the app and when back to a internet connection, the log can be uploaded to a selfhosted Cloudlog instance. This app is developed as cross-plattform tool for macOS, iOS, iPadOS, Android, Windows, Linux using the Qt framework.
+The main purpose of CloudLogOffline is the portable operating mode, where no Wifi or 3G/LTE is available, e.g. SOTA, IOTA or COTA. The logs can be stored in the app and when back to a internet connection, the log can be uploaded to a selfhosted Cloudlog instance. This app is developed as cross-platform tool for macOS, iOS, iPadOS, Android, Windows, Linux using the Qt framework.
 
 Currently CloudLogOffline supports following features:
 
@@ -22,10 +22,11 @@ Currently CloudLogOffline supports following features:
 
 ## Build Instructions:
 
-There is just one requirement, which is [Qt 6](https://www.qt.io/download-open-source).
-On recent Debian-based system, you can install the system packages with
+There is just one requirement, which is [Qt](https://www.qt.io/download-open-source).
+We recommend Qt 6.6 or later.
+On recent Debian-based systems, you can install the Qt 6 system packages with
 ```bash
-sudo apt install qt6-base-dev qt6-declarative-dev qt6-positioning-dev qt6-svg-dev
+sudo apt install qmake6 qt6-base-dev qt6-base-private-dev qt6-base-dev-tools qt6-declarative-dev qt6-l10n-tools qt6-positioning-dev libqt6opengl6-dev libgl-dev libqt6sql6-sqlite libqt6svg6-dev qml6-module-qt5compat-graphicaleffects
 ```
 
 After installing Qt just follow these steps on command line:
