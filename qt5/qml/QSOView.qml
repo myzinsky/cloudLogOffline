@@ -384,9 +384,7 @@ Page {
                     padding: 0
 
                     onClicked: {
-                        var now = new Date();
-                        var utc = new Date(now.getTime() + now.getTimezoneOffset() * 60000);
-                        dateTextField.text = Qt.formatDateTime(utc, "dd.MM.yyyy");
+                        datePicker.open()
                     }
                 }
             }
