@@ -162,10 +162,6 @@
 <context>
     <name>Main</name>
     <message>
-        <source>CloudLog Offline Logbook</source>
-        <translation type="vanished">CloudLogOffline Գրանցումների ցանկ</translation>
-    </message>
-    <message>
         <source>CloudLogOffline Logbook</source>
         <translation>CloudLogOffline Գրանցումների ցանկ</translation>
     </message>

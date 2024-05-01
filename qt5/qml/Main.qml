@@ -186,7 +186,7 @@ ApplicationWindow {
     PageDrawer {
         id: drawer
 
-        iconTitle: "CloudLog Offline"
+        iconTitle: "CloudLogOffline"
         iconSource: "qrc:///images/logo_circle.svg"
         iconSubtitle: "Version " + AppInfo.version
 
