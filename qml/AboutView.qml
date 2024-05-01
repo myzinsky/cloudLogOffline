@@ -28,7 +28,7 @@ Page {
                 Layout.maximumWidth: scrollView.width
 
                 text: "<h1>About</h1>
-CloudLogApp is developed by Matthias Jung (DL9MJ, AJ9MJ) and hosted by DARC e.V.<br>The repeater list is provided by https://hearham.com<br>"
+CloudLogOffline is developed by Matthias Jung (DL9MJ, AJ9MJ) and hosted by DARC e.V.<br>The repeater list is provided by https://hearham.com<br>"
                 color: "white"
             }
 
