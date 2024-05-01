@@ -12,79 +12,79 @@
     <name>DatePicker</name>
     <message>
         <source>Su</source>
-        <translation>So</translation>
+        <translation type="vanished">So</translation>
     </message>
     <message>
         <source>Mo</source>
-        <translation>Mo</translation>
+        <translation type="vanished">Mo</translation>
     </message>
     <message>
         <source>Tu</source>
-        <translation>Di</translation>
+        <translation type="vanished">Di</translation>
     </message>
     <message>
         <source>We</source>
-        <translation>Mi</translation>
+        <translation type="vanished">Mi</translation>
     </message>
     <message>
         <source>Th</source>
-        <translation>Do</translation>
+        <translation type="vanished">Do</translation>
     </message>
     <message>
         <source>Fr</source>
-        <translation>Fr</translation>
+        <translation type="vanished">Fr</translation>
     </message>
     <message>
         <source>Sa</source>
-        <translation>Sa</translation>
+        <translation type="vanished">Sa</translation>
     </message>
     <message>
         <source>January</source>
-        <translation>Januar</translation>
+        <translation type="vanished">Januar</translation>
     </message>
     <message>
         <source>February</source>
-        <translation>Februar</translation>
+        <translation type="vanished">Februar</translation>
     </message>
     <message>
         <source>March</source>
-        <translation>März</translation>
+        <translation type="vanished">März</translation>
     </message>
     <message>
         <source>April</source>
-        <translation>April</translation>
+        <translation type="vanished">April</translation>
     </message>
     <message>
         <source>May</source>
-        <translation>Mai</translation>
+        <translation type="vanished">Mai</translation>
     </message>
     <message>
         <source>June</source>
-        <translation>Juni</translation>
+        <translation type="vanished">Juni</translation>
     </message>
     <message>
         <source>July</source>
-        <translation>Juli</translation>
+        <translation type="vanished">Juli</translation>
     </message>
     <message>
         <source>August</source>
-        <translation>August</translation>
+        <translation type="vanished">August</translation>
     </message>
     <message>
         <source>September</source>
-        <translation>September</translation>
+        <translation type="vanished">September</translation>
     </message>
     <message>
         <source>October</source>
-        <translation>Oktober</translation>
+        <translation type="vanished">Oktober</translation>
     </message>
     <message>
         <source>November</source>
-        <translation>November</translation>
+        <translation type="vanished">November</translation>
     </message>
     <message>
         <source>December</source>
-        <translation>Dezember</translation>
+        <translation type="vanished">Dezember</translation>
     </message>
 </context>
 <context>
@@ -449,11 +449,19 @@
     </message>
     <message>
         <source>No repeaters found: No GPS or no radius defined in settings!</source>
-        <translation>Keine Repeater gefunden: Kein GPS oder kein Radius in den Einstellungen konfiguriert!</translation>
+        <translation type="vanished">Keine Repeater gefunden: Kein GPS oder kein Radius in den Einstellungen konfiguriert!</translation>
     </message>
     <message>
         <source>Hear HAM Repeater List</source>
         <translation>Hear HAM Repeater Liste</translation>
+    </message>
+    <message>
+        <source>Waiting for position and repeaters</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hear HAM Repeater List disabled</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

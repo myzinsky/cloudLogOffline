@@ -9,85 +9,6 @@
     </message>
 </context>
 <context>
-    <name>DatePicker</name>
-    <message>
-        <source>Su</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Mo</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Tu</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>We</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Th</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Fr</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Sa</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>January</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>February</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>March</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>April</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>May</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>June</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>July</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>August</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>September</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>October</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>November</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>December</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>ExportView</name>
     <message>
         <source>Cloud Log:</source>
@@ -448,11 +369,15 @@
         <translation type="vanished">Repeater Book</translation>
     </message>
     <message>
-        <source>No repeaters found: No GPS or no radius defined in settings!</source>
+        <source>Hear HAM Repeater List</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Hear HAM Repeater List</source>
+        <source>Waiting for position and repeaters</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hear HAM Repeater List disabled</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
