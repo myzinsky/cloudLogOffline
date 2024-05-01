@@ -37,6 +37,10 @@ int main(int argc, char *argv[])
      * However, the Quick fallback dialog is ugly and cuts off large content.
      */
 #ifdef QT_WIDGETS_LIB
+#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
+    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    qputenv("QT_FILE_SELECTORS", "qt5");
+#endif
     QApplication app(argc, argv);
 #else
     QGuiApplication app(argc, argv);
