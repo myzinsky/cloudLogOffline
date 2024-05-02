@@ -44,14 +44,6 @@ ItemDelegate {
         return ""
     }
 
-    // Returns the title for the drawer item
-    function itemText (index) {
-        if (typeof (model.get (index).pageTitle) !== "undefined")
-            return model.get (index).pageTitle
-
-        return ""
-    }
-
     // Decide if we should highlight the item
     highlighted: ListView.isCurrentItem ? !isLink (index) : false
 
@@ -76,7 +68,7 @@ ItemDelegate {
         Label {
             opacity: 0.87
             font.pixelSize: 14
-            text: itemText (index)
+            text: pageTitle === undefined ? "" : pageTitle
             font.weight: Font.Medium
             Layout.fillWidth: true
             Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
