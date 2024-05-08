@@ -1,67 +1,108 @@
 ﻿#include "repeatermodel.h"
 
 #include <QCoreApplication>
+#include <QDir>
+#include <QFile>
+#include <QStandardPaths>
 
 #if QT_VERSION >= QT_VERSION_CHECK(6, 5, 0) && QT_CONFIG(permissions)
 #  define CLO_HAVE_QPERMISSION
 #  include <QPermissions>
 #endif
 
+namespace {
+
+QString calculateMaidenhead(double lat, double lon)
+{
+    static const QString alphabet = "ABCDEFGHIJKLMNOPQRSTUVWX";
+    static const QString numbers = "0123456789";
+
+    lat = qBound(0.0, lat + 90.0, 180.0);
+    lon = qBound(0.0, lon + 180.0, 360.0);
+
+    QString result {6, QChar::Space};
+    result[0] = alphabet.at(int(lon/20));
+    result[1] = alphabet.at(int(lat/10));
+    result[2] = numbers.at(int((lon/2))%10);
+    result[3] = numbers.at(int(lat)%10);
+    double lat_remainder = (lat - int(lat)) * 60;
+    double lon_remainder = ((lon) - int(lon/2)*2) * 60;
+    result[4] = alphabet.at(int(lon_remainder/5));
+    result[5] = alphabet.at(int(lat_remainder/2.5));
+    return result;
+}
+
+QGeoCoordinate fromMaidenhead(QString gridsquare)
+{
+    if (gridsquare.isEmpty())
+        return {};
+    
+    const auto bytes = gridsquare.toUpper().toUtf8();
+    double lat = (bytes[1] - 'A') * 10 + (bytes[3] - '0')     + (bytes[5] - 'A' + 0.5) * 2.5 / 60.0 - 90.0;
+    double lon = (bytes[0] - 'A') * 20 + (bytes[2] - '0') * 2 + (bytes[4] - 'A' + 0.5) * 5.0 / 60.0 - 180.0;
+    return { lat, lon };
+}
+
+
+bool saveToCache(const QString& identifier, const QByteArray& data)
+{
+    const auto cache_dir = QStandardPaths::writableLocation(QStandardPaths::CacheLocation);
+    if (!cache_dir.isEmpty() && QDir::root().mkpath(cache_dir))
+    {
+        auto file = QFile(cache_dir + '/' + identifier);
+        file.open(QIODevice::WriteOnly | QIODevice::Truncate) && file.write(data);
+        if (!file.error())
+        {
+            qDebug("SAVED %s to %s", qPrintable(identifier), qPrintable(cache_dir));
+            return true;
+        }
+    }
+    return false;
+}
+
+bool restoreFromCache(const QString& identifier, QByteArray &data)
+{
+    const auto cache_dir = QStandardPaths::writableLocation(QStandardPaths::CacheLocation);
+    auto file = QFile(cache_dir + '/' + identifier);
+    if (!cache_dir.isEmpty() && file.open(QIODevice::ReadOnly))
+    {
+        auto buffer = file.readAll();
+        if (!file.error())
+        {
+            data = buffer;
+            qDebug("RESTORED %s from %s", qPrintable(identifier), qPrintable(cache_dir));
+            return true;
+        }
+    }
+    return false;
+}
+
+}  // namespace
+
+
+/**
+ * Key behaviors
+ *
+ * Construction           -> empty model, empty locator, invalid data stamp
+ * tryStartPositioning()  -> check permissions, start positioning if granted,
+ *                           (optionally) init locator
+ * positionUpdated()      -> update coord and locator (if moved more that 50 m),
+ *                           emit locatorChanged on actual change
+ * getLoctor()            -> return current locator, init from settings if unknown
+ * getRepeaters()         -> request acquisition of repeater list (memory, disk, net)
+ * requestDatabase()      -> start networkmanager, start network request
+ * refreshModel()         -> update filtered data from full data and position
+ */
+
 
 rbManager::rbManager(QObject *parent)
     : QAbstractListModel(parent)
-{
-    nm = nullptr;
-    initialized = false;
-}
+{}
 
-rbManager::~rbManager()
-{
-    if(nm != nullptr) {
-        delete nm;
-    }
-}
+rbManager::~rbManager() = default;
 
-void rbManager::init()
-{
-    if(initialized == false) {
-        qDebug() << "INIT";
-        locator = "";
-        initialized = true;
 
-        source = QGeoPositionInfoSource::createDefaultSource(this);
-
-        connect(source,
-                SIGNAL(positionUpdated(QGeoPositionInfo)),
-                this,
-                SLOT(positionUpdated(QGeoPositionInfo)));
-
-        source->setUpdateInterval(60*1000);
-        source->startUpdates();
-    }
-}
-
-void rbManager::checkPermissions()
-{
-#ifdef CLO_HAVE_QPERMISSION
-    QLocationPermission preciselocationPermission;
-    preciselocationPermission.setAccuracy(QLocationPermission::Precise);
-
-    if(qApp->checkPermission(preciselocationPermission) != Qt::PermissionStatus::Granted) {
-        qApp->requestPermission(preciselocationPermission, this, [this](const QPermission &permission) {
-            if (permission.status() == Qt::PermissionStatus::Granted) {
-                qDebug() << "PRECISE PERMISSION GRANTED";
-                init();
-            } else {
-                qDebug() << "PRECISE PERMISSION NOT GRANTED";
-            }
-        });
-    } else {
-        qDebug() << "PRECISE PERMISSION ALREADY GRANTED";
-        init();
-    }
-#endif
-}
+// Qt list model interface
 
 int rbManager::rowCount(const QModelIndex &parent) const
 {
@@ -104,89 +145,171 @@ QHash<int, QByteArray> rbManager::roleNames() const
     return roles;
 }
 
+
+// Positioning
+
+void rbManager::tryStartPositioning()
+{
+    tryStartPositioning(locator);
+}
+
+void rbManager::tryStartPositioning(const QString& oldLocator)
+{
+    locator = oldLocator;
+    
+#ifdef CLO_HAVE_QPERMISSION
+    QLocationPermission preciselocationPermission;
+    preciselocationPermission.setAccuracy(QLocationPermission::Precise);
+
+    if(qApp->checkPermission(preciselocationPermission) != Qt::PermissionStatus::Granted) {
+        qApp->requestPermission(preciselocationPermission, this, [this](const QPermission &permission) {
+            if (permission.status() == Qt::PermissionStatus::Granted) {
+                qDebug() << "PRECISE PERMISSION GRANTED";
+                startPositioning();
+            } else {
+                qDebug() << "PRECISE PERMISSION NOT GRANTED";
+            }
+        });
+    }
+    
+    qDebug() << "PRECISE PERMISSION ALREADY GRANTED";
+#else
+    qDebug() << "PRECISE PERMISSION NOT IMPLEMENTED";
+#endif
+    startPositioning();
+}
+
+void rbManager::startPositioning()
+{
+    if (source)
+        return;
+    
+    source = QGeoPositionInfoSource::createDefaultSource(this);
+    if (source)
+    {
+        qDebug("INIT positioning, source: %s", qUtf8Printable(source->sourceName()));
+        connect(source, &QGeoPositionInfoSource::positionUpdated, this, &rbManager::positionUpdated);
+        source->setUpdateInterval(60*1000);
+        source->startUpdates();
+    } else {
+        qDebug("INIT positioning failed");
+    }
+}
+
+void rbManager::stopPositioning()
+{
+    if (source)
+    {
+        source->stopUpdates();
+        source->deleteLater();
+        source = nullptr;
+    }
+}
+
 void rbManager::positionUpdated(const QGeoPositionInfo &info)
 {
     qDebug() << "Position updated: " << info;
-    coord = info.coordinate();
-    calculateMaidenhead(coord.latitude(), coord.longitude());
-    getRepeaters();
-}
-
-void rbManager::getRepeaters()
-{
-    checkPermissions();
-    if (!nm)
+    if (!coord.isValid() || coord.distanceTo(info.coordinate()) >= 50)  // threshold: 50 m
     {
-        nm = new QNetworkAccessManager(this);
-        connect(nm,
-                SIGNAL(finished(QNetworkReply*)),
-                this,
-                SLOT(parseNetworkResponse(QNetworkReply*)));
+        coord = info.coordinate();
+        auto new_locator = calculateMaidenhead(coord.latitude(), coord.longitude());
+        if (new_locator != locator)
+        {
+            locator = new_locator;
+            emit locatorChanged(locator);
+        }
+        refreshModel(raw_database);
     }
-
-    //QString url = "https://www.repeaterbook.com/api/exportROW.php?country="+country;
-    QString url = "https://hearham.com/api/repeaters/v1";
-    nm->get(QNetworkRequest(QUrl(url)));
-}
-
-bool rbManager::filter(double rLat, double rLon, double radius)
-{
-    QGeoCircle circ(coord, 1000.0 * radius);
-    QGeoCoordinate repeater(rLat,rLon);
-    return circ.contains(repeater);
-}
-
-double rbManager::distance(double rLat, double rLon)
-{
-    QGeoCoordinate repeater(rLat,rLon);
-    return repeater.distanceTo(coord)/1000.0;
-}
-
-void rbManager::calculateMaidenhead(double lat, double lon)
-{
-    QString alphabet = "ABCDEFGHIJKLMNOPQRSTUVWX";
-
-    lat = lat + 90.0;
-    lon = lon + 180.0;
-
-    QString grid_lat_sq = alphabet.at(int(lat/10));
-    QString grid_lon_sq = alphabet.at(int(lon/20));
-    QString grid_lat_field = QString::number(int(lat)%10);
-    QString grid_lon_field = QString::number(int((lon/2))%10);
-    double lat_remainder = (lat - int(lat)) * 60;
-    double lon_remainder = ((lon) - int(lon/2)*2) * 60;
-    QString grid_lat_subsq = alphabet.at(int(lat_remainder/2.5));
-    QString grid_lon_subsq = alphabet.at(int(lon_remainder/5));
-
-    locator = grid_lon_sq + grid_lat_sq + grid_lon_field + grid_lat_field + grid_lon_subsq + grid_lat_subsq;
-    emit locatorDone(locator);
 }
 
 QString rbManager::getLocator()
 {
+    if (locator.isEmpty())
+    {
+        const auto gridsquare = settings.value("gridsquare").toString();
+        const auto approximate_coord = fromMaidenhead(gridsquare);
+        if (approximate_coord.isValid())
+        {
+            coord = approximate_coord;
+            locator = gridsquare;
+            emit locatorChanged(locator);
+        }
+    }
     return locator;
 }
 
-void rbManager::parseNetworkResponse(QNetworkReply *nreply) // from getRepeaters
+
+// Repeater list initialization and refresh
+
+void rbManager::getRepeaters()
 {
-    const QByteArray rawJson = nreply->readAll();
-    const QJsonDocument jsonResponse = QJsonDocument::fromJson(rawJson);
+    const auto accept_stamp = [](auto& stamp) -> bool {
+        return stamp.isValid() && qAbs(stamp.secsTo(QDateTime::currentDateTimeUtc())) < 12*3600; // 12 h
+    };
+    
+    // Use loaded unfiltered data as-is?
+    if (accept_stamp(raw_database_stamp))
+    {
+        refreshModel(raw_database);
+        return;
+    }
+    
+    // Use cache file
+    const auto cache_stamp = settings.value("rbCacheStamp").toDateTime();
+    if (accept_stamp(cache_stamp) && restoreFromCache("repeaters", raw_database))
+    {
+        // memory changed from disk
+        raw_database_stamp = cache_stamp;
+        refreshModel(raw_database);
+        return;
+    }
+    
+    // Use network.
+    if (!nm)
+    {
+        nm = new QNetworkAccessManager(this);
+        connect(nm, &QNetworkAccessManager::finished, this, &rbManager::parseNetworkResponse);
+    }
+    QNetworkRequest request(QUrl("http://hearham.com/api/repeaters/v1"));
+    request.setHeader(QNetworkRequest::UserAgentHeader, "CloudLogOffline/" GIT_VERSION);
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+    nm->get(request);
+}
 
-    const QJsonArray jsonRepeaters = jsonResponse.array();
+void rbManager::parseNetworkResponse(QNetworkReply* nreply)
+{
+    const QByteArray rawData = nreply->readAll();
+    if (refreshModel(rawData))
+    {
+        raw_database = rawData;
+        raw_database_stamp = QDateTime::currentDateTimeUtc();
+        if (saveToCache("repeaters", raw_database))
+            settings.setValue("rbCacheStamp", raw_database_stamp);
+    }
+}
 
+bool rbManager::refreshModel(const QByteArray& rawData)
+{
+    const QJsonDocument jsonResponse = QJsonDocument::fromJson(rawData);
+    if (jsonResponse.isNull())
+        return false;
+        
     beginResetModel();
     database.clear();
 
     double radius = settings.value("rbRadius").toDouble();
     if (radius <= 0.0)
         radius = 20.0;
-
+    const QGeoCircle neighborhood(coord, 1000.0 * radius);
+    
+    const QJsonArray jsonRepeaters = jsonResponse.array();
     for (const auto& jsonRepeater : jsonRepeaters) {
         const QJsonObject repeater = jsonRepeater.toObject();
         double rlat = repeater["latitude"].toDouble();
         double rlon = repeater["longitude"].toDouble();
+        auto repeaterCoord = QGeoCoordinate(rlat, rlon); 
 
-        if(filter(rlat, rlon, radius)) {
+        if (neighborhood.contains(repeaterCoord)) {
             qDebug() << "Found: " << repeater["callsign"].toString();
             relais r;
             r.call      = repeater["callsign"].toString();
@@ -194,7 +317,7 @@ void rbManager::parseNetworkResponse(QNetworkReply *nreply) // from getRepeaters
             r.lat       = QString::number(rlat);
             r.lon       = QString::number(rlon);
             r.shift     = QString::number(repeater["offset"].toDouble()/1000.0/1000.0);
-            r.distance  = distance(rlat, rlon);
+            r.distance  = coord.distanceTo(repeaterCoord) / 1000.0;
             r.tone      = repeater["decode"].toString();
             r.city      = repeater["city"].toString().split(QLatin1Char(','))[0];
             r.modes     = repeater["mode"].toString();
@@ -207,4 +330,5 @@ void rbManager::parseNetworkResponse(QNetworkReply *nreply) // from getRepeaters
     });
 
     endResetModel();
+    return true;
 }
