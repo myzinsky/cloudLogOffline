@@ -80,7 +80,7 @@ android {
 }
 
 # Default rules for deployment.
-!isEmpty(PREFIX):    target.path = $$PREFIX/bin
+!isEmpty(PREFIX):    target.path = $$(PREFIX)/bin
 else: qnx:           target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
