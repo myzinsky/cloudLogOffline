@@ -19,7 +19,7 @@ jobs:
           version: '6.6.*'
           setup-python: false
           modules: 'qtpositioning'
-      - name: build-dor
+      - name: build-dir
         run: mkdir build
       - name: qmake
         run: cd build && qmake ../CloudLogOffline.pro PREFIX=$GITHUB_WORKSPACE/install CONFIG+=qtquickcompiler
@@ -27,3 +27,26 @@ jobs:
         run: cd build && make -j5
       - name: make install
         run: cd build && make install
+      - name: list files
+        run: cd $GITHUB_WORKSPACE && find install
+
+  build-cmake:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Install ninja
+      uses: seanmiddleditch/gha-setup-ninja@v5
+    - name: Install Qt
+      uses: jurplel/install-qt-action@v3.0.0
+      with:
+        version: '6.6.*'
+        setup-python: false
+        modules: 'qtpositioning'
+    - name: configure
+      run: mkdir build && cmake -G Ninja -S . -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=$GITHUB_WORKSPACE/install
+    - name: build
+      run: cd build && cmake --build .
+    - name: install
+      run: cd build && cmake --build . --target install
+    - name: list files
+      run: cd $GITHUB_WORKSPACE && find install
