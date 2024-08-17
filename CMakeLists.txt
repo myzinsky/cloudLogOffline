@@ -16,14 +16,14 @@ endif()
 
 find_package(Qt6 ${minimum_qt_version} REQUIRED COMPONENTS Gui Positioning Quick Sql Svg Widgets Xml)
 
-add_executable(CloudLogOffline WIN32
+
+add_library(LibCloudLogOffline STATIC
     src/adiftools.cpp
     src/cabrillotools.cpp
     src/cloudlogmanager.cpp
     src/csvtools.cpp
     src/dbmanager.cpp
     src/logtools.cpp
-    src/main.cpp
     src/migrationmanager.cpp
     src/qrzmanager.cpp
     src/qsomodel.cpp
@@ -35,11 +35,11 @@ add_executable(CloudLogOffline WIN32
 )
 # IDE convenience
 file(GLOB headers "${CMAKE_CURRENT_SOURCE_DIR}/src/*.h")
-target_sources(CloudLogOffline PRIVATE ${headers})
+target_sources(LibCloudLogOffline PRIVATE ${headers})
 
-target_compile_definitions(CloudLogOffline PRIVATE GIT_VERSION="${PROJECT_VERSION}")
+target_compile_definitions(LibCloudLogOffline PUBLIC GIT_VERSION="${PROJECT_VERSION}")
 
-qt_add_resources(CloudLogOffline resources
+qt_add_resources(LibCloudLogOffline resources
     FILES
         # Qt6 qml
         qml/AboutView.qml
@@ -71,15 +71,22 @@ qt_add_resources(CloudLogOffline resources
         images/logo_square.svg
 )
 
-target_link_libraries(CloudLogOffline
-    PRIVATE
+target_link_libraries(LibCloudLogOffline
+    PUBLIC
         Qt::GuiPrivate
         Qt::Positioning
         Qt::Quick
         Qt::Sql
-        Qt::Svg
         Qt::Xml
+    PRIVATE
+        Qt::Svg
 )
+
+
+add_executable(CloudLogOffline WIN32 src/main.cpp)
+
+target_link_libraries(CloudLogOffline PRIVATE LibCloudLogOffline)
+
 if(NOT ANDROID AND NOT IOS)
     target_link_libraries(CloudLogOffline PRIVATE Qt::Widgets) # Cf. main.cpp
 endif()
