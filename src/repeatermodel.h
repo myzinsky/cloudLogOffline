@@ -31,8 +31,6 @@ class rbManager : public QAbstractListModel
 {
     Q_OBJECT
 
-    friend class MaidenheadTest;
-
     enum Role {
         call = Qt::UserRole,
         lati,
@@ -70,7 +68,6 @@ private:
     bool initialized;
     bool filter(double rLat, double rLon, double radius);
     double distance(double rLat, double rLon);
-    void calculateMaidenhead(double lat, double lon);
     void init();
 
     QList<relais> database;
