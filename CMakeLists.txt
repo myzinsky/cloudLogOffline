@@ -24,6 +24,7 @@ add_library(LibCloudLogOffline STATIC
     src/csvtools.cpp
     src/dbmanager.cpp
     src/logtools.cpp
+    src/maidenhead.cpp
     src/migrationmanager.cpp
     src/qrzmanager.cpp
     src/qsomodel.cpp

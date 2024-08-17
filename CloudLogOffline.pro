@@ -29,6 +29,7 @@ SOURCES += src/cloudlogmanager.cpp
 SOURCES += src/csvtools.cpp
 SOURCES += src/dbmanager.cpp
 SOURCES += src/logtools.cpp
+SOURCES += src/maidenhead.cpp
 SOURCES += src/main.cpp
 SOURCES += src/migrationmanager.cpp
 SOURCES += src/qrzmanager.cpp

@@ -2,6 +2,9 @@
 
 #include <QCoreApplication>
 
+#include "maidenhead.h"
+
+
 #if QT_VERSION >= QT_VERSION_CHECK(6, 5, 0) && QT_CONFIG(permissions)
 #  define CLO_HAVE_QPERMISSION
 #  include <QPermissions>
@@ -107,8 +110,8 @@ QHash<int, QByteArray> rbManager::roleNames() const
 void rbManager::positionUpdated(const QGeoPositionInfo &info)
 {
     qDebug() << "Position updated: " << info;
-    coord = info.coordinate();
-    calculateMaidenhead(coord.latitude(), coord.longitude());
+    locator = maidenhead::fromGeoCoordinate(info.coordinate());
+    emit locatorDone(locator);
     getRepeaters();
 }
 
@@ -140,26 +143,6 @@ double rbManager::distance(double rLat, double rLon)
 {
     QGeoCoordinate repeater(rLat,rLon);
     return repeater.distanceTo(coord)/1000.0;
-}
-
-void rbManager::calculateMaidenhead(double lat, double lon)
-{
-    QString alphabet = "ABCDEFGHIJKLMNOPQRSTUVWX";
-
-    lat = lat + 90.0;
-    lon = lon + 180.0;
-
-    QString grid_lat_sq = alphabet.at(int(lat/10));
-    QString grid_lon_sq = alphabet.at(int(lon/20));
-    QString grid_lat_field = QString::number(int(lat)%10);
-    QString grid_lon_field = QString::number(int((lon/2))%10);
-    double lat_remainder = (lat - int(lat)) * 60;
-    double lon_remainder = ((lon) - int(lon/2)*2) * 60;
-    QString grid_lat_subsq = alphabet.at(int(lat_remainder/2.5));
-    QString grid_lon_subsq = alphabet.at(int(lon_remainder/5));
-
-    locator = grid_lon_sq + grid_lat_sq + grid_lon_field + grid_lat_field + grid_lon_subsq + grid_lat_subsq;
-    emit locatorDone(locator);
 }
 
 QString rbManager::getLocator()
