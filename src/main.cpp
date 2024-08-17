@@ -31,9 +31,6 @@ int main(int argc, char *argv[])
 #if QT_VERSION < QT_VERSION_CHECK(6,0,0)
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     qputenv("QT_FILE_SELECTORS", "qt5");
-#  define QT_VERSION_SUFFIX " (Qt 5)"
-#else
-#  define QT_VERSION_SUFFIX ""
 #endif
     QApplication app(argc, argv);
 #else
@@ -41,6 +38,12 @@ int main(int argc, char *argv[])
 #endif
     app.setOrganizationName("webappjung");
     app.setOrganizationDomain("de.webappjung");
+
+#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
+#  define QT_VERSION_SUFFIX " (Qt 5)"
+#else
+#  define QT_VERSION_SUFFIX ""
+#endif
     app.setApplicationVersion(GIT_VERSION QT_VERSION_SUFFIX);
 
     QQmlApplicationEngine engine;
