@@ -46,6 +46,8 @@ jobs:
       run: mkdir build && cmake -G Ninja -S . -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=$GITHUB_WORKSPACE/install
     - name: build
       run: cd build && cmake --build .
+    - name: test
+      run: cd build && CTEST_OUTPUT_ON_FAILURE=1 QT_QPA_PLATFORM=offscreen cmake --build . --target test
     - name: install
       run: cd build && cmake --build . --target install
     - name: list files
