@@ -31,6 +31,8 @@ class rbManager : public QAbstractListModel
 {
     Q_OBJECT
 
+    friend class MaidenheadTest;
+
     enum Role {
         call = Qt::UserRole,
         lati,

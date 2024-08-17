@@ -92,3 +92,10 @@ if(NOT ANDROID AND NOT IOS)
 endif()
 
 install(TARGETS CloudLogOffline)
+
+
+option(BUILD_TESTING "Build tests" ON)
+if(BUILD_TESTING)
+    enable_testing()
+    add_subdirectory(tests)
+endif()
