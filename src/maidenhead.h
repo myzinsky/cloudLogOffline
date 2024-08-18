@@ -18,7 +18,7 @@ namespace maidenhead {
     QString fromLatLon(double lat, double lon);
 
     /// Produce representative geo coordinate from locator string.
-    QGeoCoordinate toGeoCoordinate(QString gridsquare);
+    QGeoCoordinate toGeoCoordinate(const QString& gridsquare);
 }
 
 #endif // CLO_MAIDENHEAD_H

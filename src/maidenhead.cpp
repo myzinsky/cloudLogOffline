@@ -32,9 +32,9 @@ QString fromLatLon(double lat, double lon)
     return result;
 }
 
-QGeoCoordinate toGeoCoordinate(QString gridsquare)
+QGeoCoordinate toGeoCoordinate(const QString& gridsquare)
 {
-    if (gridsquare.isEmpty())
+    if (gridsquare.length() != 6)
         return {};
 
     const auto bytes = gridsquare.toUpper().toUtf8();
