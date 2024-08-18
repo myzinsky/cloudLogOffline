@@ -14,7 +14,7 @@ if(ANDROID OR IOS)
     set(minimum_qt_version "6.5")
 endif()
 
-find_package(Qt6 ${minimum_qt_version} REQUIRED COMPONENTS Gui Positioning Quick Sql Svg Widgets Xml)
+find_package(Qt6 ${minimum_qt_version} REQUIRED COMPONENTS Gui LinguistTools Positioning Quick Sql Svg Widgets Xml)
 
 
 add_library(LibCloudLogOffline STATIC
@@ -70,6 +70,13 @@ qt_add_resources(LibCloudLogOffline resources
         images/logo_circle.png
         images/logo_circle.svg
         images/logo_square.svg
+)
+
+qt_add_translations(LibCloudLogOffline
+    TS_FILES
+        translations/Armenian.ts
+        translations/English.ts
+        translations/German.ts
 )
 
 target_link_libraries(LibCloudLogOffline
