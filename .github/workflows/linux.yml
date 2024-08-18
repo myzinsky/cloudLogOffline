@@ -9,20 +9,19 @@ on:
 
 
 jobs:
-  build:
+  build-qmake-qt5:
       runs-on: ubuntu-latest
       steps:
       - uses: actions/checkout@v4
       - name: Install Qt
         uses: jurplel/install-qt-action@v3.0.0
         with:
-          version: '6.6.*'
+          version: '5.12.*'
           setup-python: false
-          modules: 'qtpositioning'
       - name: build-dir
         run: mkdir build
       - name: qmake
-        run: cd build && qmake ../CloudLogOffline.pro PREFIX=$GITHUB_WORKSPACE/install CONFIG+=qtquickcompiler
+        run: cd build && qmake ../CloudLogOffline.pro PREFIX=$GITHUB_WORKSPACE/install QMAKE_CXXFLAGS+=-Wno-deprecated-copy
       - name: make
         run: cd build && make -j5
       - name: make install
@@ -30,7 +29,7 @@ jobs:
       - name: list files
         run: cd $GITHUB_WORKSPACE && find install
 
-  build-cmake:
+  build-cmake-qt6:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
