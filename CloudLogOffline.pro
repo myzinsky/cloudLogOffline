@@ -19,7 +19,7 @@ QT += core
 # cf. main.cpp
 !android:!ios: QT += widgets
 
-CONFIG += c++11
+CONFIG += c++14
 
 DEFINES += QT_DEPRECATED_WARNINGS
 
