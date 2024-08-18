@@ -1,19 +1,21 @@
 #ifndef RBMODEL_H
 #define RBMODEL_H
 
-#include <QGeoCoordinate>
-#include <QGeoPositionInfoSource>
-#include <QDebug>
-#include <QGeoLocation>
-#include <QJsonDocument>
-#include <QJsonObject>
-#include <QJsonArray>
-#include <QNetworkAccessManager>
-#include <QNetworkReply>
-#include <QGeoCircle>
-#include <QSettings>
 #include <QAbstractListModel>
+#include <QByteArray>
+#include <QElapsedTimer>
+#include <QGeoCoordinate>
+#include <QDateTime>
+#include <QSettings>
 #include <QString>
+
+QT_BEGIN_NAMESPACE
+class QGeoPositionInfo;
+class QGeoPositionInfoSource;
+class QNetworkAccessManager;
+class QNetworkReply;
+QT_END_NAMESPACE
+
 
 struct relais {
     QString call;
@@ -46,36 +48,41 @@ class rbManager : public QAbstractListModel
 public:
     rbManager(QObject *parent = nullptr);
     ~rbManager();
+
+    // Qt list model interface
     int rowCount(const QModelIndex &parent) const;
     QVariant data(const QModelIndex &index, int role) const;
     QHash<int, QByteArray> roleNames() const;
-
+    
+    // Positioning and locator interface
 signals:
     void locatorDone(const QString &locator);
 
 public slots:
     QString getLocator();
     void getRepeaters();
-    void checkPermissions();
-
+    void tryStartPositioning();
+    void tryStartPositioning(const QString& oldLocator);
+    void stopPositioning();
+    
 private:
-    QGeoPositionInfoSource *source;
-    QNetworkAccessManager *nm;
-
-    QString country;
-    QString locator;
-    QGeoCoordinate coord;
-    bool initialized;
-    bool filter(double rLat, double rLon, double radius);
-    double distance(double rLat, double rLon);
-    void init();
-
-    QList<relais> database;
-
+    void startPositioning();
+    
+    bool refreshModel(const QByteArray &rawData);
+    
 private Q_SLOTS:
     void positionUpdated(const QGeoPositionInfo &info);
     void parseNetworkResponse(QNetworkReply* nreply);
-
+    
+private:
+    QList<relais> database;
+    QString locator;
+    QGeoCoordinate coord;
+    
+    QGeoPositionInfoSource *source = nullptr;
+    QNetworkAccessManager *nm = nullptr;
+    QElapsedTimer request_timer;
+    
 protected:
     QSettings settings;
 };
