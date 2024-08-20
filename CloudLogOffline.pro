@@ -25,6 +25,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += src/adiftools.cpp
 SOURCES += src/cabrillotools.cpp
+SOURCES += src/cacheddata.cpp
 SOURCES += src/cloudlogmanager.cpp
 SOURCES += src/csvtools.cpp
 SOURCES += src/dbmanager.cpp
