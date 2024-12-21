@@ -20,6 +20,7 @@ find_package(Qt6 ${minimum_qt_version} REQUIRED COMPONENTS Gui LinguistTools Pos
 add_library(LibCloudLogOffline STATIC
     src/adiftools.cpp
     src/cabrillotools.cpp
+    src/cacheddata.cpp
     src/cloudlogmanager.cpp
     src/csvtools.cpp
     src/dbmanager.cpp

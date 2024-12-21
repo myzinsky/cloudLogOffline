@@ -1,7 +1,20 @@
 ﻿#include "repeatermodel.h"
 
 #include <QCoreApplication>
+#include <QDebug>
+#include <QDir>
+#include <QGeoCircle>
+#include <QGeoPositionInfo>
+#include <QGeoPositionInfoSource>
+#include <QJsonArray>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QFile>
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
+#include <QStandardPaths>
 
+#include "cacheddata.h"
 #include "maidenhead.h"
 
 
@@ -11,60 +24,29 @@
 #endif
 
 
+/**
+ * Key behaviors
+ *
+ * Construction           -> empty model, empty locator, invalid cood
+ * tryStartPositioning()  -> check permissions, start positioning if granted,
+ *                           (optionally) init locator
+ * positionUpdated()      -> update coord and locator (if moved more than threshold),
+ *                           emit locatorDone on actual change,
+ *                           refresh database on actual change or if empty
+ * getLocator()           -> return current locator, init from settings if unknown
+ * getRepeaters()         -> request update of repeater list (cache, network)
+ * refreshModel()         -> update filtered database from full data and current position
+ */
+
+
 rbManager::rbManager(QObject *parent)
     : QAbstractListModel(parent)
-{
-    nm = nullptr;
-    initialized = false;
-}
+{}
 
-rbManager::~rbManager()
-{
-    if(nm != nullptr) {
-        delete nm;
-    }
-}
+rbManager::~rbManager() = default;
 
-void rbManager::init()
-{
-    if(initialized == false) {
-        qDebug() << "INIT";
-        locator = "";
-        initialized = true;
 
-        source = QGeoPositionInfoSource::createDefaultSource(this);
-
-        connect(source,
-                SIGNAL(positionUpdated(QGeoPositionInfo)),
-                this,
-                SLOT(positionUpdated(QGeoPositionInfo)));
-
-        source->setUpdateInterval(60*1000);
-        source->startUpdates();
-    }
-}
-
-void rbManager::checkPermissions()
-{
-#ifdef CLO_HAVE_QPERMISSION
-    QLocationPermission preciselocationPermission;
-    preciselocationPermission.setAccuracy(QLocationPermission::Precise);
-
-    if(qApp->checkPermission(preciselocationPermission) != Qt::PermissionStatus::Granted) {
-        qApp->requestPermission(preciselocationPermission, this, [this](const QPermission &permission) {
-            if (permission.status() == Qt::PermissionStatus::Granted) {
-                qDebug() << "PRECISE PERMISSION GRANTED";
-                init();
-            } else {
-                qDebug() << "PRECISE PERMISSION NOT GRANTED";
-            }
-        });
-    } else {
-        qDebug() << "PRECISE PERMISSION ALREADY GRANTED";
-        init();
-    }
-#endif
-}
+// Qt list model interface
 
 int rbManager::rowCount(const QModelIndex &parent) const
 {
@@ -107,69 +89,163 @@ QHash<int, QByteArray> rbManager::roleNames() const
     return roles;
 }
 
+
+// Positioning
+
+void rbManager::tryStartPositioning()
+{
+    tryStartPositioning(locator);
+}
+
+void rbManager::tryStartPositioning(const QString& oldLocator)
+{
+    locator = oldLocator;
+    coord = maidenhead::toGeoCoordinate(locator);
+    
+#ifdef CLO_HAVE_QPERMISSION
+    QLocationPermission preciselocationPermission;
+    preciselocationPermission.setAccuracy(QLocationPermission::Precise);
+
+    if(qApp->checkPermission(preciselocationPermission) != Qt::PermissionStatus::Granted) {
+        qApp->requestPermission(preciselocationPermission, this, [this](const QPermission &permission) {
+            if (permission.status() == Qt::PermissionStatus::Granted) {
+                qDebug() << "PRECISE PERMISSION GRANTED";
+                startPositioning();
+            } else {
+                qDebug() << "PRECISE PERMISSION NOT GRANTED";
+            }
+        });
+    }
+    
+    qDebug() << "PRECISE PERMISSION ALREADY GRANTED";
+#else
+    qDebug() << "PRECISE PERMISSION NOT IMPLEMENTED";
+#endif
+    startPositioning();
+}
+
+void rbManager::startPositioning()
+{
+    if (source)
+        return;
+
+    source = QGeoPositionInfoSource::createDefaultSource(this);
+    if (source)
+    {
+        qDebug("INIT positioning, source: %s", qUtf8Printable(source->sourceName()));
+        connect(source, &QGeoPositionInfoSource::positionUpdated, this, &rbManager::positionUpdated);
+        source->setUpdateInterval(60*1000);
+        source->startUpdates();
+    } else {
+        qDebug("INIT positioning failed");
+    }
+}
+
+void rbManager::stopPositioning()
+{
+    if (source)
+    {
+        source->stopUpdates();
+        source->deleteLater();
+        source = nullptr;
+    }
+}
+
 void rbManager::positionUpdated(const QGeoPositionInfo &info)
 {
     qDebug() << "Position updated: " << info;
-    locator = maidenhead::fromGeoCoordinate(info.coordinate());
-    emit locatorDone(locator);
-    getRepeaters();
-}
-
-void rbManager::getRepeaters()
-{
-    checkPermissions();
-    if (!nm)
+    if (!coord.isValid() || coord.distanceTo(info.coordinate()) >= 2)  // threshold: 2 m
     {
-        nm = new QNetworkAccessManager(this);
-        connect(nm,
-                SIGNAL(finished(QNetworkReply*)),
-                this,
-                SLOT(parseNetworkResponse(QNetworkReply*)));
+        coord = info.coordinate();
+        auto new_locator = maidenhead::fromGeoCoordinate(coord);
+        if (new_locator != locator)
+        {
+            locator = new_locator;
+            emit locatorDone(locator);
+            getRepeaters();
+        }
+        else if(database.isEmpty())
+        {
+            getRepeaters();
+        }
     }
-
-    //QString url = "https://www.repeaterbook.com/api/exportROW.php?country="+country;
-    QString url = "https://hearham.com/api/repeaters/v1";
-    nm->get(QNetworkRequest(QUrl(url)));
-}
-
-bool rbManager::filter(double rLat, double rLon, double radius)
-{
-    QGeoCircle circ(coord, 1000.0 * radius);
-    QGeoCoordinate repeater(rLat,rLon);
-    return circ.contains(repeater);
-}
-
-double rbManager::distance(double rLat, double rLon)
-{
-    QGeoCoordinate repeater(rLat,rLon);
-    return repeater.distanceTo(coord)/1000.0;
 }
 
 QString rbManager::getLocator()
 {
+    if (locator.isEmpty())
+    {
+        const auto gridsquare = settings.value("gridsquare").toString();
+        const auto approximate_coord = maidenhead::toGeoCoordinate(gridsquare);
+        if (approximate_coord.isValid())
+        {
+            coord = approximate_coord;
+            locator = gridsquare;
+            emit locatorDone(locator);
+        }
+    }
     return locator;
 }
 
-void rbManager::parseNetworkResponse(QNetworkReply *nreply) // from getRepeaters
+
+// Repeater list initialization and refresh
+
+void rbManager::getRepeaters()
 {
-    const QByteArray rawJson = nreply->readAll();
-    const QJsonDocument jsonResponse = QJsonDocument::fromJson(rawJson);
+    QByteArray cachedData;
+    const auto max_age = 24*3600; // 24 h
+    if (cachedData::restore("repeaters", cachedData, max_age))
+    {
+        refreshModel(cachedData);
+        return;
+    }
 
-    const QJsonArray jsonRepeaters = jsonResponse.array();
+    // Use network.
+    if (!nm)
+    {
+        nm = new QNetworkAccessManager(this);
+        connect(nm, &QNetworkAccessManager::finished, this, &rbManager::parseNetworkResponse);
+    }
+    else if (request_timer.isValid() && request_timer.elapsed() < 60*1000 /*milliseconds*/)
+    {
+        return;  // rate limiting
+    }
+    QNetworkRequest request(QUrl("http://hearham.com/api/repeaters/v1"));
+    request.setHeader(QNetworkRequest::UserAgentHeader, "CloudLogOffline/" GIT_VERSION);
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+    nm->get(request);
+}
 
+void rbManager::parseNetworkResponse(QNetworkReply* nreply)
+{
+    request_timer.invalidate();
+    const QByteArray rawData = nreply->readAll();
+    if (refreshModel(rawData))
+        cachedData::save("repeaters", rawData);
+}
+
+bool rbManager::refreshModel(const QByteArray& rawData)
+{
+    const QJsonDocument jsonResponse = QJsonDocument::fromJson(rawData);
+    if (jsonResponse.isNull())
+        return false;
+        
     beginResetModel();
     database.clear();
 
     double radius = settings.value("rbRadius").toDouble();
     if (radius <= 0.0)
         radius = 20.0;
-
+    const QGeoCircle neighborhood(coord, 1000.0 * radius);
+    
+    const QJsonArray jsonRepeaters = jsonResponse.array();
     for (const auto& jsonRepeater : jsonRepeaters) {
         const QJsonObject repeater = jsonRepeater.toObject();
         double rlat = repeater["latitude"].toDouble();
         double rlon = repeater["longitude"].toDouble();
+        auto repeaterCoord = QGeoCoordinate(rlat, rlon); 
 
-        if(filter(rlat, rlon, radius)) {
+        if (neighborhood.contains(repeaterCoord)) {
             qDebug() << "Found: " << repeater["callsign"].toString();
             relais r;
             r.call      = repeater["callsign"].toString();
@@ -177,7 +253,7 @@ void rbManager::parseNetworkResponse(QNetworkReply *nreply) // from getRepeaters
             r.lat       = QString::number(rlat);
             r.lon       = QString::number(rlon);
             r.shift     = QString::number(repeater["offset"].toDouble()/1000.0/1000.0);
-            r.distance  = distance(rlat, rlon);
+            r.distance  = coord.distanceTo(repeaterCoord) / 1000.0;
             r.tone      = repeater["decode"].toString();
             r.city      = repeater["city"].toString().split(QLatin1Char(','))[0];
             r.modes     = repeater["mode"].toString();
@@ -190,4 +266,5 @@ void rbManager::parseNetworkResponse(QNetworkReply *nreply) // from getRepeaters
     });
 
     endResetModel();
+    return true;
 }
