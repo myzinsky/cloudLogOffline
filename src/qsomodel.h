@@ -84,6 +84,11 @@ public slots:
 signals:
     void updateNumberOfQSOs(int number);
 
+    // For the DxQSO sync. The int is the QSO's id in the qsos table, not its row in the model.
+    void qsoInserted(int id);
+    void qsoEdited(int id);
+    void qsoAboutToBeDeleted(int id);
+
 protected:
     QString selectStatement() const override;
 };

@@ -53,9 +53,9 @@ public:
             );
 
     QString generate();
+    QString band(QString freq);
 
 private:
-    QString band(QString freq);
     QString convertDate(QString date);
     QString convertTime(QString time);
     QString convertFreq(QString freq);

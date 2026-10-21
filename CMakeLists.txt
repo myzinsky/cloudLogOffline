@@ -15,6 +15,10 @@ if(ANDROID OR IOS)
 endif()
 
 find_package(Qt6 ${minimum_qt_version} REQUIRED COMPONENTS Gui LinguistTools Positioning Quick Sql Svg Widgets Xml)
+# Qt 6.10 and later only define Qt::GuiPrivate when it is asked for by name.
+if(Qt6_VERSION VERSION_GREATER_EQUAL 6.10)
+    find_package(Qt6 REQUIRED COMPONENTS GuiPrivate)
+endif()
 
 
 add_library(LibCloudLogOffline STATIC
@@ -24,6 +28,7 @@ add_library(LibCloudLogOffline STATIC
     src/cloudlogmanager.cpp
     src/csvtools.cpp
     src/dbmanager.cpp
+    src/dxqsomanager.cpp
     src/logtools.cpp
     src/maidenhead.cpp
     src/migrationmanager.cpp
@@ -41,10 +46,18 @@ target_sources(LibCloudLogOffline PRIVATE ${headers})
 
 target_compile_definitions(LibCloudLogOffline PUBLIC GIT_VERSION="${PROJECT_VERSION}")
 
+# DxQSO sync: the vendor token naming this app to DxQSO. Not a secret, but kept out of the
+# repository: pass -DDXQSO_VENDOR_TOKEN=... when building a tester build.
+set(DXQSO_VENDOR_TOKEN "" CACHE STRING "DxQSO vendor token baked into the build")
+if(DXQSO_VENDOR_TOKEN)
+    target_compile_definitions(LibCloudLogOffline PRIVATE DXQSO_VENDOR_TOKEN="${DXQSO_VENDOR_TOKEN}")
+endif()
+
 qt_add_resources(LibCloudLogOffline resources
     FILES
         # Qt6 qml
         qml/AboutView.qml
+        qml/AppMessage.qml
         qml/DatePicker.qml
         qml/DrawerItem.qml
         qml/ExportHeader.qml

@@ -26,12 +26,16 @@ CONFIG += c++14
 
 DEFINES += QT_DEPRECATED_WARNINGS
 
+# DxQSO sync: qmake DXQSO_VENDOR_TOKEN=... for a tester build (the repository copy stays empty).
+!isEmpty(DXQSO_VENDOR_TOKEN): DEFINES += DXQSO_VENDOR_TOKEN=\\\"$$DXQSO_VENDOR_TOKEN\\\"
+
 SOURCES += src/adiftools.cpp
 SOURCES += src/cabrillotools.cpp
 SOURCES += src/cacheddata.cpp
 SOURCES += src/cloudlogmanager.cpp
 SOURCES += src/csvtools.cpp
 SOURCES += src/dbmanager.cpp
+SOURCES += src/dxqsomanager.cpp
 SOURCES += src/logtools.cpp
 SOURCES += src/maidenhead.cpp
 SOURCES += src/main.cpp
@@ -95,6 +99,7 @@ HEADERS += src/cabrillotools.h
 HEADERS += src/cloudlogmanager.h
 HEADERS += src/csvtools.h
 HEADERS += src/dbmanager.h
+HEADERS += src/dxqsomanager.h
 HEADERS += src/logtools.h
 HEADERS += src/migrationmanager.h
 HEADERS += src/qrzmanager.h

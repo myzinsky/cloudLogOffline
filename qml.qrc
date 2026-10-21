@@ -1,6 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>qml/AboutView.qml</file>
+        <file>qml/AppMessage.qml</file>
         <file>qml/DatePicker.qml</file>
         <file>qml/DrawerItem.qml</file>
         <file>qml/ExportHeader.qml</file>

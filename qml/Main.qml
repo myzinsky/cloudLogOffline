@@ -41,6 +41,8 @@ ApplicationWindow {
 
     Component.onCompleted:  {
         tm.switchToLanguage(settings.language)
+        dx.configure(settings.dxqsoApiUrl, settings.dxqsoToken, settings.dxqsoActive,
+                     settings.dxqsoRealtime, settings.dxqsoDownload)
         //notchTop = tools.getSafeAreaMargins(window)["top"] // iPhoneX workaround
 
         console.log("load settings.language:" + settings.language)
@@ -81,6 +83,12 @@ ApplicationWindow {
         property string cloudLogKey
         property int cloudLogStationId
         property bool cloudLogActive
+
+        property bool dxqsoActive
+        property string dxqsoToken
+        property string dxqsoApiUrl: "https://api.dxqso.net"
+        property bool dxqsoRealtime: true
+        property bool dxqsoDownload: true
 
         property string qrzUser
         property string qrzPass

@@ -18,9 +18,66 @@ SwipeDelegate {
     opacity: 1.0
     scale: 1.0
 
-    checkable: true
-    checked: swipe.complete
-    onCheckedChanged: if (!checked) swipe.close()
+    // A click opens the QSO for editing (a click on a swiped-open row closes it). Swiping still
+    // shows the edit and delete buttons; with a mouse a swipe is a drag, which nobody finds.
+    onClicked: {
+        if (swipe.position !== 0) {
+            swipe.close()
+        } else {
+            openEditor()
+        }
+    }
+
+    // The delete confirmation (AppMessage: the native macOS dialog never opened, so a click on
+    // the red button did nothing).
+    AppMessage {
+        id: deleteConfirm
+        title: qsTr("Delete?")
+        question: true
+        text: (settings.dxqsoActive
+               ? qsTr("Delete this QSO here and on DxQSO?")
+               : qsTr("Delete this QSO?"))
+              + "\n\n" + model.call.toUpperCase() + "  " + model.date + "  " + model.time
+        onAccepted: qsoModel.deleteQSO(index)
+        onRejected: swipe.close()
+    }
+
+    function openEditor() {
+        stackView.push("QSOViewWrapper.qml", {
+            "addQSO"      : false,
+            "liveQSO"     : false,
+            "updateQSO"   : true,
+            "repeaterQSO" : false,
+
+            "rid"         : index,
+            "date"        : model.date,
+            "time"        : model.time,
+            "call"        : model.call,
+            "mode"        : model.mode,
+            "freq"        : model.freq,
+            "sent"        : model.sent,
+            "recv"        : model.recv,
+            "name"        : model.name,
+            "ctry"        : model.ctry,
+            "grid"        : model.grid,
+            "qqth"        : model.qqth,
+            "comm"        : model.comm,
+            "ctss"        : model.ctss,
+            "ctsr"        : model.ctsr,
+            "sync"        : model.sync,
+            "sota"        : model.sota,
+            "sots"        : model.sots,
+            "wwff"        : model.wwff,
+            "wwfs"        : model.wwfs,
+            "pota"        : model.pota,
+            "pots"        : model.pots,
+            "satn"        : model.satn,
+            "satm"        : model.satm,
+            "propmode"    : model.propmode,
+            "rxfreq"      : model.rxfreq,
+            "loca"        : model.loca,
+        });
+    }
 
     contentItem: Item {
         id: element
@@ -332,40 +389,7 @@ SwipeDelegate {
 
             onClicked: {
                 swipe.close()
-                console.log("Goto QSOViewWrapper.qml")
-                stackView.push("QSOViewWrapper.qml", {
-                    "addQSO"      : false,
-                    "liveQSO"     : false,
-                    "updateQSO"   : true,
-                    "repeaterQSO" : false,
-
-                    "rid"         : index,
-                    "date"        : model.date,
-                    "time"        : model.time,
-                    "call"        : model.call,
-                    "mode"        : model.mode,
-                    "freq"        : model.freq,
-                    "sent"        : model.sent,
-                    "recv"        : model.recv,
-                    "name"        : model.name,
-                    "ctry"        : model.ctry,
-                    "grid"        : model.grid,
-                    "qqth"        : model.qqth,
-                    "comm"        : model.comm,
-                    "ctss"        : model.ctss,
-                    "ctsr"        : model.ctsr,
-                    "sync"        : model.sync,
-                    "sota"        : model.sota,
-                    "sots"        : model.sots,
-                    "wwff"        : model.wwff,
-                    "wwfs"        : model.wwfs,
-                    "pota"        : model.pota,
-                    "pots"        : model.pots,
-                    "satn"        : model.satn,
-                    "satm"        : model.satm,
-                    "propmode"    : model.propmode,
-                    "rxfreq"      : model.rxfreq,
-                });
+                openEditor()
             }
         }
     }
@@ -391,9 +415,10 @@ SwipeDelegate {
                 opacity: 0.87
             }
 
-            onClicked: {
-                qsoModel.deleteQSO(index)
-            }
+            // One click used to delete with no way back; with DxQSO sync on it also deletes the
+            // QSO on DxQSO. Ask first.
+            onClicked: deleteConfirm.open()
         }
+
     }
 }

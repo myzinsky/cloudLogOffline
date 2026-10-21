@@ -2,7 +2,6 @@ import QtQuick 2.12
 import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.1
 import QtQuick.Controls.Material 2.4
-import Qt.labs.platform 1.1
 
 Page {
     id: page
@@ -15,9 +14,8 @@ Page {
         qrz.lookupCall(call)
     }
 
-    MessageDialog {
+    AppMessage {
         id: qrzMessage
-        buttons: MessageDialog.Ok
     }
 
     Connections{

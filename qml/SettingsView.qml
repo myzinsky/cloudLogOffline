@@ -48,6 +48,14 @@ Page {
         settings.cloudLogStationId = cloudLogStationId.text;
         settings.cloudLogActive    = cloudLogSwitch.checked;
 
+        settings.dxqsoActive   = dxqsoSwitch.checked;
+        settings.dxqsoToken    = dxqsoToken.text.trim();
+        settings.dxqsoApiUrl   = dxqsoApiUrl.text.trim();
+        settings.dxqsoRealtime = dxqsoRealtime.checked;
+        settings.dxqsoDownload = dxqsoDownload.checked;
+        dx.configure(settings.dxqsoApiUrl, settings.dxqsoToken, settings.dxqsoActive,
+                     settings.dxqsoRealtime, settings.dxqsoDownload);
+
         settings.qrzUser   = qrzUser.text;
         settings.qrzPass   = qrzPass.text;
         settings.qrzActive = qrzSwitch.checked;
@@ -120,6 +128,16 @@ Page {
 
         function onApiKeyInvalid() {
             apiKeyInvalid();
+        }
+    }
+
+    Connections{
+        target: dx
+        function onKeyTestResult(ok, message) {
+            dxqsoKeyTestButton.highlighted = true
+            dxqsoKeyTestButton.Material.theme = Material.Light
+            dxqsoKeyTestButton.Material.accent = ok ? Material.Green : Material.Red
+            dxqsoKeyInfo.text = message
         }
     }
 
@@ -492,6 +510,108 @@ Page {
                 onTextEdited: saveSettings()
                 onEditingFinished: saveSettings()
 
+                Layout.rightMargin: 10
+                Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+            }
+
+            // ----------------
+
+            SettingsSwitch {
+                id: dxqsoSwitch
+                icon: "\uf021"
+                text: qsTr("DxQSO Sync")
+                helpText: qsTr("Two-way sync with DxQSO (dxqso.org). Paste a station token (or an account key) from the Stations page on dxqso.net. QSOs logged here go to that DxQSO Station, and QSOs added, edited or deleted on DxQSO come back here. Deleting a QSO here deletes it on DxQSO too; Delete All QSOs on the Export page only clears this device.")
+                Layout.columnSpan: 2
+                checked: settings.dxqsoActive
+            }
+
+            Label {
+                text: qsTr("Key") + ":"
+                visible: dxqsoSwitch.checked
+                Layout.leftMargin: 10
+                Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+            }
+
+            GridLayout {
+                visible: dxqsoSwitch.checked
+                columns: 2
+                Layout.rightMargin: 10
+                Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+
+                TextField {
+                    id: dxqsoToken
+                    Layout.fillWidth: true
+                    text: settings.dxqsoToken
+                    echoMode: TextInput.Password
+                    onEditingFinished: saveSettings()
+                    onTextEdited: dxqsoKeyInfo.text = dx.describeKey(text)
+                }
+
+                Button {
+                    id: dxqsoKeyTestButton
+                    text : qsTr("Test Key")
+                    onClicked: {
+                        dx.testKey(dxqsoApiUrl.text, dxqsoToken.text);
+                    }
+                }
+            }
+
+            Label {
+                id: dxqsoKeyInfo
+                visible: dxqsoSwitch.checked && text.length > 0
+                text: dx.describeKey(settings.dxqsoToken)
+                wrapMode: Text.WordWrap
+                opacity: 0.7
+                Layout.columnSpan: 2
+                Layout.fillWidth: true
+                Layout.leftMargin: 10
+                Layout.rightMargin: 10
+            }
+
+            Label {
+                text: qsTr("Send each QSO when saved") + ":"
+                visible: dxqsoSwitch.checked
+                Layout.leftMargin: 10
+                Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+            }
+
+            Switch {
+                id: dxqsoRealtime
+                visible: dxqsoSwitch.checked
+                checked: settings.dxqsoRealtime
+                Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+                onToggled: saveSettings()
+            }
+
+            Label {
+                text: qsTr("Download from DxQSO") + ":"
+                visible: dxqsoSwitch.checked
+                Layout.leftMargin: 10
+                Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+            }
+
+            Switch {
+                id: dxqsoDownload
+                visible: dxqsoSwitch.checked
+                checked: settings.dxqsoDownload
+                Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+                onToggled: saveSettings()
+            }
+
+            Label {
+                text: qsTr("Server") + ":"
+                visible: dxqsoSwitch.checked
+                Layout.leftMargin: 10
+                Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+            }
+
+            TextField {
+                id: dxqsoApiUrl
+                Layout.fillWidth: true
+                visible: dxqsoSwitch.checked
+                text: settings.dxqsoApiUrl
+                placeholderText: "https://api.dxqso.net"
+                onEditingFinished: saveSettings()
                 Layout.rightMargin: 10
                 Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
             }

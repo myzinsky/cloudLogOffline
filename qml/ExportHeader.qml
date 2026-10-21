@@ -2,7 +2,6 @@ import QtQuick 2.12
 import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.1
 import QtQuick.Controls.Material 2.4
-import Qt.labs.platform 1.1
 
 Rectangle {
     height: 48
@@ -23,9 +22,8 @@ Rectangle {
         anchors.verticalCenter: parent.verticalCenter
     }
 
-    MessageDialog {
+    AppMessage {
         id: helpMessage
-        buttons: MessageDialog.Ok
     }
 
     Label {

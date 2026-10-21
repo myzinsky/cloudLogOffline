@@ -2,7 +2,6 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import QtQuick.Controls.Material
-import Qt.labs.platform // Qt 6.3: QtQuick.Dialogs
 //import Qt.labs.settings
 import de.webappjung 1.0
 
@@ -11,9 +10,8 @@ Page {
     title: "Export"
     anchors.margins: 5
 
-    MessageDialog {
+    AppMessage {
         id: cloudLogMessage
-        buttons: MessageDialog.Ok
     }
 
     Connections{
@@ -30,6 +28,36 @@ Page {
         }
     }
 
+    // Set when the button starts a sync, so that sync (and only that one) answers in a dialog;
+    // automatic syncs only update the lines under the button.
+    property bool dxqsoSyncRequested: false
+
+    function refreshDxqso() {
+        dxqsoWaiting.text = qsTr("Waiting to be sent") + ": " + dx.waitingCount()
+        dxqsoRejected.text = dx.rejectedQsos().join("\n")
+    }
+
+    Connections{
+        target: dx
+
+        function onSyncFailed(error) {
+            refreshDxqso()
+            dxqsoSyncRequested = false
+            cloudLogMessage.text = error
+            console.log(error)
+            cloudLogMessage.open()
+        }
+
+        function onSyncFinished(summary) {
+            refreshDxqso()
+            if (dxqsoSyncRequested) {
+                dxqsoSyncRequested = false
+                cloudLogMessage.text = "DxQSO: " + summary
+                cloudLogMessage.open()
+            }
+        }
+    }
+
     ScrollView {
         anchors.fill: parent
         contentWidth: -1
@@ -38,6 +66,71 @@ Page {
             id: grid
             columns: 2
             width: page.width // Important
+
+            ExportHeader {
+                icon: "\uf021"
+                text: "DxQSO"
+                helpText: qsTr("Two-way sync with DxQSO. It runs by itself when a QSO is saved, when the app is opened and every 15 minutes while it is open; this button runs it now. The key is set in the Settings.")
+                Layout.columnSpan: 2
+            }
+
+            IconButton {
+                id: dxqsoSync
+                buttonIcon: "\uf021"
+                text: dx.busy ? qsTr("Syncing with DxQSO…") : qsTr("Sync with DxQSO now")
+                Layout.fillWidth: true
+                highlighted: settings.dxqsoActive
+                enabled: settings.dxqsoActive && !dx.busy
+                Material.theme: Material.Light
+                Material.accent: Material.Green
+                Layout.columnSpan: 2
+
+                onClicked: {
+                    dxqsoSyncRequested = true
+                    dx.syncFromButton()
+                }
+            }
+
+            Label {
+                id: dxqsoWaiting
+                visible: settings.dxqsoActive
+                text: qsTr("Waiting to be sent") + ": " + dx.waitingCount()
+                Layout.columnSpan: 2
+                Layout.leftMargin: 10
+            }
+
+            Label {
+                visible: settings.dxqsoActive && dxqsoRejected.text.length > 0
+                text: qsTr("Not sent to DxQSO. Edit the QSO to fix it and it is sent again:")
+                wrapMode: Text.WordWrap
+                color: Material.color(Material.Orange)
+                Layout.columnSpan: 2
+                Layout.fillWidth: true
+                Layout.leftMargin: 10
+                Layout.rightMargin: 10
+            }
+
+            Label {
+                id: dxqsoRejected
+                visible: settings.dxqsoActive && text.length > 0
+                text: dx.rejectedQsos().join("\n")
+                wrapMode: Text.WordWrap
+                Layout.columnSpan: 2
+                Layout.fillWidth: true
+                Layout.leftMargin: 20
+                Layout.rightMargin: 10
+            }
+
+            Label {
+                visible: settings.dxqsoActive && dx.status.length > 0
+                text: qsTr("Last sync") + ": " + dx.status
+                wrapMode: Text.WordWrap
+                opacity: 0.7
+                Layout.columnSpan: 2
+                Layout.fillWidth: true
+                Layout.leftMargin: 10
+                Layout.rightMargin: 10
+            }
 
             ExportHeader {
                 icon: "\uf0c2"
@@ -109,11 +202,11 @@ Page {
                 }
             }
 
-            MessageDialog {
+            AppMessage {
                 id: deleteUploadedMessage
                 title: qsTr("Delete?")
                 text: qsTr("Delete all Uploaded QSOs?")
-                buttons: MessageDialog.Yes | MessageDialog.No
+                question: true
                 onAccepted : {
                     console.log("Delete Uploaded QSOs")
                     cl.deleteUploadedQsos()
@@ -122,7 +215,7 @@ Page {
                 }
             }
 
-            MessageDialog {
+            AppMessage {
                 id: exportMessage
                 title: qsTr("Exported")
                 text: qsTr("Copied to Clipboard")
@@ -171,12 +264,12 @@ Page {
                 }
             }
 
-            MessageDialog {
+            AppMessage {
                 id: deleteMessage
                 title: qsTr("Delete?")
                 //icon: StandardIcon.Question
-                text: qsTr("Delete all QSOs?")
-                buttons: MessageDialog.Yes | MessageDialog.No
+                text: settings.dxqsoActive ? qsTr("Delete all QSOs on this device? They stay on DxQSO.") : qsTr("Delete all QSOs?")
+                question: true
                 onAccepted : {
                     console.log("Delete all QSOs")
                     cl.deleteQsos()

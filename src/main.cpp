@@ -14,6 +14,7 @@
 #include "qrzmanager.h"
 #include "rigmanager.h"
 #include "cloudlogmanager.h"
+#include "dxqsomanager.h"
 #include "translationmanager.h"
 #include "tools.h"
 #include "sharemanager.h"
@@ -56,6 +57,10 @@ int main(int argc, char *argv[])
     qsoModel qModel;
     rbManager rb;
     cloudlogManager cl(&qModel);
+    dxqsoManager dx(&qModel);
+    QObject::connect(&qModel, &qsoModel::qsoInserted, &dx, &dxqsoManager::qsoInserted);
+    QObject::connect(&qModel, &qsoModel::qsoEdited, &dx, &dxqsoManager::qsoEdited);
+    QObject::connect(&qModel, &qsoModel::qsoAboutToBeDeleted, &dx, &dxqsoManager::qsoAboutToBeDeleted);
     translationManager tm(&app, &engine);
     tools t;
 
@@ -78,6 +83,7 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("qrz", QVariant::fromValue(&qrz));
     engine.rootContext()->setContextProperty("rig", QVariant::fromValue(&rig));
     engine.rootContext()->setContextProperty("cl", QVariant::fromValue(&cl));
+    engine.rootContext()->setContextProperty("dx", QVariant::fromValue(&dx));
     engine.rootContext()->setContextProperty("tm", QVariant::fromValue(&tm));
     engine.rootContext()->setContextProperty("tools", QVariant::fromValue(&t));
     engine.rootContext()->setContextProperty("database", QVariant::fromValue(&mm));

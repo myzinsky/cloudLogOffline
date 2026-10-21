@@ -29,6 +29,8 @@ QVariant qsoModel::data(const QModelIndex &index, int role) const
 }
 
 void qsoModel::deleteQSO(int id) {
+    emit qsoAboutToBeDeleted(record(id).value("id").toInt());
+
     beginRemoveRows(QModelIndex(), id, id);
     removeRows(id, 1 ,QModelIndex());
     endRemoveRows();
@@ -94,11 +96,23 @@ void qsoModel::addQSO(QString call,
 
     newRecord.setValue("sync", 0);
 
-    insertRecord(rowCount(), newRecord);
+    bool ok = insertRecord(rowCount(), newRecord);
     submit();
+
+    // The new QSO's id, taken only when this insert succeeded.
+    int newId = 0;
+    if (ok) {
+        QSqlQuery idQuery("SELECT last_insert_rowid()");
+        if (idQuery.next()) {
+            newId = idQuery.value(0).toInt();
+        }
+    }
     select();
 
     emit updateNumberOfQSOs(numberOfQSOs());
+    if (newId) {
+        emit qsoInserted(newId);
+    }
 }
 
 void qsoModel::updateQSO(int id,
@@ -158,9 +172,13 @@ void qsoModel::updateQSO(int id,
     r.setValue("rxfreq", rxfreq);
     r.setValue("loca", loca); // MY_GRIDSQUARE
 
-    setRecord(id, r);
+    int qsoId = r.value("id").toInt();
+    bool ok = setRecord(id, r);
     submit();
     select();
+    if (ok) {
+        emit qsoEdited(qsoId);
+    }
 }
 
 bool qsoModel::checkCall(QString call)

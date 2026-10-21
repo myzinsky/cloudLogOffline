@@ -40,6 +40,9 @@ Page {
     property string mode
     property string propmode
     property string satn
+    // The QSO's own MY_GRIDSQUARE. An edit keeps it: it is where the station was at the time,
+    // not today's locator from the settings.
+    property string loca
 
     property int sync
 
@@ -49,6 +52,11 @@ Page {
         console.log("Start View: "+call)
         if(mode) {
             var i = modeComboBox.find(mode);
+            if (i < 0) {
+                // A mode this list does not offer (MFSK / FT4 from DxQSO, say): show it as it is.
+                modeComboBox.model = modeComboBox.model.concat([mode]);
+                i = modeComboBox.find(mode);
+            }
             modeComboBox.currentIndex = i;
         } else if (liveQSO && settings.cqActive) {
             modeComboBox.currentIndex = settings.cqModeIndex;
@@ -204,7 +212,7 @@ Page {
                        dateTextField.text,
                        timeTextField.text,
                        freqTextField.text,
-                       modeComboBox.currentText,
+                       modeComboBox.currentIndex >= 0 ? modeComboBox.currentText : mode,
                        sentTextField.text == "" ? sentTextField.placeholderText : sentTextField.text,
                        recvTextField.text == "" ? sentTextField.placeholderText : recvTextField.text,
                        gridTextField.text,
@@ -218,11 +226,13 @@ Page {
                        wwfsTextField.text.toUpperCase(),
                        potaTextField.text.toUpperCase(),
                        potsTextField.text.toUpperCase(),
-                       satnComboBox.currentText,
+                       satnComboBox.currentIndex >= 0 ? satnComboBox.currentText : satn,
                        satmTextField.text.toUpperCase(),
-                       propModeComboBox.currentText,
+                       // A value the list does not hold (index -1) is kept as it was, and the
+                       // propagation mode is saved as its ADIF code, as a new QSO is.
+                       propModeComboBox.currentIndex >= 0 ? propModeComboBox.currentValue : propmode,
                        freqRxTextField.text,
-                       settings.gridsquare
+                       loca
                        );
             stackView.pop()
         }
